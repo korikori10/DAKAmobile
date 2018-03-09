@@ -1,152 +1,737 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
+using System.Text;
 using System.Web;
+using System.Web.Configuration;
 
 /// <summary>
 /// Summary description for DBServices
 /// </summary>
 public class DBServices
 {
-	public DBServices()
-	{
-		//
-		// TODO: Add constructor logic here
-		//
-	}
-    List<Product> ls = new List<Product>();
 
-    public List<Product> getList()
+    public SqlDataAdapter da;
+    public DataTable dt;
+    private string table;
+    private string name;
+    private string nameDS;
+    public DBServices()
     {
-        Dictionary<string, string> Attributes = new Dictionary<string, string>();
-        Attributes.Add("מוצר איכותי", "המוצר מכיל רכיבים איכותיים ללא בלאיי עם אחריות לשנתיים");
-        Attributes.Add("משלוח מהיר", "משלוחים מהירים עד בית הלקוח");
-        Attributes.Add("אספקה מהירה", "מתחייבים לקבלת המוצרים עד 48 שעות מההזמנה");
-        Attributes.Add("תשלומים", "אפשרות לקבל עד 5 תשלומים ללא ריבית");
-        Attributes.Add("קניה מאובטחת", "קנייה מאובטחת באחריות");
-
-        Dictionary<string, string> Attributes2 = new Dictionary<string, string>();
-
-
-        ls.Add(new Product(1, 1, "A new green chair", "images/chair1.jpg", 150, 4, Attributes));
-        ls.Add(new Product(1, 2, "A chair for a dining area", "images/chair2.jpg", 220, 5, Attributes));
-        ls.Add(new Product(1, 3, "A chair in a new style", "images/chair3.jpg", 215, 1, Attributes2));
-        ls.Add(new Product(1, 4, "A black chair", "images/chair4.jpg", 199, 0, Attributes));
-        ls.Add(new Product(1, 5, "A garden chair", "images/no-img.jpg", 179, 6, Attributes));
-        ls.Add(new Product(1, 6, "A chair for children", "images/chair6.jpg", 250, 8, Attributes2));
-
-
-        ls.Add(new Product(2, 7, "table", "images/table1.jpg", 150, 8, Attributes));
-        ls.Add(new Product(2, 8, "table", "images/table2.jpg", 180, 4, Attributes2));
-        ls.Add(new Product(2, 9, "table", "images/table3.jpg", 220, 1, Attributes));
-        ls.Add(new Product(2, 10, "table", "images/table4.jpg", 275, 2, Attributes));
-
-
-        ls.Add(new Product(3, 11, "armchair", "images/armchair1.jpg", 150, 0, Attributes));
-        ls.Add(new Product(3, 12, "armchair", "images/armchair2.jpg", 180, 6, Attributes2));
-        ls.Add(new Product(3, 13, "armchair", "images/armchair3.jpg", 220, 7, Attributes));
-        ls.Add(new Product(3, 14, "armchair", "images/no-img.jpg", 275, 8, Attributes));
-        ls.Add(new Product(3, 15, "armchair", "images/armchair5.jpg", 310, 1, Attributes2));
-        ls.Add(new Product(3, 16, "armchair", "images/armchair6.jpg", 270, 2, Attributes));
-        ls.Add(new Product(3, 17, "armchair", "images/armchair7.jpg", 295, 5, Attributes));
-
-
-        ls.Add(new Product(4, 18, "bed", "images/bed1.jpg", 150, 8, Attributes));
-        ls.Add(new Product(4, 19, "bed", "images/bed2.jpg", 150, 1, Attributes));
-        ls.Add(new Product(4, 20, "bed", "images/bed3.jpg", 150, 5, Attributes));
-        ls.Add(new Product(4, 21, "bed", "images/bed4.jpg", 150, 4, Attributes2));
-        ls.Add(new Product(4, 22, "bed", "images/bed5.jpg", 150, 6, Attributes));
-        ls.Add(new Product(4, 23, "bed", "images/bed6.jpg", 150, 2, Attributes));
-        ls.Add(new Product(4, 24, "bed", "images/bed7.jpg", 150, 0, Attributes));
-        ls.Add(new Product(4, 25, "bed", "images/bed8.jpg", 150, 1, Attributes2));
-        ls.Add(new Product(4, 26, "bed", "images/bed9.jpg", 150, 4, Attributes));
-
-
-        ls.Add(new Product(5, 27, "carpet", "images/carpet1.jpg", 150, 0, Attributes));
-        ls.Add(new Product(5, 28, "carpet", "images/carpet2.jpg", 180, 6, Attributes2));
-        ls.Add(new Product(5, 29, "carpet", "images/no-img.jpg", 220, 7, Attributes));
-        ls.Add(new Product(5, 30, "carpet", "images/carpet4.jpg", 275, 8, Attributes));
-        ls.Add(new Product(5, 31, "carpet", "images/carpet5.jpg", 310, 1, Attributes2));
-        ls.Add(new Product(5, 32, "carpet", "images/carpet6.jpg", 270, 2, Attributes));
-        ls.Add(new Product(5, 33, "carpet", "images/carpet7.jpg", 295, 5, Attributes));
-
-
-
-        ls.Add(new Product(6, 34, "shelf", "images/shelf1.jpg", 150, 8, Attributes));
-        ls.Add(new Product(6, 35, "shelf", "images/shelf2.jpg", 180, 4, Attributes2));
-        ls.Add(new Product(6, 36, "shelf", "images/shelf3.jpg", 220, 1, Attributes));
-        ls.Add(new Product(6, 37, "shelf", "images/shelf4.jpg", 275, 2, Attributes));
-
-
-        ls.Add(new Product(7, 38, "sofa", "images/sofa1.jpg", 150, 8, Attributes));
-        ls.Add(new Product(7, 39, "sofa", "images/no-img.jpg", 180, 4, Attributes2));
-        ls.Add(new Product(7, 40, "sofa", "images/sofa3.jpg", 220, 1, Attributes));
-        ls.Add(new Product(7, 41, "sofa", "images/sofa4.jpg", 275, 2, Attributes));
-        ls.Add(new Product(7, 42, "sofa", "images/sofa5.jpg", 275, 2, Attributes));
-
-
-        ls.Add(new Product(8, 43, "stool", "images/stool1.jpg", 150, 0, Attributes));
-        ls.Add(new Product(8, 44, "stool", "images/stool2.jpg", 180, 6, Attributes2));
-        ls.Add(new Product(8, 45, "stool", "images/stool3.jpg", 220, 7, Attributes));
-        ls.Add(new Product(8, 46, "stool", "images/stool4.jpg", 275, 8, Attributes));
-
-
-        ls.Add(new Product(9, 47, "wardrobe", "images/wardrobe1.jpg", 150, 0, Attributes));
-        ls.Add(new Product(9, 48, "wardrobe", "images/wardrobe2.jpg", 180, 6, Attributes2));
-        ls.Add(new Product(9, 49, "wardrobe", "images/no-img.jpg", 220, 7, Attributes));
-        ls.Add(new Product(9, 50, "wardrobe", "images/wardrobe4.jpg", 275, 8, Attributes));
-        ls.Add(new Product(9, 51, "wardrobe", "images/wardrobe5.jpg", 310, 1, Attributes2));
-
-        return ls;
-
-    }
-    public List<Category> getCategory()
-    {
-        List<Category> ls1= new List<Category>();
-
-        ls1.Add(new Category(1, "chair", 6));
-        ls1.Add(new Category(2, "table", 4));
-        ls1.Add(new Category(3, "armchair", 7));
-        ls1.Add(new Category(4, "bed", 9));
-        ls1.Add(new Category(5, "carpet", 7));
-        ls1.Add(new Category(6, "shelf", 4));
-        ls1.Add(new Category(7, "sofa", 5));
-        ls1.Add(new Category(8, "stool", 4));
-        ls1.Add(new Category(9, "wardrobe", 5));
-
-
-        return ls1;
-        
-    }
-
-    public List<Product> getProductsByCat(int categoryId)
-    {
-       List<Product> pl = getList();
-       List<Product> pl1 = new List<Product>();
-
-       foreach (Product p in pl)
-       {
-           if (p.category.Id == categoryId)
-               pl1.Add(p);
-       }
-
-       return pl1;
-    }
-
-    public Product getProduct(int productId)
-    {
-        List<Product> pl = getList();
-        Product p1 = new Product();
-        foreach (Product p in pl)
-        {
-            if (p.Id == productId)
-                p1 = p;
-        }
-        return p1;
        
-        
+    }
+
+    #region connection and Createcommand
+    //--------------------------------------------------------------------------------------------------
+    // This method creates a connection to the database according to the connectionString name in the web.config 
+    //--------------------------------------------------------------------------------------------------
+    public SqlConnection connect(String conString)
+    {
+
+        // read the connection string from the configuration file
+        string cStr = WebConfigurationManager.ConnectionStrings[conString].ConnectionString;
+        SqlConnection con = new SqlConnection(cStr);
+        con.Open();
+        return con;
+    }
+
+    //---------------------------------------------------------------------------------
+    // Create the SqlCommand
+    //---------------------------------------------------------------------------------
+    private SqlCommand CreateCommand(String CommandSTR, SqlConnection con)
+    {
+
+        SqlCommand cmd = new SqlCommand(); // create the command object
+
+        cmd.Connection = con;              // assign the connection to the command object
+
+        cmd.CommandText = CommandSTR;      // can be Select, Insert, Update, Delete 
+
+        cmd.CommandTimeout = 10;           // Time to wait for the execution' The default is 30 seconds
+
+        cmd.CommandType = System.Data.CommandType.Text; // the type of the command, can also be stored procedure
+
+        return cmd;
+    }
+    #endregion
+
+
+    #region SELECT COMMANDs
+   
+    /// <summary>
+    /// reads employees from sql
+    /// </summary>
+    /// <returns>list of employees</returns>
+    public List<Employee> readEmployees()
+    {
+
+        SqlConnection con = null;
+
+        try
+        {
+
+            con = connect("DAKADBConnectionString"); // create a connection to the database using the connection String defined in the web config file
+            string selectSTR = "SELECT*FROM EMPLOYEE";
+            SqlCommand cmd = new SqlCommand(selectSTR, con);
+            SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
+            List<Employee> Employees = new List<Employee>();
+            while (dr.Read())
+            {   // Read till the end of the data into a row
+                Employee e = new Employee();
+                e.Employee_pass_id = dr["employee_pass_id"].ToString();
+                e.Lname = dr["lname"].ToString();
+                e.Fname = dr["fname"].ToString();
+                e.Birthday =Convert.ToDateTime( dr["birthday"]);
+                e.Gender = Convert.ToBoolean(dr["gender"]);
+                e.Picture = dr["Picture"].ToString();
+                e.Origin_country =Convert.ToInt16(dr["origin_country"]);
+                e.Il_citizen = Convert.ToBoolean(dr["il_citizen"]);
+                e.Add_city= Convert.ToInt16(dr["add_city"]);
+                e.Add = dr["add"].ToString();
+                e.Add_num= Convert.ToInt16(dr["add_num"]);
+                e.Phone= Convert.ToInt16(dr["phone"]);
+                e.Com_app = Convert.ToBoolean(dr["com_app"]);
+                e.Sys_id = Convert.ToInt16(dr["michpal_id"]);
+                e.Insurance = Convert.ToBoolean(dr["insurance"]); 
+                e.Com_insurance = Convert.ToBoolean(dr["com_insurance"]);
+                e.Fam_stat_code = Convert.ToInt16(dr["fam_stat_code"]); 
+                e.Salary_hour = Convert.ToInt16(dr["salary_hour"]); 
+                e.Salary_overtime = Convert.ToInt16(dr["salary_overtime"]);
+                e.Salary_trans= Convert.ToInt16(dr["salary_trans"]);
+                e.Day_off = Convert.ToInt16(dr["day_off_id"]);
+                e.Sabatical = Convert.ToInt16(dr["sabatical"]);
+                e.Occupation_code = Convert.ToInt16(dr["occupation_code"]);
+                e.Active = Convert.ToBoolean(dr["active"]);
+                e.Disable_reason = dr["disable_reason"].ToString();
+
+                Employees.Add(e);
+            }
+
+            return Employees;
+        }
+
+        catch (Exception ex)
+        {
+            // write to log
+            throw (ex);
+
+        }
+
+
+        finally
+        {
+            if (con != null)
+            {
+                con.Close();
+            }
+
+        }
+
 
     }
 
 
+    /// <summary>
+    /// reads employee from sql
+    /// </summary>
+    /// <returns>employee</returns>
+    public Employee ReadEmployee(int emp_pss_id) 
+    {
+        SqlConnection con = null;
+
+        try
+        {
+
+            con = connect("DAKADBConnectionString"); // create a connection to the database using the connection String defined in the web config file
+            string selectSTR = "SELECT*FROM EMPLOYEE where employee_pass_id = '" + emp_pss_id + "'";
+            SqlCommand cmd = new SqlCommand(selectSTR, con);
+            SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
+            Employee Emp = new Employee();
+            while (dr.Read())
+            {
+                Emp = new Employee(dr["employee_pass_id"].ToString(), dr["lname"].ToString(), dr["fname"].ToString(), Convert.ToDateTime(dr["birthday"]), Convert.ToBoolean(dr["gender"]), dr["Picture"].ToString(), Convert.ToInt16(dr["origin_country"]), Convert.ToBoolean(dr["il_citizen"]), Convert.ToInt16(dr["add_city"]), dr["add"].ToString(), Convert.ToInt16(dr["add_num"]), Convert.ToInt16(dr["phone"]), Convert.ToBoolean(dr["com_app"]), Convert.ToInt16(dr["michpal_id"]), Convert.ToBoolean(dr["insurance"]), Convert.ToBoolean(dr["com_insurance"]), Convert.ToInt16(dr["fam_stat_code"]), Convert.ToInt16(dr["salary_hour"]), Convert.ToInt16(dr["salary_overtime"]), Convert.ToInt16(dr["salary_trans"]), Convert.ToInt16(dr["day_off_id"]), Convert.ToInt16(dr["sabatical"]), Convert.ToInt16(dr["occupation_code"]), Convert.ToBoolean(dr["active"]), dr["disable_reason"].ToString());
+            }
+            return Emp;
+        }
+        catch (Exception ex)
+        {
+            // write to log
+            throw (ex);
+
+        }
+        finally
+        {
+            if (con != null)
+            {
+                con.Close();
+            }
+
+        }
+    }
+
+    /// <summary>
+    /// reads businesses from sql
+    /// </summary>
+    /// <returns>list of businesses</returns>
+    public List<Business> readBusinesses()
+    {
+        SqlConnection con = null;
+        try
+        {
+
+            con = connect("DAKADBConnectionString"); // create a connection to the database using the connection String defined in the web config file
+            string selectSTR = "SELECT*FROM BUSINESSES";
+            SqlCommand cmd = new SqlCommand(selectSTR, con);
+            SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
+            List<Business> businesses = new List<Business>();
+            while (dr.Read())
+            {   // Read till the end of the data into a row
+                Business b = new Business();           
+                b.Bus_id = Convert.ToInt16(dr["bus_id"]);
+                b.Bus_name = dr["bus_name"].ToString();
+                b.Add_city = Convert.ToInt16(dr["add_city"]);
+                b.Add = dr["add"].ToString();
+                b.Add_num = Convert.ToInt16(dr["add_num"]);
+                b.Phone = Convert.ToInt16(dr["phone"]);
+                b.Bus_type_code = Convert.ToInt16(dr["bus_type_code"]);
+                b.Contract_code = Convert.ToInt16(dr["contract_code"]);   
+                businesses.Add(b);
+            }
+
+            return businesses;
+        }
+
+        catch (Exception ex)
+        {
+            // write to log
+            throw (ex);
+
+        }
+        finally
+        {
+            if (con != null)
+            {
+                con.Close();
+            }
+        }
+    }
+
+    /// <summary>
+    /// reads business from sql
+    /// </summary>
+    /// <returns>business</returns>
+    public Business ReadBusiness(int bus_id)
+    {
+        SqlConnection con = null;
+
+        try
+        {
+
+            con = connect("DAKADBConnectionString"); // create a connection to the database using the connection String defined in the web config file
+            string selectSTR = "SELECT*FROM BUSINESSES where bus_id = '" + bus_id + "'";
+            SqlCommand cmd = new SqlCommand(selectSTR, con);
+            SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
+            Business Busi = new Business();
+            while (dr.Read())
+            {
+                Busi = new Business(Convert.ToInt16(dr["bus_id"]),dr["bus_name"].ToString(),Convert.ToInt16(dr["add_city"]),dr["add"].ToString(),Convert.ToInt16(dr["add_num"]),Convert.ToInt16(dr["phone"]), Convert.ToInt16(dr["bus_type_code"]),Convert.ToInt16(dr["contract_code"]));
+            }
+           return Busi;
+           
+        }
+        catch (Exception ex)
+        {
+            // write to log
+            throw (ex);
+
+        }
+        finally
+        {
+            if (con != null)
+            {
+                con.Close();
+            }
+
+        }
+    }
+
+    /// <summary>
+    /// reads Users from sql
+    /// </summary>
+    /// <returns>list of Users</returns>
+    public List<User> readUsers()
+    {
+
+        SqlConnection con = null;
+
+        try
+        {
+
+            con = connect("DAKADBConnectionString"); // create a connection to the database using the connection String defined in the web config file
+            string selectSTR = "SELECT*FROM USERS";
+            SqlCommand cmd = new SqlCommand(selectSTR, con);
+            SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
+            List<User> Users = new List<User>();
+            while (dr.Read())
+            {   // Read till the end of the data into a row
+                User u = new User(); 
+            
+                u.Uid =Convert.ToInt16(dr["uid"]);
+                u.U_name = dr["u_name"].ToString();
+                u.U_pwd = dr["u_pwd"].ToString();
+                u.Full_name= dr["full_name"].ToString();
+                u.U_type_code = Convert.ToInt16(dr["U_type_code"]);
+                u.Phone = Convert.ToInt16(dr["phone"]);
+
+
+               Users.Add(u);
+            }
+
+            return Users;
+        }
+
+        catch (Exception ex)
+        {
+            // write to log
+            throw (ex);
+
+        }
+
+
+        finally
+        {
+            if (con != null)
+            {
+                con.Close();
+            }
+
+        }
+
+
+    }
+
+    /// <summary>
+    /// reads User from sql
+    /// </summary>
+    /// <returns>User</returns>
+    public User ReadUsers(int user_id)
+    {
+        SqlConnection con = null;
+
+        try
+        {
+
+            con = connect("DAKADBConnectionString"); // create a connection to the database using the connection String defined in the web config file
+            string selectSTR = "SELECT*FROM USERS where uid = '" + user_id + "'";
+            SqlCommand cmd = new SqlCommand(selectSTR, con);
+            SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
+            User user = new User();
+            while (dr.Read())
+            {
+                user = new User(Convert.ToInt16(dr["uid"]), dr["u_name"].ToString(), dr["u_pwd"].ToString(), dr["full_name"].ToString(), Convert.ToInt16(dr["U_type_code"]), Convert.ToInt16(dr["phone"]));
+            }
+            return user;
+
+        }
+        catch (Exception ex)
+        {
+            // write to log
+            throw (ex);
+
+        }
+        finally
+        {
+            if (con != null)
+            {
+                con.Close();
+            }
+
+        }
+    }
+    #endregion
+
+
+
+    #region INSERT COMMAND
+
+    //--------------------------------------------------------------------
+    // insert an Employee
+    //--------------------------------------------------------------------
+    public int insert(Employee emp)
+    {
+
+        SqlConnection con;
+        SqlCommand cmd;
+
+        try
+        {
+            con = connect("DAKADBConnectionString"); // create the connection
+        }
+        catch (Exception ex)
+        {
+            // write to log
+            throw (ex);
+        }
+
+        String cStr = BuildInsertCommand(emp);      // helper method to build the insert string
+
+        cmd = CreateCommand(cStr, con);             // create the command
+
+        try
+        {
+            int numEffected = cmd.ExecuteNonQuery(); // execute the command
+            return numEffected;
+        }
+        catch (Exception ex)
+        {
+            return 0;
+            // write to log
+            throw (ex);
+        }
+
+        finally
+        {
+            if (con != null)
+            {
+                // close the db connection
+                con.Close();
+            }
+        }
+
+    }
+
+    //--------------------------------------------------------------------
+    // Build the Insert command String for employee
+    //--------------------------------------------------------------------
+    private String BuildInsertCommand(Employee emp)
+    {
+        String command;
+
+        StringBuilder sb = new StringBuilder();
+        // use a string builder to create the dynamic string
+        sb.AppendFormat("Values('{0}', '{1}' ,'{2}', {3}, {4},'{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}','{16}','{17}','{18}','{19}','{20}','{21}','{22}','{23}','{24}')", emp.Employee_pass_id, emp.Lname, emp.Fname, emp.Birthday, emp.Gender, emp.Picture, emp.Origin_country, emp.Il_citizen, emp.Add_city, emp.Add, emp.Add_num, emp.Phone, emp.Com_app, emp.Sys_id, emp.Insurance, emp.Com_insurance, emp.Fam_stat_code, emp.Salary_hour, emp.Salary_overtime, emp.Salary_trans, emp.Day_off, emp.Sabatical, emp.Occupation_code, emp.Active, emp.Disable_reason);//לבדוק מה סטרינג כי הוא מצריך גרשיים אחדיים ולאינט לא!לבדוק מי צריך מה לגבי בול והשאר
+        String prefix = "INSERT INTO EMPLOYEE " + "(employee_pass_id,lname,fname,birthday,gender,Picture,origin_country,il_citizen,add_city,add,add_num,phone,com_app,michpal_id,insurance,com_insurance,fam_stat_code,salary_hour,salary_overtime,salary_trans,day_off_id,sabatical, occupation_code,active,disable_reason) ";
+        command = prefix + sb.ToString();
+
+        return command;
+    }
+
+    //--------------------------------------------------------------------
+    // insert an Business
+    //--------------------------------------------------------------------
+    public int insert(Business busi)
+    {
+
+        SqlConnection con;
+        SqlCommand cmd;
+
+        try
+        {
+            con = connect("DAKADBConnectionString"); // create the connection
+        }
+        catch (Exception ex)
+        {
+            // write to log
+            throw (ex);
+        }
+
+        String cStr = BuildInsertCommand(busi);      // helper method to build the insert string
+
+        cmd = CreateCommand(cStr, con);             // create the command
+
+        try
+        {
+            int numEffected = cmd.ExecuteNonQuery(); // execute the command
+            return numEffected;
+        }
+        catch (Exception ex)
+        {
+            return 0;
+            // write to log
+            throw (ex);
+        }
+
+        finally
+        {
+            if (con != null)
+            {
+                // close the db connection
+                con.Close();
+            }
+        }
+
+    }
+
+    //--------------------------------------------------------------------
+    // Build the Insert command String for employee
+    //--------------------------------------------------------------------
+    private String BuildInsertCommand(Business busi)
+    {
+        String command;
+
+        StringBuilder sb = new StringBuilder();
+        // use a string builder to create the dynamic string
+        sb.AppendFormat("Values({0}, '{1}' ,{2}, {3}, {4},{5},{6},{7})", busi.Bus_id, busi.Bus_name, busi.Add_city, busi.Add, busi.Add_num, busi.Phone, busi.Bus_type_code, busi.Contract_code);//לבדוק מה סטרינג כי הוא מצריך גרשיים אחדיים ולאינט לא!לבדוק מי צריך מה לגבי בול והשאר
+        String prefix = "INSERT INTO BUSINESSES " + "(bus_id,bus_name,add_city,add,add_num,phone,bus_type_code,contract_code)";
+        command = prefix + sb.ToString();
+
+        return command;
+    }
+
+    //--------------------------------------------------------------------
+    // insert an Business
+    //--------------------------------------------------------------------
+    public int insert(User user)
+    {
+
+        SqlConnection con;
+        SqlCommand cmd;
+
+        try
+        {
+            con = connect("DAKADBConnectionString"); // create the connection
+        }
+        catch (Exception ex)
+        {
+            // write to log
+            throw (ex);
+        }
+
+        String cStr = BuildInsertCommand(user);      // helper method to build the insert string
+
+        cmd = CreateCommand(cStr, con);             // create the command
+
+        try
+        {
+            int numEffected = cmd.ExecuteNonQuery(); // execute the command
+            return numEffected;
+        }
+        catch (Exception ex)
+        {
+            return 0;
+            // write to log
+            throw (ex);
+        }
+
+        finally
+        {
+            if (con != null)
+            {
+                // close the db connection
+                con.Close();
+            }
+        }
+
+    }
+
+    //--------------------------------------------------------------------
+    // Build the Insert command String for employee
+    //--------------------------------------------------------------------
+    private String BuildInsertCommand(User user)
+    {
+        String command;
+
+        StringBuilder sb = new StringBuilder();
+        // use a string builder to create the dynamic string
+        sb.AppendFormat("Values({0}, '{1}' ,{2}, {3}, {4},{5})", user.Uid, user.U_name, user.U_pwd, user.Full_name, user.U_type_code,user.Phone);//לבדוק מה סטרינג כי הוא מצריך גרשיים אחדיים ולאינט לא!לבדוק מי צריך מה לגבי בול והשאר
+        String prefix = "INSERT INTO USERS " + "(uid,u_name,u_pwd,full_name,U_type_code,phone)";
+        command = prefix + sb.ToString();
+
+        return command;
+    }
+    #endregion
+
+
+
+    #region UPDATE COMMAND
+
+    //--------------------------------------------------------------------
+    // Update Employee
+    //--------------------------------------------------------------------
+    public int update(Employee emp)
+    {
+
+        SqlConnection con;
+        SqlCommand cmd;
+
+        try
+        {
+            con = connect("DAKADBConnectionString"); // create the connection
+        }
+        catch (Exception ex)
+        {
+            // write to log
+            throw (ex);
+        }
+
+        String cStr = BuildUpdateCommand(emp);      // helper method to build the insert string
+
+        cmd = CreateCommand(cStr, con);             // create the command
+
+        try
+        {
+            int numEffected = cmd.ExecuteNonQuery(); // execute the command
+            return numEffected;
+        }
+        catch (Exception ex)
+        {
+            return 0;
+            // write to log
+            throw (ex);
+        }
+
+        finally
+        {
+            if (con != null)
+            {
+                // close the db connection
+                con.Close();
+            }
+        }
+
+    }
+
+
+    //--------------------------------------------------------------------
+    // Build the business a employy command String
+    //--------------------------------------------------------------------
+    private String BuildUpdateCommand(Employee emp)
+    {
+        String command;
+
+        StringBuilder sb = new StringBuilder();
+        // use a string builder to create the dynamic string
+        //String prefix = "UPDATE productN SET inventory = " /*+ emp.Inventory + " Where product_id = " + emp.ProductId*/;
+        command = "";// prefix;
+
+        return command;
+    }
+
+    //--------------------------------------------------------------------
+    // Update business
+    //--------------------------------------------------------------------
+    public int update(Business busi)
+    {
+
+        SqlConnection con;
+        SqlCommand cmd;
+
+        try
+        {
+            con = connect("DAKADBConnectionString"); // create the connection
+        }
+        catch (Exception ex)
+        {
+            // write to log
+            throw (ex);
+        }
+
+        String cStr = BuildUpdateCommand(busi);      // helper method to build the insert string
+
+        cmd = CreateCommand(cStr, con);             // create the command
+
+        try
+        {
+            int numEffected = cmd.ExecuteNonQuery(); // execute the command
+            return numEffected;
+        }
+        catch (Exception ex)
+        {
+            return 0;
+            // write to log
+            throw (ex);
+        }
+
+        finally
+        {
+            if (con != null)
+            {
+                // close the db connection
+                con.Close();
+            }
+        }
+
+    }
+
+
+    //--------------------------------------------------------------------
+    // Build the update a business command String
+    //--------------------------------------------------------------------
+    private String BuildUpdateCommand(Business busi)
+    {
+        String command;
+
+        StringBuilder sb = new StringBuilder();
+        // use a string builder to create the dynamic string
+        //String prefix = "UPDATE productN SET inventory = " /*+ emp.Inventory + " Where product_id = " + emp.ProductId*/;
+        command = "";// prefix;
+
+        return command;
+    }
+
+
+    //--------------------------------------------------------------------
+    // Update user
+    //--------------------------------------------------------------------
+    public int update(User u)
+    {
+
+        SqlConnection con;
+        SqlCommand cmd;
+
+        try
+        {
+            con = connect("DAKADBConnectionString"); // create the connection
+        }
+        catch (Exception ex)
+        {
+            // write to log
+            throw (ex);
+        }
+
+        String cStr = BuildUpdateCommand(u);      // helper method to build the insert string
+
+        cmd = CreateCommand(cStr, con);             // create the command
+
+        try
+        {
+            int numEffected = cmd.ExecuteNonQuery(); // execute the command
+            return numEffected;
+        }
+        catch (Exception ex)
+        {
+            return 0;
+            // write to log
+            throw (ex);
+        }
+
+        finally
+        {
+            if (con != null)
+            {
+                // close the db connection
+                con.Close();
+            }
+        }
+
+    }
+
+
+    //--------------------------------------------------------------------
+    // Build the update a user command String
+    //--------------------------------------------------------------------
+    private String BuildUpdateCommand(User u)
+    {
+        String command;
+
+        StringBuilder sb = new StringBuilder();
+        // use a string builder to create the dynamic string
+        //String prefix = "UPDATE productN SET inventory = " /*+ emp.Inventory + " Where product_id = " + emp.ProductId*/;
+        command = "";// prefix;
+
+        return command;
+    }
+    #endregion
 }
