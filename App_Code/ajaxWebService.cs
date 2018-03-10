@@ -24,6 +24,18 @@ public class ajaxWebService : System.Web.Services.WebService
         //InitializeComponent(); 
     }
 
+    [WebMethod]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    public string getEmployees()
+    {
+        Employee e = new Employee();
+        List<Employee> LE = e.getEmployees();
+        JavaScriptSerializer js = new JavaScriptSerializer();
+        // serialize to string
+        string jsonStringCategory =  js.Serialize(LE);
+        return jsonStringCategory;
+
+    }
 
     ////קבלת כל הקטגוריות הקיימות
     //[WebMethod]
@@ -76,5 +88,5 @@ public class ajaxWebService : System.Web.Services.WebService
     //    return jsonStringCategory;
     //}
 
-    
+
 }

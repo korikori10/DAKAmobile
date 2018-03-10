@@ -4,12 +4,9 @@
     <title>DAKA MOBILE</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
-    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-    <script src="AjaxCalls.js"></script>
-    <script src="Employees.js"></script>
-    <link href="StyleSheet.css" rel="stylesheet" />
 
+    <link href="StyleSheet.css" rel="stylesheet" />
+   
     <link rel="apple-touch-icon" sizes="60x60" href="app-assets/images/ico/apple-icon-60.png">
     <link rel="apple-touch-icon" sizes="76x76" href="app-assets/images/ico/apple-icon-76.png">
     <link rel="apple-touch-icon" sizes="120x120" href="app-assets/images/ico/apple-icon-120.png">
@@ -67,7 +64,7 @@
             <ul data-role="listview" data-count-theme="a" data-filter="true" data-filter-placeholder="חפש עובד..." data-filter-reveal="true" data-inset="true" id="DynamicEmployeesList" style="text-align:right;"></ul>
             <ul data-role="listview" data-count-theme="a" data-filter="true" data-filter-placeholder="חפש בית עסק ..." data-filter-reveal="true" data-inset="true" id="DynamicBusinessesList"></ul>
             <div id="addempdiv" style="text-align:center;">
-                <a href="#wizard" data-role="button" id="addempbtn" class=" ui-btn ui-btn-inline mr-1 mb-1 btn btn-outline-success btn-min-width btn-square icon-android-person-add">  עובד חדש</a>
+                <a href="#wizard" data-transition="slide" data-role="button" id="addempbtn" class=" ui-btn ui-btn-inline mr-1 mb-1 btn btn-outline-success btn-min-width btn-square icon-android-person-add">  עובד חדש</a>
             </div>
             <!--<div id="empnobusi">-->
             <div class="col-xl-3 col-lg-6 col-md-12 border-right-blue-grey border-right-lighten-5">
@@ -80,10 +77,44 @@
             </div>
             <!--</div>-->
         </div> <!-- /content -->
-        <div data-role="footer" id="footer"> <img src="images/logo_daka.png" style="height:inherit" /> </div> <!-- /footer -->
+        <!-- /footer -->
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar" data-iconpos="top">
+                <ul>
+                    <li><a href="MobileDAKA.html">מסך הבית</a></li>
+                    <li><a href="#">עסקים</a></li>
+                    <li><a href="#">עובדים ללא ציוות</a></li>
+                    <li><a href="#">החשבון שלי</a></li>
+                </ul>
+            </div><!-- /navbar -->
+        </div><!-- /footer -->
     </div>
-   
-    
+
+    <div data-role="page" data-position="fixed" id="employee">
+        <header data-role="header">
+            <h1> Employee </h1>
+            <a href="#" class="ui-btn ui-shadow ui-corner-all ui-icon-back ui-btn-icon-notext" data-transition="slide" data-direction="reverse" data-icon="back"> </a>
+            <div data-role="navbar" data-iconpos="top">
+                <ul>
+                    <li><a href="MobileDAKA.html">פרטים אישיים</a></li>
+                    <li><a href="#">היסטוריית תעסוקה</a></li>
+                    <li><a href="#">מסמכים</a></li>
+                </ul>
+            </div><!-- /navbar -->
+        </header> <!-- /header -->
+        <article data-role="content" id="employeePage"></article> <!-- /content -->
+        <footer data-role="footer" data-position="fixed" id="footer">
+            <div data-role="navbar" data-iconpos="top">
+                <ul>
+                    <li><a href="MobileDAKA.html">מסך הבית</a></li>
+                    <li><a href="#">עסקים</a></li>
+                    <li><a href="#">עובדים ללא ציוות</a></li>
+                    <li><a href="#">החשבון שלי</a></li>
+                </ul>
+            </div><!-- /navbar -->
+        </footer> <!-- /footer -->
+
+    </div>
     <!-- /page -->
     <div data-role="page" data-position="fixed" id="wizard">
         <header data-role="header">
@@ -95,276 +126,254 @@
 
             <div class="app-content content container-fluid">
                 <!--<div class="content-wrapper">-->
-                    <div class="content-body">
-                        <section id="vertical-tabs">
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <div class="card">
-                                        <div class="card-header">
-                                            <h4 class="card-title">קליטת עובד חדש</h4>
-                                            <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
-                                            <div class="heading-elements">
-                                                <ul class="list-inline mb-0">
-                                                    <li><a data-action="collapse"><i class="icon-minus4"></i></a></li>
-                                                    <li><a data-action="reload"><i class="icon-reload"></i></a></li>
-                                                    <li><a data-action="expand"><i class="icon-expand2"></i></a></li>
-                                                    <li><a data-action="close"><i class="icon-cross2"></i></a></li>
-                                                </ul>
-                                            </div>
+                <div class="content-body">
+                    <section id="vertical-tabs">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">קליטת עובד חדש</h4>
+                                        <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
+                                        <div class="heading-elements">
+                                            <ul class="list-inline mb-0">
+                                                <li><a data-action="collapse"><i class="icon-minus4"></i></a></li>
+                                                <li><a data-action="reload"><i class="icon-reload"></i></a></li>
+                                                <li><a data-action="expand"><i class="icon-expand2"></i></a></li>
+                                                <li><a data-action="close"><i class="icon-cross2"></i></a></li>
+                                            </ul>
                                         </div>
-                                        <div class="card-body collapse in">
-                                            <div class="card-block">
-                                                <form action="#" class="vertical-tab-steps wizard-circle">
-                                                    <!-- Step 1 -->
-                                                    <h6>Step 1</h6>
-                                                    <fieldset>
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                    <label for="firstName4">שם פרטי :</label>
-                                                                    <input type="text" class="form-control" id="firstName4">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                    <label for="lastName4">שם משפחה</label>
-                                                                    <input type="text" class="form-control" id="lastName4">
-                                                                </div>
+                                    </div>
+                                    <div class="card-body collapse in">
+                                        <div class="card-block">
+                                            <form action="#" class="vertical-tab-steps wizard-circle">
+                                                <!-- Step 1 -->
+                                                <h6>Step 1</h6>
+                                                <fieldset>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="firstName4">שם פרטי :</label>
+                                                                <input type="text" class="form-control" id="firstName4">
                                                             </div>
                                                         </div>
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                    <label for="passport7">מספר דרכון</label>
-                                                                    <input type="text" class="form-control" id="passportid">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                    <label for="location3">ארץ מוצא:</label>
-                                                                    <select class="custom-select form-control" id="location3" name="location">
-                                                                        <option value=""> בחר ארץ Select Country</option>
-                                                                        <option value="אוקראינה">אוקראינה</option>
-                                                                        <option value="בית שמש">בית שמש</option>
-                                                                        <option value="הרצליה">הרצליה</option>
-                                                                    </select>
-                                                                </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="lastName4">שם משפחה</label>
+                                                                <input type="text" class="form-control" id="lastName4">
                                                             </div>
                                                         </div>
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                    <label for="phoneNumber4"> טלפון נייד Phone Number :</label>
-                                                                    <input type="tel" class="form-control" id="phoneNumber4">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                    <label for="date4">תאריך לידה Date of Birth :</label>
-                                                                    <input type="date" class="form-control" id="date4">
-                                                                </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="passport7">מספר דרכון</label>
+                                                                <input type="text" class="form-control" id="passportid">
                                                             </div>
                                                         </div>
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                <div class="form-group">
-                                                                    <label class="display-inline-block custom-control custom-radio">
-                                                                        <input type="radio" name="inlineRadio1" class="custom-control-input">
-                                                                        <span class="custom-control-indicator"></span>
-                                                                        <span class="custom-control-description">Unchecked custom radio</span>
-                                                                    </label>
-                                                                    <label class="display-inline-block custom-control custom-radio">
-                                                                        <input type="radio" name="inlineRadio1" checked class="custom-control-input">
-                                                                        <span class="custom-control-indicator"></span>
-                                                                        <span class="custom-control-description">Checked custom radio</span>
-                                                                    </label>
-                                                                    <label class="display-inline-block custom-control custom-radio">
-                                                                        <input type="radio" name="inlineRadio1" disabled class="custom-control-input">
-                                                                        <span class="custom-control-indicator"></span>
-                                                                        <span class="custom-control-description">Disabled custom radio</span>
-                                                                    </label>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                    </fieldset>
-                                                    <!-- Step 2 -->
-                                                    <h6>Step 2</h6>
-                                                    <fieldset>
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                    <label for="proposalTitle4">Proposal Title :</label>
-                                                                    <input type="text" class="form-control" id="proposalTitle4">
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="emailAddress8">Email Address :</label>
-                                                                    <input type="email" class="form-control" id="emailAddress8">
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="videoUrl4">Video URL :</label>
-                                                                    <input type="url" class="form-control" id="videoUrl4">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                    <label for="jobTitle6">Job Title :</label>
-                                                                    <input type="text" class="form-control" id="jobTitle6">
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="shortDescription4">Short Description :</label>
-                                                                    <textarea name="shortDescription" id="shortDescription4" rows="4" class="form-control"></textarea>
-                                                                </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="location3">ארץ מוצא:</label>
+                                                                <select class="custom-select form-control" id="location3" name="location">
+                                                                    <option value=""> בחר ארץ Select Country</option>
+                                                                    <option value="אוקראינה">אוקראינה</option>
+                                                                    <option value="בית שמש">בית שמש</option>
+                                                                    <option value="הרצליה">הרצליה</option>
+                                                                </select>
                                                             </div>
                                                         </div>
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                    <label for="gender4">מין Gender:</label>
-                                                                    <input type="radio" class="form-control" id="phoneNumber4">
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="phoneNumber4"> טלפון נייד Phone Number :</label>
+                                                                <input type="tel" class="form-control" id="phoneNumber4">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="date4">תאריך לידה Date of Birth :</label>
+                                                                <input type="date" class="form-control" id="date4">
+                                                            </div>
+                                                        </div>
+                                                    </div>
 
+                                                </fieldset>
+                                                <!-- Step 2 -->
+                                                <h6>Step 2</h6>
+                                                <fieldset>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="proposalTitle4">Proposal Title :</label>
+                                                                <input type="text" class="form-control" id="proposalTitle4">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="emailAddress8">Email Address :</label>
+                                                                <input type="email" class="form-control" id="emailAddress8">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="videoUrl4">Video URL :</label>
+                                                                <input type="url" class="form-control" id="videoUrl4">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="jobTitle6">Job Title :</label>
+                                                                <input type="text" class="form-control" id="jobTitle6">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="shortDescription4">Short Description :</label>
+                                                                <textarea name="shortDescription" id="shortDescription4" rows="4" class="form-control"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="gender4">מין Gender:</label>
+                                                                <input type="radio" class="form-control" id="phoneNumber4">
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="date4">תאריך לידה Date of Birth :</label>
+                                                                <input type="date" class="form-control" id="date4">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </fieldset>
+                                                <!-- Step 3 -->
+                                                <h6>Step 3</h6>
+                                                <fieldset>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="eventName4">Event Name :</label>
+                                                                <input type="text" class="form-control" id="eventName4">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="eventType4">Event Type :</label>
+                                                                <select class="custom-select form-control" id="eventType4" data-placeholder="Type to search cities" name="eventType4">
+                                                                    <option value="Banquet">Banquet</option>
+                                                                    <option value="Fund Raiser">Fund Raiser</option>
+                                                                    <option value="Dinner Party">Dinner Party</option>
+                                                                    <option value="Wedding">Wedding</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="eventLocation4">Event Location :</label>
+                                                                <select class="custom-select form-control" id="eventLocation4" name="location">
+                                                                    <option value="">Select City</option>
+                                                                    <option value="Amsterdam">Amsterdam</option>
+                                                                    <option value="Berlin">Berlin</option>
+                                                                    <option value="Frankfurt">Frankfurt</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>Event Date - Time :</label>
+                                                                <div class='input-group'>
+                                                                    <input type='text' class="form-control datetime" />
+                                                                    <span class="input-group-addon">
+                                                                        <span class="icon-calendar-o"></span>
+                                                                    </span>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                    <label for="date4">תאריך לידה Date of Birth :</label>
-                                                                    <input type="date" class="form-control" id="date4">
+                                                            <div class="form-group">
+                                                                <label for="eventStatus4">Event Status :</label>
+                                                                <select class="custom-select form-control" id="eventStatus4" name="eventStatus">
+                                                                    <option value="Planning">Planning</option>
+                                                                    <option value="In Progress">In Progress</option>
+                                                                    <option value="Finished">Finished</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>Requirements :</label>
+                                                                <div class="c-inputs-stacked">
+                                                                    <label class="inline custom-control custom-checkbox block">
+                                                                        <input type="checkbox" class="custom-control-input">
+                                                                        <span class="custom-control-indicator"></span>
+                                                                        <span class="custom-control-description ml-0">Staffing</span>
+                                                                    </label>
+                                                                    <label class="inline custom-control custom-checkbox block">
+                                                                        <input type="checkbox" class="custom-control-input">
+                                                                        <span class="custom-control-indicator"></span>
+                                                                        <span class="custom-control-description ml-0">Catering</span>
+                                                                    </label>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </fieldset>
-                                                    <!-- Step 3 -->
-                                                    <h6>Step 3</h6>
-                                                    <fieldset>
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                    <label for="eventName4">Event Name :</label>
-                                                                    <input type="text" class="form-control" id="eventName4">
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="eventType4">Event Type :</label>
-                                                                    <select class="custom-select form-control" id="eventType4" data-placeholder="Type to search cities" name="eventType4">
-                                                                        <option value="Banquet">Banquet</option>
-                                                                        <option value="Fund Raiser">Fund Raiser</option>
-                                                                        <option value="Dinner Party">Dinner Party</option>
-                                                                        <option value="Wedding">Wedding</option>
-                                                                    </select>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="eventLocation4">Event Location :</label>
-                                                                    <select class="custom-select form-control" id="eventLocation4" name="location">
-                                                                        <option value="">Select City</option>
-                                                                        <option value="Amsterdam">Amsterdam</option>
-                                                                        <option value="Berlin">Berlin</option>
-                                                                        <option value="Frankfurt">Frankfurt</option>
-                                                                    </select>
-                                                                </div>
+                                                    </div>
+                                                </fieldset>
+                                                <!-- Step 4 -->
+                                                <h6>Step 4</h6>
+                                                <fieldset>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="meetingName4">Name of Meeting :</label>
+                                                                <input type="text" class="form-control" id="meetingName4">
                                                             </div>
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                    <label>Event Date - Time :</label>
-                                                                    <div class='input-group'>
-                                                                        <input type='text' class="form-control datetime" />
-                                                                        <span class="input-group-addon">
-                                                                            <span class="icon-calendar-o"></span>
-                                                                        </span>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="eventStatus4">Event Status :</label>
-                                                                    <select class="custom-select form-control" id="eventStatus4" name="eventStatus">
-                                                                        <option value="Planning">Planning</option>
-                                                                        <option value="In Progress">In Progress</option>
-                                                                        <option value="Finished">Finished</option>
-                                                                    </select>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label>Requirements :</label>
-                                                                    <div class="c-inputs-stacked">
-                                                                        <label class="inline custom-control custom-checkbox block">
-                                                                            <input type="checkbox" class="custom-control-input">
-                                                                            <span class="custom-control-indicator"></span>
-                                                                            <span class="custom-control-description ml-0">Staffing</span>
-                                                                        </label>
-                                                                        <label class="inline custom-control custom-checkbox block">
-                                                                            <input type="checkbox" class="custom-control-input">
-                                                                            <span class="custom-control-indicator"></span>
-                                                                            <span class="custom-control-description ml-0">Catering</span>
-                                                                        </label>
-                                                                    </div>
+                                                            <div class="form-group">
+                                                                <label for="meetingLocation4">Location :</label>
+                                                                <input type="text" class="form-control" id="meetingLocation4">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="participants4">Names of Participants</label>
+                                                                <textarea name="participants" id="participants4" rows="4" class="form-control"></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="decisions4">Decisions Reached</label>
+                                                                <textarea name="decisions" id="decisions4" rows="4" class="form-control"></textarea>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>Agenda Items :</label>
+                                                                <div class="c-inputs-stacked">
+                                                                    <label class="inline custom-control custom-checkbox block">
+                                                                        <input type="checkbox" class="custom-control-input">
+                                                                        <span class="custom-control-indicator"></span>
+                                                                        <span class="custom-control-description ml-0">1st item</span>
+                                                                    </label>
+                                                                    <label class="inline custom-control custom-checkbox block">
+                                                                        <input type="checkbox" class="custom-control-input">
+                                                                        <span class="custom-control-indicator"></span>
+                                                                        <span class="custom-control-description ml-0">2nd item</span>
+                                                                    </label>
+                                                                    <label class="inline custom-control custom-checkbox block">
+                                                                        <input type="checkbox" class="custom-control-input">
+                                                                        <span class="custom-control-indicator"></span>
+                                                                        <span class="custom-control-description ml-0">4th item</span>
+                                                                    </label>
+                                                                    <label class="inline custom-control custom-checkbox block">
+                                                                        <input type="checkbox" class="custom-control-input">
+                                                                        <span class="custom-control-indicator"></span>
+                                                                        <span class="custom-control-description ml-0">5th item</span>
+                                                                    </label>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </fieldset>
-                                                    <!-- Step 4 -->
-                                                    <h6>Step 4</h6>
-                                                    <fieldset>
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                    <label for="meetingName4">Name of Meeting :</label>
-                                                                    <input type="text" class="form-control" id="meetingName4">
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="meetingLocation4">Location :</label>
-                                                                    <input type="text" class="form-control" id="meetingLocation4">
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="participants4">Names of Participants</label>
-                                                                    <textarea name="participants" id="participants4" rows="4" class="form-control"></textarea>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                    <label for="decisions4">Decisions Reached</label>
-                                                                    <textarea name="decisions" id="decisions4" rows="4" class="form-control"></textarea>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label>Agenda Items :</label>
-                                                                    <div class="c-inputs-stacked">
-                                                                        <label class="inline custom-control custom-checkbox block">
-                                                                            <input type="checkbox" class="custom-control-input">
-                                                                            <span class="custom-control-indicator"></span>
-                                                                            <span class="custom-control-description ml-0">1st item</span>
-                                                                        </label>
-                                                                        <label class="inline custom-control custom-checkbox block">
-                                                                            <input type="checkbox" class="custom-control-input">
-                                                                            <span class="custom-control-indicator"></span>
-                                                                            <span class="custom-control-description ml-0">2nd item</span>
-                                                                        </label>
-                                                                        <label class="inline custom-control custom-checkbox block">
-                                                                            <input type="checkbox" class="custom-control-input">
-                                                                            <span class="custom-control-indicator"></span>
-                                                                            <span class="custom-control-description ml-0">4th item</span>
-                                                                        </label>
-                                                                        <label class="inline custom-control custom-checkbox block">
-                                                                            <input type="checkbox" class="custom-control-input">
-                                                                            <span class="custom-control-indicator"></span>
-                                                                            <span class="custom-control-description ml-0">5th item</span>
-                                                                        </label>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </fieldset>
-                                                </form>
-                                            </div>
+                                                    </div>
+                                                </fieldset>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </section>
-                    </div>
-                <!--</div>-->
+                        </div>
+                    </section>
                 </div>
+                <!--</div>-->
+            </div>
 
             <!-- Form wizard with vertical tabs section end -->
         </article> <!-- /content -->
         <footer data-role="footer" id="footer"> <img src="images/logo_daka.png" style="height:inherit" /> </footer> <!-- /footer -->
     </div>
     <!-- /page -->
-
-
     <!-- /page -->
     <div data-role="page" data-position="fixed" id="product">
         <header data-role="header">
@@ -376,6 +385,10 @@
     </div>
     <!-- /page -->
     <!-- BEGIN VENDOR JS-->
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script src="AjaxCalls.js"></script>
+    <script src="Employees.js"></script>
     <script src="app-assets/js/core/libraries/jquery.min.js" type="text/javascript"></script>
     <script src="app-assets/vendors/js/ui/tether.min.js" type="text/javascript"></script>
     <script src="app-assets/js/core/libraries/bootstrap.min.js" type="text/javascript"></script>
@@ -411,9 +424,11 @@
     <!-- END ROBUST JS-->
     <!-- BEGIN PAGE LEVEL JS-->
     <script src="app-assets/js/scripts/pages/dashboard-fitness.js" type="text/javascript"></script>
+
     <!-- END PAGE LEVEL JS-->
     <!-- BEGIN PAGE LEVEL JS-->
     <script src="app-assets/js/scripts/forms/wizard-steps.js" type="text/javascript"></script>
+
     <!-- END PAGE LEVEL JS-->
 </body>
 </html>

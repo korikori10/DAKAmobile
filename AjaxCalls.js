@@ -1,11 +1,11 @@
-﻿function getCategory(renderCategory) {
+﻿function getEmployees(renderEmployees) {
     $.ajax({
-        url: 'ajaxWebService.asmx/getCategory',
+        url: 'ajaxWebService.asmx/getEmployees',
         type: 'POST',
         dataType: "json",
         contentType: 'application/json; charset = utf-8',
         success: function (results) {
-            renderCategory(results);
+            renderEmployees(results);
         },
         error: function (request, error) {
             alert('Network error has occurred please try again!');
@@ -16,19 +16,19 @@
 }
 
 
-function getProductsByCat(CategoryInfo, renderProducts) {
+function getEmployeeById(EmployeeInfo, renderFullEmployee) {
 
     // serialize the object to JSON string
-    var dataString = JSON.stringify(CategoryInfo);
+    var dataString = JSON.stringify(EmployeeInfo);
 
     $.ajax({
-        url: 'ajaxWebService.asmx/getProductsByCat',
+        url: 'ajaxWebService.asmx/getEmployeeById',
         data: dataString,
         type: 'POST',
         dataType: "json",
         contentType: 'application/json; charset = utf-8',
         success: function (results) {
-            renderProducts(results);
+            renderFullEmployee(results);
         },
         error: function (request, error) {
             alert('Network error has occurred please try again!');
