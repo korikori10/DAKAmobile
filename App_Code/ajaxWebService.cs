@@ -25,56 +25,56 @@ public class ajaxWebService : System.Web.Services.WebService
     }
 
 
-    //קבלת כל הקטגוריות הקיימות
-    [WebMethod]
-    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    ////קבלת כל הקטגוריות הקיימות
+    //[WebMethod]
+    //[ScriptMethod(ResponseFormat = ResponseFormat.Json)]
 
-    public string getCategory()
-    {
+    //public string getCategory()
+    //{
 
-        Category c = new Category();
-        List<Category> ls = c.getCategory();
+    //    Category c = new Category();
+    //    List<Category> ls = c.getCategory();
 
-        JavaScriptSerializer js = new JavaScriptSerializer();
-        // serialize to string
-        string jsonStringCategory = js.Serialize(ls);
-        return jsonStringCategory;
-    }
-
-
-    //קבלת המוצרים באותה הקטגוריה
-    [WebMethod]
-    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-
-    public string getProductsByCat(string id)
-    {
-
-        int categoryId = Convert.ToInt32(id);
-        Category c = new Category();
-        List<Product> ls = c.getProductsByCat(categoryId);
-
-        JavaScriptSerializer js = new JavaScriptSerializer();
-        // serialize to string
-        string jsonStringCategory = js.Serialize(ls);
-        return jsonStringCategory;
-    }
+    //    JavaScriptSerializer js = new JavaScriptSerializer();
+    //    // serialize to string
+    //    string jsonStringCategory = js.Serialize(ls);
+    //    return jsonStringCategory;
+    //}
 
 
-    //קבלת כל הפרטים עבור מוצר
-    [WebMethod]
-    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-    public string getProduct(string id)
-    {
+    ////קבלת המוצרים באותה הקטגוריה
+    //[WebMethod]
+    //[ScriptMethod(ResponseFormat = ResponseFormat.Json)]
 
-        int productId = Convert.ToInt32(id);
-        Product p = new Product();
-        Product p1 = p.getProduct(productId);
+    //public string getProductsByCat(string id)
+    //{
 
-        JavaScriptSerializer js = new JavaScriptSerializer();
-        // serialize to string
-        string jsonStringCategory = js.Serialize(p1);
-        return jsonStringCategory;
-    }
+    //    int categoryId = Convert.ToInt32(id);
+    //    Category c = new Category();
+    //    List<Product> ls = c.getProductsByCat(categoryId);
+
+    //    JavaScriptSerializer js = new JavaScriptSerializer();
+    //    // serialize to string
+    //    string jsonStringCategory = js.Serialize(ls);
+    //    return jsonStringCategory;
+    //}
+
+
+    ////קבלת כל הפרטים עבור מוצר
+    //[WebMethod]
+    //[ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    //public string getProduct(string id)
+    //{
+
+    //    int productId = Convert.ToInt32(id);
+    //    Product p = new Product();
+    //    Product p1 = p.getProduct(productId);
+
+    //    JavaScriptSerializer js = new JavaScriptSerializer();
+    //    // serialize to string
+    //    string jsonStringCategory = js.Serialize(p1);
+    //    return jsonStringCategory;
+    //}
 
     
 }
