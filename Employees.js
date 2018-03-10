@@ -3,6 +3,7 @@ EmployeeInfo = new Object();
 
 $(document).on('pagebeforeshow', '#home', function () {
     getEmployees(renderEmployees);
+    getEmployeesnobusiness(renderEmployeesnobusiness);
 });
 
 
@@ -30,6 +31,23 @@ $(document).on('vclick', '#DynamicEmployeesList li a', function () {
     });
 
 });
+
+
+function renderEmployeesnobusiness(NoEmpresults) {
+    //this is the callBackFunc 
+    NoEmpresults = $.parseJSON(NoEmpresults.d);
+    len = Object.keys(NoEmpresults).length;
+    document.getElementById("unEmpNum").innerHTML = len;
+    //$('#DynamicEmployeesList').empty();
+    //$.each(NoEmpresults, function (i, row) {
+    //    dynamicLi = '<li> <a href="" data-id="' + row.Employee_pass_id + '"> <h3>' + row.Fname + " " + row.Lname + '</h3><p>' + row.Employee_pass_id + '</p></a></li>'
+    //    $('#DynamicEmployeesList').append(dynamicLi);
+    //    $('#DynamicEmployeesList').listview('refresh');
+   // }
+
+
+   // )
+}
 
 //$(document).on('vclick', '#addempbtn button', function () {
   

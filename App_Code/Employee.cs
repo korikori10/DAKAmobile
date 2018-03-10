@@ -405,6 +405,16 @@ public class Employee
         List<Employee> LE = dbs.readEmployees();
 
         return LE;
-        //
+        
     }
+    public List<Employee> getEmployeesnobisiness()
+    {
+        DBServices dbs = new DBServices();
+
+        List<Employee> LE = dbs.readEmployeesNoBusiness();
+
+        return LE;
+
+    }
+
 }
