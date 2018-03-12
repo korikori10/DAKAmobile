@@ -13,14 +13,24 @@ function renderEmployees(results) {
     eresults = results;
     $('#DynamicEmployeesList').empty();
     $.each(results, function (i, row) {
-        dynamicLi = '<li> <a href="" data-id="' + row.Employee_pass_id + '"> <h3>' + row.Fname +" "+ row.Lname + '</h3><p>' + row.Employee_pass_id +'</p></a></li>'
+        dynamicLi = '<li> <a href="" data-id="' + row.Employee_pass_id + '"> onclick="'+messageToFillOrders(this.id)+'" <h3>' + row.Fname +" "+ row.Lname + '</h3><p>' + row.Employee_pass_id +'</p></a></li>'
         $('#DynamicEmployeesList').append(dynamicLi);
        $('#DynamicEmployeesList').listview('refresh');
-    }
+    });
+});
 
-   
-    )
-}
+
+$("input[name='search']").on("click", function(){
+   EmployeeInfo.id = $("#PassTB").val();
+   getEmployeeById(EmployeeInfo, renderEmployeeByID);
+ //  renderFullEmployee(EmployeeInfo, eresults);
+    $.mobile.changePage("#wizard", {
+        transition: "slide", changeHash: false
+
+    });
+});
+
+
 
 $(document).on('vclick', '#DynamicEmployeesList li a', function () {
     EmployeeInfo.id = $(this).attr('data-id');
@@ -47,7 +57,7 @@ function renderEmployeesnobusiness(NoEmpresults) {
 
 
    // )
-}
+});
 
 //$(document).on('vclick', '#addempbtn button', function () {
   
@@ -82,6 +92,12 @@ function renderEmployeesnobusiness(NoEmpresults) {
 //    });
 
 //});
+
+function renderEmployeeByID(results){
+    results = $.parseJSON(results.d);
+
+    if (results.Employee_pass_id==null) {return;}
+}
 
 function renderFullEmployee(results) {
     //this is the callBackFunc 

@@ -137,7 +137,7 @@ public class DBServices
     /// reads employee from sql
     /// </summary>
     /// <returns>employee</returns>
-    public Employee ReadEmployee(int emp_pss_id) 
+    public Employee ReadEmployee(string emp_pss_id) 
     {
         SqlConnection con = null;
 

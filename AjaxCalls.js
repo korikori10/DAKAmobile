@@ -33,7 +33,7 @@ function getEmployeesnobusiness(renderEmployeesnobusiness) {
 }
 
 
-function getEmployeeById(EmployeeInfo, renderFullEmployee) {
+function getEmployeeById(EmployeeInfo, renderEmployeeByID) {
 
     // serialize the object to JSON string
     var dataString = JSON.stringify(EmployeeInfo);

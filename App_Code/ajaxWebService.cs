@@ -39,6 +39,20 @@ public class ajaxWebService : System.Web.Services.WebService
 
     [WebMethod]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    public string getEmployeeById(string pass)
+    {
+        Employee e = new Employee();
+        e.getEmployeeById(pass);
+
+
+        JavaScriptSerializer js = new JavaScriptSerializer();
+        // serialize to string
+        string jsonStringCategory = js.Serialize(e);
+        return jsonStringCategory;
+
+    }
+    [WebMethod]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
     public string getEmployeesnobusiness()
     {
         Employee e = new Employee();
