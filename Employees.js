@@ -23,7 +23,6 @@ function renderEmployees(results) {
 $("input[name='search']").on("click", function(){
    EmployeeInfo.id = $("#PassTB").val();
    getEmployeeById(EmployeeInfo, renderEmployeeByID);
- //  renderFullEmployee(EmployeeInfo, eresults);
     $.mobile.changePage("#wizard", {
         transition: "slide", changeHash: false
 

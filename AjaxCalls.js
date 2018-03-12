@@ -39,7 +39,7 @@ function getEmployeeById(EmployeeInfo, renderEmployeeByID) {
     var dataString = JSON.stringify(EmployeeInfo);
 
     $.ajax({
-        url: 'ajaxWebService.asmx/getEmployeeById',
+        url: 'ajaxWebService.asmx/GetEmployeeById',
         data: dataString,
         type: 'POST',
         dataType: "json",
@@ -48,7 +48,7 @@ function getEmployeeById(EmployeeInfo, renderEmployeeByID) {
             renderEmployeeByID(results);
         },
         error: function (request, error) {
-            alert('Network error has occurred please try again!');
+            alert(error.response.text);
         }
     });
 }
