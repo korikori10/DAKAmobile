@@ -17,7 +17,7 @@ function renderEmployees(results) {
         $('#DynamicEmployeesList').append(dynamicLi);
        $('#DynamicEmployeesList').listview('refresh');
     });
-});
+}
 
 
 $("input[name='search']").on("click", function(){
@@ -57,7 +57,7 @@ function renderEmployeesnobusiness(NoEmpresults) {
 
 
    // )
-});
+}
 
 //$(document).on('vclick', '#addempbtn button', function () {
   
