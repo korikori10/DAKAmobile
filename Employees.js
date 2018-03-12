@@ -21,7 +21,7 @@ function renderEmployees(results) {
 
 
 $("input[name='search']").on("click", function(){
-   EmployeeInfo.id = $("#PassTB").val();
+   EmployeeInfo.pass = $("#PassTB").val();
    getEmployeeById(EmployeeInfo, renderEmployeeByID);
     $.mobile.changePage("#wizard", {
         transition: "slide", changeHash: false
@@ -95,7 +95,7 @@ function renderEmployeesnobusiness(NoEmpresults) {
 function renderEmployeeByID(results){
     results = $.parseJSON(results.d);
 
-    if (results.Employee_pass_id==null) {return;}
+    if (results.Employee_pass_id==null) {}
 }
 
 function renderFullEmployee(results) {

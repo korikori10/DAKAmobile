@@ -47,8 +47,9 @@ function getEmployeeById(EmployeeInfo, renderEmployeeByID) {
         success: function (results) {
             renderEmployeeByID(results);
         },
-        error: function (request, error) {
-            alert(error.response.text);
+        error: function (xhr, status, error) {
+            var err = eval("(" + xhr.responseText + ")");
+            alert(err.Message);
         }
     });
 }
