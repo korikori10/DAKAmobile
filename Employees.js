@@ -3,9 +3,13 @@ EmployeeInfo = new Object();
 
 $(document).on('pagebeforeshow', '#home', function () {
     getEmployees(renderEmployees);
+    getCities(renderCities);
     getEmployeesnobusiness(renderEmployeesnobusiness);
 });
 
+$(document).on('pagebeforeshow', '#wizard', function () {
+    getCities(renderCities);
+});
 
 function renderEmployees(results) {
     //this is the callBackFunc 
@@ -16,6 +20,19 @@ function renderEmployees(results) {
         dynamicLi = '<li> <a href="" data-id="' + row.Employee_pass_id + '"> onclick="'+messageToFillOrders(this.id)+'" <h3>' + row.Fname +" "+ row.Lname + '</h3><p>' + row.Employee_pass_id +'</p></a></li>'
         $('#DynamicEmployeesList').append(dynamicLi);
        $('#DynamicEmployeesList').listview('refresh');
+    });
+}
+
+
+function renderCities(results) {
+    //this is the callBackFunc 
+    results = $.parseJSON(results.d);
+    eresults = results;
+    $('#DynamicCitiesList').empty();
+    $.each(results, function (i, row) {
+        dynamicLi = '<li> <a href="" data-id="' + row.id + '">  <h3>' + row.name + '</h3></a></li>'
+        $('#DynamicCitiesList').append(dynamicLi);
+        $('#DynamicCitiesList').listview('refresh');
     });
 }
 

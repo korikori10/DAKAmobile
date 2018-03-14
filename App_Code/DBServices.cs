@@ -425,9 +425,9 @@ public class DBServices
 
 
     /// <summary>
-    /// reads countries from sql
+    /// reads cities from sql
     /// </summary>
-    /// <returns>employee</returns>
+    /// <returns>list of cities</returns>
     public Employee readCountries()
     {
         SqlConnection con = null;
@@ -461,6 +461,48 @@ public class DBServices
 
         }
     }
+
+
+    public List<City> readCities()
+    {
+        SqlConnection con = null;
+
+        try
+        {
+
+            con = connect("DAKADBConnectionString"); // create a connection to the database using the connection String defined in the web config file
+            string selectSTR = "SELECT*FROM CITY ";
+            SqlCommand cmd = new SqlCommand(selectSTR, con);
+            SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
+            List<City> cities = new List<City>();
+            while (dr.Read())
+            {
+                
+            City city = new City();
+                city.Id= Convert.ToInt16(dr["ID"]);
+                city.Name= dr["CITYName"].ToString();
+
+
+                cities.Add(city);
+            }
+            return cities;
+        }
+        catch (Exception ex)
+        {
+            // write to log
+            throw (ex);
+
+        }
+        finally
+        {
+            if (con != null)
+            {
+                con.Close();
+            }
+
+        }
+    }
+
     #endregion
 
 
