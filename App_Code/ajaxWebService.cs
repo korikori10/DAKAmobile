@@ -49,6 +49,18 @@ public class ajaxWebService : System.Web.Services.WebService
         return jsonStringCategory;
 
     }
+    [WebMethod]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    public string getCountries()
+    {
+        Country c = new Country();
+        List<Country> LC = c.getCountries();
+        JavaScriptSerializer js = new JavaScriptSerializer();
+        // serialize to string
+        string jsonStringCategory = js.Serialize(LC);
+        return jsonStringCategory;
+
+    }
 
     [WebMethod]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
