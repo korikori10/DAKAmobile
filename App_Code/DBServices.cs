@@ -422,6 +422,45 @@ public class DBServices
 
         }
     }
+
+
+    /// <summary>
+    /// reads countries from sql
+    /// </summary>
+    /// <returns>employee</returns>
+    public Employee readCountries()
+    {
+        SqlConnection con = null;
+
+        try
+        {
+
+            con = connect("DAKADBConnectionString"); // create a connection to the database using the connection String defined in the web config file
+            string selectSTR = "SELECT*FROM Country ";
+            SqlCommand cmd = new SqlCommand(selectSTR, con);
+            SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
+            Employee Emp = new Employee();
+            while (dr.Read())
+            {
+                Emp = new Employee(dr["employee_pass_id"].ToString(), dr["lname"].ToString(), dr["fname"].ToString(), Convert.ToDateTime(dr["birthday"]), Convert.ToBoolean(dr["gender"]), dr["Picture"].ToString(), Convert.ToInt16(dr["origin_country"]), Convert.ToBoolean(dr["il_citizen"]), Convert.ToInt16(dr["add_city"]), dr["add"].ToString(), Convert.ToInt16(dr["add_num"]), Convert.ToInt16(dr["phone"]), Convert.ToBoolean(dr["com_app"]), Convert.ToInt16(dr["michpal_id"]), Convert.ToBoolean(dr["insurance"]), Convert.ToBoolean(dr["com_insurance"]), Convert.ToInt16(dr["fam_stat_code"]), Convert.ToInt16(dr["salary_hour"]), Convert.ToInt16(dr["salary_overtime"]), Convert.ToInt16(dr["salary_trans"]), Convert.ToInt16(dr["day_off_id"]), Convert.ToInt16(dr["sabatical"]), Convert.ToInt16(dr["occupation_code"]), Convert.ToBoolean(dr["active"]), dr["disable_reason"].ToString());
+            }
+            return Emp;
+        }
+        catch (Exception ex)
+        {
+            // write to log
+            throw (ex);
+
+        }
+        finally
+        {
+            if (con != null)
+            {
+                con.Close();
+            }
+
+        }
+    }
     #endregion
 
 

@@ -17,7 +17,7 @@
 
 function getEmployeesnobusiness(renderEmployeesnobusiness) {
     $.ajax({
-        url: 'ajaxWebService.asmx/getEmployeesnobusiness',
+        url: 'ajaxWebService.asmx/getEmployeesNoBusinessAmount',
         type: 'POST',
         dataType: "json",
         contentType: 'application/json; charset = utf-8',

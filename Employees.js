@@ -1,4 +1,5 @@
-﻿EmployeeInfo = new Object();
+﻿
+EmployeeInfo = new Object();
 
 $(document).on('pagebeforeshow', '#home', function () {
     getEmployees(renderEmployees);
@@ -22,8 +23,8 @@ function renderEmployees(results) {
 $("input[name='search']").on("click", function(){
    EmployeeInfo.pass = $("#PassTB").val();
    getEmployeeById(EmployeeInfo, renderEmployeeByID);
-    $.mobile.changePage("#wizard", {
-           transition: "slide", changeHash: trues
+    $.mobile.changePage("Wizard.html", {
+           transition: "slide", changeHash: false
 
         });     
 });
