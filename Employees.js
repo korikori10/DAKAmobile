@@ -24,13 +24,14 @@ function renderEmployees(results) {
 
 
 
-$("input[name='search']").on("click", function(){
+$("#SearchEmployee").on("click", function () {
    EmployeeInfo.pass = $("#PassTB").val();
    getEmployeeById(EmployeeInfo, renderEmployeeByID);
-    $.mobile.changePage("Wizard.html", {
-           transition: "slide", changeHash: false
+    //$.mobile.changePage("Wizard.html", {
+    //       transition: "slide", changeHash: false
 
-        });     
+    //    });     
+   window.location = "Wizard.html"
 });
 
 
