@@ -118,6 +118,7 @@
                                                                 <ul data-role="listview" data-count-theme="a" data-filter="true" data-filter-placeholder="חפש מדינה..." data-filter-reveal="true" data-inset="true" id="DynamiCountryList"></ul>
                                                             </div>
                                                         </div>
+                                                        </div>
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             <div class="form-group">
@@ -133,31 +134,31 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label for="location3">מצב משפחתי</label>
-                                                                <select class="custom-select form-control" id="location3" name="familyStatus">
-                                                                    <option value=""> בחר Select</option>
-                                                                    <option value="yes">רווק/ה</option>
-                                                                    <option value="">נשוי/אה</option>
-                                                                    <option value="">גרוש/ה</option>
-                                                                    <option value="">אלמן/ה</option>
-                                                                    <option value="">פרוד/ה</option>
-                                                                </select>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label for="location3">מצב משפחתי</label>
+                                                                    <select class="custom-select form-control" id="location3" name="familyStatus">
+                                                                        <option value="0"> בחר Select</option>
+                                                                        <option value="1">רווק/ה</option>
+                                                                        <option value="2">נשוי/אה</option>
+                                                                        <option value="3">גרוש/ה</option>
+                                                                        <option value="4">אלמן/ה</option>
+                                                                        <option value="5">פרוד/ה</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label for="location3">תושב ישראל:</label>
+                                                                    <select class="custom-select form-control" id="location3" name="citizen">
+                                                                        <option value=""> בחר Select</option>
+                                                                        <option value="True">כן</option>
+                                                                        <option value="False">לא</option>
+                                                                    </select>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label for="location3">תושב ישראל:</label>
-                                                                <select class="custom-select form-control" id="location3" name="citizen">
-                                                                    <option value=""> בחר Select</option>
-                                                                    <option value="yes">כן</option>
-                                                                    <option value="no">לא</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                    </div>
 
                                                     <div class="row">
                                                         <div class="col-md-6">
@@ -183,8 +184,8 @@
                                                                 <label for="location3">מבוטח ע"י החברה"</label>
                                                                 <select class="custom-select form-control" id="location3" name="comInsurance">
                                                                     <option value=""> בחר Select</option>
-                                                                    <option value="yes">כן</option>
-                                                                    <option value="no">לא</option>
+                                                                    <option value="True">כן</option>
+                                                                    <option value="False">לא</option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -207,8 +208,8 @@
                                                                 <label for="department">מחלקה</label>
                                                                 <select class="custom-select form-control" id="location3" name="department">
                                                                     <option value=""> בחר Select</option>
-                                                                    <option value="south">דקא דרום</option>
-                                                                    <option value="center">דקא מרכז</option>
+                                                                    <option value="2">דקא דרום</option>
+                                                                    <option value="1">דקא מרכז</option>
                                                                 </select>
                                                             </div>
                                                             <div class="form-group">
@@ -224,20 +225,20 @@
                                                                 <input type="text" class="form-control" id="jobTitle6" name="hourPay">
                                                             </div>
                                                             <div class="form-group">
-                                                                <label for="shortDescription4">Saturday:</label>
+                                                                <label for="shortDescription4">שבתון </label>
                                                                 <input type="text" class="form-control" id="jobTitle6" name="sabatical">
                                                             </div>
                                                             <div class="form-group">
-                                                                <label for="shortDescription4">Overtime:</label>
+                                                                <label for="shortDescription4">Overtime:  שעות נוספות:</label>
                                                                 <input type="text" class="form-control" id="jobTitle6" name="overTime">
                                                             </div>
                                                             <div class="form-group">
-                                                                <label for="shortDescription4">Transportation:</label>
-                                                                <input type="text" class="form-control" id="jobTitle6">
+                                                                <label for="shortDescription4">Transportation:  נסיעות:</label>
+                                                                <input type="text" class="form-control" id="jobTitle6" name="transport">
                                                             </div>
                                                             <div class="form-group">
-                                                                <label for="shortDescription4">Weekly rest day:</label>
-                                                                <input type="text" class="form-control" id="jobTitle6">
+                                                                <label for="shortDescription4">Weekly rest day:   יום חופש:</label>
+                                                                <input type="text" class="form-control" id="jobTitle6" name="dayoff">
                                                             </div>
                                                             <!--</div>-->
                                                         </div>
@@ -248,29 +249,26 @@
                                                 <h6>Step 3</h6>
                                                 <fieldset>
                                                     <div class="row">
-                                                        <div class="col-md-6">
+                                                        
                                                             <div class="form-group">
-                                                                <label>מגורי חברה :</label>
-                                                                <br />
-                                                                <div class="c-inputs-stacked">
-                                                                    <label class="inline custom-control custom-checkbox block">
-                                                                        <input type="checkbox" class="custom-control-input">
-                                                                        <span class="custom-control-indicator"></span>
-                                                                        <span class="custom-control-description ml-0">כן</span>
-                                                                    </label>
-                                                                    <br />
-                                                                    <label class="inline custom-control custom-checkbox block">
-                                                                        <input type="checkbox" class="custom-control-input">
-                                                                        <span class="custom-control-indicator"></span>
-                                                                        <span class="custom-control-description ml-0">לא</span>
-                                                                    </label>
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <label for="location3">מגורי חברה:</label>
+                                                                        <select class="custom-select form-control" id="location3" name="comAp">
+                                                                            <option value=""> בחר Select</option>
+                                                                            <option value="True">כן</option>
+                                                                            <option value="False">לא</option>
+                                                                        </select>
+                                                                    </div>
                                                                 </div>
                                                             </div>
+                                                        <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="eventName4">שכירות חודשית:</label>
-                                                                <input type="text" class="form-control" id="eventName4">
+                                                                <input type="text" class="form-control" id="eventName4" name="rent">
                                                             </div>
                                                         </div>
+                                                    </div>
                                                         <!--<div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label>Event Date - Time :</label>
@@ -291,7 +289,7 @@
                                                             </div>
 
                                                         </div>-->
-                                                    </div>
+                                                    
                                                 </fieldset>
                                                 <!-- Step 4 -->
                                                 <h6>Step 4</h6>
