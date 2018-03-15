@@ -6,6 +6,9 @@ using System.Web.Services;
 // REMEMBER TO ADD THIS NAMESPACE
 using System.Web.Script.Serialization;
 using System.Web.Script.Services;
+using System.IO;
+using System.Runtime.Serialization.Json;
+using System.Text;
 
 /// <summary>
 /// Summary description for ajaxWebService
@@ -102,6 +105,23 @@ public class ajaxWebService : System.Web.Services.WebService
         var jsonStringCategory = js.Serialize(LE);
         //Context.Response.Write(jsonStringCategory);
         return jsonStringCategory;
+
+    }
+
+    [WebMethod]
+    //[ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    public void insertEmployee(string EmployeeInfo)
+    {
+
+        Employee e = new Employee();
+        e.insertEmployee(EmployeeInfo);
+
+        
+        //e = (Employee)new JavaScriptSerializer().DeserializeObject(EmployeeInfo);
+        
+
+     
+       
 
     }
 

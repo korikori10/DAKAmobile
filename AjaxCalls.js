@@ -88,6 +88,24 @@ function getEmployeeById(EmployeeInfo, renderEmployeeByID) {
     });
 }
 
+function insertEmployee(EmployeeInfo) {
+    var  EmployeeInfo = '{emp:' + JSON.stringify(EmployeeInfo) + '}'; 
+
+    $.ajax({
+        url: 'ajaxWebService.asmx/insertEmployee',
+        type: 'POST',
+        contentType: 'application/json; charset = utf-8',
+        data: EmployeeInfo,
+        success: function () {
+            alert(EmployeeInfo)
+        },
+        error: function (xhr, status, error) {
+            var err = eval("(" + xhr.responseText + ")");
+            alert(err.Message);
+        }
+    });
+}
+
 function getProduct(ProductInfo, renderFullProduct) {
 
     // serialize the object to JSON string
@@ -95,7 +113,7 @@ function getProduct(ProductInfo, renderFullProduct) {
 
     $.ajax({
         url: 'ajaxWebService.asmx/getProduct',
-        data: dataString,
+        data: '{emp:' + dataString + '}',
         type: 'POST',
         dataType: "json",
         contentType: 'application/json; charset = utf-8',

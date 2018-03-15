@@ -45,6 +45,11 @@ $(document).on('vclick', '#DynamiCountryList li a', function () {
 
 });
 
-function insertEmp() {
-    alert("david")
-}
+function insertEmp(array) {
+       
+    
+    var EmployeeInfo = array
+
+
+        insertEmployee(EmployeeInfo)
+    }

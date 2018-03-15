@@ -48,8 +48,8 @@ $(".vertical-tab-steps").steps({
     },
     onFinished: function (event, currentIndex) {
         
-        console.log($("#insertEmpForm").serialize());
-        insertEmp();
+        var array = ($("#insertEmpForm").serializeArray());
+        insertEmp(array);
 
     }
 });

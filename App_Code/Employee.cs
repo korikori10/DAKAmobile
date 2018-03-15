@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Json;
+using System.Text;
 using System.Web;
 
 /// <summary>
@@ -34,6 +37,8 @@ public class Employee
     private bool active;
     private string disable_reason;
 
+
+    MemoryStream ms;
 
 
     public Employee()
@@ -427,4 +432,26 @@ public class Employee
 
     }
 
+    public void insertEmployee(string EmployeeInfo)
+    {
+        try
+        {
+            Employee e = new Employee();
+            ms = new MemoryStream(Encoding.UTF8.GetBytes(EmployeeInfo));
+            DataContractJsonSerializer ser = new DataContractJsonSerializer(e.GetType());
+            e = ser.ReadObject(ms) as Employee;
+            DBServices dbs = new DBServices();
+            dbs.insert(e);
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
+        finally
+        {
+            ms.Close();
+
+        }
+    }
 }
