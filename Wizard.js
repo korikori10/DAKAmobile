@@ -30,6 +30,7 @@ function renderCountries(results) {
 $(document).on('vclick', '#DynamicCitiesList li a', function () {
     selectedCity.Name = $(this).attr('data-id');
     $(this).closest('[data-role=listview]').prev('form').find('input').val(selectedCity.Name);
+    $(this).closest('[data-role=listview]').prev('form').find('input').attr("name", "city");
     $(this).closest('[data-role=listview]').children().addClass('ui-screen-hidden');
 
 
@@ -38,7 +39,12 @@ $(document).on('vclick', '#DynamicCitiesList li a', function () {
 $(document).on('vclick', '#DynamiCountryList li a', function () {
     selectedCity.Name = $(this).attr('data-id');
     $(this).closest('[data-role=listview]').prev('form').find('input').val(selectedCity.Name);
+    $(this).closest('[data-role=listview]').prev('form').find('input').attr("name","country");
     $(this).closest('[data-role=listview]').children().addClass('ui-screen-hidden');
 
 
 });
+
+function insertEmp() {
+    alert("david")
+}

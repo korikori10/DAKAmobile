@@ -87,7 +87,7 @@
                                     </div>
                                     <div class="card-body collapse in">
                                         <div class="card-block">
-                                            <form action="#" class="vertical-tab-steps wizard-circle">
+                                            <form action="#" class="vertical-tab-steps wizard-circle" id="insertEmpForm">
                                                 <!-- Step 1 -->
                                                 <h6>Step 1</h6>
                                                 <fieldset>
@@ -95,13 +95,13 @@
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="firstName4">שם פרטי : <span class="danger">*</span></label>
-                                                                <input type="text" class="form-control" id="firstName4">
+                                                                <input type="text" class="form-control" id="firstName4" name="firstName">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="lastName4">שם משפחה<span class="danger">*</span></label>
-                                                                <input type="text" class="form-control" id="lastName4">
+                                                                <input type="text" class="form-control" id="lastName4" name="lastName">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -109,7 +109,7 @@
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="passport7">מספר דרכון</label>
-                                                                <input type="text" class="form-control" id="passportid">
+                                                                <input type="text" class="form-control" id="passportid" name="passport">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
@@ -122,13 +122,13 @@
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="phoneNumber4"> טלפון נייד Phone Number :</label>
-                                                                <input type="tel" class="form-control" id="phoneNumber4">
+                                                                <input type="tel" class="form-control" id="phoneNumber4" name="phone">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="date4">תאריך לידה Date of Birth :</label>
-                                                                <input type="date" class="form-control" id="date4">
+                                                                <input type="date" class="form-control" id="date4" name="dob">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -137,7 +137,7 @@
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="location3">מצב משפחתי</label>
-                                                                <select class="custom-select form-control" id="location3" name="location">
+                                                                <select class="custom-select form-control" id="location3" name="familyStatus">
                                                                     <option value=""> בחר Select</option>
                                                                     <option value="yes">רווק/ה</option>
                                                                     <option value="">נשוי/אה</option>
@@ -150,7 +150,7 @@
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="location3">תושב ישראל:</label>
-                                                                <select class="custom-select form-control" id="location3" name="location">
+                                                                <select class="custom-select form-control" id="location3" name="citizen">
                                                                     <option value=""> בחר Select</option>
                                                                     <option value="yes">כן</option>
                                                                     <option value="no">לא</option>
@@ -163,7 +163,7 @@
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="tbadd4">כתובת פרטית</label>
-                                                                <input type="text" class="form-control" id="textadd4">
+                                                                <input type="text" class="form-control" id="textadd4" name="address">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
@@ -175,13 +175,13 @@
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="tbnum4">מספר בית</label>
-                                                                <input type="text" class="form-control" id="textaddnum4">
+                                                                <input type="text" class="form-control" id="textaddnum4"name="addNum">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="location3">מבוטח ע"י החברה"</label>
-                                                                <select class="custom-select form-control" id="location3" name="location">
+                                                                <select class="custom-select form-control" id="location3" name="comInsurance">
                                                                     <option value=""> בחר Select</option>
                                                                     <option value="yes">כן</option>
                                                                     <option value="no">לא</option>
@@ -196,16 +196,16 @@
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <label for="jobTitle4">job title</label>
-                                                                <input type="text" class="form-control" id="proposalTitle4">
+                                                                <label for="jobTitle4">מקצוע</label>
+                                                                <input type="text" class="form-control" id="proposalTitle4" name="occupation">
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="placeofworkTitle4">מקום עבודה</label>
-                                                                <input type="text" class="form-control" id="proposalTitle4">
+                                                                <input type="text" class="form-control" id="proposalTitle4" name="business">
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="department">מחלקה</label>
-                                                                <select class="custom-select form-control" id="location3" name="location">
+                                                                <select class="custom-select form-control" id="location3" name="department">
                                                                     <option value=""> בחר Select</option>
                                                                     <option value="south">דקא דרום</option>
                                                                     <option value="center">דקא מרכז</option>
@@ -213,23 +213,23 @@
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="startdate4">תאריך תחילת עבודה </label>
-                                                                <input type="date" class="form-control" id="date4">
+                                                                <input type="date" class="form-control" id="date4" name="startDate">
                                                             </div>
                                                         </div>
 
                                                         <!-- <div class="row">-->
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <label for="jobTitle6">Hourly rate</label>
-                                                                <input type="text" class="form-control" id="jobTitle6">
+                                                                <label for="jobTitle6">שכר שעתי</label>
+                                                                <input type="text" class="form-control" id="jobTitle6" name="hourPay">
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="shortDescription4">Saturday:</label>
-                                                                <input type="text" class="form-control" id="jobTitle6">
+                                                                <input type="text" class="form-control" id="jobTitle6" name="sabatical">
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="shortDescription4">Overtime:</label>
-                                                                <input type="text" class="form-control" id="jobTitle6">
+                                                                <input type="text" class="form-control" id="jobTitle6" name="overTime">
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="shortDescription4">Transportation:</label>
