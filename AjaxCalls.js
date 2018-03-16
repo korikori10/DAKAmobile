@@ -89,13 +89,13 @@ function getEmployeeById(EmployeeInfo, renderEmployeeByID) {
 }
 
 function insertEmployee(EmployeeInfo) {
-    var  EmployeeInfo = '{emp:' + JSON.stringify(EmployeeInfo) + '}'; 
+    var  emp = '{emp:' + JSON.stringify(EmployeeInfo) + '}'; 
 
     $.ajax({
         url: 'ajaxWebService.asmx/insertEmployee',
         type: 'POST',
         contentType: 'application/json; charset = utf-8',
-        data: EmployeeInfo,
+        data: emp,
         success: function () {
             alert(EmployeeInfo)
         },

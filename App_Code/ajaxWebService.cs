@@ -110,11 +110,12 @@ public class ajaxWebService : System.Web.Services.WebService
 
     [WebMethod]
     //[ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-    public void insertEmployee(string EmployeeInfo)
+    public void insertEmployee(string[] emp)
     {
-
+        string[] empl = emp;
         Employee e = new Employee();
-        e.insertEmployee(EmployeeInfo);
+        string employee = string.Join("", empl);
+        //e.insertEmployee(emp);
 
         
         //e = (Employee)new JavaScriptSerializer().DeserializeObject(EmployeeInfo);
