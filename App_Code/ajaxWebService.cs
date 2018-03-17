@@ -9,6 +9,7 @@ using System.Web.Script.Services;
 using System.IO;
 using System.Runtime.Serialization.Json;
 using System.Text;
+using Newtonsoft.Json;
 
 /// <summary>
 /// Summary description for ajaxWebService
@@ -109,20 +110,31 @@ public class ajaxWebService : System.Web.Services.WebService
     }
 
     [WebMethod]
-    //[ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-    public void insertEmployee(string[] emp)
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    public void insertEmployee(string [] emp)
     {
-        string[] empl = emp;
-        Employee e = new Employee();
-        string employee = string.Join("", empl);
-        //e.insertEmployee(emp);
-
-        
+        //string[] empl = new string[emp.Length] ;
+        //empl = emp;
+       Employee e = new Employee();
+        //  string employee = string.Join("", empl);
         //e = (Employee)new JavaScriptSerializer().DeserializeObject(EmployeeInfo);
-        
 
-     
-       
+
+        //JavaScriptSerializer js = new JavaScriptSerializer();
+        //StringBuilder sb = new StringBuilder();
+        ////Serialize  user into JSON format
+        //js.Serialize(emp, sb);
+
+
+        //Deserialize  to get User Class Instance back
+        Employee temp = JsonConvert.DeserializeObject<Employee>(emp.ToString());
+
+
+        e.insertEmployee(temp);
+
+
+
+
 
     }
 
@@ -162,20 +174,19 @@ public class ajaxWebService : System.Web.Services.WebService
 
 
     ////קבלת כל הפרטים עבור מוצר
-    //[WebMethod]
-    //[ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-    //public string getProduct(string id)
-    //{
+    [WebMethod]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    public string getUserByUserName(string username)
+    {
 
-    //    int productId = Convert.ToInt32(id);
-    //    Product p = new Product();
-    //    Product p1 = p.getProduct(productId);
+        User u = new User();      
+        u=u.getUserByUserName(username);
 
-    //    JavaScriptSerializer js = new JavaScriptSerializer();
-    //    // serialize to string
-    //    string jsonStringCategory = js.Serialize(p1);
-    //    return jsonStringCategory;
-    //}
+        JavaScriptSerializer js = new JavaScriptSerializer();
+        // serialize to string
+        string jsonStringCategory = js.Serialize(u);
+        return jsonStringCategory;
+    }
 
 
 }

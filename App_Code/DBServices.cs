@@ -151,7 +151,7 @@ public class DBServices
             Employee Emp = new Employee();
             while (dr.Read())
             {
-                Emp = new Employee(dr["employee_pass_id"].ToString(), dr["lname"].ToString(), dr["fname"].ToString(), Convert.ToDateTime(dr["birthday"]), Convert.ToBoolean(dr["gender"]), dr["Picture"].ToString(), Convert.ToInt16(dr["origin_country"]), Convert.ToBoolean(dr["il_citizen"]), Convert.ToInt16(dr["add_city"]), dr["add"].ToString(), Convert.ToInt16(dr["add_num"]), Convert.ToInt16(dr["phone"]), Convert.ToBoolean(dr["com_app"]), Convert.ToInt16(dr["michpal_id"]), Convert.ToBoolean(dr["insurance"]), Convert.ToBoolean(dr["com_insurance"]), Convert.ToInt16(dr["fam_stat_code"]), Convert.ToInt16(dr["salary_hour"]), Convert.ToInt16(dr["salary_overtime"]), Convert.ToInt16(dr["salary_trans"]), Convert.ToInt16(dr["day_off_id"]), Convert.ToInt16(dr["sabatical"]), Convert.ToInt16(dr["occupation_code"]), Convert.ToBoolean(dr["active"]), dr["disable_reason"].ToString());
+                Emp = new Employee(dr["employee_pass_id"].ToString(), dr["lname"].ToString(), dr["fname"].ToString(), Convert.ToDateTime(dr["birthday"]), Convert.ToBoolean(dr["gender"]), dr["Picture"].ToString(), Convert.ToInt32(dr["origin_country"]), Convert.ToBoolean(dr["il_citizen"]), Convert.ToInt32(dr["add_city"]), dr["add"].ToString(), Convert.ToInt32(dr["add_num"]), Convert.ToInt32(dr["phone"]), Convert.ToBoolean(dr["com_app"]), Convert.ToInt32(dr["michpal_id"]), Convert.ToBoolean(dr["insurance"]), Convert.ToBoolean(dr["com_insurance"]), Convert.ToInt32(dr["fam_stat_code"]), Convert.ToInt32(dr["salary_hour"]), Convert.ToInt32(dr["salary_overtime"]), Convert.ToInt32(dr["salary_trans"]), Convert.ToInt32(dr["day_off_id"]), Convert.ToInt32(dr["sabatical"]), Convert.ToInt32(dr["occupation_code"]), Convert.ToBoolean(dr["active"]), dr["disable_reason"].ToString());
             }
             return Emp;
         }
@@ -261,14 +261,14 @@ public class DBServices
             while (dr.Read())
             {   // Read till the end of the data into a row
                 Business b = new Business();           
-                b.Bus_id = Convert.ToInt16(dr["bus_id"]);
+                b.Bus_id = Convert.ToInt32(dr["bus_id"]);
                 b.Bus_name = dr["bus_name"].ToString();
-                b.Add_city = Convert.ToInt16(dr["add_city"]);
+                b.Add_city = Convert.ToInt32(dr["add_city"]);
                 b.Add = dr["add"].ToString();
-                b.Add_num = Convert.ToInt16(dr["add_num"]);
-                b.Phone = Convert.ToInt16(dr["phone"]);
-                b.Bus_type_code = Convert.ToInt16(dr["bus_type_code"]);
-                b.Contract_code = Convert.ToInt16(dr["contract_code"]);   
+                b.Add_num = Convert.ToInt32(dr["add_num"]);
+                b.Phone = Convert.ToInt32(dr["phone"]);
+                b.Bus_type_code = Convert.ToInt32(dr["bus_type_code"]);
+                b.Contract_code = Convert.ToInt32(dr["contract_code"]);   
                 businesses.Add(b);
             }
 
@@ -308,7 +308,7 @@ public class DBServices
             Business Busi = new Business();
             while (dr.Read())
             {
-                Busi = new Business(Convert.ToInt16(dr["bus_id"]),dr["bus_name"].ToString(),Convert.ToInt16(dr["add_city"]),dr["add"].ToString(),Convert.ToInt16(dr["add_num"]),Convert.ToInt16(dr["phone"]), Convert.ToInt16(dr["bus_type_code"]),Convert.ToInt16(dr["contract_code"]));
+                Busi = new Business(Convert.ToInt32(dr["bus_id"]),dr["bus_name"].ToString(),Convert.ToInt32(dr["add_city"]),dr["add"].ToString(),Convert.ToInt32(dr["add_num"]),Convert.ToInt32(dr["phone"]), Convert.ToInt32(dr["bus_type_code"]),Convert.ToInt32(dr["contract_code"]));
             }
            return Busi;
            
@@ -350,12 +350,12 @@ public class DBServices
             {   // Read till the end of the data into a row
                 User u = new User(); 
             
-                u.Uid =Convert.ToInt16(dr["uid"]);
+                u.Uid =Convert.ToInt32(dr["uid"]);
                 u.U_name = dr["u_name"].ToString();
                 u.U_pwd = dr["u_pwd"].ToString();
                 u.Full_name= dr["full_name"].ToString();
-                u.U_type_code = Convert.ToInt16(dr["U_type_code"]);
-                u.Phone = Convert.ToInt16(dr["phone"]);
+                u.U_type_code = Convert.ToInt32(dr["U_type_code"]);
+                u.Phone = Convert.ToInt32(dr["phone"]);
 
 
                Users.Add(u);
@@ -388,7 +388,7 @@ public class DBServices
     /// reads User from sql
     /// </summary>
     /// <returns>User</returns>
-    public User ReadUsers(int user_id)
+    public User ReadUser(string username)
     {
         SqlConnection con = null;
 
@@ -396,13 +396,13 @@ public class DBServices
         {
 
             con = connect("DAKADBConnectionString"); // create a connection to the database using the connection String defined in the web config file
-            string selectSTR = "SELECT*FROM USERS where uid = '" + user_id + "'";
+            string selectSTR = "SELECT*FROM USERS where u_name = '" + username+"'" ;
             SqlCommand cmd = new SqlCommand(selectSTR, con);
             SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
             User user = new User();
             while (dr.Read())
             {
-                user = new User(Convert.ToInt16(dr["uid"]), dr["u_name"].ToString(), dr["u_pwd"].ToString(), dr["full_name"].ToString(), Convert.ToInt16(dr["U_type_code"]), Convert.ToInt16(dr["phone"]));
+                user = new User(Convert.ToInt32(dr["uid"]), dr["u_name"].ToString(), dr["u_pwd"].ToString(), dr["full_name"].ToString(), Convert.ToInt32(dr["U_type_code"]), Convert.ToInt32(dr["phone"]));
             }
             return user;
 
@@ -488,7 +488,7 @@ public class DBServices
             {
                 
             City city = new City();
-                city.Id= Convert.ToInt16(dr["ID"]);
+                city.Id= Convert.ToInt32(dr["ID"]);
                 city.Name= dr["CITYName"].ToString();
 
 

@@ -48,7 +48,7 @@ $(document).on('vclick', '#DynamiCountryList li a', function () {
 function insertEmp(array) {
        
     
-    var EmployeeInfo = array
+    var EmployeeInfo = array;
 
 
         insertEmployee(EmployeeInfo)

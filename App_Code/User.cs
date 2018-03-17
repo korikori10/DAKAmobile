@@ -110,4 +110,14 @@ public class User
         this.u_type_code = u_type_code;
         this.phone = phone;
     }
+    public User getUserByUserName(string username)
+    {
+        DBServices dbs = new DBServices();
+
+        User u = dbs.ReadUser(username);
+
+        return u;
+
+    }
+   
 }

@@ -432,14 +432,14 @@ public class Employee
 
     }
 
-    public void insertEmployee(string EmployeeInfo)
+    public void insertEmployee(Employee e)
     {
         try
         {
-            Employee e = new Employee();
-            ms = new MemoryStream(Encoding.UTF8.GetBytes(EmployeeInfo));
-            DataContractJsonSerializer ser = new DataContractJsonSerializer(e.GetType());
-            e = ser.ReadObject(ms) as Employee;
+           // Employee e = new Employee();
+            //ms = new MemoryStream(Encoding.UTF8.GetBytes(EmployeeInfo));
+            //DataContractJsonSerializer ser = new DataContractJsonSerializer(e.GetType());
+            //e = ser.ReadObject(ms) as Employee;
             DBServices dbs = new DBServices();
             dbs.insert(e);
         }

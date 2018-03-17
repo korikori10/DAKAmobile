@@ -2,7 +2,7 @@
 EmployeeInfo = new Object();
 
 $(document).on('pagebeforeshow', '#home', function () {
-    getEmployees(renderEmployees);
+    //getEmployees(renderEmployees);
     getEmployeesnobusiness(renderEmployeesnobusiness);
 });
 
@@ -19,6 +19,8 @@ function renderEmployees(results) {
        $('#DynamicEmployeesList').listview('refresh');
     });
 }
+
+
 
 
 

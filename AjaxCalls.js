@@ -89,7 +89,7 @@ function getEmployeeById(EmployeeInfo, renderEmployeeByID) {
 }
 
 function insertEmployee(EmployeeInfo) {
-    var  emp = '{emp:' + JSON.stringify(EmployeeInfo) + '}'; 
+    var emp = JSON.stringify( EmployeeInfo); //'{emp:' + JSON.stringify(EmployeeInfo) + '}'; 
 
     $.ajax({
         url: 'ajaxWebService.asmx/insertEmployee',
@@ -125,4 +125,22 @@ function getProduct(ProductInfo, renderFullProduct) {
         }
     });
     
+}
+
+function getUserByUserName(username, renderUser) {
+    var dataString = '{"username":' + JSON.stringify(username) + '}';
+    $.ajax({
+        url: 'ajaxWebService.asmx/getUserByUserName',
+        data: dataString,
+        type: 'POST',
+        dataType: "json",
+        contentType: 'application/json; charset = utf-8',
+        success: function (results) {
+            renderUser(results);
+        },
+        error: function (xhr, status, error) {
+            var err = eval("(" + xhr.responseText + ")");
+            alert(err.Message);
+        }
+    });
 }

@@ -44,9 +44,17 @@
     <!-- BEGIN Custom CSS-->
     <link rel="stylesheet" type="text/css" href="assets/css/style-rtl.css">
     <!-- END Custom CSS-->
+    <script type="text/javascript">
+        function init() {
+            var username = localStorage.getItem('user-name');
+            getUserByUserName(username, renderUser);
+        }
+    </script>
+    <script src="AjaxCalls.js"></script>
+    <script src="MyAccount.js"></script>
 </head>
-<body>
-    <div data-role="page" data-position="fixed" id="home">
+<body onload="init()">
+    <div data-role="page" data-position="fixed" id="account">
         <div data-role="header">  <h1> דקא      </h1> <h2>כח אדם</h2></div> <!-- /header -->
         <div data-role="content">
             <!-- User Profile Cards -->
@@ -76,17 +84,17 @@
 
                         </script>
                         <label contenteditable="false" class="list-group-item"><i class="icon-user-secret"></i> שם משתמש  </label>
-                        <label contenteditable="false" type="text" name="name" id="name" value="">קורי חשמונאי</label>
+                        <label contenteditable="false" type="text" name="name" id="name" value=""></label>
 
                         <label class="list-group-item"><i class="icon-mail6"></i> אימייל  </label>
-                        <label contenteditable="false" type="text" name="name" id="mail" value="">addsc@sc.com</label>
+                        <label contenteditable="false" type="text" name="name" id="mail" value=""></label>
 
                         <label class="list-group-item"><i class="icon-phone"></i> טלפון</label>
-                        <label contenteditable="false" type="text" name="name" id="phone" value="">05046274653</label>
+                        <label contenteditable="false" type="text" name="name" id="phone" value=""></label>
 
                         <label class="list-group-item">
                             <i class="icon-user-tie"></i> סוג משתמש
-                        </label><label contenteditable="false" type="text" name="name" id="usertype" value="">איש שטח</label>
+                        </label><label contenteditable="false" type="text" name="name" id="usertype" value=""></label>
                         <div hidden="hidden" id="save"></div>
                     </div>
                 </div>
