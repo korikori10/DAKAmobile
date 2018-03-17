@@ -8,6 +8,10 @@
 //    getUserByUserName(username, renderUser);
 //});
 
+$(document).on('pagebeforeshow', '#account', function () {
+ alert("nimaaaas")
+});
+
 function renderUser(results) {
     //this is the callBackFunc 
     results = $.parseJSON(results.d);
