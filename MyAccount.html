@@ -44,17 +44,10 @@
     <!-- BEGIN Custom CSS-->
     <link rel="stylesheet" type="text/css" href="assets/css/style-rtl.css">
     <!-- END Custom CSS-->
-    <!--<script type="text/javascript">
-        function init() {
-            var username = localStorage.getItem('user-name');
-            getUserByUserName(username, renderUser);
-        }
-    </script>-->
-    
 </head>
 <body >
     <div data-role="page" data-position="fixed" id="account">
-        <div data-role="header">  <h1> דקא      </h1> <h2>כח אדם</h2></div> <!-- /header -->
+        <div data-role="header">  <h1> דקא</h1> <h2>כח אדם</h2></div> 
         <div data-role="content">
             <!-- User Profile Cards -->
             <section id="user-profile-cards" class="row mt-2">
@@ -69,15 +62,15 @@
                                 <img src="app-assets/images/portrait/medium/avatar-m-4.png" class="rounded-circle  height-150" alt="Card image">
                             </div>
                             <div class="card-block">
-                                <a href="#password" onclick="editable" type="button" class="btn btn-icon mr-1"><i class="icon-plus4"></i> שינוי סיסמא</a>
-                                <a href="#" type="button" class="btn btn-ic mr-1"><i class="icon-head"></i> עריכת פרטים אישיים</a>
+                                <a href="#password" onclick="editable()" type="button" class="btn btn-icon mr-1"><i class="icon-plus4"></i> שינוי סיסמא</a>
+                                <a href="#" type="button" class="btn btn-ic mr-1" onclick="editable"><i class="icon-head"></i> עריכת פרטים אישיים</a>
                             </div>
                         </div>
                         <script type="text/javascript">
                             function editable() {
                                 document.getElementById('name').style.contenteditable = "true";
-                                document.getElementById('save').hidden = "false";
                                 document.getElementById('save').innerHTML = "<button type='button'><i class='icon- save'></i> שמור</button>";
+                               // document.getElementById('save').hidden = "false";
 
                             }
 

@@ -396,14 +396,15 @@ public class DBServices
         {
 
             con = connect("DAKADBConnectionString"); // create a connection to the database using the connection String defined in the web config file
-            string selectSTR = "SELECT*FROM USERS where u_name = '" + username+"'" ;
+            string selectSTR = "SELECT*FROM USER_V1 where u_name = '" + username+"'" ;
             SqlCommand cmd = new SqlCommand(selectSTR, con);
             SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
             User user = new User();
             while (dr.Read())
             {
-                user = new User(Convert.ToInt32(dr["uid"]), dr["u_name"].ToString(), dr["u_pwd"].ToString(), dr["full_name"].ToString(), Convert.ToInt32(dr["U_type_code"]), Convert.ToInt32(dr["phone"]));
+                user = new User(Convert.ToInt32(dr["uid"]), dr["u_name"].ToString(), dr["u_pwd"].ToString(), dr["full_name"].ToString(), Convert.ToInt32(dr["U_type_code"]), (dr["U_type_name"]).ToString(), Convert.ToInt32(dr["phone"]));
             }
+
             return user;
 
         }

@@ -111,7 +111,7 @@ public class ajaxWebService : System.Web.Services.WebService
 
     [WebMethod]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-    public void insertEmployee(string [] emp)
+    public void insertEmployee(string emp)
     {
         //string[] empl = new string[emp.Length] ;
         //empl = emp;
@@ -138,42 +138,7 @@ public class ajaxWebService : System.Web.Services.WebService
 
     }
 
-    ////קבלת כל הקטגוריות הקיימות
-    //[WebMethod]
-    //[ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-
-    //public string getCategory()
-    //{
-
-    //    Category c = new Category();
-    //    List<Category> ls = c.getCategory();
-
-    //    JavaScriptSerializer js = new JavaScriptSerializer();
-    //    // serialize to string
-    //    string jsonStringCategory = js.Serialize(ls);
-    //    return jsonStringCategory;
-    //}
-
-
-    ////קבלת המוצרים באותה הקטגוריה
-    //[WebMethod]
-    //[ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-
-    //public string getProductsByCat(string id)
-    //{
-
-    //    int categoryId = Convert.ToInt32(id);
-    //    Category c = new Category();
-    //    List<Product> ls = c.getProductsByCat(categoryId);
-
-    //    JavaScriptSerializer js = new JavaScriptSerializer();
-    //    // serialize to string
-    //    string jsonStringCategory = js.Serialize(ls);
-    //    return jsonStringCategory;
-    //}
-
-
-    ////קבלת כל הפרטים עבור מוצר
+    
     [WebMethod]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
     public string getUserByUserName(string username)

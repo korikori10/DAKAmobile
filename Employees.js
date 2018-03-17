@@ -29,10 +29,7 @@ function renderEmployees(results) {
 $("#SearchEmployee").on("click", function () {
    EmployeeInfo.pass = $("#PassTB").val();
    getEmployeeById(EmployeeInfo, renderEmployeeByID);
-    //$.mobile.changePage("Wizard.html", {
-    //       transition: "slide", changeHash: false
-
-    //    });     
+    
    window.location = "Wizard.html"
 });
 

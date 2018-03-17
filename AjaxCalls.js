@@ -32,6 +32,7 @@ function getCities(renderCities) {
     });
 
 } 
+
 function getCountries(renderCountries) {
     $.ajax({
         url: 'ajaxWebService.asmx/getCountries',
@@ -49,6 +50,7 @@ function getCountries(renderCountries) {
 
 }
 
+//select only the employees that today are not assigned to business from DB throw AJAX and WB
 function getEmployeesnobusiness(renderEmployeesnobusiness) {
     $.ajax({
         url: 'ajaxWebService.asmx/getEmployeesNoBusinessAmount',
@@ -66,7 +68,7 @@ function getEmployeesnobusiness(renderEmployeesnobusiness) {
 
 }
 
-
+//
 function getEmployeeById(EmployeeInfo, renderEmployeeByID) {
 
     // serialize the object to JSON string
@@ -88,8 +90,9 @@ function getEmployeeById(EmployeeInfo, renderEmployeeByID) {
     });
 }
 
+//insert employee from wizard to DB using ajax and WS
 function insertEmployee(EmployeeInfo) {
-    var emp = JSON.stringify( EmployeeInfo); //'{emp:' + JSON.stringify(EmployeeInfo) + '}'; 
+    var emp = '{"emp":' + JSON.stringify(EmployeeInfo) + '}'; 
 
     $.ajax({
         url: 'ajaxWebService.asmx/insertEmployee',
@@ -106,27 +109,7 @@ function insertEmployee(EmployeeInfo) {
     });
 }
 
-function getProduct(ProductInfo, renderFullProduct) {
-
-    // serialize the object to JSON string
-    var dataString = JSON.stringify(ProductInfo);
-
-    $.ajax({
-        url: 'ajaxWebService.asmx/getProduct',
-        data: '{emp:' + dataString + '}',
-        type: 'POST',
-        dataType: "json",
-        contentType: 'application/json; charset = utf-8',
-        success: function (results) {
-            renderFullProduct(results);
-        },
-        error: function (request, error) {
-            alert('Network error has occurred please try again!');
-        }
-    });
-    
-}
-
+//take user deatails from DB using ajax WS
 function getUserByUserName(username, renderUser) {
     var dataString = '{"username":' + JSON.stringify(username) + '}';
     $.ajax({

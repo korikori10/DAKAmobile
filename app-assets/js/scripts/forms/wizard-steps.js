@@ -48,7 +48,7 @@ $(".vertical-tab-steps").steps({
     },
     onFinished: function (event, currentIndex) {
         
-        var array = ($("#insertEmpForm").serializeArray());
+        var array = ($("#insertEmpForm").serialize());
         insertEmp(array);
 
     }
