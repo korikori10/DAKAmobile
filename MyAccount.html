@@ -44,15 +44,15 @@
     <!-- BEGIN Custom CSS-->
     <link rel="stylesheet" type="text/css" href="assets/css/style-rtl.css">
     <!-- END Custom CSS-->
-    <script type="text/javascript">
+    <!--<script type="text/javascript">
         function init() {
             var username = localStorage.getItem('user-name');
             getUserByUserName(username, renderUser);
         }
-    </script>
+    </script>-->
     
 </head>
-<body onload="init()">
+<body >
     <div data-role="page" data-position="fixed" id="account">
         <div data-role="header">  <h1> דקא      </h1> <h2>כח אדם</h2></div> <!-- /header -->
         <div data-role="content">
@@ -83,7 +83,7 @@
 
                         </script>
                         <label contenteditable="false" class="list-group-item"><i class="icon-user-secret"></i> שם משתמש  </label>
-                        <label contenteditable="false" type="text" name="name" id="name" value=""></label>
+                        <label  type="text" name="name" id="name" value=""></label>
 
                         <label class="list-group-item"><i class="icon-mail6"></i> אימייל  </label>
                         <label contenteditable="false" type="text" name="name" id="mail" value=""></label>
@@ -151,8 +151,7 @@
     <script src="app-assets/vendors/js/extensions/pace.min.js" type="text/javascript"></script>
     <!-- BEGIN VENDOR JS-->
     <!-- BEGIN PAGE VENDOR JS-->
-    <script src="AjaxCalls.js"></script>
-    <script src="MyAccount.js"></script>
+
     <!-- END PAGE VENDOR JS-->
     <!-- BEGIN ROBUST JS-->
     <script src="app-assets/js/core/app-menu.js" type="text/javascript"></script>
