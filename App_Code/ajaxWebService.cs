@@ -116,8 +116,8 @@ public class ajaxWebService : System.Web.Services.WebService
         //string[] empl = new string[emp.Length] ;
         //empl = emp;
        Employee e = new Employee();
-        //  string employee = string.Join("", empl);
-        //e = (Employee)new JavaScriptSerializer().DeserializeObject(EmployeeInfo);
+        //string employee = string.Join("", empl);
+        e = (Employee)new JavaScriptSerializer().DeserializeObject(emp);
 
 
         //JavaScriptSerializer js = new JavaScriptSerializer();
@@ -127,10 +127,10 @@ public class ajaxWebService : System.Web.Services.WebService
 
 
         //Deserialize  to get User Class Instance back
-        Employee temp = JsonConvert.DeserializeObject<Employee>(emp.ToString());
+        //Employee temp = JsonConvert.DeserializeObject<Employee>(emp.ToString());
 
 
-        e.insertEmployee(temp);
+        e.insertEmployee(e);
 
 
 

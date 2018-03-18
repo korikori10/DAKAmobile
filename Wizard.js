@@ -1,4 +1,5 @@
 ﻿selectedCity = new Object();
+EmployeeInfo = new Object();
 
 $(document).on('pagebeforeshow', '#wizard', function () {
     getCities(renderCities);
@@ -48,7 +49,7 @@ $(document).on('vclick', '#DynamiCountryList li a', function () {
 function insertEmp(array) {
        
     
-    var EmployeeInfo = array;
+     EmployeeInfo.emp = array;
 
 
         insertEmployee(EmployeeInfo)
