@@ -93,7 +93,7 @@ public class DBServices
                 e.Add_num= Convert.ToInt32(dr["add_num"]);
                 e.Phone= Convert.ToInt32(dr["phone"]);
                 e.Com_app = Convert.ToBoolean(dr["com_app"]);
-                e.Sys_id = Convert.ToInt32(dr["michpal_id"]);
+                e.Sys_id = Convert.ToInt32(getString(dr["michpal_id"]));
                 e.Insurance = Convert.ToBoolean(dr["insurance"]); 
                 e.Com_insurance = Convert.ToBoolean(dr["com_insurance"]);
                 e.Fam_stat_code = Convert.ToInt32(dr["fam_stat_code"]); 
@@ -151,7 +151,7 @@ public class DBServices
             Employee Emp = new Employee();
             while (dr.Read())
             {
-              //  Emp = new Employee(dr["employee_pass_id"].ToString(), dr["lname"].ToString(), dr["fname"].ToString(), Convert.ToDateTime(dr["birthday"]), Convert.ToBoolean(dr["gender"]), dr["Picture"].ToString(), Convert.ToInt32(dr["origin_country"]), Convert.ToBoolean(dr["il_citizen"]), Convert.ToInt32(dr["add_city"]), dr["add"].ToString(), Convert.ToInt32(dr["add_num"]), Convert.ToInt32(dr["phone"]), Convert.ToBoolean(dr["com_app"]), Convert.ToInt32(dr["michpal_id"]), Convert.ToBoolean(dr["insurance"]), Convert.ToBoolean(dr["com_insurance"]), Convert.ToInt32(dr["fam_stat_code"]), Convert.ToInt32(dr["salary_hour"]), Convert.ToInt32(dr["salary_overtime"]), Convert.ToInt32(dr["salary_trans"]), Convert.ToInt32(dr["day_off_id"]), Convert.ToInt32(dr["sabatical"]), Convert.ToInt32(dr["occupation_code"]), Convert.ToBoolean(dr["active"]), dr["disable_reason"].ToString());
+                Emp = new Employee(dr["employee_pass_id"].ToString(), dr["lname"].ToString(), dr["fname"].ToString(), Convert.ToDateTime(dr["birthday"]), Convert.ToBoolean(dr["gender"]), dr["Picture"].ToString(), Convert.ToInt32(dr["origin_country"]), Convert.ToBoolean(dr["il_citizen"]), Convert.ToInt32(dr["add_city"]), dr["add"].ToString(), Convert.ToInt32(dr["add_num"]), Convert.ToInt32(dr["phone"]), Convert.ToBoolean(dr["com_app"]), Convert.ToInt32(getString(dr["michpal_id"])), Convert.ToBoolean(dr["insurance"]), Convert.ToBoolean(dr["com_insurance"]), Convert.ToInt32(dr["fam_stat_code"]), Convert.ToInt32(dr["salary_hour"]), Convert.ToInt32(dr["salary_overtime"]), Convert.ToInt32(dr["salary_trans"]), Convert.ToInt32(dr["day_off_id"]), Convert.ToInt32(dr["sabatical"]), Convert.ToInt32(dr["occupation_code"]), Convert.ToBoolean(dr["active"]), dr["disable_reason"].ToString());
             }
             return Emp;
         }
@@ -204,7 +204,7 @@ public class DBServices
                 e.Add_num = Convert.ToInt32(dr["add_num"]);
                 e.Phone = Convert.ToInt32(dr["phone"]);
                 e.Com_app = Convert.ToBoolean(dr["com_app"]);
-                e.Sys_id = Convert.ToInt32(dr["michpal_id"]);
+                e.Sys_id = Convert.ToInt32(getString(dr["michpal_id"]));
                 e.Insurance = Convert.ToBoolean(dr["insurance"]);
                 e.Com_insurance = Convert.ToBoolean(dr["com_insurance"]);
                 e.Fam_stat_code = Convert.ToInt32(dr["fam_stat_code"]);
@@ -708,6 +708,7 @@ public class DBServices
 
 
 
+
     #region UPDATE COMMAND
 
     //--------------------------------------------------------------------
@@ -897,4 +898,17 @@ public class DBServices
         return command;
     }
     #endregion
+
+    private static object getString(object o)
+
+    {
+
+        if (o == DBNull.Value)
+        {
+            return o = "0";
+        }
+        return o;
+
+    }
+
 }

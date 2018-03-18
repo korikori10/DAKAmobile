@@ -49,8 +49,8 @@ $(document).on('vclick', '#DynamiCountryList li a', function () {
 function insertEmp(array) {
        
     
-     EmployeeInfo.emp = array;
+    //EmployeeInfo = array;
 
 
-        insertEmployee(EmployeeInfo)
+    insertEmployee({ EmployeeInfo: JSON.stringify(array) });
     }

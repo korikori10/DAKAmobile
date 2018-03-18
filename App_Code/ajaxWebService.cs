@@ -20,7 +20,8 @@ using Newtonsoft.Json;
 [System.Web.Script.Services.ScriptService] // REMEMBER TO UNCOMMENT THIS LINE
 public class ajaxWebService : System.Web.Services.WebService
 {
-
+    string emp;
+    string empl;
     public ajaxWebService()
     {
 
@@ -108,18 +109,19 @@ public class ajaxWebService : System.Web.Services.WebService
         return jsonStringCategory;
 
     }
-
+    
     [WebMethod]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-    public void insertEmployee(string emp)
+    public void insertEmployee(string EmployeeInfo)
     {
-        //string[] empl = new string[emp.Length] ;
+
         //empl = emp;
-       Employee e = new Employee();
+        JavaScriptSerializer js = new JavaScriptSerializer();
+       Employee e = js.Deserialize<Employee>(EmployeeInfo);
         //string employee = string.Join("", empl);
-        e = (Employee)new JavaScriptSerializer().DeserializeObject(emp);
 
-
+        
+            //(Employee).DeserializeObject(emp);
         //JavaScriptSerializer js = new JavaScriptSerializer();
         //StringBuilder sb = new StringBuilder();
         ////Serialize  user into JSON format

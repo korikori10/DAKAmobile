@@ -92,7 +92,7 @@ function getEmployeeById(EmployeeInfo, renderEmployeeByID) {
 
 //insert employee from wizard to DB using ajax and WS
 function insertEmployee(EmployeeInfo) {
-    var emp =  JSON.stringify(EmployeeInfo); 
+    var emp = JSON.stringify(EmployeeInfo);
 
     $.ajax({
         url: 'ajaxWebService.asmx/insertEmployee',

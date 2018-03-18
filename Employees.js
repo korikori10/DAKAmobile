@@ -2,7 +2,7 @@
 EmployeeInfo = new Object();
 
 $(document).on('pagebeforeshow', '#home', function () {
-    //getEmployees(renderEmployees);
+    getEmployees(renderEmployees);
     getEmployeesnobusiness(renderEmployeesnobusiness);
 });
 
@@ -14,12 +14,12 @@ function renderEmployees(results) {
     eresults = results;
     $('#DynamicEmployeesList').empty();
     $.each(results, function (i, row) {
-        dynamicLi = '<li> <a href="" data-id="' + row.Employee_pass_id + '"> onclick="'+messageToFillOrders(this.id)+'" <h3>' + row.Fname +" "+ row.Lname + '</h3><p>' + row.Employee_pass_id +'</p></a></li>'
+        dynamicLi = '<li> <a href="" data-id="' + row.Employee_pass_id + '"> <h3>' + row.Fname +" "+ row.Lname + '</h3><p>' + row.Employee_pass_id +'</p></a></li>'
         $('#DynamicEmployeesList').append(dynamicLi);
        $('#DynamicEmployeesList').listview('refresh');
     });
 }
-
+//onclick="'+messageToFillOrders(this.id)+'"
 
 
 

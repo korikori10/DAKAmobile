@@ -48,9 +48,26 @@ $(".vertical-tab-steps").steps({
     },
     onFinished: function (event, currentIndex) {
         
-        var array = ($("#insertEmpForm").serialize());
-        insertEmp(array);
+        $.fn.serializeObject = function () {
+                 var o = {};
+                 var a = this.serializeArray();
+                 $.each(a, function () {
+                         if (o[this.name] !== undefined) {
+                                 if (!o[this.name].push) {
+                                         o[this.name] = [o[this.name]];
+                                     }
+                                o[this.name].push(this.value || '');
+                          } else {
+                              o[this.name] = this.value || '';
+                           }
+                  });
+                return o;
+           };
 
+        var formData = $('#insertEmpForm').serializeObject();
+        // var result = JSON.stringify(formData);
+      //  var array = ($("#insertEmpForm").serialize());
+        insertEmp(formData);
     }
 });
 
