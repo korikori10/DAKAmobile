@@ -115,7 +115,7 @@
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="tbcountry4">ארץ מוצא</label>
-                                                                <ul data-role="listview" data-count-theme="a" data-filter="true" data-filter-placeholder="חפש מדינה..." data-filter-reveal="true" data-inset="true" id="DynamiCountryList"></ul>
+                                                                <select class="select2 form-control" id="DynamiCountryList"></select>
                                                             </div>
                                                         </div>
                                                         </div>
@@ -170,13 +170,13 @@
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="tbcity4">עיר/ישוב</label>
-                                                                <ul data-role="listview" data-count-theme="a" data-filter="true" data-filter-placeholder="חפש עיר..." data-filter-reveal="true" data-inset="true" id="DynamicCitiesList"></ul>
+                                                                <ul class="select2 form-control" id="DynamicCitiesList"></ul>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="tbnum4">מספר בית</label>
-                                                                <input type="text" class="form-control" id="textaddnum4"name="Add_num">
+                                                                <input type="number" class="form-control" id="textaddnum4"name="Add_num">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -234,7 +234,7 @@
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="jobTitle6">שכר שעתי</label>
-                                                                <input type="text" class="form-control" id="jobTitle6" name="Salary_hour">
+                                                                <input type="number" class="form-control" id="jobTitle6" name="Salary_hour">
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="shortDescription4">שבתון </label>
@@ -242,11 +242,11 @@
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="shortDescription4">Overtime:  שעות נוספות:</label>
-                                                                <input type="text" class="form-control" id="jobTitle6" name="Salary_overtime">
+                                                                <input type="number" class="form-control" id="jobTitle6" name="Salary_overtime">
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="shortDescription4">Transportation:  נסיעות:</label>
-                                                                <input type="text" class="form-control" id="jobTitle6" name="Salary_trans">
+                                                                <input type="number" class="form-control" id="jobTitle6" name="Salary_trans">
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="shortDescription4">Weekly rest day:   יום חופש:</label>
@@ -277,7 +277,7 @@
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="eventName4">שכירות חודשית:</label>
-                                                                <input type="text" class="form-control" id="eventName4" name="rent">
+                                                                <input type="number" class="form-control" id="eventName4" name="rent">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -402,7 +402,7 @@
     <script src="app-assets/vendors/js/pickers/dateTime/moment-with-locales.min.js" type="text/javascript"></script>
     <script src="app-assets/vendors/js/pickers/daterange/daterangepicker.js" type="text/javascript"></script>
     <script src="app-assets/vendors/js/forms/validation/jquery.validate.min.js" type="text/javascript"></script>
-
+    <script src="app-assets/vendors/js/forms/select/select2.full.min.js"></script>
     <!-- END PAGE VENDOR JS-->
     <!-- BEGIN ROBUST JS-->
     <script src="app-assets/js/core/app-menu.js" type="text/javascript"></script>
