@@ -31,6 +31,9 @@
     <link rel="stylesheet" type="text/css" href="app-assets/fonts/flag-icon-css/css/flag-icon.min.css">
     <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/sliders/slick/slick.css">
     <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/extensions/pace.css">
+    <link href="app-assets/vendors/css/forms/selects/selectize.css" rel="stylesheet" />
+    <link href="app-assets/vendors/css/forms/selects/selectize.default.css" rel="stylesheet" />
+    <!--<link href="app-assets/vendors/css/forms/selects/select2.min.css" rel="stylesheet" />-->
     <!--<link rel="stylesheet" type="text/css" href="app-assets/vendors/css/forms/icheck/icheck.css">
     <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/forms/icheck/custom.css">
     <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/charts/morris.css">
@@ -115,7 +118,9 @@
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="tbcountry4">ארץ מוצא</label>
-                                                                <select class="select2 form-control" id="DynamiCountryList"></select>
+                                                                <select class="selectize-select" id="DynamiCountryList">
+                                                                <option value="0">לא נבחרה מדינה</option>
+                                                                </select>
                                                             </div>
                                                         </div>
                                                         </div>
@@ -170,7 +175,7 @@
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="tbcity4">עיר/ישוב</label>
-                                                                <ul class="select2 form-control" id="DynamicCitiesList"></ul>
+                                                                <select class="selectize-select" id="DynamicCitiesList"></select>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
@@ -375,8 +380,6 @@
     <!-- BEGIN VENDOR JS-->
     <script src="app-assets/js/core/libraries/jquery.min.js" type="text/javascript"></script>
     <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-    <script src="AjaxCalls.js"></script>
-    <script src="Wizard.js"></script>
     <script src="app-assets/vendors/js/ui/tether.min.js" type="text/javascript"></script>
     <script src="app-assets/js/core/libraries/bootstrap.min.js" type="text/javascript"></script>
     <script src="app-assets/vendors/js/ui/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
@@ -391,6 +394,10 @@
     <!-- BEGIN PAGE VENDOR JS-->
     <script type="text/javascript" src="app-assets/vendors/js/ui/jquery.sticky.js"></script>
     <script src="//maps.googleapis.com/maps/api/js?key=AIzaSyBDkKetQwosod2SZ7ZGCpxuJdxY3kxo5Po" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/forms/select/selectize.min.js"></script>
+    <script src="AjaxCalls.js"></script>
+    <script src="Wizard.js"></script>
+    <!--<script src="app-assets/vendors/js/forms/select/select2.full.min.js"></script>-->
     <script src="app-assets/vendors/js/charts/gmaps.min.js" type="text/javascript"></script>
     <script src="app-assets/vendors/js/forms/icheck/icheck.min.js" type="text/javascript"></script>
     <script src="app-assets/vendors/js/extensions/jquery.knob.min.js" type="text/javascript"></script>
@@ -402,7 +409,6 @@
     <script src="app-assets/vendors/js/pickers/dateTime/moment-with-locales.min.js" type="text/javascript"></script>
     <script src="app-assets/vendors/js/pickers/daterange/daterangepicker.js" type="text/javascript"></script>
     <script src="app-assets/vendors/js/forms/validation/jquery.validate.min.js" type="text/javascript"></script>
-    <script src="app-assets/vendors/js/forms/select/select2.full.min.js"></script>
     <!-- END PAGE VENDOR JS-->
     <!-- BEGIN ROBUST JS-->
     <script src="app-assets/js/core/app-menu.js" type="text/javascript"></script>
