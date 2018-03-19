@@ -11,7 +11,7 @@ function renderCities(results) {
     results = $.parseJSON(results.d);
     $('#DynamicCitiesList').empty();
     $.each(results, function (i, row) {
-        dynamicLi = '<li> <a href="#" data-id="' + row.Name + '">  <h3>' + row.Name + '</h3></a></li>'
+        dynamicLi = '<option> value="' + row.Id + '">' + row.Name + '</option>'
         $('#DynamicCitiesList').append(dynamicLi);
         $('#DynamicCitiesList').listview('refresh');
     });
@@ -22,7 +22,7 @@ function renderCountries(results) {
     results = $.parseJSON(results.d);
     $('#DynamiCountryList').empty();
     $.each(results, function (i, row) {
-        dynamicLi = '<li> <a href="#" data-id="' + row.Name + '">  <h3>' + row.Name + '</h3></a></li>'
+        dynamicLi = '<option> value="' + row.Id + '">' + row.Name + '</option>'
         $('#DynamiCountryList').append(dynamicLi);
         $('#DynamiCountryList').listview('refresh');
     });
