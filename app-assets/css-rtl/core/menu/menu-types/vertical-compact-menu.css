@@ -219,6 +219,7 @@
 
 .vertical-compact-menu.menu-hide .content, .vertical-compact-menu.menu-hide .footer {
   margin-right : 0;
+  position:fixed;
 }
 
 .vertical-compact-menu.menu-hide .navbar-brand-center .content, .vertical-compact-menu.menu-hide .navbar-brand-center .footer {
