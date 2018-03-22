@@ -1,10 +1,9 @@
 ﻿EmployeeInfo = new Object();
-$(document).on('load', function () {
 
-});
 
 $(document).ready(function () {
 getEmployees(renderEmployees);
+    $(".selectize-select").selectize();
 
   //  getEmployeesnobusiness(renderEmployeesnobusiness);
 });
@@ -13,16 +12,21 @@ getEmployees(renderEmployees);
 
 function renderEmployees(results) {
     //this is the callBackFunc 
-    //results = $.parseJSON(results.d);
-    EmployeeInfo = results.d
+    results = $.parseJSON(results.d);
+   // EmployeeInfo = results.d
 
-    $(".selectize-select").selectize({
-        create: true,
-        valueField: 'Emp_Pass_id',
-        lableField: 'Fname',
-        sortField: 'text',
-        searchField: ['Emp_Pass_id', 'Fname', 'Lname'],
-        options: EmployeeInfo
+        //create: true,
+        //valueField: 'Emp_Pass_id',
+        //lableField: 'Fname',
+        //sortField: 'text',
+        //searchField: ['Emp_Pass_id', 'Fname', 'Lname'],
+        //options: EmployeeInfo
+    
+    var select = $("#DynamicEmployeesList")
+    $.each(results, function (i, row) {
+
+        select.selectize.addOption({ value: row.Employee_pass_id, text: row.Fname + " " + row.Lname });
+        select.selectize.addItem(row.Employee_pass_id)
     });
  
     //eresults = results;
@@ -33,3 +37,9 @@ function renderEmployees(results) {
         //$('#DynamicEmployeesList').listview('refresh');
    // });
 }
+$("#SearchEmployee").on("click", function () {
+    EmployeeInfo.pass = $("#PassTB").val();
+    getEmployeeById(EmployeeInfo, renderEmployeeByID);
+
+    window.location = "Wizard.html"
+});
