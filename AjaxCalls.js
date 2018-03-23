@@ -5,6 +5,7 @@
         dataType: "json",
         contentType: 'application/json; charset = utf-8',
         success: function (results) {
+            
             renderEmployees(results);
         },
         error: function (request, error) {
