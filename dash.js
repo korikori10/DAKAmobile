@@ -3,7 +3,7 @@
 
 $(document).ready(function () {
 getEmployees(renderEmployees);
-    
+getEmployeesnobusiness(renderEmployeesnobusiness);
 
   //  getEmployeesnobusiness(renderEmployeesnobusiness);
 });
@@ -42,9 +42,19 @@ function renderEmployees(results) {
     });
     $(".selectize-select").selectize();
 }
-$("#SearchEmployee").on("click", function () {
-    EmployeeInfo.pass = $("#PassTB").val();
-    getEmployeeById(EmployeeInfo, renderEmployeeByID);
 
+function renderEmployeesnobusiness(NoEmpresults) {
+    //this is the callBackFunc 
+    NoEmpresults = $.parseJSON(NoEmpresults.d);
+    len = Object.keys(NoEmpresults).length;
+    document.getElementById("unEmpNum").innerHTML = len;
+    $(".knob").knob();
+}
+$("#SearchEmployee").on("click", function () {
+    
+    
+    sessionStorage.removeItem("empInfo")
+    EmployeeInfo.pass = $("#PassTB").val();
+    sessionStorage.setItem("empInfo", EmployeeInfo.pass);
     window.location = "Wizard.html"
 });

@@ -72,7 +72,7 @@ public class ajaxWebService : System.Web.Services.WebService
     public string GetEmployeeById(string pass)
     {
         Employee e = new Employee();
-        e.getEmployeeById(pass);
+        e = e.getEmployeeById(pass);
 
 
         JavaScriptSerializer js = new JavaScriptSerializer();
