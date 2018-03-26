@@ -91,6 +91,24 @@ function getEmployeeById(EmployeeInfo, renderEmployeeByID) {
     });
 }
 
+function getBusinesses(renderBusinesses) {
+    $.ajax({
+        url: 'ajaxWebService.asmx/getBusinesses',
+        type: 'POST',
+        contentType: 'application/json; charset = utf-8',
+        dataType: 'json',
+        success: function (results) {
+            renderBusinesses(results);
+        },
+        error: function (xhr, status, error) {
+            var err = eval("(" + xhr.responseText + ")");
+            alert(err.Message);
+        }
+    });
+}
+
+
+
 //insert employee from wizard to DB using ajax and WS
 function insertEmployee(EmployeeInfo) {
     var emp = JSON.stringify(EmployeeInfo);
@@ -101,7 +119,7 @@ function insertEmployee(EmployeeInfo) {
         contentType: 'application/json; charset = utf-8',
         data: emp,
         success: function () {
-            alert(EmployeeInfo)
+            alert(EmployeeInfo);
         },
         error: function (xhr, status, error) {
             var err = eval("(" + xhr.responseText + ")");

@@ -36,6 +36,8 @@ public class Employee
     private int occupation_code;
     private bool active;
     private string disable_reason;
+    private int business;
+    private List<Business> busHistory;
 
 
     MemoryStream ms;
@@ -403,6 +405,31 @@ public class Employee
         }
     }
 
+    public int Business
+    {
+        get
+        {
+            return business;
+        }
+
+        set
+        {
+            business = value;
+        }
+    }
+
+    public List<Business> BusHistory
+    {
+        get
+        {
+            return busHistory;
+        }
+
+        set
+        {
+            busHistory = value;
+        }
+    }
 
     public List<Employee> getEmployees()
     {
@@ -435,24 +462,14 @@ public class Employee
 
     public void insertEmployee(Employee e)
     {
-        try
-        {
+
            // Employee e = new Employee();
             //ms = new MemoryStream(Encoding.UTF8.GetBytes(EmployeeInfo));
             //DataContractJsonSerializer ser = new DataContractJsonSerializer(e.GetType());
             //e = ser.ReadObject(ms) as Employee;
             DBServices dbs = new DBServices();
             dbs.insert(e);
-        }
-        catch (Exception)
-        {
+            dbs.insertEmpBus(e);
 
-            throw;
-        }
-        finally
-        {
-            ms.Close();
-
-        }
     }
 }

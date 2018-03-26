@@ -1,13 +1,15 @@
 ﻿selectedCity = new Object();
 EmployeeInfo = new Object();
+resultsSave = new Object();
 
 $(document).on('pagebeforeshow', '#wizard', function () {
     getCities(renderCities);
     getCountries(renderCountries);
+    getBusinesses(renderBusinesses);
 });
 $(document).ready(function () {
     $('.selectize-select').selectize;
-    EmployeeInfo.pass = sessionStorage.getItem("empInfo")
+    EmployeeInfo.pass = sessionStorage.getItem("empInfo");
     getEmployeeById(EmployeeInfo, renderEmployeeByID);
 });
 function fixDate (date) {
@@ -19,10 +21,12 @@ function populate(frm, data) {
     $.each(data, function (key, value) {
         var ctrl = $('[name=' + key + ']', frm);
         switch (ctrl.prop("type")) {
-            case "radio": case "checkbox":
+            case "radio": case "checkbox": 
                 ctrl.each(function () {
                     if ($(this).attr('value') == value) $(this).attr("checked", value);
                 });
+                break;
+            case "file":
                 break;
             default:
                 ctrl.val(value);
@@ -32,17 +36,17 @@ function populate(frm, data) {
 function renderEmployeeByID(results) {
 
     results = $.parseJSON(results.d);
-
+    resultsSave = results;
     if (results.Employee_pass_id == null) {
 
-        $("#passportid").val(EmployeeInfo.pass)
+        $("#passportid").val(EmployeeInfo.pass);
         results = null;
     }
     else {
         var frm = $("#insertEmpForm");
         var data = results;
-        data.Birthday = fixDate(data.Birthday)
-        populate(frm, data)
+        data.Birthday = fixDate(data.Birthday);
+        populate(frm, data);
         //$('#name').val(results.Fname + " " + results.Lname);
         //$('#sysIdTB').val(results.Sys_id);
         ////$('#dobTB').val(function  () {
@@ -58,13 +62,13 @@ function renderEmployeeByID(results) {
 
 }
 
-function renderCities(results) {
+function renderBusinesses(results) {
     //this is the callBackFunc 
     results = $.parseJSON(results.d);
-    $('#DynamicCitiesList').empty();
+    $('#businessSE').empty();
     $.each(results, function (i, row) {
-        dynamicLi = '<option value="' + row.Id + '">' + row.Name + '</option>'
-        $('#DynamicCitiesList').append(dynamicLi);
+        dynamicLi = '<option value="' + row.Bus_id + '">' + row.Bus_name + '</option>';
+        $('#businessSE').append(dynamicLi);
       //  $('#DynamicCitiesList').listview('refresh');
     });
 }
@@ -74,9 +78,19 @@ function renderCountries(results) {
     results = $.parseJSON(results.d);
     $('#DynamiCountryList').empty();
     $.each(results, function (i, row) {
-        dynamicLi = '<option value="' + row.Id + '">' + row.Name + '</option>'
+        dynamicLi = '<option value="' + row.Id + '">' + row.Name + '</option>';
         $('#DynamiCountryList').append(dynamicLi);
       //  $('#DynamiCountryList').listview('refresh');
+    });
+}
+function renderCities(results) {
+    //this is the callBackFunc 
+    results = $.parseJSON(results.d);
+    $('#DynamicCitiesList').empty();
+    $.each(results, function (i, row) {
+        dynamicLi = '<option value="' + row.Id + '">' + row.Name + '</option>';
+        $('#DynamicCitiesList').append(dynamicLi);
+        //  $('#DynamicCitiesList').listview('refresh');
     });
 }
 
@@ -103,6 +117,9 @@ function insertEmp(array) {
     
     //EmployeeInfo = array;
 
+    if (array.Business == resultsSave.Business) {
+        array.Business = null;
 
+    }
     insertEmployee({ EmployeeInfo: JSON.stringify(array) });
     }
