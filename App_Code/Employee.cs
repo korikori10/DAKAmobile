@@ -37,6 +37,7 @@ public class Employee
     private bool active;
     private string disable_reason;
     private int business;
+    private bool updateBus;
     private List<Business> busHistory;
 
 
@@ -431,6 +432,19 @@ public class Employee
         }
     }
 
+    public bool UpdateBus
+    {
+        get
+        {
+            return updateBus;
+        }
+
+        set
+        {
+            updateBus = value;
+        }
+    }
+
     public List<Employee> getEmployees()
     {
         DBServices dbs = new DBServices();
@@ -472,4 +486,21 @@ public class Employee
             dbs.insertEmpBus(e);
 
     }
+    public void updateEmp(Employee e)
+    {
+
+        // Employee e = new Employee();
+        //ms = new MemoryStream(Encoding.UTF8.GetBytes(EmployeeInfo));
+        //DataContractJsonSerializer ser = new DataContractJsonSerializer(e.GetType());
+        //e = ser.ReadObject(ms) as Employee;
+        DBServices dbs = new DBServices();
+        dbs.updateEmp(e);
+        if (e.updateBus)
+        {
+            dbs.updateFinDate(e);
+        dbs.insertEmpBus(e);
+        }
+
+    }
+
 }

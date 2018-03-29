@@ -1,6 +1,7 @@
 ﻿selectedCity = new Object();
 EmployeeInfo = new Object();
 resultsSave = new Object();
+isUpdate = new Object();
 
 $(document).on('pagebeforeshow', '#wizard', function () {
     getCities(renderCities);
@@ -8,9 +9,7 @@ $(document).on('pagebeforeshow', '#wizard', function () {
     getBusinesses(renderBusinesses);
 });
 $(document).ready(function () {
-    $('.selectize-select').selectize;
-    EmployeeInfo.pass = sessionStorage.getItem("empInfo");
-    getEmployeeById(EmployeeInfo, renderEmployeeByID);
+
 });
 function fixDate (date) {
     var date = new Date(parseInt(date.substr(6)));
@@ -20,6 +19,7 @@ function fixDate (date) {
 function populate(frm, data) {
     $.each(data, function (key, value) {
         var ctrl = $('[name=' + key + ']', frm);
+     
         switch (ctrl.prop("type")) {
             case "radio": case "checkbox": 
                 ctrl.each(function () {
@@ -28,8 +28,13 @@ function populate(frm, data) {
                 break;
             case "file":
                 break;
+            case "select-one":
+                ctrl.val(value).prop('selected', true)
+                ctrl.selectmenu("refresh");
+                break;
             default:
                 ctrl.val(value);
+               
         }
     });
 }
@@ -38,13 +43,14 @@ function renderEmployeeByID(results) {
     results = $.parseJSON(results.d);
     resultsSave = results;
     if (results.Employee_pass_id == null) {
-
+        isUpdate = false;
         $("#passportid").val(EmployeeInfo.pass);
         results = null;
     }
     else {
         var frm = $("#insertEmpForm");
         var data = results;
+        isUpdate = true;
         data.Birthday = fixDate(data.Birthday);
         populate(frm, data);
         //$('#name').val(results.Fname + " " + results.Lname);
@@ -70,6 +76,7 @@ function renderBusinesses(results) {
         dynamicLi = '<option value="' + row.Bus_id + '">' + row.Bus_name + '</option>';
         $('#businessSE').append(dynamicLi);
       //  $('#DynamicCitiesList').listview('refresh');
+        
     });
 }
 
@@ -81,6 +88,9 @@ function renderCountries(results) {
         dynamicLi = '<option value="' + row.Id + '">' + row.Name + '</option>';
         $('#DynamiCountryList').append(dynamicLi);
       //  $('#DynamiCountryList').listview('refresh');
+        EmployeeInfo.pass = sessionStorage.getItem("empInfo");
+        getEmployeeById(EmployeeInfo, renderEmployeeByID);
+        $('.selectize-select').selectize;
     });
 }
 function renderCities(results) {
@@ -117,9 +127,17 @@ function insertEmp(array) {
     
     //EmployeeInfo = array;
 
+    if (isUpdate) {
     if (array.Business == resultsSave.Business) {
-        array.Business = null;
-
+        array.updateBus = false;
     }
+    else {
+        array.updateBus = true;
+        updateEmployee({ EmployeeInfo: JSON.stringify(array) })
+    }
+    }
+    else {
+      //  array.updateBus = true; 
     insertEmployee({ EmployeeInfo: JSON.stringify(array) });
+    }
     }

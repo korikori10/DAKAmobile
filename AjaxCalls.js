@@ -128,6 +128,26 @@ function insertEmployee(EmployeeInfo) {
     });
 }
 
+//insert employee from wizard to DB using ajax and WS
+function updateEmployee(EmployeeInfo) {
+    var emp = JSON.stringify(EmployeeInfo);
+
+    $.ajax({
+        url: 'ajaxWebService.asmx/updateEmployee',
+        type: 'POST',
+        contentType: 'application/json; charset = utf-8',
+        data: emp,
+        success: function () {
+            alert(EmployeeInfo);
+        },
+        error: function (xhr, status, error) {
+            var err = eval("(" + xhr.responseText + ")");
+            alert(err.Message);
+        }
+    });
+}
+
+
 //take user deatails from DB using ajax WS
 function getUserByUserName(username, renderUser) {
     var dataString = '{"username":' + JSON.stringify(username) + '}';
