@@ -138,6 +138,7 @@ function insertEmp(array) {
     }
     else {
       //  array.updateBus = true; 
+
     insertEmployee({ EmployeeInfo: JSON.stringify(array) });
     }
     }
