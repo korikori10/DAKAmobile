@@ -10,5 +10,5 @@ function movetopage() {
        
 
     }
-window.location = "MobileDAKA.html"
+window.location = "Dash.html"
 }
