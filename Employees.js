@@ -1,7 +1,7 @@
 ﻿
 EmployeeInfo = new Object();
 
-$(document).on('pagebeforeshow', '#home', function () {
+$(document).ready(function () {
     getEmployees(renderEmployees);
     getEmployeesnobusiness(renderEmployeesnobusiness);
 });
@@ -26,25 +26,23 @@ function renderEmployees(results) {
 
 
 
-$("#SearchEmployee").on("click", function () {
-   EmployeeInfo.pass = $("#PassTB").val();
-   getEmployeeById(EmployeeInfo, renderEmployeeByID);
+//$("#SearchEmployee").on("click", function () {
+//   EmployeeInfo.pass = $("#PassTB").val();
+//   getEmployeeById(EmployeeInfo, renderEmployeeByID);
     
-   window.location = "Wizard.html"
-});
+//   window.location = "Wizard.html"
+//});
 
 
+//$(document).on('vclick', '#DynamicEmployeesList li a', function () {
+//    EmployeeInfo.id = $(this).attr('data-id');
+//  //  renderFullEmployee(EmployeeInfo, eresults);
+//    $.mobile.changePage("#employee", {
+//        transition: "slide", changeHash: false
 
+//    });
 
-$(document).on('vclick', '#DynamicEmployeesList li a', function () {
-    EmployeeInfo.id = $(this).attr('data-id');
-  //  renderFullEmployee(EmployeeInfo, eresults);
-    $.mobile.changePage("#employee", {
-        transition: "slide", changeHash: false
-
-    });
-
-});
+//});
 
 
 function renderEmployeesnobusiness(NoEmpresults) {
@@ -79,10 +77,21 @@ function renderFullEmployee(results) {
         //$('#employeePage').append(dynamicLi);
     });
 
-
-
-
     }
+
+
+//חדש
+
+$('.table').on('click', 'tr td button', function () {
+ 
+    sessionStorage.removeItem("empInfo")
+    tr = $(this).closest('tr');//.find('td:first').text();
+    tableId = $(this).closest('.table').attr('id');
+        var data = $("#" + tableId).DataTable().row(tr).data();
+        EmployeeInfo.pass = data['Employee_pass_id'];
+        sessionStorage.setItem("empInfo", EmployeeInfo.pass);
+        window.location = "Wizard.html";
+    });
 
 
 

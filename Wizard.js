@@ -3,14 +3,12 @@ EmployeeInfo = new Object();
 resultsSave = new Object();
 isUpdate = new Object();
 
-$(document).on('pagebeforeshow', '#wizard', function () {
+$(document).ready(function () {
     getCities(renderCities);
     getCountries(renderCountries);
     getBusinesses(renderBusinesses);
 });
-$(document).ready(function () {
 
-});
 function fixDate (date) {
     var date = new Date(parseInt(date.substr(6)));
     var month = date.getMonth() + 1;
@@ -53,17 +51,6 @@ function renderEmployeeByID(results) {
         isUpdate = true;
         data.Birthday = fixDate(data.Birthday);
         populate(frm, data);
-        //$('#name').val(results.Fname + " " + results.Lname);
-        //$('#sysIdTB').val(results.Sys_id);
-        ////$('#dobTB').val(function  () {
-        ////    var date = new Date(parseInt(results.Birthday.substr(6)));
-        ////      var month = date.getMonth() + 1;
-        ////      return date.getDate() + "/" + month + "/" + date.getFullYear();
-        ////  });
-
-        //Business = results.
-        //$('#empPassTB').val(results.Employee_pass_id);
-        //$('#addressTB').val(results.Add);
     }
 
 }
@@ -127,14 +114,15 @@ function insertEmp(array) {
     
     //EmployeeInfo = array;
 
-    if (isUpdate) {
+    if (isUpdate)
+    {
     if (array.Business == resultsSave.Business) {
         array.updateBus = false;
     }
     else {
         array.updateBus = true;
-        updateEmployee({ EmployeeInfo: JSON.stringify(array) })
     }
+        updateEmployee({ EmployeeInfo: JSON.stringify(array) })
     }
     else {
       //  array.updateBus = true; 

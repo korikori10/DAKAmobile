@@ -59,322 +59,361 @@
     <!--<link rel="stylesheet" type="text/css" href="app-assets/css-rtl/core/menu/menu-types/vertical-menu.css">-->
     <!-- END Page Level CSS-->
 </head>
-<body>
-    <!-- /page -->
-    <div data-role="page" data-position="fixed" id="wizard">
-        <header data-role="header">
-            <h1> דקא  </h1>
-            <a href="#home" data-transition="slide" data-direction="reverse" data-icon="back" data-role="button" role="button"> </a>
-        </header> <!-- /header -->
-        <article data-role="content" id="wizardpage">
-            <!-- Form wizard with vertical tabs section start -->
+<body data-open="click" data-menu="vertical-compact-menu" data-col="2-columns" class="vertical-layout vertical-compact-menu 2-columns  fixed-navbar">
+    <!-- navbar-fixed-top-->
+    <nav class="header-navbar navbar navbar-with-menu navbar-fixed-top navbar-dark navbar-border navbar-shadow navbar-brand-center">
+        <div class="navbar-wrapper">
+            <div class="navbar-header">
+                <ul class="nav navbar-nav">
+                    <li class="nav-item mobile-menu hidden-md-up float-xs-left"><a class="nav-link nav-menu-main menu-toggle hidden-xs"><i class="icon-menu5 font-large-1"></i></a></li>
+                </ul>
+            </div>
+            <div class="navbar-container content container-fluid">
+                <div id="navbar-mobile" class="collapse navbar-toggleable-sm">
 
-            <div class="app-content content container-fluid">
-                <!--<div class="content-wrapper">-->
-                <div class="content-body">
-                    <section id="vertical-tabs">
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="card">
-                                    <div class="card-header" id="card-header">
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- ////////////////////////////////////////////////////////////////////////////-->
+    <!-- main menu-->
+    <div class="main-menu menu-fixed menu-dark menu-accordion menu-shadow">
+        <!-- main menu content-->
+        <div class="main-menu-content">
+            <!-- main menu header-->
+            <!-- / main menu header-->
+            <ul id="main-menu-navigation" data-menu="menu-navigation" class="navigation navigation-main">
+                <li class="nav-item">
+                    <a href="Dash.html"><i class="icon-home3"></i><span data-i18n="nav.dash.main" class="menu-title">מסך הבית</span></a>
+                </li>
+                <li class="nav-item">
+                    <a href="Business.html"><i class="icon-home3"></i><span data-i18n="nav.dash.main" class="menu-title">עסקים</span></a>
+                </li>
+                <li class="nav-item">
+                    <a href="EmployeeNoBusiness.html"><i class="icon-home3"></i><span data-i18n="nav.dash.main" class="menu-title">עובדים ללא ציוות</span></a>
+                </li>
+                <li class="nav-item">
+                    <a href="MyAccount.html"><i class="icon-wpforms"></i><span data-i18n="nav.category.forms" class="menu-title">החשבון שלי</span></a>
+                </li>
+            </ul>
+        </div>
+        <!-- /main menu content-->
+        <!-- main menu footer-->
+        <!-- include includes/menu-footer-->
+        <!-- main menu footer-->
+    </div>
 
-                                        <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
-                                        <div class="heading-elements">
-                                            <ul class="list-inline mb-0">
-                                                <li><a data-action="collapse"><i class="icon-minus4"></i></a></li>
-                                                <li><a data-action="reload"><i class="icon-reload"></i></a></li>
-                                                <li><a data-action="expand"><i class="icon-expand2"></i></a></li>
-                                                <li><a data-action="close"><i class="icon-cross2"></i></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="card-body collapse in">
-                                        <div class="card-block">
-                                            <form action="#" class="vertical-tab-steps wizard-circle" id="insertEmpForm">
-                                                <!-- Step 1 -->
-                                                <h6>Step 1</h6>
-                                                <fieldset>
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label for="firstName4">שם פרטי : <span class="danger">*</span></label>
-                                                                <input type="text" class="form-control" id="firstName4" name="Fname">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label for="lastName4">שם משפחה<span class="danger">*</span></label>
-                                                                <input type="text" class="form-control" id="lastName4" name="Lname">
-                                                            </div>
+    <!-- <article data-role="content" id="wizardpage">-->
+    <!-- Form wizard with vertical tabs section start -->
+
+    <div class="app-content content container-fluid">
+        <div class="content-wrapper">
+        <div class="content-body">
+            <section id="vertical-tabs">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="card">
+                            <div class="card-header" id="card-header">
+
+                                <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
+                                <div class="heading-elements">
+                                    <ul class="list-inline mb-0">
+                                        <li><a data-action="collapse"><i class="icon-minus4"></i></a></li>
+                                        <li><a data-action="reload"><i class="icon-reload"></i></a></li>
+                                        <li><a data-action="expand"><i class="icon-expand2"></i></a></li>
+                                        <li><a data-action="close"><i class="icon-cross2"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-body collapse in">
+                                <div class="card-block">
+                                    <form action="#" class="vertical-tab-steps wizard-circle" id="insertEmpForm">
+                                        <!-- Step 1 -->
+                                        <h6>Step 1</h6>
+                                        <fieldset>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="firstName4">שם פרטי : <span class="danger">*</span></label>
+                                                        <input type="text" class="form-control" id="firstName4" name="Fname">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="lastName4">שם משפחה<span class="danger">*</span></label>
+                                                        <input type="text" class="form-control" id="lastName4" name="Lname">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="passport7">מספר דרכון</label>
+                                                        <input type="text" class="form-control" id="passportid" name="Employee_pass_id">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="tbcountry4">ארץ מוצא</label>
+                                                        <select name="Origin_country" class="selectize-select" id="DynamiCountryList">
+                                                            <option value="0">לא נבחרה מדינה</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="phoneNumber4"> טלפון נייד Phone Number :</label>
+                                                        <input type="tel" class="form-control" id="phoneNumber4" name="Phone">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="date4">תאריך לידה Date of Birth :</label>
+                                                        <input type="date" class="form-control" id="date4" name="Birthday">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="location3">מצב משפחתי</label>
+                                                        <select class="custom-select form-control" id="location3" name="Fam_stat_code">
+                                                            <option value="0"> בחר Select</option>
+                                                            <option value="1">רווק/ה</option>
+                                                            <option value="2">נשוי/אה</option>
+                                                            <option value="3">גרוש/ה</option>
+                                                            <option value="4">אלמן/ה</option>
+                                                            <option value="5">פרוד/ה</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="location3">אזרח ישראל:</label>
+                                                        <select class="selectize-select form-control" id="location3" name="Il_citizen">
+                                                            <option value=""> בחר Select</option>
+                                                            <option value="True">כן</option>
+                                                            <option value="False">לא</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="tbadd4">כתובת פרטית</label>
+                                                        <input type="text" class="form-control" id="textadd4" name="Add">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="tbcity4">עיר/ישוב</label>
+                                                        <select name="Add_city" class="selectize-select" id="DynamicCitiesList"></select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="tbnum4">מספר בית</label>
+                                                        <input type="number" class="form-control" id="textaddnum4" name="Add_num">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="location3">מבוטח:</label>
+                                                        <select class="custom-select form-control" id="location3" name="Insurance">
+                                                            <option value=""> בחר Select</option>
+                                                            <option value="true">כן</option>
+                                                            <option value="false">לא</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="location3">מין..."</label>
+                                                        <select class="custom-select form-control" id="location3" name="Gender">
+                                                            <option value=""> בחר Select</option>
+                                                            <option value="false">זכר</option>
+                                                            <option value="true">נקבה</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                        <!-- Step 2 -->
+                                        <h6>Step 2</h6>
+                                        <fieldset>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="jobTitle4">מקצוע</label>
+                                                        <input type="text" class="form-control" id="proposalTitle4" name="Occupation_code">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="placeofworkTitle4">מקום עבודה</label>
+                                                        <select class="selectize-select form-control" id="businessSE" name="Business"></select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="department">מחלקה</label>
+                                                        <select class="selectize-select form-control" id="location3" name="department">
+                                                            <option value=""> בחר Select</option>
+                                                            <option value="2">דקא דרום</option>
+                                                            <option value="1">דקא מרכז</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="startdate4">תאריך תחילת עבודה </label>
+                                                        <input type="date" class="form-control" id="date4" name="startDate">
+                                                    </div>
+                                                </div>
+
+                                                <!-- <div class="row">-->
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="jobTitle6">שכר שעתי</label>
+                                                        <input type="number" class="form-control" id="jobTitle6" name="Salary_hour">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="shortDescription4">שבתון </label>
+                                                        <input type="text" class="form-control" id="jobTitle6" name="Sabatical">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="shortDescription4">Overtime:  שעות נוספות:</label>
+                                                        <input type="number" class="form-control" id="jobTitle6" name="Salary_overtime">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="shortDescription4">Transportation:  נסיעות:</label>
+                                                        <input type="number" class="form-control" id="jobTitle6" name="Salary_trans">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="shortDescription4">Weekly rest day:   יום חופש:</label>
+                                                        <input type="text" class="form-control" id="jobTitle6" name="Day_off">
+                                                    </div>
+                                                    <!--</div>-->
+                                                </div>
+                                            </div>
+
+                                        </fieldset>
+                                        <!-- Step 3 -->
+                                        <h6>Step 3</h6>
+                                        <fieldset>
+                                            <div class="row">
+
+                                                <div class="form-group">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="location3">מגורי חברה:</label>
+                                                            <select class="custom-select form-control" id="location3" name="Com_app">
+                                                                <option value=""> בחר Select</option>
+                                                                <option value="True">כן</option>
+                                                                <option value="False">לא</option>
+                                                            </select>
                                                         </div>
                                                     </div>
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label for="passport7">מספר דרכון</label>
-                                                                <input type="text" class="form-control" id="passportid" name="Employee_pass_id">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label for="tbcountry4">ארץ מוצא</label>
-                                                                <select name="Origin_country" class="selectize-select" id="DynamiCountryList">
-                                                                <option value="0">לא נבחרה מדינה</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        </div>
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label for="phoneNumber4"> טלפון נייד Phone Number :</label>
-                                                                <input type="tel" class="form-control" id="phoneNumber4" name="Phone">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label for="date4">תאריך לידה Date of Birth :</label>
-                                                                <input type="date" class="form-control" id="date4" name="Birthday">
-                                                            </div>
-                                                        </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="eventName4">שכירות חודשית:</label>
+                                                        <input type="number" class="form-control" id="eventName4" name="rent">
                                                     </div>
+                                                </div>
+                                            </div>
+                                            <!--<div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Event Date - Time :</label>
+                                                    <div class='input-group'>
+                                                        <input type='text' class="form-control datetime" />
+                                                        <span class="input-group-addon">
+                                                            <span class="icon-calendar-o"></span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="eventStatus4">Event Status :</label>
+                                                    <select class="custom-select form-control" id="eventStatus4" name="eventStatus">
+                                                        <option value="Planning">Planning</option>
+                                                        <option value="In Progress">In Progress</option>
+                                                        <option value="Finished">Finished</option>
+                                                    </select>
+                                                </div>
 
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                    <label for="location3">מצב משפחתי</label>
-                                                                    <select class="custom-select form-control" id="location3" name="Fam_stat_code">
-                                                                        <option value="0"> בחר Select</option>
-                                                                        <option value="1">רווק/ה</option>
-                                                                        <option value="2">נשוי/אה</option>
-                                                                        <option value="3">גרוש/ה</option>
-                                                                        <option value="4">אלמן/ה</option>
-                                                                        <option value="5">פרוד/ה</option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                    <label for="location3">אזרח ישראל:</label>
-                                                                    <select class="selectize-select form-control" id="location3" name="Il_citizen">
-                                                                        <option value=""> בחר Select</option>
-                                                                        <option value="True">כן</option>
-                                                                        <option value="False">לא</option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                            </div>-->
 
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label for="tbadd4">כתובת פרטית</label>
-                                                                <input type="text" class="form-control" id="textadd4" name="Add">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label for="tbcity4">עיר/ישוב</label>
-                                                                <select name="Add_city" class="selectize-select" id="DynamicCitiesList"></select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label for="tbnum4">מספר בית</label>
-                                                                <input type="number" class="form-control" id="textaddnum4"name="Add_num">
-                                                            </div>
+                                        </fieldset>
+                                        <!-- Step 4 -->
+                                        <h6>Step 4</h6>
+                                        <fieldset>
+                                            <div class="row">
+                                                <!--<div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="meetingName4">Name of Meeting :</label>
+                                                        <input type="text" class="form-control" id="meetingName4">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="meetingLocation4">Location :</label>
+                                                        <input type="text" class="form-control" id="meetingLocation4">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="participants4">Names of Participants</label>
+                                                        <textarea name="participants" id="participants4" rows="4" class="form-control"></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="decisions4">Decisions Reached</label>
+                                                        <textarea name="decisions" id="decisions4" rows="4" class="form-control"></textarea>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Agenda Items :</label>
+                                                        <div class="c-inputs-stacked">
+                                                            <label class="inline custom-control custom-checkbox block">
+                                                                <input type="checkbox" class="custom-control-input">
+                                                                <span class="custom-control-indicator"></span>
+                                                                <span class="custom-control-description ml-0">1st item</span>
+                                                            </label>
+                                                            <label class="inline custom-control custom-checkbox block">
+                                                                <input type="checkbox" class="custom-control-input">
+                                                                <span class="custom-control-indicator"></span>
+                                                                <span class="custom-control-description ml-0">2nd item</span>
+                                                            </label>
+                                                            <label class="inline custom-control custom-checkbox block">
+                                                                <input type="checkbox" class="custom-control-input">
+                                                                <span class="custom-control-indicator"></span>
+                                                                <span class="custom-control-description ml-0">4th item</span>
+                                                            </label>
+                                                            <label class="inline custom-control custom-checkbox block">
+                                                                <input type="checkbox" class="custom-control-input">
+                                                                <span class="custom-control-indicator"></span>
+                                                                <span class="custom-control-description ml-0">5th item</span>
+                                                            </label>
                                                         </div>
                                                     </div>
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label for="location3">מבוטח:</label>
-                                                                <select class="custom-select form-control" id="location3" name="Insurance">
-                                                                    <option value=""> בחר Select</option>
-                                                                    <option value="true">כן</option>
-                                                                    <option value="false">לא</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label for="location3">מין..."</label>
-                                                                <select class="custom-select form-control" id="location3" name="Gender">
-                                                                    <option value=""> בחר Select</option>
-                                                                    <option value="false">זכר</option>
-                                                                    <option value="true">נקבה</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </fieldset>
-                                                <!-- Step 2 -->
-                                                <h6>Step 2</h6>
-                                                <fieldset>
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label for="jobTitle4">מקצוע</label>
-                                                                <input type="text" class="form-control" id="proposalTitle4" name="Occupation_code">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="placeofworkTitle4">מקום עבודה</label>
-                                                                <select class="selectize-select form-control" id="businessSE" name="Business"></select>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="department">מחלקה</label>
-                                                                <select class="selectize-select form-control" id="location3" name="department">
-                                                                    <option value=""> בחר Select</option>
-                                                                    <option value="2">דקא דרום</option>
-                                                                    <option value="1">דקא מרכז</option>
-                                                                </select>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="startdate4">תאריך תחילת עבודה </label>
-                                                                <input type="date" class="form-control" id="date4" name="startDate">
-                                                            </div>
-                                                        </div>
-
-                                                        <!-- <div class="row">-->
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label for="jobTitle6">שכר שעתי</label>
-                                                                <input type="number" class="form-control" id="jobTitle6" name="Salary_hour">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="shortDescription4">שבתון </label>
-                                                                <input type="text" class="form-control" id="jobTitle6" name="Sabatical">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="shortDescription4">Overtime:  שעות נוספות:</label>
-                                                                <input type="number" class="form-control" id="jobTitle6" name="Salary_overtime">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="shortDescription4">Transportation:  נסיעות:</label>
-                                                                <input type="number" class="form-control" id="jobTitle6" name="Salary_trans">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="shortDescription4">Weekly rest day:   יום חופש:</label>
-                                                                <input type="text" class="form-control" id="jobTitle6" name="Day_off">
-                                                            </div>
-                                                            <!--</div>-->
-                                                        </div>
-                                                    </div>
-
-                                                </fieldset>
-                                                <!-- Step 3 -->
-                                                <h6>Step 3</h6>
-                                                <fieldset>
-                                                    <div class="row">
-                                                        
-                                                            <div class="form-group">
-                                                                <div class="col-md-6">
-                                                                    <div class="form-group">
-                                                                        <label for="location3">מגורי חברה:</label>
-                                                                        <select class="custom-select form-control" id="location3" name="Com_app">
-                                                                            <option value=""> בחר Select</option>
-                                                                            <option value="True">כן</option>
-                                                                            <option value="False">לא</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label for="eventName4">שכירות חודשית:</label>
-                                                                <input type="number" class="form-control" id="eventName4" name="rent">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                        <!--<div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label>Event Date - Time :</label>
-                                                                <div class='input-group'>
-                                                                    <input type='text' class="form-control datetime" />
-                                                                    <span class="input-group-addon">
-                                                                        <span class="icon-calendar-o"></span>
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="eventStatus4">Event Status :</label>
-                                                                <select class="custom-select form-control" id="eventStatus4" name="eventStatus">
-                                                                    <option value="Planning">Planning</option>
-                                                                    <option value="In Progress">In Progress</option>
-                                                                    <option value="Finished">Finished</option>
-                                                                </select>
-                                                            </div>
-
-                                                        </div>-->
-                                                    
-                                                </fieldset>
-                                                <!-- Step 4 -->
-                                                <h6>Step 4</h6>
-                                                <fieldset>
-                                                    <div class="row">
-                                                        <!--<div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label for="meetingName4">Name of Meeting :</label>
-                                                                <input type="text" class="form-control" id="meetingName4">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="meetingLocation4">Location :</label>
-                                                                <input type="text" class="form-control" id="meetingLocation4">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="participants4">Names of Participants</label>
-                                                                <textarea name="participants" id="participants4" rows="4" class="form-control"></textarea>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label for="decisions4">Decisions Reached</label>
-                                                                <textarea name="decisions" id="decisions4" rows="4" class="form-control"></textarea>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>Agenda Items :</label>
-                                                                <div class="c-inputs-stacked">
-                                                                    <label class="inline custom-control custom-checkbox block">
-                                                                        <input type="checkbox" class="custom-control-input">
-                                                                        <span class="custom-control-indicator"></span>
-                                                                        <span class="custom-control-description ml-0">1st item</span>
-                                                                    </label>
-                                                                    <label class="inline custom-control custom-checkbox block">
-                                                                        <input type="checkbox" class="custom-control-input">
-                                                                        <span class="custom-control-indicator"></span>
-                                                                        <span class="custom-control-description ml-0">2nd item</span>
-                                                                    </label>
-                                                                    <label class="inline custom-control custom-checkbox block">
-                                                                        <input type="checkbox" class="custom-control-input">
-                                                                        <span class="custom-control-indicator"></span>
-                                                                        <span class="custom-control-description ml-0">4th item</span>
-                                                                    </label>
-                                                                    <label class="inline custom-control custom-checkbox block">
-                                                                        <input type="checkbox" class="custom-control-input">
-                                                                        <span class="custom-control-indicator"></span>
-                                                                        <span class="custom-control-description ml-0">5th item</span>
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                        </div>-->
-                                                        <input type="file" name="Picture" accept="image/*;capture=camera">
-                                                    </div>
-                                                </fieldset>
-                                            </form>
-                                        </div>
-                                    </div>
+                                                </div>-->
+                                                <input type="file" name="Picture" accept="image/*;capture=camera">
+                                            </div>
+                                        </fieldset>
+                                    </form>
                                 </div>
                             </div>
                         </div>
-                    </section>
+                    </div>
                 </div>
-                <!--</div>-->
-            </div>
-
-            <!-- Form wizard with vertical tabs section end -->
-        </article> <!-- /content -->
-        <footer data-role="footer" id="footer"> <img src="images/logo_daka.png" style="height:inherit" /> </footer> <!-- /footer -->
+            </section>
+        </div>
+        </div>
     </div>
+    <!-- Form wizard with vertical tabs section end -->
+
+    <footer id="footer" class="footer undefined footer-dark">
+
+        <img src="images/logo_daka.png" style="height:inherit" />   <!--<p class="clearfix text-muted text-sm-center mb-0 px-2"><span class="float-md-left d-xs-block d-md-inline-block">Copyright  &copy; 2017 <a href="https://themeforest.net/user/pixinvent/portfolio?ref=pixinvent" target="_blank" class="text-bold-800 grey darken-2">PIXINVENT </a>, All rights reserved. </span><span class="float-md-right d-xs-block d-md-inline-block">Hand-crafted & Made with <i class="icon-heart5 pink"></i></span></p>-->
+    </footer>
+
     <!-- /page -->
     <!-- /page -->
     <!-- BEGIN VENDOR JS-->

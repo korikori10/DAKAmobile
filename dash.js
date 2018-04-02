@@ -5,7 +5,6 @@ $(document).ready(function () {
 getEmployees(renderEmployees);
 getEmployeesnobusiness(renderEmployeesnobusiness);
 
-  //  getEmployeesnobusiness(renderEmployeesnobusiness);
 });
 
 
@@ -15,33 +14,25 @@ function renderEmployees(results) {
 
     results = $.parseJSON(results.d);
    
-   // EmployeeInfo = results.d
-
-        //create: true,
-        //valueField: 'Emp_Pass_id',
-        //lableField: 'Fname',
-        //sortField: 'text',
-        //searchField: ['Emp_Pass_id', 'Fname', 'Lname'],
-        //options: EmployeeInfo
-    
-    //var select = $("#DynamicEmployeesList")
-    //$.each(results, function (i, row) {
-
-    //    select.selectize().addOption({ value: row.Employee_pass_id, text: row.Fname + " " + row.Lname });
-    //    select.selectize.addItem(row.Employee_pass_id)
-    //});
-
     var dl = $('#DynamicEmployeesList');
-    console.log("1:" + dl)
-    //dl.empty();
-    console.log("2:" +dl)
     $.each(results, function (i, row) {
         dynamicLi = '<option value="' + row.Employee_pass_id + '">' + row.Fname + " " + row.Lname + '</option>';
     dl.append(dynamicLi);
-       // $('#DynamicEmployeesList').listview('refresh');
     });
-    $(".selectize-select").selectize();
+    ////////////////////////////////////////////
+    var select = $(".selectize-select").selectize({
+        maxItems: 1, //Max items selectable in the textbox
+        maxOptions: 30, //Max options to render at once in the dropdown
+        onChange: function (value) {
+            sessionStorage.removeItem("empInfo")
+            EmployeeInfo.pass = value;
+            sessionStorage.setItem("empInfo", EmployeeInfo.pass);
+            window.location = "Wizard.html"
+        }
+    });
+
 }
+     
 
 function renderEmployeesnobusiness(NoEmpresults) {
     //this is the callBackFunc 
@@ -50,6 +41,8 @@ function renderEmployeesnobusiness(NoEmpresults) {
     document.getElementById("unEmpNum").innerHTML = len;
     $(".knob").knob();
 }
+
+
 $("#SearchEmployee").on("click", function () {
     
     
