@@ -128,126 +128,93 @@
                             <div class="card-body collapse in">
                                 <div class="card-block">
                                     <form action="#" class="vertical-tab-steps wizard-circle" id="insertEmpForm">
-                                        <!-- Step 1 -->
+                                        <!-- Step 1 --><h1 id="kindoform"></h1>
                                         <h6>Step 1</h6>
-                                        <fieldset>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="firstName4">שם פרטי : <span class="danger">*</span></label>
-                                                        <input type="text" class="form-control" id="firstName4" name="Fname">
+                                            <fieldset id="first" >
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="firstName4">שם פרטי : <span class="danger">*</span></label>
+                                                                <input type="text" class="form-control" id="firstName4" name="Fname">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="lastName4">שם משפחה<span class="danger">*</span></label>
+                                                                <input type="text" class="form-control" id="lastName4" name="Lname">
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="lastName4">שם משפחה<span class="danger">*</span></label>
-                                                        <input type="text" class="form-control" id="lastName4" name="Lname">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="passport7">מספר דרכון</label>
+                                                                <input type="text" class="form-control" id="passportid" name="Employee_pass_id">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="tbcountry4">ארץ מוצא</label>
+                                                                <select name="Origin_country" class="selectize-select" id="DynamiCountryList">
+                                                                    <option value="0">לא נבחרה מדינה</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="passport7">מספר דרכון</label>
-                                                        <input type="text" class="form-control" id="passportid" name="Employee_pass_id">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="phoneNumber4"> טלפון נייד Phone Number :</label>
+                                                                <input type="tel" class="form-control" id="phoneNumber4" name="Phone">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="date4">תאריך לידה Date of Birth :</label>
+                                                                <input type="date" class="form-control" id="date4" name="Birthday">
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="tbcountry4">ארץ מוצא</label>
-                                                        <select name="Origin_country" class="selectize-select" id="DynamiCountryList">
-                                                            <option value="0">לא נבחרה מדינה</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="phoneNumber4"> טלפון נייד Phone Number :</label>
-                                                        <input type="tel" class="form-control" id="phoneNumber4" name="Phone">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="date4">תאריך לידה Date of Birth :</label>
-                                                        <input type="date" class="form-control" id="date4" name="Birthday">
-                                                    </div>
-                                                </div>
-                                            </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="location3">מצב משפחתי</label>
+                                                                <select class="custom-select form-control" id="location3" name="Fam_stat_code">
+                                                                    <option value="0"> בחר Select</option>
+                                                                    <option value="1">רווק/ה</option>
+                                                                    <option value="2">נשוי/אה</option>
+                                                                    <option value="3">גרוש/ה</option>
+                                                                    <option value="4">אלמן/ה</option>
+                                                                    <option value="5">פרוד/ה</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="location3">מין</label>
+                                                                <select class="custom-select form-control" id="location3" name="Gender">
+                                                                    <option value=""> בחר Select</option>
+                                                                    <option value="false">זכר</option>
+                                                                    <option value="true">נקבה</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="location3">אזרח ישראל:</label>
+                                                                <select class="selectize-select form-control" id="location3" name="Il_citizen">
+                                                                    <option value=""> בחר Select</option>
+                                                                    <option value="True">כן</option>
+                                                                    <option value="False">לא</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
 
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="location3">מצב משפחתי</label>
-                                                        <select class="custom-select form-control" id="location3" name="Fam_stat_code">
-                                                            <option value="0"> בחר Select</option>
-                                                            <option value="1">רווק/ה</option>
-                                                            <option value="2">נשוי/אה</option>
-                                                            <option value="3">גרוש/ה</option>
-                                                            <option value="4">אלמן/ה</option>
-                                                            <option value="5">פרוד/ה</option>
-                                                        </select>
                                                     </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="location3">אזרח ישראל:</label>
-                                                        <select class="selectize-select form-control" id="location3" name="Il_citizen">
-                                                            <option value=""> בחר Select</option>
-                                                            <option value="True">כן</option>
-                                                            <option value="False">לא</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="tbadd4">כתובת פרטית</label>
-                                                        <input type="text" class="form-control" id="textadd4" name="Add">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="tbcity4">עיר/ישוב</label>
-                                                        <select name="Add_city" class="selectize-select" id="DynamicCitiesList"></select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="tbnum4">מספר בית</label>
-                                                        <input type="number" class="form-control" id="textaddnum4" name="Add_num">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="location3">מבוטח:</label>
-                                                        <select class="custom-select form-control" id="location3" name="Insurance">
-                                                            <option value=""> בחר Select</option>
-                                                            <option value="true">כן</option>
-                                                            <option value="false">לא</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="location3">מין..."</label>
-                                                        <select class="custom-select form-control" id="location3" name="Gender">
-                                                            <option value=""> בחר Select</option>
-                                                            <option value="false">זכר</option>
-                                                            <option value="true">נקבה</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </fieldset>
+                                            </fieldset>
                                         <!-- Step 2 -->
                                         <h6>Step 2</h6>
-                                        <fieldset>
+                                        <fieldset id="second">
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
@@ -323,26 +290,59 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!--<div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>Event Date - Time :</label>
-                                                    <div class='input-group'>
-                                                        <input type='text' class="form-control datetime" />
-                                                        <span class="input-group-addon">
-                                                            <span class="icon-calendar-o"></span>
-                                                        </span>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="tbadd4">כתובת פרטית</label>
+                                                        <input type="text" class="form-control" id="textadd4" name="Add">
                                                     </div>
                                                 </div>
-                                                <div class="form-group">
-                                                    <label for="eventStatus4">Event Status :</label>
-                                                    <select class="custom-select form-control" id="eventStatus4" name="eventStatus">
-                                                        <option value="Planning">Planning</option>
-                                                        <option value="In Progress">In Progress</option>
-                                                        <option value="Finished">Finished</option>
-                                                    </select>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="tbcity4">עיר/ישוב</label>
+                                                        <select name="Add_city" class="selectize-select" id="DynamicCitiesList"></select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="tbnum4">מספר בית</label>
+                                                        <input type="number" class="form-control" id="textaddnum4" name="Add_num">
+                                                    </div>
                                                 </div>
 
-                                            </div>-->
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="location3">מבוטח:</label>
+                                                        <select class="custom-select form-control" id="location3" name="Insurance">
+                                                            <option value=""> בחר Select</option>
+                                                            <option value="true">כן</option>
+                                                            <option value="false">לא</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <!--<div class="col-md-6">
+        <div class="form-group">
+            <label>Event Date - Time :</label>
+            <div class='input-group'>
+                <input type='text' class="form-control datetime" />
+                <span class="input-group-addon">
+                    <span class="icon-calendar-o"></span>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="eventStatus4">Event Status :</label>
+            <select class="custom-select form-control" id="eventStatus4" name="eventStatus">
+                <option value="Planning">Planning</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Finished">Finished</option>
+            </select>
+        </div>
+
+    </div>-->
 
                                         </fieldset>
                                         <!-- Step 4 -->
@@ -350,50 +350,50 @@
                                         <fieldset>
                                             <div class="row">
                                                 <!--<div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="meetingName4">Name of Meeting :</label>
-                                                        <input type="text" class="form-control" id="meetingName4">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="meetingLocation4">Location :</label>
-                                                        <input type="text" class="form-control" id="meetingLocation4">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="participants4">Names of Participants</label>
-                                                        <textarea name="participants" id="participants4" rows="4" class="form-control"></textarea>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="decisions4">Decisions Reached</label>
-                                                        <textarea name="decisions" id="decisions4" rows="4" class="form-control"></textarea>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Agenda Items :</label>
-                                                        <div class="c-inputs-stacked">
-                                                            <label class="inline custom-control custom-checkbox block">
-                                                                <input type="checkbox" class="custom-control-input">
-                                                                <span class="custom-control-indicator"></span>
-                                                                <span class="custom-control-description ml-0">1st item</span>
-                                                            </label>
-                                                            <label class="inline custom-control custom-checkbox block">
-                                                                <input type="checkbox" class="custom-control-input">
-                                                                <span class="custom-control-indicator"></span>
-                                                                <span class="custom-control-description ml-0">2nd item</span>
-                                                            </label>
-                                                            <label class="inline custom-control custom-checkbox block">
-                                                                <input type="checkbox" class="custom-control-input">
-                                                                <span class="custom-control-indicator"></span>
-                                                                <span class="custom-control-description ml-0">4th item</span>
-                                                            </label>
-                                                            <label class="inline custom-control custom-checkbox block">
-                                                                <input type="checkbox" class="custom-control-input">
-                                                                <span class="custom-control-indicator"></span>
-                                                                <span class="custom-control-description ml-0">5th item</span>
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>-->
+                <div class="form-group">
+                    <label for="meetingName4">Name of Meeting :</label>
+                    <input type="text" class="form-control" id="meetingName4">
+                </div>
+                <div class="form-group">
+                    <label for="meetingLocation4">Location :</label>
+                    <input type="text" class="form-control" id="meetingLocation4">
+                </div>
+                <div class="form-group">
+                    <label for="participants4">Names of Participants</label>
+                    <textarea name="participants" id="participants4" rows="4" class="form-control"></textarea>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="decisions4">Decisions Reached</label>
+                    <textarea name="decisions" id="decisions4" rows="4" class="form-control"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Agenda Items :</label>
+                    <div class="c-inputs-stacked">
+                        <label class="inline custom-control custom-checkbox block">
+                            <input type="checkbox" class="custom-control-input">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description ml-0">1st item</span>
+                        </label>
+                        <label class="inline custom-control custom-checkbox block">
+                            <input type="checkbox" class="custom-control-input">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description ml-0">2nd item</span>
+                        </label>
+                        <label class="inline custom-control custom-checkbox block">
+                            <input type="checkbox" class="custom-control-input">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description ml-0">4th item</span>
+                        </label>
+                        <label class="inline custom-control custom-checkbox block">
+                            <input type="checkbox" class="custom-control-input">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description ml-0">5th item</span>
+                        </label>
+                    </div>
+                </div>
+            </div>-->
                                                 <input type="file" name="Picture" accept="image/*;capture=camera">
                                             </div>
                                         </fieldset>

@@ -7,7 +7,16 @@ $(document).ready(function () {
     getCities(renderCities);
     getCountries(renderCountries);
     getBusinesses(renderBusinesses);
+
 });
+$(window).load(function () {
+   // document.getElementById("first").disabled = true; 
+    //current_fs = $('#first');
+    //next_fs = $('#second');
+    //next_fs.show();
+    //current_fs.hide();
+});
+
 
 function fixDate (date) {
     var date = new Date(parseInt(date.substr(6)));
@@ -27,14 +36,17 @@ function populate(frm, data) {
             case "file":
                 break;
             case "select-one":
-                ctrl.val(value).prop('selected', true)
+                
+                ctrl.val(value).prop('selected', true);
                 ctrl.selectmenu("refresh");
                 break;
             default:
-                ctrl.val(value);
+              ctrl.val(value);
                
         }
-    });
+    }
+
+    );
 }
 function renderEmployeeByID(results) {
 
@@ -44,6 +56,7 @@ function renderEmployeeByID(results) {
         isUpdate = false;
         $("#passportid").val(EmployeeInfo.pass);
         results = null;
+        document.getElementById("kindoform").innerHTML = "ברוכים הבאים! זוהי קליטה חדשה,אנא הזן את כל הפרטים";
     }
     else {
         var frm = $("#insertEmpForm");
@@ -51,6 +64,9 @@ function renderEmployeeByID(results) {
         isUpdate = true;
         data.Birthday = fixDate(data.Birthday);
         populate(frm, data);
+        document.getElementById("kindoform").innerHTML = "עובד זה כבר פעיל במערכת, יש לבצע ציוות מחדש בלבד";
+
+        
     }
 
 }
@@ -74,7 +90,6 @@ function renderCountries(results) {
     $.each(results, function (i, row) {
         dynamicLi = '<option value="' + row.Id + '">' + row.Name + '</option>';
         $('#DynamiCountryList').append(dynamicLi);
-      //  $('#DynamiCountryList').listview('refresh');
         EmployeeInfo.pass = sessionStorage.getItem("empInfo");
         getEmployeeById(EmployeeInfo, renderEmployeeByID);
         $('.selectize-select').selectize;
