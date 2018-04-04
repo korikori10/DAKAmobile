@@ -38,7 +38,7 @@ function populate(frm, data) {
             case "select-one":
                 
                 ctrl.val(value).prop('selected', true);
-                ctrl.selectmenu("refresh");
+                var o = ctrl.selectmenu("refresh" );
                 break;
             default:
               ctrl.val(value);
