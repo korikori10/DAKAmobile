@@ -11,9 +11,11 @@ getEmployeesnobusiness(renderEmployeesnobusiness);
 
 function renderEmployees(results) {
     //this is the callBackFunc 
-
+    totalEmp = 0;
     results = $.parseJSON(results.d);
-   
+    for (var i = 1; i <= results.length; i++) {
+        totalEmp = i;
+    }
     var dl = $('#DynamicEmployeesList');
     $.each(results, function (i, row) {
         dynamicLi = '<option value="' + row.Employee_pass_id + '">' + row.Fname + " " + row.Lname + '</option>';
@@ -39,7 +41,9 @@ function renderEmployeesnobusiness(NoEmpresults) {
     NoEmpresults = $.parseJSON(NoEmpresults.d);
     len = Object.keys(NoEmpresults).length;
     document.getElementById("unEmpNum").innerHTML = len;
-    $(".knob").knob();
+    document.getElementById("unEmpNum2").value = len;
+    document.getElementById("unEmpNum2").max= totalEmp;
+    $(".knob").knob(); 
 }
 
 
