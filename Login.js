@@ -6,9 +6,10 @@ function movetopage() {
         var username = document.getElementById('user-name').value;
 
         // Save the name in localStorage.
-        localStorage.setItem('user-name', username);
-       
-
+        localStorage.setItem('user-name', username);  
     }
 window.location = "Dash.html"
 }
+
+ //var UserInfo = document.cookie;
+ //       UserInfo = username;
