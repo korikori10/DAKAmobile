@@ -166,3 +166,18 @@ function getUserByUserName(username, renderUser) {
         }
     });
 }
+
+function uploadFiles(formData) {
+    $.ajax({
+        url: 'ajaxWebService.asmx/uploadFiles',
+        method: "POST",
+        data: formData,
+        success: function (data) {
+
+        },
+        error: function (xhr, status, error) {
+            var err = eval("(" + xhr.responseText + ")");
+            alert(err.Message);
+
+    });
+}
