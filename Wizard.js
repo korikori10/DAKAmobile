@@ -26,7 +26,7 @@ function fixDate (date) {
 function populate(frm, data) {
     $.each(data, function (key, value) {
         var ctrl = $('[name=' + key + ']', frm);
-     
+      //  console.log(ctrl.prop("type"))
         switch (ctrl.prop("type")) {
             case "radio": case "checkbox": 
                 ctrl.each(function () {
@@ -37,8 +37,8 @@ function populate(frm, data) {
                 break;
             case "select-one":
                 
-                ctrl.val(value).prop('selected', true);
-                var o = ctrl.selectmenu("refresh" );
+                ctrl.val(value)
+
                 break;
             default:
               ctrl.val(value);
@@ -64,6 +64,7 @@ function renderEmployeeByID(results) {
         isUpdate = true;
         data.Birthday = fixDate(data.Birthday);
         populate(frm, data);
+        $('.selectize-select').selectize;
         document.getElementById("kindoform").innerHTML = "עובד זה כבר פעיל במערכת, יש לבצע ציוות מחדש בלבד";
 
         
@@ -91,9 +92,9 @@ function renderCountries(results) {
         dynamicLi = '<option value="' + row.Id + '">' + row.Name + '</option>';
         $('#DynamiCountryList').append(dynamicLi);
         EmployeeInfo.pass = sessionStorage.getItem("empInfo");
-        getEmployeeById(EmployeeInfo, renderEmployeeByID);
-        $('.selectize-select').selectize;
+       
     });
+        getEmployeeById(EmployeeInfo, renderEmployeeByID);
 }
 function renderCities(results) {
     //this is the callBackFunc 
