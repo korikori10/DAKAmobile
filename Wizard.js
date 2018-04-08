@@ -9,11 +9,17 @@ $(document).ready(function () {
     getBusinesses(renderBusinesses);
     $("#Pic").on("change", function () {
         var files = $(this).get(0).files;
+        if (files.length>0) {
+
+
         var formData = FormData();
         for (var i = 0; i < files.length; i++) {
             formData.append(files[i].name, files[i])
         }
-        uploadFiles(formData);
+        uploadFiles(formData , setEmpFile);
+
+
+}
     })
 });
 $(window).load(function () {
@@ -24,7 +30,11 @@ $(window).load(function () {
     //current_fs.hide();
 });
 
-
+function setEmpFile(results)
+{
+    results = $.parseJSON(results.d)
+    EmployeeInfo.Picture = results;
+}
 function fixDate (date) {
     var date = new Date(parseInt(date.substr(6)));
     var month = date.getMonth() + 1;

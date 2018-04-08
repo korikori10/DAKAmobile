@@ -11,6 +11,8 @@ using System.Runtime.Serialization.Json;
 using System.Text;
 using Newtonsoft.Json;
 using System.Net;
+using System.Net.Http;
+//using System.Web.Http;
 
 
 
@@ -167,16 +169,7 @@ public class ajaxWebService : System.Web.Services.WebService
         return jsonStringCategory;
     }
 
-    [WebMethod]
-    [HttpPost]
-    public void uploadFiles()
-    {
-
-        HttpFileCollection files = HttpContext.Current.Request.Files;
-
-
-
-    }
+    
 
 
 }

@@ -138,7 +138,18 @@ function updateEmployee(EmployeeInfo) {
         contentType: 'application/json; charset = utf-8',
         data: emp,
         success: function () {
-            alert(EmployeeInfo);
+        //    alert(EmployeeInfo);
+
+            //var files = $("#Pic")[0].files;
+            //    if (files.length > 0) {
+            //        var formData = FormData();
+            //        for (var i = 0; i < files.length; i++) {
+            //            formData.append(files[i].name, files[i])
+            //        }
+
+            //        uploadFiles(formData);
+            //    }
+                
         },
         error: function (xhr, status, error) {
             var err = eval("(" + xhr.responseText + ")");
@@ -167,17 +178,20 @@ function getUserByUserName(username, renderUser) {
     });
 }
 
-function uploadFiles(formData) {
+function uploadFiles(formData, setEmpFile) {
     $.ajax({
-        url: 'ajaxWebService.asmx/uploadFiles',
+        url: 'UploadHandler.ashx',
         method: "POST",
         data: formData,
-        success: function (data) {
-
+        contentType: false,
+        processData: false,
+        dataType: 'json',
+        success: function (results) {
+            setEmpFile(results);
         },
         error: function (xhr, status, error) {
             var err = eval("(" + xhr.responseText + ")");
             alert(err.Message);
-
+        }
     });
 }
