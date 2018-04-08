@@ -2,6 +2,7 @@
 EmployeeInfo = new Object();
 resultsSave = new Object();
 isUpdate = new Object();
+EmpPic = new Object();
 
 $(document).ready(function () {
     getCities(renderCities);
@@ -12,7 +13,7 @@ $(document).ready(function () {
         if (files.length>0) {
 
 
-        var formData = FormData();
+        var formData = new FormData();
         for (var i = 0; i < files.length; i++) {
             formData.append(files[i].name, files[i])
         }
@@ -32,8 +33,8 @@ $(window).load(function () {
 
 function setEmpFile(results)
 {
-    results = $.parseJSON(results.d)
-    EmployeeInfo.Picture = results;
+    //results = $.parseJSON(results.d);
+    EmpPic = results;
 }
 function fixDate (date) {
     var date = new Date(parseInt(date.substr(6)));
@@ -150,7 +151,7 @@ function insertEmp(array) {
        
     
     //EmployeeInfo = array;
-
+    array.Picture = EmpPic;
     if (isUpdate)
     {
     if (array.Business == resultsSave.Business) {
