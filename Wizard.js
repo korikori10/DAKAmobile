@@ -36,9 +36,13 @@ function populate(frm, data) {
             case "file":
                 break;
             case "select-one":
-                
-                ctrl.val(value)
-
+                if (value === true) {
+                    value = 'T';
+                }
+                else if (value === false) {
+                    value = 'F';
+                }
+                ctrl.val(value);
                 break;
             default:
               ctrl.val(value);
@@ -64,7 +68,7 @@ function renderEmployeeByID(results) {
         isUpdate = true;
         data.Birthday = fixDate(data.Birthday);
         populate(frm, data);
-        $('.selectize-select').selectize;
+        $('.selectize-select').selectize();
         document.getElementById("kindoform").innerHTML = "עובד זה כבר פעיל במערכת, יש לבצע ציוות מחדש בלבד";
 
         
@@ -91,9 +95,9 @@ function renderCountries(results) {
     $.each(results, function (i, row) {
         dynamicLi = '<option value="' + row.Id + '">' + row.Name + '</option>';
         $('#DynamiCountryList').append(dynamicLi);
-        EmployeeInfo.pass = sessionStorage.getItem("empInfo");
        
     });
+        EmployeeInfo.pass = sessionStorage.getItem("empInfo");
         getEmployeeById(EmployeeInfo, renderEmployeeByID);
 }
 function renderCities(results) {
