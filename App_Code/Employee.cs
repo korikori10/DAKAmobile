@@ -39,6 +39,7 @@ public class Employee
     private int business;
     private bool updateBus;
     private List<Business> busHistory;
+    private int rent;
 
 
     MemoryStream ms;
@@ -442,6 +443,19 @@ public class Employee
         set
         {
             updateBus = value;
+        }
+    }
+
+    public int Rent
+    {
+        get
+        {
+            return rent;
+        }
+
+        set
+        {
+            rent = value;
         }
     }
 
