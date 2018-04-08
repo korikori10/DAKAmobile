@@ -7,7 +7,14 @@ $(document).ready(function () {
     getCities(renderCities);
     getCountries(renderCountries);
     getBusinesses(renderBusinesses);
-
+    $("#Pic").on("change", function () {
+        var files = $(this).get(0).files;
+        var formData = FormData();
+        for (var i = 0; i < files.length; i++) {
+            formData.append(files[i].name, files[i])
+        }
+        uploadFiles(formData);
+    })
 });
 $(window).load(function () {
    // document.getElementById("first").disabled = true; 

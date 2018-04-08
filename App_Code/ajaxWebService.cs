@@ -10,6 +10,9 @@ using System.IO;
 using System.Runtime.Serialization.Json;
 using System.Text;
 using Newtonsoft.Json;
+using System.Net;
+
+
 
 /// <summary>
 /// Summary description for ajaxWebService
@@ -162,6 +165,17 @@ public class ajaxWebService : System.Web.Services.WebService
         // serialize to string
         string jsonStringCategory = js.Serialize(u);
         return jsonStringCategory;
+    }
+
+    [WebMethod]
+    [HttpPost]
+    public void uploadFiles()
+    {
+
+        HttpFileCollection files = HttpContext.Current.Request.Files;
+
+
+
     }
 
 
