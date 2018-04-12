@@ -49,14 +49,14 @@ public class ajaxWebService : System.Web.Services.WebService
 
         [WebMethod]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-    public void getBusinesses()
+    public string getBusinesses()
     {
         Business b = new Business();
         List<Business> LB = b.getBusinesses();
         JavaScriptSerializer js = new JavaScriptSerializer();
         // serialize to string
         var jsonStringCategory = js.Serialize(LB);
-        Context.Response.Write(jsonStringCategory);
+        return jsonStringCategory;
 
     }
     [WebMethod]
