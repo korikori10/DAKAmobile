@@ -36,10 +36,14 @@ function setEmpFile(results)
     //results = $.parseJSON(results.d);
     EmpPic = results;
 }
-function fixDate (date) {
+ function fixDate(date) {
     var date = new Date(parseInt(date.substr(6)));
     var month = date.getMonth() + 1;
-    return date.getFullYear() + "-" + month + "-" + date.getDate();
+    var day = date.getDate();
+    if (month.toString().length < 2) { month = '0' + month; }
+    if (day.toString().length < 2) { day = '0' + day; }
+    return date.getFullYear() + "-" + month + "-" + day;
+
 }
 function populate(frm, data) {
     $.each(data, function (key, value) {
