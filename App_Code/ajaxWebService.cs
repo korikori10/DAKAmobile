@@ -12,6 +12,7 @@ using System.Text;
 using Newtonsoft.Json;
 using System.Net;
 using System.Net.Http;
+using System.Net.Mail;
 //using System.Web.Http;
 
 
@@ -168,8 +169,7 @@ public class ajaxWebService : System.Web.Services.WebService
         string jsonStringCategory = js.Serialize(u);
         return jsonStringCategory;
     }
-
-    
-
-
+   
 }
+
+
