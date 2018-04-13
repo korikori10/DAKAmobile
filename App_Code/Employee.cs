@@ -53,7 +53,7 @@ public class Employee
         //
     }
 
-    public Employee(string employee_pass_id, string lname, string fname, DateTime birthday, bool gender, string picture, int origin_country, bool il_citizen, int add_city, string add, int add_num, int phone, bool com_app, int sys_id, bool insurance, bool com_insurance, int fam_stat_code, double salary_hour, double salary_overtime, double salary_trans, int day_off, int sabatical, int occupation_code, bool active, string disable_reason,int department_code)
+    public Employee(string employee_pass_id, string lname, string fname, DateTime birthday, bool gender, string picture, int origin_country, bool il_citizen, int add_city, string add, int add_num, int phone, bool com_app, int sys_id, bool insurance, bool com_insurance, int fam_stat_code, double salary_hour, double salary_overtime, double salary_trans, int day_off, int sabatical, int occupation_code, bool active, string disable_reason, int business ,int department_code)
     {
         this.employee_pass_id = employee_pass_id;
         this.lname = lname;
@@ -80,7 +80,9 @@ public class Employee
         this.occupation_code = occupation_code;
         this.active = active;
         this.disable_reason = disable_reason;
+        this.business = business;
         this.department_code = department_code;
+
     }
 
     public string Employee_pass_id
