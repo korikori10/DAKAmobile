@@ -188,6 +188,7 @@ function uploadFiles(formData, setEmpFile) {
         dataType: 'json',
         success: function (results) {
             setEmpFile(results);
+            alert("completed");
         },
         error: function (xhr, status, error) {
             var err = eval("(" + xhr.responseText + ")");
