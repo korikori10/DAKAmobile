@@ -5,6 +5,7 @@ isUpdate = new Object();
 EmpPic = new Object();
 
 $(document).ready(function () {
+    //$(".jq-bs-validation").jqBootstrapValidation();
     getCities(renderCities);
     getCountries(renderCountries);
     getBusinesses(renderBusinesses);
@@ -152,7 +153,7 @@ function renderCities(results) {
 //});
 
 function insertEmp(array) {
-       
+ 
     
     //EmployeeInfo = array;
     array.Picture = EmpPic;
@@ -171,4 +172,6 @@ function insertEmp(array) {
 
     insertEmployee({ EmployeeInfo: JSON.stringify(array) });
     }
-    }
+}
+
+

@@ -58,7 +58,7 @@
     <link rel="stylesheet" type="text/css" href="app-assets/css-rtl/plugins/pickers/daterange/daterange.css" />
     <!-- END Page Level CSS-->
     <!-- BEGIN ROBUST CSS-->
-    <link rel="stylesheet" type="text/css" href="assets/css/style-rtl.css" />
+    <!--<link rel="stylesheet" type="text/css" href="assets/css/style-rtl.css" />-->
     <!-- END ROBUST CSS-->
     <!--<link rel="stylesheet" type="text/css" href="app-assets/css-rtl/core/menu/menu-types/vertical-menu.css">-->
     <!-- END Page Level CSS-->
@@ -112,7 +112,7 @@
             $.ajax({
                 type: "POST",
                 dataType: "json",
-                url: "ajaxWebService.asmx/getBusinesses",
+                url: "ajaxWebService.asmx/getBusinessesTable",
                 success: function (data) {
                     var datatableVariable = $('#BusinessTable').DataTable({
                         data: data,
