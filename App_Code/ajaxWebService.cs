@@ -173,7 +173,7 @@ public class ajaxWebService : System.Web.Services.WebService
 
     [WebMethod]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-    public string getUserByUserName(string username)
+    public void getUserByUserName(string username)
     {
 
         User u = new User();      
@@ -182,7 +182,8 @@ public class ajaxWebService : System.Web.Services.WebService
         JavaScriptSerializer js = new JavaScriptSerializer();
         // serialize to string
         string jsonStringCategory = js.Serialize(u);
-        return jsonStringCategory;
+        Context.Response.Write(jsonStringCategory);
+        //return jsonStringCategory;
     }
    
 }

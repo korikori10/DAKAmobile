@@ -94,7 +94,7 @@ function getEmployeeById(EmployeeInfo, renderEmployeeByID) {
 function getUserById(username, ValidateUser) {
 
     // serialize the object to JSON string
-    var dataString = JSON.stringify(username);
+    var dataString = '{"username":' + JSON.stringify(username) + '}';
 
     $.ajax({
         url: 'ajaxWebService.asmx/getUserByUserName',

@@ -28,6 +28,7 @@ function ValidateUser(results) {
         window.location = "Dash.html"
     }
     else {
+        window.location = "Dash.html"
 
     }
 
