@@ -91,6 +91,27 @@ function getEmployeeById(EmployeeInfo, renderEmployeeByID) {
     });
 }
 
+function getUserById(username, ValidateUser) {
+
+    // serialize the object to JSON string
+    var dataString = JSON.stringify(username);
+
+    $.ajax({
+        url: 'ajaxWebService.asmx/getUserByUserName',
+        data: dataString,
+        type: 'POST',
+        dataType: "json",
+        contentType: 'application/json; charset = utf-8',
+        success: function (results) {
+            ValidateUser(results);
+        },
+        error: function (xhr, status, error) {
+            var err = eval("(" + xhr.responseText + ")");
+            alert(err.Message);
+        }
+    });
+}
+
 function getBusinesses(renderBusinesses) {
     $.ajax({
         url: 'ajaxWebService.asmx/getBusinesses',
