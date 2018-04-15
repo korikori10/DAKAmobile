@@ -17,7 +17,7 @@ function movetopage() {
 
 function ValidateUser(results) {
     userPass = $("#user-password").val();
-    rememberMe = $("#remember-me").
+    rememberMe = $("#remember-me");
     results = $.parseJSON(results.d);
     if (username == results.U_name && userPass == results.U_pwd) {
         if (rememberMe.checked) {
