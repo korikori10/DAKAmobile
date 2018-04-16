@@ -28,7 +28,7 @@ function ValidateUser(results) {
         window.location = "Dash.html"
     }
     else {
-        window.location = "Dash.html"
+        $("#wrongPH").html('*שם משתמש או סיסמה שגויים').css('color','red')
 
     }
 

@@ -138,8 +138,7 @@ $(".vertical-tab-steps").steps({
 
 // Initialize validation
 var form1 = $("#insertEmpForm")
-console.log(form1)
-form1.html("bla")
+
 form1.validate({
     ignore: 'input[type=hidden]', // ignore hidden fields
     errorClass: 'danger',
