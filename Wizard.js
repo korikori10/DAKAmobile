@@ -149,12 +149,51 @@ function insertEmp(array) {
     }
     else {
         array.updateBus = true;
-    }
-        updateEmployee({ EmployeeInfo: JSON.stringify(array) })
+        }
+        swal({
+            title: "האם אתה בטוח?",
+            text: "אתה עומד לעדכן פרטי עובד.",
+            type: "info",
+            confirmButtonText: "כן",
+            showCancelButton: "true",
+            cancelButtonText: "בטל",
+            closeOnConfirm: false,
+            showLoaderOnConfirm: true,
+        },
+
+            function (isConfirm) {
+                if (isConfirm) {
+
+                    updateEmployee({ EmployeeInfo: JSON.stringify(array) })
+                }
+                else {
+                    // swal("Cancelled", "Your imaginary file is safe :)", "error");
+                }
+            });
+       
     }
     else {
+        swal({
+            title: "האם אתה בטוח?",
+            text: "אתה עומד להוסיף עובד חדש.",
+            type: "info",
+            confirmButtonText: "כן",
+            showCancelButton: "true",
+            cancelButtonText: "בטל",
+            closeOnConfirm: false,
+            showLoaderOnConfirm: true,
+        },
 
-    insertEmployee({ EmployeeInfo: JSON.stringify(array) });
+            function (isConfirm) {
+                if (isConfirm) {
+
+                    insertEmployee({ EmployeeInfo: JSON.stringify(array) });
+                }
+                else {
+                    // swal("Cancelled", "Your imaginary file is safe :)", "error");
+                }
+            });
+
     }
 
 }

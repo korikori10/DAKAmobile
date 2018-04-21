@@ -193,7 +193,9 @@ function insertEmployee(EmployeeInfo) {
         contentType: 'application/json; charset = utf-8',
         data: emp,
         success: function () {
-            alert(EmployeeInfo);
+            setTimeout(function () {
+                swal("בוצע!", "כל הנתונים נשמרו בהצלחה", "success");
+            }, 1000);
         },
         error: function (xhr, status, error) {
             var err = eval("(" + xhr.responseText + ")");
@@ -223,6 +225,9 @@ function updateEmployee(EmployeeInfo) {
 
             //        uploadFiles(formData);
             //    }
+            setTimeout(function () {
+                swal("בוצע!", "כל הנתונים נשמרו בהצלחה", "success");
+            }, 1000);
                 
         },
         error: function (xhr, status, error) {
