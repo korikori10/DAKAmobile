@@ -19,7 +19,7 @@ function ValidateUser(results) {
     rememberMe = $("#remember-me");
     results = $.parseJSON(results.d);
     if (username == results.U_name && userPass == results.U_pwd) {
-        if (rememberMe.checked) {
+        if (rememberMe.prop("checked")) {
             localStorage.setItem("userName", username)
             localStorage.setItem("userPass", userPass)
         }
