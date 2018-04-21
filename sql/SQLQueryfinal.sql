@@ -626,12 +626,11 @@ SELECT        dbo.EMPLOYEE.employee_pass_id, dbo.EMPLOYEE.lname, dbo.EMPLOYEE.fn
                          dbo.EMPLOYEE.add_city, dbo.EMPLOYEE.[add], dbo.EMPLOYEE.add_num, dbo.EMPLOYEE.phone, dbo.EMPLOYEE.com_app, dbo.EMPLOYEE.michpal_id, dbo.EMPLOYEE.insurance, dbo.EMPLOYEE.com_insurance, 
                          dbo.EMPLOYEE.fam_stat_code, dbo.EMPLOYEE.salary_hour, dbo.EMPLOYEE.salary_overtime, dbo.EMPLOYEE.salary_trans, dbo.EMPLOYEE.day_off_id, dbo.EMPLOYEE.sabatical, dbo.EMPLOYEE.occupation_code, 
                          dbo.EMPLOYEE.active, dbo.EMPLOYEE.disable_reason, dbo.EMPLOYEE.food_incloud, dbo.EMPLOYEE.food_pay, dbo.EMPLOYEE.monthly_rent, dbo.BUSINESSES.bus_name, 
-                         dbo.[employee in business].start_date , dbo.[employee in business].end_date,DATEDIFF(DAY,dbo.[employee in business].end_date,DATEADD(day, DATEDIFF(day, 0, GETDATE()), 0)) as daysPass
+                         dbo.[employee in business].[start_date] , dbo.[employee in business].end_date,DATEDIFF(DAY,dbo.[employee in business].[start_date],DATEADD(day, DATEDIFF(day, 0, GETDATE()), 0)) as daysPass
 FROM				     dbo.BUSINESSES INNER JOIN
                          dbo.[employee in business] ON dbo.BUSINESSES.bus_id = dbo.[employee in business].bus_id INNER JOIN
                          dbo.EMPLOYEE ON dbo.[employee in business].employee_pass_id = dbo.EMPLOYEE.employee_pass_id
-						 where dbo.[employee in business].end_date=(
-SELECT MAX(dbo.[employee in business].end_date) FROM  dbo.[employee in business]) and dbo.[employee in business].end_date is not null-- and max(dbo.[employee in business].end_date)
+						 where dbo.EMPLOYEE.active = 'True' and( dbo.[employee in business].bus_id = 0 and dbo.[employee in business].end_date is null)-- and max(dbo.[employee in business].end_date)
 go
 
 create VIEW v_emp_not_active
