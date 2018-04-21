@@ -5,6 +5,7 @@ $(document).ready(function () {
         $("#user-name").val(localStorage.getItem("userName"))
         $("#user-password").val(localStorage.getItem("userPass"))
     }
+    
 });
 //localStorage to save user name (no expiration)
 function movetopage() {
