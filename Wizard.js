@@ -134,9 +134,16 @@ function insertEmp(array) {
  
     
     //EmployeeInfo = array;
-    array.Picture = EmpPic;
+
     if (isUpdate)
     {
+    if (EmpPic != null) {
+    array.Picture = EmpPic;
+
+    }
+    else {
+     array.Picture = resultsSave.Picture;   
+    }
     if (array.Business == resultsSave.Business) {
         array.updateBus = false;
     }
@@ -149,6 +156,7 @@ function insertEmp(array) {
 
     insertEmployee({ EmployeeInfo: JSON.stringify(array) });
     }
+
 }
 
 
