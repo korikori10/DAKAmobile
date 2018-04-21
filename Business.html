@@ -4,6 +4,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en" data-textdirection="rtl" class="loading">
 <head>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            getBusinessesTable();
+
+        });
+    </script>
     <title>DAKA MOBILE</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
@@ -107,33 +113,7 @@
         <!-- include includes/menu-footer-->
         <!-- main menu footer-->
     </div>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $.ajax({
-                type: "POST",
-                dataType: "json",
-                url: "ajaxWebService.asmx/getBusinessesTable",
-                success: function (data) {
-                    var datatableVariable = $('#BusinessTable').DataTable({
-                        data: data,
-                        columns: [
-                            { 'data': 'Bus_id' },
-                            { 'data': 'Bus_name' },
-                            {
-                                'data': 'Phone', 'render': function (phone) {
-                                    var phone = '<a href="tel:5555555">התקשר לחברה</a>';
 
-                                    return phone;
-                                }
-                            },
-                         //   { 'data': 'Phone' },
-                            ]
-                    });
-                }
-            });
-
-        });
-    </script>
     <div class="app-content content container-fluid">
         <div class="content-wrapper">
             <div class="content-body">

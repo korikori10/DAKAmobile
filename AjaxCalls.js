@@ -1,4 +1,5 @@
-﻿function getEmployees(renderEmployees) {
+﻿// Get all Employees for Searchbox on dash
+function getEmployees(renderEmployees) {
     $.ajax({
         url: 'ajaxWebService.asmx/getEmployees',
         type: 'POST',
@@ -16,7 +17,35 @@
     
 }
 
+//Get all businesses to Businusses table
+function getBusinessesTable() {
+    $.ajax({
+        type: "POST",
+        dataType: "json",
+        url: "ajaxWebService.asmx/getBusinessesTable",
+        success: function (data) {
+            var datatableVariable = $('#BusinessTable').DataTable({
+                data: data,
+                columns: [
+                    {
+                        'data': 'Bus_id', 'visible': false
+                    },
+                    { 'data': 'Bus_name' },
+                    {
+                        'data': 'Phone', 'render': function (phone) {
+                            var phone = '<a href="tel:5555555">התקשר לחברה</a>';
 
+                            return phone;
+                        }
+                    },
+                ]
+            });
+        }
+    });
+
+}
+
+//Get all cities for wizard
 function getCities(renderCities) {
     $.ajax({
         url: 'ajaxWebService.asmx/getCities',
@@ -34,6 +63,7 @@ function getCities(renderCities) {
 
 } 
 
+//Get all Countries for wizard
 function getCountries(renderCountries) {
     $.ajax({
         url: 'ajaxWebService.asmx/getCountries',
@@ -52,7 +82,7 @@ function getCountries(renderCountries) {
 }
 
 //select only the employees that today are not assigned to business from DB throw AJAX and WB
-function getEmployeesnobusiness(renderEmployeesnobusiness) {
+function getEmployeesnobusinesss(renderEmployeesnobusiness) {
     $.ajax({
         url: 'ajaxWebService.asmx/getEmployeesNoBusinessAmount',
         type: 'POST',
@@ -69,7 +99,7 @@ function getEmployeesnobusiness(renderEmployeesnobusiness) {
 
 }
 
-//
+//Bring the right employee to wizard
 function getEmployeeById(EmployeeInfo, renderEmployeeByID) {
 
     // serialize the object to JSON string
@@ -90,6 +120,30 @@ function getEmployeeById(EmployeeInfo, renderEmployeeByID) {
         }
     });
 }
+
+// Get all Employees for Employee no business table
+function getEmployeesnobusiness() {
+    $.ajax({
+        type: "POST",
+        dataType: "json",
+        url: "ajaxWebService.asmx/getEmployeesnobusiness",
+        success: function (data) {
+            var datatableVariable = $('#EmployeesTable').DataTable({
+                data: data,
+                columns: [
+                    { 'data': 'Employee_pass_id' },
+                    { 'data': 'Fname' },
+                    { 'data': 'Lname' },
+                    {
+                        'data': "",
+                        'defaultContent': '<button id="edit" name="edit" type="button" class="btn btn-info view" data-toggle="tooltip" data-original-title="צפה בעובד"><i class="icon-eye3"></i></button>',
+                    }]
+            });
+        }
+    });
+
+}
+
 
 function getUserById(username, ValidateUser) {
 
@@ -112,6 +166,7 @@ function getUserById(username, ValidateUser) {
     });
 }
 
+//Get all Businesses for wizard
 function getBusinesses(renderBusinesses) {
     $.ajax({
         url: 'ajaxWebService.asmx/getBusinesses',
@@ -127,8 +182,6 @@ function getBusinesses(renderBusinesses) {
         }
     });
 }
-
-
 
 //insert employee from wizard to DB using ajax and WS
 function insertEmployee(EmployeeInfo) {
@@ -179,7 +232,6 @@ function updateEmployee(EmployeeInfo) {
     });
 }
 
-
 //take user deatails from DB using ajax WS
 function getUserByUserName(username, renderUser) {
     var dataString = '{"username":' + JSON.stringify(username) + '}';
@@ -199,6 +251,7 @@ function getUserByUserName(username, renderUser) {
     });
 }
 
+//Upload files from wizard
 function uploadFiles(formData, setEmpFile) {
     $.ajax({
         url: 'UploadHandler.ashx',

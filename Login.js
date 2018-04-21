@@ -33,5 +33,3 @@ function ValidateUser(results) {
     }
 
 }
- //var UserInfo = document.cookie;
- //       UserInfo = username;

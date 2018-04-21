@@ -62,6 +62,18 @@ public class ajaxWebService : System.Web.Services.WebService
     }
     [WebMethod]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    public void getBusinessesTable()
+    {
+        Business b = new Business();
+        List<Business> LB = b.getBusinesses();
+        JavaScriptSerializer js = new JavaScriptSerializer();
+        // serialize to string
+        var jsonStringCategory = js.Serialize(LB);
+        Context.Response.Write(jsonStringCategory);
+
+    }
+    [WebMethod]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
     public string getCities()
     {
         City c = new City();

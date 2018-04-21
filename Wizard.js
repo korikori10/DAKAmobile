@@ -5,10 +5,10 @@ isUpdate = new Object();
 EmpPic = new Object();
 
 $(document).ready(function () {
-    //$(".jq-bs-validation").jqBootstrapValidation();
     getCities(renderCities);
     getCountries(renderCountries);
     getBusinesses(renderBusinesses);
+//Picture or file upload
     $("#Pic").on("change", function () {
         var files = $(this).get(0).files;
         if (files.length>0) {
@@ -20,23 +20,15 @@ $(document).ready(function () {
         }
         uploadFiles(formData , setEmpFile);
 
-
 }
     })
-});
-$(window).load(function () {
-   // document.getElementById("first").disabled = true; 
-    //current_fs = $('#first');
-    //next_fs = $('#second');
-    //next_fs.show();
-    //current_fs.hide();
 });
 
 function setEmpFile(results)
 {
-    //results = $.parseJSON(results.d);
     EmpPic = results;
 }
+
  function fixDate(date) {
     var date = new Date(parseInt(date.substr(6)));
     var month = date.getMonth() + 1;
@@ -46,6 +38,7 @@ function setEmpFile(results)
     return date.getFullYear() + "-" + month + "-" + day;
 
 }
+
 function populate(frm, data) {
     $.each(data, function (key, value) {
         var ctrl = $('[name=' + key + ']', frm);
@@ -75,6 +68,7 @@ function populate(frm, data) {
 
     );
 }
+
 function renderEmployeeByID(results) {
 
     results = $.parseJSON(results.d);
@@ -123,6 +117,7 @@ function renderCountries(results) {
         EmployeeInfo.pass = sessionStorage.getItem("empInfo");
         getEmployeeById(EmployeeInfo, renderEmployeeByID);
 }
+
 function renderCities(results) {
     //this is the callBackFunc 
     results = $.parseJSON(results.d);
@@ -130,27 +125,10 @@ function renderCities(results) {
     $.each(results, function (i, row) {
         dynamicLi = '<option value="' + row.Id + '">' + row.Name + '</option>';
         $('#DynamicCitiesList').append(dynamicLi);
-        //  $('#DynamicCitiesList').listview('refresh');
     });
 }
 
-//$(document).on('vclick', '#DynamicCitiesList li a', function () {
-//    selectedCity.Name = $(this).attr('data-id');
-//    $(this).closest('[data-role=listview]').prev('form').find('input').val(selectedCity.Name);
-//    $(this).closest('[data-role=listview]').prev('form').find('input').attr("name", "city");
-//    $(this).closest('[data-role=listview]').children().addClass('ui-screen-hidden');
 
-
-//});
-
-//$(document).on('vclick', '#DynamiCountryList li a', function () {
-//    selectedCity.Name = $(this).attr('data-id');
-//    $(this).closest('[data-role=listview]').prev('form').find('input').val(selectedCity.Name);
-//    $(this).closest('[data-role=listview]').prev('form').find('input').attr("name","country");
-//    $(this).closest('[data-role=listview]').children().addClass('ui-screen-hidden');
-
-
-//});
 
 function insertEmp(array) {
  
@@ -168,7 +146,6 @@ function insertEmp(array) {
         updateEmployee({ EmployeeInfo: JSON.stringify(array) })
     }
     else {
-      //  array.updateBus = true; 
 
     insertEmployee({ EmployeeInfo: JSON.stringify(array) });
     }

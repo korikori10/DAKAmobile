@@ -3,16 +3,17 @@
 
 $(document).ready(function () {
 
-getEmployees(renderEmployees);
-getEmployeesnobusiness(renderEmployeesnobusiness);
+    getEmployees(renderEmployees);
+    //statistics
+getEmployeesnobusinesss(renderEmployeesnobusiness);
 
 });
 
 
-
+//Searchbox Selectize
 function renderEmployees(results) {
     //this is the callBackFunc 
-   var totalEmp = 0;
+    totalEmp = 0;
     results = $.parseJSON(results.d);
     for (var i = 1; i <= results.length; i++) {
         totalEmp = i;
@@ -26,7 +27,7 @@ function renderEmployees(results) {
     var select = $(".selectize-select").selectize({
         maxItems: 1, //Max items selectable in the textbox
         maxOptions: 30, //Max options to render at once in the dropdown
-        onChange: function (value) {
+        onItemAdd: function (value) {
             sessionStorage.removeItem("empInfo")
             EmployeeInfo.pass = value;
             sessionStorage.setItem("empInfo", EmployeeInfo.pass);
@@ -36,7 +37,7 @@ function renderEmployees(results) {
 
 }
      
-
+//Statistics
 function renderEmployeesnobusiness(NoEmpresults) {
     //this is the callBackFunc 
     NoEmpresults = $.parseJSON(NoEmpresults.d);
@@ -47,10 +48,9 @@ function renderEmployeesnobusiness(NoEmpresults) {
     $(".knob").knob(); 
 }
 
-
+//Search Modal
 $("#SearchEmployee").on("click", function () {
-    
-    
+      
     sessionStorage.removeItem("empInfo")
     EmployeeInfo.pass = $("#PassTB").val();
     sessionStorage.setItem("empInfo", EmployeeInfo.pass);
