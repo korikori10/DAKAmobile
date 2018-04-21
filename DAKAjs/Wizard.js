@@ -2,7 +2,7 @@
 EmployeeInfo = new Object();
 resultsSave = new Object();
 isUpdate = new Object();
-EmpPic = new Object();
+var EmpPic = null;
 
 $(document).ready(function () {
     getCities(renderCities);
@@ -137,12 +137,12 @@ function insertEmp(array) {
 
     if (isUpdate)
     {
-    if (EmpPic != null) {
-    array.Picture = EmpPic;
+    if (EmpPic == null) {
+     array.Picture = resultsSave.Picture;   
 
     }
     else {
-     array.Picture = resultsSave.Picture;   
+    array.Picture = EmpPic;
     }
     if (array.Business == resultsSave.Business) {
         array.updateBus = false;
