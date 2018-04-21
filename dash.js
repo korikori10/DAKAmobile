@@ -12,7 +12,7 @@ getEmployeesnobusiness(renderEmployeesnobusiness);
 
 function renderEmployees(results) {
     //this is the callBackFunc 
-    totalEmp = 0;
+   var totalEmp = 0;
     results = $.parseJSON(results.d);
     for (var i = 1; i <= results.length; i++) {
         totalEmp = i;
