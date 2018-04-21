@@ -1,6 +1,6 @@
 ﻿//take local storage on the specific user 
 $(document).ready(function () {
-    var username = localStorage.getItem('user-name');
+    var username = sessionStorage.getItem('userName');
 
     getUserByUserName(username, renderUser);
 });

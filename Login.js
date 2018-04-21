@@ -12,7 +12,6 @@ function movetopage() {
     
     getUserById(username, ValidateUser);
 
-
 }
 
 function ValidateUser(results) {
