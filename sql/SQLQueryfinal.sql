@@ -451,7 +451,7 @@ ALTER TABLE EMPLOYEE
 ADD monthly_rent int
 go
 
-<<<<<<< HEAD
+
 
 alter table DOCS
 Add emp_id nvarchar(30)
@@ -461,11 +461,11 @@ add
 constraint fk_emp_doc foreign key (emp_id) references [dbo].[EMPLOYEE] (employee_pass_id)
 go
 
-=======
+
 ALTER TABLE EMPLOYEE
 ADD final_bill bit
 go
->>>>>>> 9868cfb0959403b871c0d4702f36a644c405bd1b
+
 
 
 
