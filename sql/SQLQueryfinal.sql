@@ -90,6 +90,7 @@ GO
 create table DOCS
 (
 doc_id nvarchar(120) not null primary key,
+emp_id nvarchar(30) not null,
 doctype_id int not null,
 img_url nvarchar (120) null,
 last_update date not null,
@@ -98,12 +99,13 @@ active bit not null
 )
 go
 
-create table EMP_DOCS
-(
-doc_id nvarchar (120) not null,
-emp_id nvarchar(30) not null,
-)
-go
+--create table EMP_DOCS
+--(
+--doc_id nvarchar (120) not null,
+--emp_id nvarchar(30) not null,
+--)
+--go
+
 
 create table DOC_TYPE
 (
@@ -310,9 +312,9 @@ alter table [employee in business]
 add constraint pk_contact primary key ([bus_id],[employee_pass_id])
 go
 
-alter table EMP_DOCS
-add constraint pk_doc_employee primary key (doc_id ,emp_id)
-go
+--alter table EMP_DOCS
+--add constraint pk_doc_employee primary key (doc_id ,emp_id)
+--go
 
 alter table [employee in business]
 add
@@ -398,15 +400,15 @@ go
 
 
 
-alter table EMP_DOCS
-add
-constraint fk_em_id foreign key (emp_id) references [dbo].[EMPLOYEE] ([employee_pass_id])
-go
+--alter table EMP_DOCS
+--add
+--constraint fk_em_id foreign key (emp_id) references [dbo].[EMPLOYEE] ([employee_pass_id])
+--go
 
-alter table EMP_DOCS
-add
-constraint fk_doc_id foreign key (doc_id) references DOCS (doc_id)
-go
+--alter table EMP_DOCS
+--add
+--constraint fk_doc_id foreign key (doc_id) references DOCS (doc_id)
+--go
 
 alter table DOCS
 add
@@ -445,6 +447,17 @@ ADD food_pay int
 
 ALTER TABLE EMPLOYEE
 ADD monthly_rent int
+go
+
+
+alter table DOCS
+Add emp_id nvarchar(30)
+go
+alter table DOCS
+add
+constraint fk_emp_doc foreign key (emp_id) references [dbo].[EMPLOYEE] (employee_pass_id)
+go
+
 
 
 
@@ -602,9 +615,8 @@ go
 create VIEW v_ex_visa_date
 as
 SELECT        dbo.EMPLOYEE.employee_pass_id, dbo.EMPLOYEE.lname, dbo.EMPLOYEE.fname, dbo.EMPLOYEE.michpal_id, dbo.DOCS.ex_date, dbo.EMPLOYEE.phone
-FROM            dbo.EMPLOYEE INNER JOIN
-                         dbo.EMP_DOCS ON dbo.EMPLOYEE.employee_pass_id = dbo.EMP_DOCS.emp_id INNER JOIN
-                         dbo.DOCS ON dbo.EMP_DOCS.doc_id = dbo.DOCS.doc_id
+FROM            dbo.DOCS INNER JOIN
+                         dbo.EMPLOYEE ON dbo.DOCS.emp_id = dbo.EMPLOYEE.employee_pass_id
 						  where dbo.DOCS.ex_date<=DATEADD(day, DATEDIFF(day,0,GETDATE()),0) AND dbo.DOCS.[active]='true' and [doctype_id]='1'
 						  go
 
