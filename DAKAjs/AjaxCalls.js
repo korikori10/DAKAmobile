@@ -258,6 +258,8 @@ function getUserByUserName(username, renderUser) {
 
 //Upload files from wizard
 function uploadFiles(formData, setEmpFile) {
+    pbLBL = $("#pbLBL")
+    pbDiv = $("#progressBar")
     $.ajax({
         url: 'UploadHandler.ashx',
         method: "POST",
@@ -267,11 +269,14 @@ function uploadFiles(formData, setEmpFile) {
         dataType: 'json',
         success: function (results) {
             setEmpFile(results);
-            alert("completed");
+            pbLBL.text('Complete');
+            pbDiv.fadeOut(2000);
         },
         error: function (xhr, status, error) {
             var err = eval("(" + xhr.responseText + ")");
             alert(err.Message);
         }
+        
     });
+   
 }

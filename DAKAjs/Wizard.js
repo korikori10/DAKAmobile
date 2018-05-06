@@ -10,6 +10,10 @@ $(document).ready(function () {
     getBusinesses(renderBusinesses);
 //Picture or file upload
     $("#Pic").on("change", function () {
+        pbLBL = $("#pbLBL")
+        pbDiv = $("#progressBar")
+        pbLBL.text('Uploading...');
+        pbDiv.fadeIn(500)
         var files = $(this).get(0).files;
         if (files.length>0) {
 
