@@ -609,7 +609,7 @@ go
 --where (dbo.EMPLOYEE.il_citizen = 0 and  dbo.EMPLOYEE.insurance = 0)or (dbo.EMPLOYEE.il_citizen = 1 and dbo.EMPLOYEE.michpal_id = 0)
 --go
 
-alter view v_newEmp
+create view v_newEmp
 as
 SELECT        dbo.[EMPLOYEE].employee_pass_id, dbo.EMPLOYEE.fname, dbo.EMPLOYEE.lname, dbo.EMPLOYEE.michpal_id,dbo.BUSINESSES.bus_name,  dbo.EMPLOYEE.insurance, dbo.EMPLOYEE.il_citizen, 
                          dbo.EMPLOYEE.active
@@ -659,10 +659,9 @@ SELECT        dbo.EMPLOYEE.*, dbo.BUSINESSES.bus_name, dbo.DISABLE_REASON.d_name
 FROM            dbo.EMP_DIS_REASON INNER JOIN
                          dbo.DISABLE_REASON ON dbo.EMP_DIS_REASON.did = dbo.DISABLE_REASON.did INNER JOIN
                          dbo.EMPLOYEE ON dbo.EMP_DIS_REASON.emp_id = dbo.EMPLOYEE.employee_pass_id INNER JOIN
+                         dbo.DOCS ON dbo.EMPLOYEE.employee_pass_id = dbo.DOCS.emp_id AND dbo.DISABLE_REASON.d_name = dbo.DOCS.ex_date INNER JOIN
                          dbo.[employee in business] ON dbo.EMPLOYEE.employee_pass_id = dbo.[employee in business].employee_pass_id INNER JOIN
-                         dbo.BUSINESSES ON dbo.[employee in business].bus_id = dbo.BUSINESSES.bus_id INNER JOIN
-                         dbo.EMP_DOCS ON dbo.EMPLOYEE.employee_pass_id = dbo.EMP_DOCS.emp_id INNER JOIN
-                         dbo.DOCS ON dbo.EMP_DOCS.doc_id = dbo.DOCS.doc_id
+                         dbo.BUSINESSES ON dbo.[employee in business].bus_id = dbo.BUSINESSES.bus_id
 						 WHERE        ((dbo.EMPLOYEE.active = 'false') AND (dbo.[employee in business].end_date <= DATEADD(day, DATEDIFF(day, 0, GETDATE()), 0))) and (dbo.EMPLOYEE.com_insurance = 'true' or dbo.EMPLOYEE.final_bill = 'false' or dbo.EMPLOYEE.com_app = 'true')
 
 go
