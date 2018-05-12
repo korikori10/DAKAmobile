@@ -625,7 +625,7 @@ as
 SELECT        dbo.EMPLOYEE.employee_pass_id, dbo.EMPLOYEE.lname, dbo.EMPLOYEE.fname, dbo.EMPLOYEE.michpal_id, dbo.DOCS.ex_date, dbo.EMPLOYEE.phone
 FROM            dbo.DOCS INNER JOIN
                          dbo.EMPLOYEE ON dbo.DOCS.emp_id = dbo.EMPLOYEE.employee_pass_id
-						  where dbo.DOCS.ex_date<=DATEADD(day, DATEDIFF(day,0,GETDATE()),0) AND dbo.DOCS.[active]='true' and [doctype_id]='1'
+						  where dbo.EMPLOYEE.[active]='true' and ( dbo.DOCS.ex_date<=DATEADD(day, DATEDIFF(day,0,GETDATE()),0) AND dbo.DOCS.[active]='true' and [doctype_id]='1')
 						  go
 
 create view v_nobusiness
