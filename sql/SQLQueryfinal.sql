@@ -99,6 +99,9 @@ active bit not null
 )
 go
 
+
+
+
 --create table EMP_DOCS
 --(
 --doc_id nvarchar (120) not null,
@@ -287,6 +290,8 @@ alter table [dbo].[EMP_DIS_REASON]
 add
 constraint pk_em_dis_r primary key ([did],[emp_id])
 go
+
+
 
 alter table [contacts in business]
 add
