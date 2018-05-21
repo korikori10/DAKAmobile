@@ -658,17 +658,31 @@ FROM				     dbo.BUSINESSES INNER JOIN
 						 where dbo.EMPLOYEE.active = 'True' and( dbo.[employee in business].bus_id = 0 and dbo.[employee in business].end_date is null)-- and max(dbo.[employee in business].end_date)
 go
 
-create VIEW v_emp_not_active
+alter VIEW v_emp_not_active
 as
-SELECT        dbo.EMPLOYEE.*, dbo.BUSINESSES.bus_name, dbo.DISABLE_REASON.d_name, dbo.DOCS.ex_date
-FROM            dbo.EMP_DIS_REASON INNER JOIN
-                         dbo.DISABLE_REASON ON dbo.EMP_DIS_REASON.did = dbo.DISABLE_REASON.did INNER JOIN
+SELECT         dbo.EMPLOYEE.employee_pass_id, min(dbo.EMPLOYEE.lname) as lname , min( dbo.EMPLOYEE.fname)as fname, min(cast( dbo.EMPLOYEE.com_app as int)) as com_app, min(cast( dbo.EMPLOYEE.com_insurance as int)) as com_insurance,  min(cast( dbo.EMPLOYEE.active as int)) as active, 
+                          min(dbo.EMPLOYEE.michpal_id) as michpal_id, min(dbo.EMPLOYEE.phone) as phone, min( dbo.BUSINESSES.bus_name) as bus_name, max( dbo.DOCS.ex_date) as ex_date, min(disable_reason.d_name) as d_name 
+						 FROM            dbo.DISABLE_REASON INNER JOIN
+                         dbo.EMP_DIS_REASON ON dbo.DISABLE_REASON.did = dbo.EMP_DIS_REASON.did INNER JOIN
                          dbo.EMPLOYEE ON dbo.EMP_DIS_REASON.emp_id = dbo.EMPLOYEE.employee_pass_id INNER JOIN
-                         dbo.DOCS ON dbo.EMPLOYEE.employee_pass_id = dbo.DOCS.emp_id INNER JOIN
                          dbo.[employee in business] ON dbo.EMPLOYEE.employee_pass_id = dbo.[employee in business].employee_pass_id INNER JOIN
-                         dbo.BUSINESSES ON dbo.[employee in business].bus_id = dbo.BUSINESSES.bus_id
-						 WHERE        ((dbo.EMPLOYEE.active = 'false') AND (dbo.[employee in business].end_date <= DATEADD(day, DATEDIFF(day, 0, GETDATE()), 0))) and (dbo.EMPLOYEE.com_insurance = 'true' or dbo.EMPLOYEE.final_bill = 'false' or dbo.EMPLOYEE.com_app = 'true')
+                         dbo.BUSINESSES ON dbo.[employee in business].bus_id = dbo.BUSINESSES.bus_id INNER JOIN
+                         dbo.DOCS ON dbo.EMPLOYEE.employee_pass_id = dbo.DOCS.emp_id
+						 WHERE        ((dbo.EMPLOYEE.active = 'false') AND (dbo.[employee in business].end_date <= DATEADD(day, DATEDIFF(day, 0, GETDATE()), 0))) and (dbo.EMPLOYEE.com_insurance = 'true'  or dbo.EMPLOYEE.com_app = 'true')
+						group by dbo.EMPLOYEE.employee_pass_id
+go
 
+
+SELECT         dbo.EMPLOYEE.employee_pass_id, dbo.EMPLOYEE.lname ,  dbo.EMPLOYEE.fname,  dbo.EMPLOYEE.com_app ,  dbo.EMPLOYEE.com_insurance ,   dbo.EMPLOYEE.active, 
+                          min(dbo.EMPLOYEE.michpal_id) as michpal_id, min(dbo.EMPLOYEE.phone) as phone, min( dbo.BUSINESSES.bus_name) as bus_name, max( dbo.DOCS.ex_date) as ex_date, min(disable_reason.d_name) as d_name 
+						 FROM            dbo.DISABLE_REASON INNER JOIN
+                         dbo.EMP_DIS_REASON ON dbo.DISABLE_REASON.did = dbo.EMP_DIS_REASON.did INNER JOIN
+                         dbo.EMPLOYEE ON dbo.EMP_DIS_REASON.emp_id = dbo.EMPLOYEE.employee_pass_id INNER JOIN
+                         dbo.[employee in business] ON dbo.EMPLOYEE.employee_pass_id = dbo.[employee in business].employee_pass_id INNER JOIN
+                         dbo.BUSINESSES ON dbo.[employee in business].bus_id = dbo.BUSINESSES.bus_id INNER JOIN
+                         dbo.DOCS ON dbo.EMPLOYEE.employee_pass_id = dbo.DOCS.emp_id
+						 WHERE        ((dbo.EMPLOYEE.active = 'false') AND (dbo.[employee in business].end_date <= DATEADD(day, DATEDIFF(day, 0, GETDATE()), 0))) and (dbo.EMPLOYEE.com_insurance = 'true'  or dbo.EMPLOYEE.com_app = 'true')
+						group by dbo.EMPLOYEE.employee_pass_id
 go
 
 select * from v_emp_not_active
