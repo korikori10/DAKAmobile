@@ -5,7 +5,7 @@
         Manage work force
     </description>
     <author email="lori.hash@gmail.com" href="http://dka.co.il">
-        Tom & Kori 
+        Tom and Kori 
     </author>
     <content src="index.html" />
     <preference name="DisallowOverscroll" value="true" />
