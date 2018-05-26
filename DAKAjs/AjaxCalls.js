@@ -1,7 +1,13 @@
-﻿// Get all Employees for Searchbox on dash
+﻿var local = false;
+var WSUrl = 'ajaxWebService.asmx';
+if (!local) {
+    WSUrl = 'http://proj.ruppin.ac.il/bgroup59/test2/tar2/ajaxwebservice.asmx';
+}
+
+// Get all Employees for Searchbox on dash
 function getEmployees(renderEmployees) {
     $.ajax({
-        url: 'ajaxWebService.asmx/getEmployees',
+        url: WSUrl + '/getEmployees',
         type: 'POST',
         dataType: "json",
         contentType: 'application/json; charset = utf-8',
@@ -48,7 +54,7 @@ function getBusinessesTable() {
 //Get all cities for wizard
 function getCities(renderCities) {
     $.ajax({
-        url: 'ajaxWebService.asmx/getCities',
+        url: WSUrl + '/getCities',
         type: 'POST',
         dataType: "json",
         contentType: 'application/json; charset = utf-8',
@@ -66,7 +72,7 @@ function getCities(renderCities) {
 //Get all Countries for wizard
 function getCountries(renderCountries) {
     $.ajax({
-        url: 'ajaxWebService.asmx/getCountries',
+        url: WSUrl + '/getCountries',
         type: 'POST',
         dataType: "json",
         contentType: 'application/json; charset = utf-8',
@@ -84,7 +90,7 @@ function getCountries(renderCountries) {
 //select only the employees that today are not assigned to business from DB throw AJAX and WB
 function getEmployeesnobusinesss(renderEmployeesnobusiness) {
     $.ajax({
-        url: 'ajaxWebService.asmx/getEmployeesNoBusinessAmount',
+        url: WSUrl + '/getEmployeesNoBusinessAmount',
         type: 'POST',
         dataType: "json",
         contentType: 'application/json; charset = utf-8',
@@ -106,7 +112,7 @@ function getEmployeeById(EmployeeInfo, renderEmployeeByID) {
     var dataString = JSON.stringify(EmployeeInfo);
 
     $.ajax({
-        url: 'ajaxWebService.asmx/GetEmployeeById',
+        url: WSUrl + '/GetEmployeeById',
         data: dataString,
         type: 'POST',
         dataType: "json",
@@ -151,7 +157,7 @@ function getUserById(username, ValidateUser) {
     var dataString = '{"username":' + JSON.stringify(username) + '}';
 
     $.ajax({
-        url: 'ajaxWebService.asmx/getUserByUserName',
+        url: WSUrl + '/getUserByUserName',
         data: dataString,
         type: 'POST',
         dataType: "json",
@@ -169,7 +175,7 @@ function getUserById(username, ValidateUser) {
 //Get all Businesses for wizard
 function getBusinesses(renderBusinesses) {
     $.ajax({
-        url: 'ajaxWebService.asmx/getBusinesses',
+        url: WSUrl + '/getBusinesses',
         type: 'POST',
         contentType: 'application/json; charset = utf-8',
         dataType: 'json',
@@ -188,7 +194,7 @@ function insertEmployee(EmployeeInfo) {
     var emp = JSON.stringify(EmployeeInfo);
 
     $.ajax({
-        url: 'ajaxWebService.asmx/insertEmployee',
+        url: WSUrl + '/insertEmployee',
         type: 'POST',
         contentType: 'application/json; charset = utf-8',
         data: emp,
@@ -209,7 +215,7 @@ function updateEmployee(EmployeeInfo) {
     var emp = JSON.stringify(EmployeeInfo);
 
     $.ajax({
-        url: 'ajaxWebService.asmx/updateEmployee',
+        url: WSUrl + '/updateEmployee',
         type: 'POST',
         contentType: 'application/json; charset = utf-8',
         data: emp,
@@ -241,7 +247,7 @@ function updateEmployee(EmployeeInfo) {
 function getUserByUserName(username, renderUser) {
     var dataString = '{"username":' + JSON.stringify(username) + '}';
     $.ajax({
-        url: 'ajaxWebService.asmx/getUserByUserName',
+        url: WSUrl + '/getUserByUserName',
         data: dataString,
         type: 'POST',
         dataType: "json",
