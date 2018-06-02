@@ -328,6 +328,8 @@ add
 constraint fk_bus foreign key ([bus_id]) references [dbo].[BUSINESSES]([bus_id])
 go
 
+
+
 alter table [employee in business]
 add
 constraint fk_emp foreign key ([employee_pass_id]) references [dbo].[EMPLOYEE]([employee_pass_id])
@@ -405,8 +407,6 @@ add
 constraint fk_cityb_id foreign key ([add_city]) references [dbo].[CITY] ([ID])
 go
 
-
-
 --alter table EMP_DOCS
 --add
 --constraint fk_em_id foreign key (emp_id) references [dbo].[EMPLOYEE] ([employee_pass_id])
@@ -468,6 +468,10 @@ add
 constraint fk_emp_doc foreign key (emp_id) references [dbo].[EMPLOYEE] (employee_pass_id)
 go
 
+alter table [dbo].[BUSINESSES]
+add
+constraint fk_dep foreign key ([department_code]) references [dbo].[DEPARTMENT_TYPE]([department_code])
+go
 
 ALTER TABLE EMPLOYEE
 ADD final_bill bit
@@ -674,6 +678,16 @@ FROM            dbo.[employee in business] INNER JOIN
 
 go
 
+alter VIEW v_businessTable
+as
+SELECT        dbo.BUSINESSES.*, dbo.[BUSINESS TYPE].bus_type_name, dbo.DEPARTMENT_TYPE.department_name
+FROM            dbo.[BUSINESS TYPE] INNER JOIN
+                         dbo.BUSINESSES ON dbo.[BUSINESS TYPE].bus_type_code = dbo.BUSINESSES.bus_type_code INNER JOIN
+                         dbo.DEPARTMENT_TYPE ON dbo.BUSINESSES.department_code = dbo.DEPARTMENT_TYPE.department_code
+						 go
+
+						 
+select*from v_businessTable
 --as
 --SELECT         dbo.EMPLOYEE.employee_pass_id, min(dbo.EMPLOYEE.lname) as lname , min( dbo.EMPLOYEE.fname)as fname, min(cast( dbo.EMPLOYEE.com_app as int)) as com_app, min(cast( dbo.EMPLOYEE.com_insurance as int)) as com_insurance,  min(cast( dbo.EMPLOYEE.active as int)) as active, 
 --                          min(dbo.EMPLOYEE.michpal_id) as michpal_id, min(dbo.EMPLOYEE.phone) as phone, min( dbo.BUSINESSES.bus_name) as bus_name, max( dbo.DOCS.ex_date) as ex_date, min(disable_reason.d_name) as d_name 
@@ -751,5 +765,4 @@ go
 --FROM            dbo.BUSINESSES
 --WHERE        (active = 'false')
 --go
-
 
