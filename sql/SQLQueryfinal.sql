@@ -766,3 +766,12 @@ go
 --WHERE        (active = 'false')
 --go
 
+create view v_contacts
+as
+SELECT        dbo.[contacts to business].contact_id, dbo.[contacts to business].contact_name, dbo.[contacts to business].phone, dbo.[contacts to business].email, dbo.[ROLES OF CONTACTS].role_name, dbo.[ROLES OF CONTACTS].role_desc,
+                          dbo.BUSINESSES.bus_name, dbo.BUSINESSES.bus_id, dbo.[ROLES OF CONTACTS].role_id
+FROM            dbo.BUSINESSES INNER JOIN
+                         dbo.[contacts in business] ON dbo.BUSINESSES.bus_id = dbo.[contacts in business].bus_id INNER JOIN
+                         dbo.[contacts to business] ON dbo.[contacts in business].contact_id = dbo.[contacts to business].contact_id INNER JOIN
+                         dbo.[ROLES OF CONTACTS] ON dbo.[contacts to business].role_id = dbo.[ROLES OF CONTACTS].role_id
+						 go
