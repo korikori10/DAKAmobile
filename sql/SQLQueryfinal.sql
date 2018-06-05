@@ -163,7 +163,8 @@ CREATE TABLE BUSINESSES
 	[bus_type_code] int not null, --foreign key references business type
 	[contract_code] int not null, -- foreign key references contracts
 
- department_code int
+ department_code int,
+ commence_date  date
 
 )
 GO
@@ -775,3 +776,205 @@ FROM            dbo.BUSINESSES INNER JOIN
                          dbo.[contacts to business] ON dbo.[contacts in business].contact_id = dbo.[contacts to business].contact_id INNER JOIN
                          dbo.[ROLES OF CONTACTS] ON dbo.[contacts to business].role_id = dbo.[ROLES OF CONTACTS].role_id
 						 go
+
+						 -----------------------------------
+				-------------		 STATISTICSPAGE      -------------------
+				-- Record with the earliest date per empId,for growth by yer on employees.
+create view v_s_empGrowth
+as
+SELECT
+ [employee_pass_id],  [start_date]
+  
+FROM [dbo].[employee in business] AS e
+WHERE
+   e.[start_date] =
+   (
+   SELECT TOP (1)
+      e2.[start_date]
+   FROM [dbo].[employee in business] AS e2
+   WHERE
+      e2.[employee_pass_id] = e.[employee_pass_id]
+   ORDER BY
+      e2.[start_date] ASC
+   )
+ go
+
+ alter view v_s_Growth2016
+ as
+ select  count([employee_pass_id]) as num from v_s_empGrowth where YEAR (  [start_date]) = '2016'
+ go
+
+alter view v_s_Growth2017
+ as
+ select  count([employee_pass_id]) as num from v_s_empGrowth where YEAR (  [start_date]) = '2017'
+ go
+
+alter view v_s_Growth2018
+ as
+ select DISTINCT count([employee_pass_id])  as num from v_s_empGrowth where YEAR (  [start_date]) = '2018'
+ go
+
+
+
+
+--([dbo].[v_s_Growth2017])-[dbo].[v_s_Growth2016]/[dbo].[v_s_Growth2016]--שנת 2017 לעומת 2016
+go
+--([dbo].[v_s_Growth2018]-[dbo].[v_s_Growth2017])/[dbo].[v_s_Growth2017]--שנת 2018 לעומת 2017
+go
+
+--UNION--
+ create view v_growth_by_months_on_emp
+ as
+SELECT(
+      select  count([employee_pass_id]) as num from v_s_empGrowth where month ( [start_date]) = '1'
+	  ) AS 'Junuary',
+	  ( select  count([employee_pass_id]) as num from v_s_empGrowth where month ( [start_date]) = '2'
+	  ) AS 'February',
+		  ( select  count([employee_pass_id]) as num from v_s_empGrowth where month ( [start_date]) = '3'
+	  ) AS 'March',
+	      (  select  count([employee_pass_id]) as num from v_s_empGrowth where month ( [start_date]) = '4'
+	  ) AS 'April',
+	  ( select  count([employee_pass_id]) as num from v_s_empGrowth where month ( [start_date]) = '5'
+	  ) AS 'May',
+		  ( select  count([employee_pass_id]) as num from v_s_empGrowth where month ( [start_date]) = '6'
+	  ) AS 'June',
+	   (     select  count([employee_pass_id]) as num from v_s_empGrowth where month ( [start_date]) = '7'
+	  ) AS 'July',
+	  ( select  count([employee_pass_id]) as num from v_s_empGrowth where month ( [start_date]) = '8'
+	  ) AS 'August',
+		  ( select  count([employee_pass_id]) as num from v_s_empGrowth where month ( [start_date]) = '9'
+	  ) AS 'September', 
+	   (    select  count([employee_pass_id]) as num from v_s_empGrowth where month ( [start_date]) = '10'
+	  ) AS 'October',
+	  ( select  count([employee_pass_id]) as num from v_s_empGrowth where month ( [start_date]) = '11'
+	  ) AS 'November',
+		  ( select  count([employee_pass_id]) as num from v_s_empGrowth where month ( [start_date]) = '12'
+	  ) AS 'December'
+FROM dual
+go
+
+
+
+---- Record with the earliest date per empId,for growth by year on Business.
+--create view v_s_BusinessGrowth
+--as
+--SELECT
+-- [bus_id], [commence_date]
+  
+--FROM [dbo].[BUSINESSES] AS e
+--WHERE
+--   e.[commence_date] =
+--   (
+--   SELECT TOP (1)
+--      e2.[commence_date]
+--   FROM [dbo].[BUSINESSES] AS e2
+--   WHERE
+--      e2.[bus_id] = e.[bus_id]
+--   ORDER BY
+--      e2.[commence_date] ASC
+--   )
+-- go
+
+
+
+
+-- create view v_growth_by_years_on_busi
+-- as
+--SELECT(
+--      select  count([bus_id]) as num from [dbo].[BUSINESSES] where year ( [commence_date]) = '2016'
+--	  ) AS 'e2016',
+--	  (   select  count([bus_id]) as num from [dbo].[BUSINESSES] where year ( [commence_date]) = '2017'
+--	  ) AS 'e2017',
+--	  (   select  count([bus_id]) as num from [dbo].[BUSINESSES] where year ( [commence_date]) = '2018'
+--	  ) AS 'e2018'
+--	  FROM dual
+--go
+
+
+
+
+-- create view Q1
+-- as
+--SELECT(
+--      select  count([bus_id]) as num from [dbo].[BUSINESSES] where month ([commence_date] ) = '1' and year([commence_date])='2016'--and month ([commence_date] )='2' and month ([commence_date] )='3'
+--	  ) AS '1',
+--	  (
+--      select  count([bus_id]) as num from [dbo].[BUSINESSES] where month ([commence_date] ) = '2' and year([commence_date])='2016'--and month ([commence_date] )='2' and month ([commence_date] )='3'
+--	  ) AS '2',
+--	  (
+--      select  count([bus_id]) as num from [dbo].[BUSINESSES] where month ([commence_date] ) = '3' and year([commence_date])='2016'--and month ([commence_date] )='2' and month ([commence_date] )='3'
+--	  ) AS '3'
+--FROM dual
+--go
+
+--create view e2016_Q1
+-- as
+--SELECT(
+--      select [1]+[2]+[3] as Q1 from [dbo].[Q1] --where month ([commence_date] ) = '1'--and month ([commence_date] )='2' and month ([commence_date] )='3'
+--	  ) AS 'Q1'
+--FROM dual
+--go
+
+-- create view Q2
+-- as
+--SELECT(
+--      select  count([bus_id]) as num from [dbo].[BUSINESSES] where month ([commence_date] ) = '4' and year([commence_date])='2016'--and month ([commence_date] )='2' and month ([commence_date] )='3'
+--	  ) AS '4',
+--	  (
+--      select  count([bus_id]) as num from [dbo].[BUSINESSES] where month ([commence_date] ) = '5' and year([commence_date])='2016'--and month ([commence_date] )='2' and month ([commence_date] )='3'
+--	  ) AS '5',
+--	  (
+--      select  count([bus_id]) as num from [dbo].[BUSINESSES] where month ([commence_date] ) = '6' and year([commence_date])='2016'--and month ([commence_date] )='2' and month ([commence_date] )='3'
+--	  ) AS '6'
+--FROM dual
+--go
+
+--alter view e2016_Q2
+-- as
+--SELECT(
+--      select [4]+[5]+[6] as Q2 from [dbo].[Q2] --where month ([commence_date] ) = '1'--and month ([commence_date] )='2' and month ([commence_date] )='3'
+--	  ) AS 'Q2'
+--FROM dual
+--go
+
+
+-- create view Q3
+-- as
+--SELECT(
+--      select  count([bus_id]) as num from [dbo].[BUSINESSES] where month ([commence_date] ) = '7' and year([commence_date])='2016'--and month ([commence_date] )='2' and month ([commence_date] )='3'
+--	  ) AS '7',
+--	  (
+--      select  count([bus_id]) as num from [dbo].[BUSINESSES] where month ([commence_date] ) = '8' and year([commence_date])='2016'--and month ([commence_date] )='2' and month ([commence_date] )='3'
+--	  ) AS '8',
+--	  (
+--      select  count([bus_id]) as num from [dbo].[BUSINESSES] where month ([commence_date] ) = '9' and year([commence_date])='2016'--and month ([commence_date] )='2' and month ([commence_date] )='3'
+--	  ) AS '9'
+--FROM dual
+--go
+
+--create view e2016_Q3
+-- as
+--SELECT(
+--      select [7]+[8]+[9] as Q3 from [dbo].[Q3] --where month ([commence_date] ) = '1'--and month ([commence_date] )='2' and month ([commence_date] )='3'
+--	  ) AS 'Q3'
+--FROM dual
+--go
+
+--business yearly growth
+alter VIEW V_business_yearly_growth
+as
+SELECT DATEPART(YEAR,commence_date) as [Year],
+COUNT(1) as [businessCount]
+FROM [dbo].[BUSINESSES]
+GROUP BY DATEPART(YEAR,commence_date)
+go
+
+--business QUARTER growth
+alter VIEW [V_business_QUARTER_growth]
+as
+SELECT DATEPART(YEAR,commence_date) as [Year],
+ DATEPART(QUARTER,commence_date) as [Quarter], COUNT(1) as [businessCount]
+FROM [dbo].[BUSINESSES]
+GROUP BY DATEPART(YEAR,commence_date),DatePART(QUARTER,commence_date)
+--ORDER BY 1,2
+go
