@@ -505,7 +505,7 @@ public class Employee
 
     }
 
-    public void insertEmployee(Employee e)
+    public int insertEmployee(Employee e)
     {
 
            // Employee e = new Employee();
@@ -513,9 +513,9 @@ public class Employee
             //DataContractJsonSerializer ser = new DataContractJsonSerializer(e.GetType());
             //e = ser.ReadObject(ms) as Employee;
             DBServices dbs = new DBServices();
-            dbs.insert(e);
-            dbs.insertEmpBus(e);
-
+             int inserted = dbs.insert(e);
+          inserted +=  dbs.insertEmpBus(e);
+        return inserted;
     }
     public void updateEmp(Employee e)
     {
