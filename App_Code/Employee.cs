@@ -41,7 +41,10 @@ public class Employee
     private List<Business> busHistory;
     private int rent;
     private int department_code;
-
+    bool food_incloud;
+    float food_pay;
+    float monthly_rent;
+    bool final_bill;
 
     MemoryStream ms;
 
@@ -476,6 +479,58 @@ public class Employee
         }
     }
 
+    public bool Food_incloud
+    {
+        get
+        {
+            return food_incloud;
+        }
+
+        set
+        {
+            food_incloud = value;
+        }
+    }
+
+    public float Food_pay
+    {
+        get
+        {
+            return food_pay;
+        }
+
+        set
+        {
+            food_pay = value;
+        }
+    }
+
+    public float Monthly_rent
+    {
+        get
+        {
+            return monthly_rent;
+        }
+
+        set
+        {
+            monthly_rent = value;
+        }
+    }
+
+    public bool Final_bill
+    {
+        get
+        {
+            return final_bill;
+        }
+
+        set
+        {
+            final_bill = value;
+        }
+    }
+
     public List<Employee> getEmployees()
     {
         DBServices dbs = new DBServices();
@@ -520,10 +575,7 @@ public class Employee
     public void updateEmp(Employee e)
     {
 
-        // Employee e = new Employee();
-        //ms = new MemoryStream(Encoding.UTF8.GetBytes(EmployeeInfo));
-        //DataContractJsonSerializer ser = new DataContractJsonSerializer(e.GetType());
-        //e = ser.ReadObject(ms) as Employee;
+
         DBServices dbs = new DBServices();
         dbs.updateEmp(e);
         if (e.updateBus)

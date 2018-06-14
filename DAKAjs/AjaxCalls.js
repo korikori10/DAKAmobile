@@ -1,4 +1,4 @@
-﻿var local = false;
+﻿var local = true;
 var WSUrl = 'ajaxWebService.asmx';
 if (!local) {
     WSUrl = 'http://proj.ruppin.ac.il/bgroup59/test2/tar2/ajaxWebService.asmx';
@@ -210,7 +210,7 @@ function insertEmployee(EmployeeInfo) {
     });
 }
 
-//insert employee from wizard to DB using ajax and WS
+//update employee from wizard to DB using ajax and WS
 function updateEmployee(EmployeeInfo) {
     var emp = JSON.stringify(EmployeeInfo);
 

@@ -62,7 +62,7 @@ public class DBServices
 
 
     #region SELECT COMMANDs
-   
+
     /// <summary>
     /// reads employees from sql
     /// </summary>
@@ -76,38 +76,39 @@ public class DBServices
         {
 
             con = connect("DAKADBConnectionString"); // create a connection to the database using the connection String defined in the web config file
-            string selectSTR = "SELECT*FROM EMPLOYEE WHERE active = '1'";
+            string selectSTR = "SELECT*FROM EMPLOYEE where dbo.EMPLOYEE.active = '1'";
             SqlCommand cmd = new SqlCommand(selectSTR, con);
             SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
             List<Employee> Employees = new List<Employee>();
+
             while (dr.Read())
             {   // Read till the end of the data into a row
                 Employee e = new Employee();
                 e.Employee_pass_id = dr["employee_pass_id"].ToString();
                 e.Lname = dr["lname"].ToString();
                 e.Fname = dr["fname"].ToString();
-                e.Birthday =Convert.ToDateTime( dr["birthday"]);
+                e.Birthday = Convert.ToDateTime(dr["birthday"]);
                 e.Gender = Convert.ToBoolean(dr["gender"]);
                 e.Picture = dr["Picture"].ToString();
-                e.Origin_country =Convert.ToInt32(dr["origin_country"]);
+                e.Origin_country = Convert.ToInt32(dr["origin_country"]);
                 e.Il_citizen = Convert.ToBoolean(dr["il_citizen"]);
-                e.Add_city= Convert.ToInt32(dr["add_city"]);
+                e.Add_city = Convert.ToInt32(dr["add_city"]);
                 e.Add = dr["add"].ToString();
-                e.Add_num= Convert.ToInt32(dr["add_num"]);
-                e.Phone= Convert.ToInt32(dr["phone"]);
+                e.Add_num = Convert.ToInt32(dr["add_num"]);
+                e.Phone = Convert.ToInt32(dr["phone"]);
                 e.Com_app = Convert.ToBoolean(dr["com_app"]);
                 e.Sys_id = Convert.ToInt32(getString(dr["michpal_id"]));
-                e.Insurance = Convert.ToBoolean(dr["insurance"]); 
+                e.Insurance = Convert.ToBoolean(dr["insurance"]);
                 e.Com_insurance = Convert.ToBoolean(dr["com_insurance"]);
-                e.Fam_stat_code = Convert.ToInt32(dr["fam_stat_code"]); 
-                e.Salary_hour = Convert.ToInt32(dr["salary_hour"]); 
+                e.Fam_stat_code = Convert.ToInt32(dr["fam_stat_code"]);
+                e.Salary_hour = Convert.ToInt32(dr["salary_hour"]);
                 e.Salary_overtime = Convert.ToInt32(dr["salary_overtime"]);
-                e.Salary_trans= Convert.ToInt32(dr["salary_trans"]);
+                e.Salary_trans = Convert.ToInt32(dr["salary_trans"]);
                 e.Day_off = Convert.ToInt32(dr["day_off_id"]);
                 e.Sabatical = Convert.ToInt32(dr["sabatical"]);
                 e.Occupation_code = Convert.ToInt32(dr["occupation_code"]);
                 e.Active = Convert.ToBoolean(dr["active"]);
-                e.Disable_reason = dr["disable_reason"].ToString();
+                // e.Disable_reason = dr["disable_reason"].ToString();
 
                 Employees.Add(e);
             }
@@ -221,7 +222,7 @@ public class DBServices
                 e.Sabatical = Convert.ToInt32(dr["sabatical"]);
                 e.Occupation_code = Convert.ToInt32(dr["occupation_code"]);
                 e.Active = Convert.ToBoolean(dr["active"]);
-                e.Disable_reason = dr["disable_reason"].ToString();
+              //  e.Disable_reason = dr["disable_reason"].ToString();
 
                 Employees.Add(e);
             }
@@ -624,11 +625,11 @@ public class DBServices
     {
         String command;
 
+
         StringBuilder sb = new StringBuilder();
         // use a string builder to create the dynamic string
-        sb.AppendFormat("Values('{0}', '{1}' ,'{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}', '{18}', '{19}', '{20}', '{21}', '{22}', '{23}', '{24}')", emp.Employee_pass_id, emp.Lname, emp.Fname, emp.Birthday.ToString("yyyy-MM-dd"), emp.Gender, emp.Picture, emp.Origin_country, emp.Il_citizen, emp.Add_city, emp.Add, emp.Add_num, emp.Phone, emp.Com_app, emp.Sys_id, emp.Insurance, emp.Com_insurance, emp.Fam_stat_code, emp.Salary_hour, emp.Salary_overtime, emp.Salary_trans, emp.Day_off, emp.Sabatical, emp.Occupation_code, emp.Active, emp.Disable_reason);//לבדוק מה סטרינג כי הוא מצריך גרשיים אחדיים ולאינט לא!לבדוק מי צריך מה לגבי בול והשאר
-        String prefix = "INSERT INTO EMPLOYEE " + "(employee_pass_id,lname,fname,birthday,gender,Picture,origin_country,il_citizen,add_city,[add],add_num,phone,com_app,michpal_id,insurance,com_insurance,fam_stat_code,salary_hour,salary_overtime,salary_trans,day_off_id,sabatical, occupation_code,active,disable_reason) ";
-
+        sb.AppendFormat("Values('{0}', '{1}' ,'{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}', '{18}', '{19}', '{20}', '{21}', '{22}', '{23}', '{24}','{25}','{26}','{27}')", emp.Employee_pass_id, emp.Lname, emp.Fname, emp.Birthday.ToString("yyyy-MM-dd"), emp.Gender, emp.Picture, emp.Origin_country, emp.Il_citizen, emp.Add_city, emp.Add, emp.Add_num, emp.Phone, emp.Com_app, emp.Sys_id, emp.Insurance, emp.Com_insurance, emp.Fam_stat_code, emp.Salary_hour, emp.Salary_overtime, emp.Salary_trans, emp.Day_off, emp.Sabatical, emp.Occupation_code, emp.Active, emp.Food_incloud, emp.Food_pay, emp.Monthly_rent, "false");//לבדוק מה סטרינג כי הוא מצריך גרשיים אחדיים ולאינט לא!לבדוק מי צריך מה לגבי בול והשאר
+        String prefix = "INSERT INTO EMPLOYEE " + "(employee_pass_id,lname,fname,birthday,gender,Picture,origin_country,il_citizen,add_city,[add],add_num,phone,com_app,michpal_id,insurance,com_insurance,fam_stat_code,salary_hour,salary_overtime,salary_trans,day_off_id,sabatical,occupation_code,active,food_incloud,food_pay,monthly_rent,final_bill) ";
         command = prefix + sb.ToString();
 
         return command;
@@ -697,7 +698,7 @@ public class DBServices
     }
 
     //--------------------------------------------------------------------
-    // insert an Business
+    // insert an User
     //--------------------------------------------------------------------
     public int insert(User user)
     {
@@ -813,8 +814,8 @@ public class DBServices
 
         StringBuilder sb = new StringBuilder();
         // use a string builder to create the dynamic string
-        sb.AppendFormat("Values('{0}', {1} ,'{2}')", emp.Employee_pass_id, emp.Business, DateTime.Now.ToString("yyyy-MM-dd"));//לבדוק מה סטרינג כי הוא מצריך גרשיים אחדיים ולאינט לא!לבדוק מי צריך מה לגבי בול והשאר
-        String prefix = "INSERT INTO [employee in business] " + "(employee_pass_id, bus_id, start_date)";
+        sb.AppendFormat("Values('{0}', {1} ,'{2}')", emp.Employee_pass_id, emp.Business, DateTime.Now.ToString("yyyy-MM-dd"));
+        String prefix = "INSERT INTO [employee in business] " + "(employee_pass_id, bus_id,start_date)";
         command = prefix + sb.ToString();
 
         return command;
@@ -883,7 +884,7 @@ public class DBServices
 
         StringBuilder sb = new StringBuilder();
         // use a string builder to create the dynamic string
-        String prefix = "UPDATE EMPLOYEE SET lname = '" + emp.Lname + "', fname = '" + emp.Fname + "', birthday = '" + emp.Birthday + "', gender = '" + emp.Gender + "', Picture = '" + emp.Picture + "', origin_country = '" + emp.Origin_country + "', il_citizen = '" + emp.Il_citizen + "', add_city = '" + emp.Add_city + "', [add] = '" + emp.Add + "', add_num = '" +emp.Add_num + "', phone = '" +emp.Phone + "', com_app = '" + emp.Com_app + "', monthly_rent = '" + emp.Rent+ "', insurance = '" +emp.Insurance + "', com_insurance = '" + emp.Com_insurance + "', fam_stat_code = '" +emp.Fam_stat_code + "', salary_hour = '" + emp.Salary_hour + "', salary_overtime = '" + emp.Salary_overtime + "', salary_trans = '" + emp.Salary_trans + "', day_off_id = '" + emp.Day_off + "', sabatical = '" +emp.Sabatical + "', occupation_code = '" +emp.Occupation_code + "', active = '" + emp.Active + "', department_code = '" + emp.Department_code + "' Where employee_pass_id = '" + emp.Employee_pass_id + "'";
+        String prefix = "UPDATE EMPLOYEE SET lname = '" + emp.Lname + "', fname = '" + emp.Fname + "', birthday = '" + emp.Birthday + "', gender = '" + emp.Gender + "', Picture = '" + emp.Picture + "', origin_country = '" + emp.Origin_country + "', il_citizen = '" + emp.Il_citizen + "', add_city = '" + emp.Add_city + "', [add] = '" + emp.Add + "', add_num = '" +emp.Add_num + "', phone = '" +emp.Phone + "', com_app = '" + emp.Com_app + "', monthly_rent = '" + emp.Monthly_rent+ "', insurance = '" +emp.Insurance + "', com_insurance = '" + emp.Com_insurance + "', fam_stat_code = '" +emp.Fam_stat_code + "', salary_hour = '" + emp.Salary_hour + "', salary_overtime = '" + emp.Salary_overtime + "', salary_trans = '" + emp.Salary_trans + "', day_off_id = '" + emp.Day_off + "', sabatical = '" +emp.Sabatical + "', occupation_code = '" +emp.Occupation_code + "', active = '" + emp.Active + "', food_incloud = '" +emp.Food_incloud+ "', food_pay = '" +emp.Food_pay+ "', final_bill = '" +emp.Final_bill+ "' Where employee_pass_id = '" + emp.Employee_pass_id + "'";
         command = prefix;// prefix;
 
         return command;
