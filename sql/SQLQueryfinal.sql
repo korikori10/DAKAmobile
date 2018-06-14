@@ -81,8 +81,11 @@ CREATE TABLE [EMPLOYEE]
 	[sabatical] int NOT NULL ,--יום שבתון
 	[occupation_code] int  NULL ,
 	[active] bit not null,
-	[disable_reason] nvarchar (120) null
-	
+	--[disable_reason] nvarchar (120) null
+	food_incloud bit,
+	food_pay int,
+	monthly_rent int,
+	final_bill bit
 )
 GO
 
@@ -960,6 +963,27 @@ go
 --FROM dual
 --go
 
+--employee yearly growth
+create VIEW V_employee_yearly_growth
+as
+SELECT DATEPART(YEAR,[start_date]) as [start_Year],
+COUNT(1) as [employeeCount]
+FROM [dbo].[employee in business]
+GROUP BY DATEPART(YEAR,[start_date])
+go
+
+--employee monthly growth
+alter VIEW [V_employee_monthly_growth]
+as
+SELECT DATEPART(YEAR,[start_date]) as [start_year_for_month],
+DATEPART(MONTH,[start_date]) as Months,
+COUNT(1) as [employeeCountMonth]
+FROM [dbo].[employee in business]
+--where year([start_date]) = YEAR(getdate())--only current year
+GROUP BY DATEPART(YEAR,[start_date]),DatePART(month,[start_date])
+--ORDER BY 1,2,3
+go
+
 --business yearly growth
 alter VIEW V_business_yearly_growth
 as
@@ -972,9 +996,15 @@ go
 --business QUARTER growth
 alter VIEW [V_business_QUARTER_growth]
 as
-SELECT DATEPART(YEAR,commence_date) as [Year],
- DATEPART(QUARTER,commence_date) as [Quarter], COUNT(1) as [businessCount]
+SELECT DATEPART(YEAR,commence_date) as [commence_date_Year],
+ DATEPART(QUARTER,commence_date) as [Quarter], COUNT(1) as [businessCountQuarter]
 FROM [dbo].[BUSINESSES]
+where year(commence_date) = YEAR(getdate())
 GROUP BY DATEPART(YEAR,commence_date),DatePART(QUARTER,commence_date)
 --ORDER BY 1,2
 go
+
+
+INSERT INTO EMPLOYEE (employee_pass_id,lname,fname,birthday,gender,Picture,origin_country,il_citizen,add_city,add,add_num,phone,com_app,michpal_id,insurance,com_insurance,fam_stat_code,salary_hour,salary_overtime,salary_trans,day_off_id,sabatical, occupation_code,active,disable_reason,food_incloud,food_pay,monthly_rent,final_bill) 
+Values                                      ('231dscsd', 'dfsvs' ,'sdfds', '1989-06-13', 'False', '', '1', 'False', '1', 'asdf', '2', '9876543', 'True', '0', 'False', 'False', '2', '23', '23', '23', '7', '7', '1', 'True', '','True','23','0','false')
+
