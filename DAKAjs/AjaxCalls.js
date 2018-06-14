@@ -1,7 +1,7 @@
-﻿var local = true;
+﻿var local = false;
 var WSUrl = 'ajaxWebService.asmx';
 if (!local) {
-    WSUrl = 'http://proj.ruppin.ac.il/bgroup59/test2/tar2/ajaxwebservice.asmx';
+    WSUrl = 'http://proj.ruppin.ac.il/bgroup59/test2/tar2/ajaxWebService.asmx';
 }
 
 // Get all Employees for Searchbox on dash
