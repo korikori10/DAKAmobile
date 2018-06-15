@@ -147,7 +147,21 @@ public class ajaxWebService : System.Web.Services.WebService
         return jsonStringCategory;
 
     }
+
     
+    [WebMethod]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    public string getOccupation()
+    {
+        Occupation o = new Occupation();
+        List<Occupation> LE = o.getOccupation();
+        JavaScriptSerializer js = new JavaScriptSerializer();
+        // serialize to string
+        var jsonStringCategory = js.Serialize(LE);
+        //Context.Response.Write(jsonStringCategory);
+        return jsonStringCategory;
+
+    }
     [WebMethod]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
     public void insertEmployee(string EmployeeInfo)

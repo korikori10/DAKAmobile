@@ -46,7 +46,8 @@ public class Employee
     float monthly_rent;
     bool final_bill;
     DateTime commence_date;
-
+    string bus_name;
+    string occupation_desc;
     MemoryStream ms;
 
 
@@ -545,6 +546,32 @@ public class Employee
         }
     }
 
+    public string Bus_name
+    {
+        get
+        {
+            return bus_name;
+        }
+
+        set
+        {
+            bus_name = value;
+        }
+    }
+
+    public string Occupation_desc
+    {
+        get
+        {
+            return occupation_desc;
+        }
+
+        set
+        {
+            occupation_desc = value;
+        }
+    }
+
     public List<Employee> getEmployees()
     {
         DBServices dbs = new DBServices();
@@ -554,6 +581,7 @@ public class Employee
         return LE;
         
     }
+ 
     public List<Employee> getEmployeesnobisiness()
     {
         DBServices dbs = new DBServices();
