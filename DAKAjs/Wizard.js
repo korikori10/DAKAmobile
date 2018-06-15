@@ -147,7 +147,8 @@ function renderOccu(results) {
 function insertEmp(array) {
 
     array.Bus_name = $('#businessSE option:selected').text();
-    array.Occupation_desc = $('#businessSE option:selected').text();
+    array.Occupation_desc = $('#OccuSE option:selected').text();
+    array.Day_off_name = $('#day_off option:selected').text();
     //EmployeeInfo = array;
 
 
