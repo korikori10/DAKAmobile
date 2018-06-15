@@ -135,9 +135,10 @@ function renderCities(results) {
 
 
 function insertEmp(array) {
- 
-    
+
+    array.Bus_name = $('#businessSE option:selected').text();
     //EmployeeInfo = array;
+
 
     if (isUpdate)
     {
