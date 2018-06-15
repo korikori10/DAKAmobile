@@ -64,7 +64,12 @@ public class ajaxWebService : System.Web.Services.WebService
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
     public void getBusinessesTable()
     {
-      
+        Employee e = new Employee();
+        e.Employee_pass_id = "12345";
+        e.Fname = "Kori";
+        e.Lname = "Hash";
+        PDF pdf = new PDF();
+        pdf.fillForm(e);
         Business b = new Business();
         List<Business> LB = b.getBusinesses();
         JavaScriptSerializer js = new JavaScriptSerializer();
@@ -120,6 +125,7 @@ public class ajaxWebService : System.Web.Services.WebService
     {
         Employee e = new Employee();
         List<Employee> LE = e.getEmployeesnobisiness();
+
         JavaScriptSerializer js = new JavaScriptSerializer();
         // serialize to string
         var jsonStringCategory = js.Serialize(LE);
@@ -149,8 +155,7 @@ public class ajaxWebService : System.Web.Services.WebService
 
         JavaScriptSerializer js = new JavaScriptSerializer();
        Employee e = js.Deserialize<Employee>(EmployeeInfo);
-        PDF pdf = new PDF();
-        pdf.fillForm();
+
 
         int inserted = e.insertEmployee(e);
         if (inserted > 0)
