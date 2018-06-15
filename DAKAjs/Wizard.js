@@ -8,6 +8,7 @@ $(document).ready(function () {
     getCities(renderCities);
     getCountries(renderCountries);
     getBusinesses(renderBusinesses);
+    getOccu(renderOccu);
 //Picture or file upload
     $("#Pic").on("change", function () {
         pbLBL = $("#pbLBL")
@@ -133,10 +134,20 @@ function renderCities(results) {
 }
 
 
+function renderOccu(results) {
+    //this is the callBackFunc 
+    results = $.parseJSON(results.d);
+    $('#OccuSE').empty();
+    $.each(results, function (i, row) {
+        dynamicLi = '<option value="' + row.Occupation_code + '">' + row.Occupation_desc + '</option>';
+        $('#OccuSE').append(dynamicLi);
+    });
+}
 
 function insertEmp(array) {
 
     array.Bus_name = $('#businessSE option:selected').text();
+    array.Occupation_desc = $('#businessSE option:selected').text();
     //EmployeeInfo = array;
 
 
