@@ -32,6 +32,7 @@ public class Employee
     private double salary_overtime;
     private double salary_trans;
     private int day_off;
+    private string day_off_name;
     private int sabatical;
     private int occupation_code;
     private bool active;
@@ -537,12 +538,12 @@ public class Employee
     {
         get
         {
-            return Commence_date;
+            return commence_date;
         }
 
         set
         {
-            Commence_date = value;
+            commence_date = value;
         }
     }
 
@@ -572,7 +573,18 @@ public class Employee
         }
     }
 
+    public string Day_off_name
+    {
+        get
+        {
+            return day_off_name;
+        }
 
+        set
+        {
+            day_off_name = value;
+        }
+    }
 
     public List<Employee> getEmployees()
     {
