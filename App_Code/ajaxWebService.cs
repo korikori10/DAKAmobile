@@ -164,7 +164,7 @@ public class ajaxWebService : System.Web.Services.WebService
 
         JavaScriptSerializer js = new JavaScriptSerializer();
        Employee e = js.Deserialize<Employee>(EmployeeInfo);
-        e.Commence_date = DateTime.Now.Date;
+        e.Commence_date = DateTime.Now.ToString("yyyy-MM-dd");
          int inserted = e.insertEmployee(e);
         PDF pdf = new PDF();
         pdf.fillForm(e);

@@ -45,7 +45,7 @@ public class Employee
     float food_pay;
     float monthly_rent;
     bool final_bill;
-    DateTime commence_date;
+    string commence_date;
     string bus_name;
     string occupation_desc;
     MemoryStream ms;
@@ -533,16 +533,16 @@ public class Employee
         }
     }
 
-    public DateTime Commence_date
+    public string Commence_date
     {
         get
         {
-            return commence_date;
+            return Commence_date;
         }
 
         set
         {
-            commence_date = value;
+            Commence_date = value;
         }
     }
 
@@ -571,6 +571,8 @@ public class Employee
             occupation_desc = value;
         }
     }
+
+
 
     public List<Employee> getEmployees()
     {
