@@ -148,7 +148,7 @@ public class ajaxWebService : System.Web.Services.WebService
 
         JavaScriptSerializer js = new JavaScriptSerializer();
        Employee e = js.Deserialize<Employee>(EmployeeInfo);
-       
+        e.Commence_date = DateTime.Now.Date;
          int inserted = e.insertEmployee(e);
         if (inserted > 0)
         {

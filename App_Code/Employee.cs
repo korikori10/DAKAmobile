@@ -45,6 +45,7 @@ public class Employee
     float food_pay;
     float monthly_rent;
     bool final_bill;
+    DateTime commence_date;
 
     MemoryStream ms;
 
@@ -528,6 +529,19 @@ public class Employee
         set
         {
             final_bill = value;
+        }
+    }
+
+    public DateTime Commence_date
+    {
+        get
+        {
+            return commence_date;
+        }
+
+        set
+        {
+            commence_date = value;
         }
     }
 
