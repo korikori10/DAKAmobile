@@ -23,19 +23,24 @@ public class PDF
 
     public void fillForm(Employee e)
     {
-       // string[] propNames = new string[] { "Employee_pass_id", "Fname", "Lname", "Origin_country", "Phone", "Birthday", "Fam_stat_code", "Gender", "Il_citizen", "Active", "Occupation_code", "Business", "Food_include", "Food_pay", "Salary_hour", "Sabatical", "Salary_overtime", "Salary_trans", "Day_off", "Com_app", "Monthly_rent", "Insurance", "Add", "Add_city", "Add_num" };
+        Dictionary<string, string> props = new Dictionary<string, string>();
+        PropertyInfo[] properties = e.GetType().GetProperties();
+        foreach (PropertyInfo pi in properties)
+        {
+            if (pi.GetValue(e, null) != null)
+            {
+
+            props.Add(pi.Name, pi.GetValue(e, null).ToString());
+            }
+
+        }
+        // string[] propNames = new string[] { "Employee_pass_id", "Fname", "Lname", "Origin_country", "Phone", "Birthday", "Fam_stat_code", "Gender", "Il_citizen", "Active", "Occupation_code", "Business", "Food_include", "Food_pay", "Salary_hour", "Sabatical", "Salary_overtime", "Salary_trans", "Day_off", "Com_app", "Monthly_rent", "Insurance", "Add", "Add_city", "Add_num" };
         try
         {
             string formFile = "C:\\Users\\Tom\\Documents\\לימודים\\שנה ג\\פרוייקט גמר\\חוזה_עבודה_-_חלק_א.pdf";
             string savepath = "C:\\Users\\Tom\\Documents\\לימודים\\שנה ג\\פרוייקט גמר\\חוזה_עבודה_-_חלק_אEdit.pdf";
             PdfReader pdfReader = new PdfReader(formFile);
-            Dictionary<string, string> props = new Dictionary<string, string>();
-            PropertyInfo[] properties = e.GetType().GetProperties();
-            foreach (PropertyInfo pi in properties)
-            {
-                props.Add(pi.Name, pi.GetValue(e, null).ToString());
-
-            }
+     
             using (FileStream stream = new FileStream(savepath, FileMode.Create))
             {
                 PdfStamper pdfStamper = new PdfStamper(pdfReader, stream);
@@ -50,7 +55,7 @@ public class PDF
                         if (name.Key == field.Key)
                         {
                             formFields.SetField(field.Key, name.Value);
-                            return;
+                 
                         }
                     }
 
@@ -69,8 +74,10 @@ public class PDF
         
         
         }
-        catch
+        catch (Exception ex)
         {
+            // write to log
+            throw (ex);
         }
         finally
         {
