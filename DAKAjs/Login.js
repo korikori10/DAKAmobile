@@ -1,18 +1,18 @@
 ﻿var username = new Object();
 
-document.addEventListener('deviceready', function () {
-    // Enable to debug issues.
-    // window.plugins.OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
+//document.addEventListener('deviceready', function () {
+//    // Enable to debug issues.
+//    // window.plugins.OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
 
-    var notificationOpenedCallback = function (jsonData) {
-        console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
-    };
+//    var notificationOpenedCallback = function (jsonData) {
+//        console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
+//    };
 
-    window.plugins.OneSignal
-        .startInit("83d04d9a-0af5-47ff-8e0d-daa16120ede1")
-        .handleNotificationOpened(notificationOpenedCallback)
-        .endInit();
-}, false);
+//    window.plugins.OneSignal
+//        .startInit("83d04d9a-0af5-47ff-8e0d-daa16120ede1")
+//        .handleNotificationOpened(notificationOpenedCallback)
+//        .endInit();
+//}, false);
 
 $(document).ready(function () {
    

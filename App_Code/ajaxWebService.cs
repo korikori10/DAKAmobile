@@ -64,6 +64,7 @@ public class ajaxWebService : System.Web.Services.WebService
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
     public void getBusinessesTable()
     {
+      
         Business b = new Business();
         List<Business> LB = b.getBusinesses();
         JavaScriptSerializer js = new JavaScriptSerializer();
@@ -148,8 +149,10 @@ public class ajaxWebService : System.Web.Services.WebService
 
         JavaScriptSerializer js = new JavaScriptSerializer();
        Employee e = js.Deserialize<Employee>(EmployeeInfo);
-       
-         int inserted = e.insertEmployee(e);
+        PDF pdf = new PDF();
+        pdf.fillForm();
+
+        int inserted = e.insertEmployee(e);
         if (inserted > 0)
         {
 
