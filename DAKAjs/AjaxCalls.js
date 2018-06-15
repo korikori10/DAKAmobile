@@ -68,6 +68,23 @@ function getCities(renderCities) {
     });
 
 } 
+//Get all cities for wizard
+function getOccu(renderOccu) {
+    $.ajax({
+        url: WSUrl + '/getOccupation',
+        type: 'POST',
+        dataType: "json",
+        contentType: 'application/json; charset = utf-8',
+        success: function (results) {
+            renderOccu(results);
+        },
+        error: function (request, error) {
+            alert('Network error has occurred please try again!');
+        }
+
+    });
+
+} 
 
 //Get all Countries for wizard
 function getCountries(renderCountries) {
