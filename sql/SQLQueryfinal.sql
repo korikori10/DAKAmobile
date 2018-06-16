@@ -102,8 +102,12 @@ active bit not null
 )
 go
 
-
-
+Create table [salary_trans]
+(
+ [salary_trans] int primary key,
+ trans_desc nvarchar(30),
+)
+go
 
 --create table EMP_DOCS
 --(
@@ -323,6 +327,9 @@ alter table [employee in business]
 add constraint pk_contact primary key ([bus_id],[employee_pass_id])
 go
 
+
+
+
 --alter table EMP_DOCS
 --add constraint pk_doc_employee primary key (doc_id ,emp_id)
 --go
@@ -342,6 +349,11 @@ go
 alter table [dbo].[BUSINESSES]
 add
 constraint fk_b_type foreign key ([bus_type_code]) references [dbo].[BUSINESS TYPE]([bus_type_code])
+go
+
+alter table [dbo].[EMPLOYEE]
+add
+constraint fk_ST foreign key ([salary_trans]) references [dbo].[salary_trans] ([salary_trans])
 go
 
 alter table [contacts to business]

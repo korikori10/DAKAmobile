@@ -11,7 +11,7 @@ $(document).ready(function () {
     getOccu(renderOccu);
 //Picture or file upload
     $("#Pic").on("change", function () {
-        pbLBL = $("#pbLBL")
+        pbLBL = $("#pLBL2")
         pbDiv = $("#progressBar")
         pbLBL.text('Uploading...');
         pbDiv.fadeIn(500)
@@ -27,6 +27,41 @@ $(document).ready(function () {
 
 }
     })
+    $("#Pic1").on("change", function () {
+        pbLBL = $("#pbLBL")
+        pbDiv = $("#progressBar1")
+        pbLBL.text('Uploading...');
+        pbDiv.fadeIn(500)
+        var files = $(this).get(0).files;
+        if (files.length > 0) {
+
+
+            var formData = new FormData();
+            for (var i = 0; i < files.length; i++) {
+                formData.append(files[i].name, files[i])
+            }
+            uploadFiles(formData, setEmpFile);
+
+        }
+    })
+    $("#Pic2").on("change", function () {
+        pbLBL = $("#pLB2")
+        pbDiv = $("#progressBar2")
+        pbLBL.text('Uploading...');
+        pbDiv.fadeIn(500)
+        var files = $(this).get(0).files;
+        if (files.length > 0) {
+
+
+            var formData = new FormData();
+            for (var i = 0; i < files.length; i++) {
+                formData.append(files[i].name, files[i])
+            }
+            uploadFiles(formData, setEmpFile);
+
+        }
+    })
+
 });
 
 function setEmpFile(results)
