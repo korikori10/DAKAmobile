@@ -862,6 +862,67 @@ public class DBServices
 
         return command;
     }
+    //--------------------------------------------------------------------
+    // insert a New DOc
+    //--------------------------------------------------------------------
+    public int inserNewtDoc(Employee emp)
+    {
+
+        SqlConnection con;
+        SqlCommand cmd;
+
+        try
+        {
+            con = connect("DAKADBConnectionString"); // create the connection
+        }
+        catch (Exception ex)
+        {
+            // write to log
+            throw (ex);
+        }
+
+        String cStr = BuildInsertNewDocCommand(emp);      // helper method to build the insert string
+
+        cmd = CreateCommand(cStr, con);             // create the command
+
+        try
+        {
+            int numEffected = cmd.ExecuteNonQuery(); // execute the command
+            return numEffected;
+        }
+        catch (Exception ex)
+        {
+            return 0;
+            // write to log
+            throw (ex);
+        }
+
+        finally
+        {
+            if (con != null)
+            {
+                // close the db connection
+                con.Close();
+            }
+        }
+
+    }
+
+    //--------------------------------------------------------------------
+    // Build the Insert command String for employee docs
+    //--------------------------------------------------------------------
+    private String BuildInsertNewDocCommand(Employee emp)
+    {
+        String command;
+
+        StringBuilder sb = new StringBuilder();
+        // use a string builder to create the dynamic string
+        sb.AppendFormat("Values('{0}','{1}' ,'{2}', '{3}', '{4}','{5}','{6}')", emp.Doctype_id, emp.Picture, DateTime.Now.ToString("yyyy-MM-dd"), emp.Ex_date, "True", emp.Employee_pass_id, emp.Doc_id);
+        String prefix = "INSERT INTO DOCS " + "(doctype_id,img_url,last_update,ex_date,active,emp_id,doc_id)";
+        command = prefix + sb.ToString();
+
+        return command;
+    }
 
     #endregion
 

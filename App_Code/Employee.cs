@@ -50,6 +50,11 @@ public class Employee
     string bus_name;
     string occupation_desc;
     MemoryStream ms;
+    int doctype_id;
+    string img_url;
+    DateTime last_update;
+    string doc_id;
+    DateTime ex_date;
 
 
     public Employee()
@@ -586,6 +591,71 @@ public class Employee
         }
     }
 
+    public int Doctype_id
+    {
+        get
+        {
+            return doctype_id;
+        }
+
+        set
+        {
+            doctype_id = value;
+        }
+    }
+
+    public string Img_url
+    {
+        get
+        {
+            return img_url;
+        }
+
+        set
+        {
+            img_url = value;
+        }
+    }
+
+    public DateTime Last_update
+    {
+        get
+        {
+            return last_update;
+        }
+
+        set
+        {
+            last_update = value;
+        }
+    }
+
+    public string Doc_id
+    {
+        get
+        {
+            return doc_id;
+        }
+
+        set
+        {
+            doc_id = value;
+        }
+    }
+
+    public DateTime Ex_date
+    {
+        get
+        {
+            return ex_date;
+        }
+
+        set
+        {
+            ex_date = value;
+        }
+    }
+
     public List<Employee> getEmployees()
     {
         DBServices dbs = new DBServices();
@@ -641,5 +711,14 @@ public class Employee
         }
 
     }
+    public int updateDoc(Employee emp)
+    {
+        DBServices dbs = new DBServices();
 
+        int e = dbs.inserNewtDoc(emp);
+
+
+        return e;
+
+    }
 }

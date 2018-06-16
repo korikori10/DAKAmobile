@@ -303,3 +303,29 @@ function uploadFiles(formData, setEmpFile) {
     });
    
 }
+
+//Insert docs
+function InsertDocs(EmployeeInfo) {
+
+    // serialize the object to JSON string
+    var emp = JSON.stringify(EmployeeInfo);
+
+    $.ajax({
+        url: 'ajaxWebService.asmx/updateDoc',
+        type: 'POST',
+        contentType: 'application/json; charset = utf-8',
+        data: emp,
+        success: function (results) {
+
+            setTimeout(function () {
+                swal("בוצע!", "כל הנתונים נשמרו בהצלחה", "success");
+                t2.row(current_row).remove().draw();
+            }, 1000);
+            $("#Update_Expiration").modal('hide');
+        },
+        error: function (xhr, status, error) {
+            var err = eval("(" + xhr.responseText + ")");
+            alert(err.Message);
+        }
+    });
+}

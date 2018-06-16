@@ -3,6 +3,7 @@ EmployeeInfo = new Object();
 resultsSave = new Object();
 isUpdate = new Object();
 var EmpPic = null;
+var EmpFile = null;
 
 $(document).ready(function () {
     getCities(renderCities);
@@ -14,7 +15,7 @@ $(document).ready(function () {
         pbLBL = $("#pLBL2")
         pbDiv = $("#progressBar")
         pbLBL.text('Uploading...');
-        pbDiv.fadeIn(500)
+        pbDiv.fadeIn(500);
         var files = $(this).get(0).files;
         if (files.length>0) {
 
@@ -23,8 +24,9 @@ $(document).ready(function () {
         for (var i = 0; i < files.length; i++) {
             formData.append(files[i].name, files[i])
         }
-        uploadFiles(formData , setEmpFile);
-
+        EmployeeInfo.Doc_id = EmployeeInfo.pass + makeid();
+        EmployeeInfo.Doctype_id = '3';
+        uploadFiles(formData, setEmpPic);
 }
     })
     $("#Pic1").on("change", function () {
@@ -40,6 +42,8 @@ $(document).ready(function () {
             for (var i = 0; i < files.length; i++) {
                 formData.append(files[i].name, files[i])
             }
+            EmployeeInfo.Doc_id = EmployeeInfo.pass + makeid();
+            EmployeeInfo.Doctype_id = '2';
             uploadFiles(formData, setEmpFile);
 
         }
@@ -52,11 +56,13 @@ $(document).ready(function () {
         var files = $(this).get(0).files;
         if (files.length > 0) {
 
-
             var formData = new FormData();
             for (var i = 0; i < files.length; i++) {
                 formData.append(files[i].name, files[i])
             }
+            EmployeeInfo.Doc_id = EmployeeInfo.pass + makeid();
+            EmployeeInfo.Doctype_id = '4';
+            EmployeeInfo.Employee_pass_id = EmployeeInfo.pass
             uploadFiles(formData, setEmpFile);
 
         }
@@ -64,8 +70,22 @@ $(document).ready(function () {
 
 });
 
+function makeid() {
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    for (var i = 0; i < 5; i++)
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    return text;
+}
+
 function setEmpFile(results)
 {
+    EmpFile = results;
+}
+
+function setEmpPic(results) {
     EmpPic = results;
 }
 
@@ -184,7 +204,6 @@ function insertEmp(array) {
     array.Bus_name = $('#businessSE option:selected').text();
     array.Occupation_desc = $('#OccuSE option:selected').text();
     array.Day_off_name = $('#day_off option:selected').text();
-    //EmployeeInfo = array;
 
 
     if (isUpdate)
@@ -238,7 +257,7 @@ function insertEmp(array) {
 
             function (isConfirm) {
                 if (isConfirm) {
-
+                    InsertDocs({ EmployeeInfo: JSON.stringify(EmployeeInfo) });
                     insertEmployee({ EmployeeInfo: JSON.stringify(array) });
                 }
                 else {
