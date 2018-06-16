@@ -1,4 +1,5 @@
-﻿using iTextSharp.text.pdf;
+﻿using iTextSharp.text;
+using iTextSharp.text.pdf;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -40,7 +41,15 @@ public class PDF
             string formFile = "C:\\Users\\Tom\\Documents\\לימודים\\שנה ג\\פרוייקט גמר\\חוזה_עבודה_-_חלק_א.pdf";
             string savepath = "C:\\Users\\Tom\\Documents\\לימודים\\שנה ג\\פרוייקט גמר\\חוזה_עבודה_-_חלק_אEdit.pdf";
             PdfReader pdfReader = new PdfReader(formFile);
-     
+            //Full path to the Unicode Arial file
+            string ARIALUNI_TFF = System.Web.HttpContext.Current.Server.MapPath("~/HF/Arimo-Regular.ttf");
+
+            //Create a base font object making sure to specify IDENTITY-H
+            BaseFont bf = BaseFont.CreateFont(ARIALUNI_TFF, BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
+
+            //Create a specific font object
+           // iTextSharp.text.Font f = new iTextSharp.text.Font(bf, 12);
+
             using (FileStream stream = new FileStream(savepath, FileMode.Create))
             {
                 PdfStamper pdfStamper = new PdfStamper(pdfReader, stream);
@@ -54,9 +63,11 @@ public class PDF
                     {
                         if (name.Key == field.Key)
                         {
+                            formFields.SetFieldProperty(field.Key, "textfont", bf, null);
                             formFields.SetField(field.Key, name.Value);
-                 
+
                         }
+          
                     }
 
 
