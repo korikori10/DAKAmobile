@@ -38,8 +38,9 @@ public class PDF
         // string[] propNames = new string[] { "Employee_pass_id", "Fname", "Lname", "Origin_country", "Phone", "Birthday", "Fam_stat_code", "Gender", "Il_citizen", "Active", "Occupation_code", "Business", "Food_include", "Food_pay", "Salary_hour", "Sabatical", "Salary_overtime", "Salary_trans", "Day_off", "Com_app", "Monthly_rent", "Insurance", "Add", "Add_city", "Add_num" };
         try
         {
-            string formFile = "C:\\Users\\Tom\\Documents\\לימודים\\שנה ג\\פרוייקט גמר\\חוזה_עבודה_-_חלק_א.pdf";
-            string savepath = "C:\\Users\\Tom\\Documents\\לימודים\\שנה ג\\פרוייקט גמר\\חוזה_עבודה_-_חלק_אEdit.pdf";
+            string formFile = System.Web.HttpContext.Current.Server.MapPath("~/Contract/Default/חוזה_עבודה_-_חלק_א.pdf");
+            Directory.CreateDirectory(System.Web.HttpContext.Current.Server.MapPath("~/Contract/" + e.Employee_pass_id));
+            string savepath = System.Web.HttpContext.Current.Server.MapPath("~/Contract/" +e.Employee_pass_id +"/חוזה_עבודה_-_חלק_א.pdf");
             PdfReader pdfReader = new PdfReader(formFile);
             //Full path to the Unicode Arial file
             string ARIALUNI_TFF = System.Web.HttpContext.Current.Server.MapPath("~/HF/Arimo-Regular.ttf");

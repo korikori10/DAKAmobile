@@ -250,7 +250,7 @@
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="shortDescription4">Transportation:  נסיעות:</label>
-                                                            
+
                                                             <select class="selectize-select form-control" id="trans" name="Salary_trans">
                                                                 <option value=""> בחר Select</option>
                                                                 <option value="1">לא עומד בדרישות</option>
@@ -325,6 +325,16 @@
                                             <!-- Step 4 -->
                                             <h6>Step 4</h6>
                                             <fieldset>
+
+                                                <div class="row">
+                                                    <label for="tbad4">תמונת העובד</label>
+                                                    <input type="file" id="Pic" name="Picture" accept="image/*;capture=camera">
+                                                </div>
+                                                <div id="progressBar" style="position:relative; display:none">
+                                                    <progress id="pb2" class="progress-striped progress-green" value="100" max="100"></progress>
+                                                    <span id="pLBL2" style="position:absolute; left:35%; top:20%">Uploading...</span>
+                                                </div>
+
                                                 <div class="row">
                                                     <label for="badd4">צילות דרכון\ת.ז.</label>
                                                     <input type="file" id="Pic1" name="Picture1" accept="image/*;capture=camera">
@@ -333,27 +343,19 @@
                                                     <progress id="fpb" class="progress-striped progress-green" value="100" max="100"></progress>
                                                     <span id="pbLBL" style="position:absolute; left:35%; top:20%">Uploading...</span>
                                                 </div>
-                                            </fieldset>
-                                            <!--<fieldset>
+
+
                                                 <div class="row">
-                                                    <label for="tbad4">צילום אישור עבודה</label>
-                                                    <input type="file" id="Pic2" name="Picture2" accept="image/*;capture=camera">
+                                                    <label for="tbad">
+                                                        צילום אישור עבודה
+                                                    </label>
+                                                    <input type="file" id="Pic2" name="Picture3" accept="image/*;capture=camera">
                                                 </div>
-                                                <div id="progressBar" style="position:relative; display:none">
-                                                    <progress id="fpb2" class="progress-striped progress-green" value="100" max="100"></progress>
-                                                    <span id="pbLBL2" style="position:absolute; left:35%; top:20%">Uploading...</span>
+                                                <div id="progressBar2" style="position:relative; display:none">
+                                                    <progress id="pb1" class="progress-striped progress-green" value="100" max="100"></progress>
+                                                    <span id="pLB2" style="position:absolute; left:35%; top:20%">Uploading...</span>
                                                 </div>
                                             </fieldset>
-                                            <fieldset>
-                                                <div class="row">
-                                                    <label for="tbd4">תמונת העובד</label>
-                                                    <input type="file" id="Pic3" name="Picture3" accept="image/*;capture=camera">
-                                                </div>
-                                                <div id="progressBar" style="position:relative; display:none">
-                                                    <progress id="fpb3" class="progress-striped progress-green" value="100" max="100"></progress>
-                                                    <span id="pbLBL3" style="position:absolute; left:35%; top:20%">Uploading...</span>
-                                                </div>
-                                            </fieldset>-->
                                         </form>
                                     </div>
                                 </div>
