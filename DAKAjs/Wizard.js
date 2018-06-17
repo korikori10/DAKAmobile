@@ -67,7 +67,24 @@ $(document).ready(function () {
 
         }
     })
+    $("#Picvisa").on("change", function () {
+        pbLBL = $("#pVlBl")
+        pbDiv = $("#progressBar4")
+        pbLBL.text('Uploading...');
+        pbDiv.fadeIn(500);
+        var files = $(this).get(0).files;
+        if (files.length > 0) {
 
+
+            var formData = new FormData();
+            for (var i = 0; i < files.length; i++) {
+                formData.append(files[i].name, files[i])
+            }
+            EmployeeInfo.Doc_id = EmployeeInfo.pass + makeid();
+            EmployeeInfo.Doctype_id = '1';
+            uploadFiles(formData, setEmpPic);
+        }
+    })
 });
 
 function makeid() {
