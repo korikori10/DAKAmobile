@@ -1,11 +1,11 @@
 ﻿EmployeeInfo = new Object();
-
+totalEmp = 0;
 
 $(document).ready(function () {
 
     getEmployees(renderEmployees);
     //statistics
-getEmployeesnobusinesss(renderEmployeesnobusiness);
+    getEmployeesnobusinesss(renderEmployeesnobusiness);
 
 });
 
@@ -13,7 +13,7 @@ getEmployeesnobusinesss(renderEmployeesnobusiness);
 //Searchbox Selectize
 function renderEmployees(results) {
     //this is the callBackFunc 
-    totalEmp = 0;
+ 
     results = $.parseJSON(results.d);
     for (var i = 1; i <= results.length; i++) {
         totalEmp = i;
