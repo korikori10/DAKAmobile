@@ -2,7 +2,7 @@
 EmployeeInfo = new Object();
 
 $(document).ready(function () {
-    getEmployeesnobusiness();
+ //   getEmployeesnobusiness();
     getEmployeesnobusinesss(renderEmployeesnobusiness);
 });
 
@@ -15,11 +15,15 @@ function renderEmployeesnobusiness(results) {
         totalEmp = i;
     }
     var dl = $('#DynamicEmployeesList');
+    dl.empty();
     $.each(results, function (i, row) {
-        dynamicLi = '<a href="Wizard.html" value="' + row.Employee_pass_id + '"> <h3>' + row.Fname + " " + row.Lname + '</h3><p > ' + row.Employee_pass_id + '</p><i class="icon-arrow2"></i></a>';
-        EmployeeInfo.pass = row.Employee_pass_id;
-        sessionStorage.setItem("empInfo", EmployeeInfo.pass);
+        
+        dynamicLi = '<a href="Wizard.html" id="' + row.Employee_pass_id + '"> <h3>' + row.Fname + " " + row.Lname + '</h3><p > ' + row.Employee_pass_id + '</p><i class="icon-arrow-left"></i></a>';
         dl.append(dynamicLi);
+    });
+    $("a").on('click', function () {
+        EmployeeInfo.pass = $(this).attr("id");;
+        sessionStorage.setItem("empInfo", EmployeeInfo.pass);
     });
 }
 
