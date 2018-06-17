@@ -50,7 +50,7 @@ $(document).ready(function () {
 
         }
     })
-    $("#PicAuth").on("change", function () {
+    $("#picAuth").on("change", function () {
         pbLBL = $("#pLB2")
         pbDiv = $("#progressBar2")
         pbLBL.text('Uploading...');

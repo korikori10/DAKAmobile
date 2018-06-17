@@ -382,21 +382,15 @@ function uploadFiles(formData, setEmpAuth) {
 function InsertDocs(EmpVisa, EmpID, EmpAuth) {
 
     // serialize the object to JSON string
-    var visa = JSON.stringify(EmpVisa);
-    var ID = JSON.stringify(EmpID);
-    var Auth = JSON.stringify(EmpAuth);
+
     $.ajax({
-        url: 'ajaxWebService.asmx/updateDoc',
+        url: 'ajaxWebService.asmx/InsertDoc',
         type: 'POST',
         contentType: 'application/json; charset = utf-8',
-        data: { visa, ID, Auth },
+        data: { 'EmpVisa': JSON.stringify(EmpVisa), 'EmpID': JSON.stringify(EmpID), 'EmpAuth': JSON.stringify(EmpAuth) },
         success: function (results) {
 
-            setTimeout(function () {
-                swal("בוצע!", "כל הנתונים נשמרו בהצלחה", "success");
-                t2.row(current_row).remove().draw();
-            }, 1000);
-            $("#Update_Expiration").modal('hide');
+            alert("yay");
         },
         error: function (xhr, status, error) {
             var err = eval("(" + xhr.responseText + ")");
