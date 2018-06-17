@@ -36,12 +36,10 @@ public class Employee
     private int sabatical;
     private int occupation_code;
     private bool active;
-    private string disable_reason;
     private int business;
     private bool updateBus;
     private List<Business> busHistory;
     private int rent;
-    private int department_code;
     bool food_incloud;
     float food_pay;
     float monthly_rent;
@@ -64,7 +62,7 @@ public class Employee
         //
     }
 
-    public Employee(string employee_pass_id, string lname, string fname, DateTime birthday, bool gender, string picture, int origin_country, bool il_citizen, int add_city, string add, int add_num, int phone, bool com_app, int sys_id, bool insurance, bool com_insurance, int fam_stat_code, double salary_hour, double salary_overtime, double salary_trans, int day_off, int sabatical, int occupation_code, bool active, string disable_reason, int business ,int department_code)
+    public Employee(string employee_pass_id, string lname, string fname, DateTime birthday, bool gender, string picture, int origin_country, bool il_citizen, int add_city, string add, int add_num, int phone, bool com_app, int sys_id, bool insurance, bool com_insurance, int fam_stat_code, double salary_hour, double salary_overtime, double salary_trans, int day_off, int sabatical, int occupation_code, bool active, int business)
     { 
         this.employee_pass_id = employee_pass_id;
         this.lname = lname;
@@ -90,9 +88,7 @@ public class Employee
         this.sabatical = sabatical;
         this.occupation_code = occupation_code;
         this.active = active;
-        this.disable_reason = disable_reason;
         this.business = business;
-        this.department_code = department_code;
 
     }
 
@@ -409,18 +405,7 @@ public class Employee
         }
     }
 
-    public string Disable_reason
-    {
-        get
-        {
-            return disable_reason;
-        }
 
-        set
-        {
-            disable_reason = value;
-        }
-    }
 
     public int Business
     {
@@ -474,18 +459,6 @@ public class Employee
         }
     }
 
-    public int Department_code
-    {
-        get
-        {
-            return department_code;
-        }
-
-        set
-        {
-            department_code = value;
-        }
-    }
 
     public bool Food_incloud
     {

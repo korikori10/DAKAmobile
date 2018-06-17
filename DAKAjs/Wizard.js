@@ -50,7 +50,7 @@ $(document).ready(function () {
 
         }
     })
-    $("#PicAuth").on("change", function () {
+    $("#picAuth").on("change", function () {
         pbLBL = $("#pLB2")
         pbDiv = $("#progressBar2")
         pbLBL.text('Uploading...');
@@ -291,9 +291,8 @@ function insertEmp(array) {
 
             function (isConfirm) {
                 if (isConfirm) {
-                    insertEmployee({ EmployeeInfo: JSON.stringify(array) });
-                    EmpVisa.Ex_date = $('#date4_2').val();
-                    InsertDocs({ EmpVisa: JSON.stringify(EmpVisa) },{ EmpID: JSON.stringify(EmpID) }, { EmpAuth: JSON.stringify(EmpAuth) });
+                    insertEmployee({ EmployeeInfo: JSON.stringify(array) }, InsertAllDocs);
+
                 }
                 else {
                     // swal("Cancelled", "Your imaginary file is safe :)", "error");
@@ -302,6 +301,13 @@ function insertEmp(array) {
 
     }
 
+}
+
+function InsertAllDocs() {
+    EmpVisa.Ex_date = $('#date4_2').val();
+    InsertDocs({ FileInfo: JSON.stringify(EmpVisa) });
+    InsertDocs({ FileInfo: JSON.stringify(EmpID) });
+    InsertDocs({ FileInfo: JSON.stringify(EmpAuth) });
 }
 
 
