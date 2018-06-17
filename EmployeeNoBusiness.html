@@ -49,7 +49,51 @@
     <!-- END Page Level CSS-->
     <!-- BEGIN ROBUST CSS-->
     <link rel="stylesheet" type="text/css" href="assets/css/style-rtl.css" />
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
+        .menu {
+            /*float: left;*/
+            width: 100%;
+            text-align: center;
+        }
+
+            .menu a {
+                background-color: #e5e5e5;
+                padding: 8px;
+                margin-top: 7px;
+                display: block;
+                width: 100%;
+                color: black;
+            }
+        .icon-arrow2 {
+            float: left;
+            top:-20px;
+        }
+        .main {
+            float: left;
+            width: 100%;
+            padding: 0 20px;
+        }
+
+        .right {
+            background-color: #e5e5e5;
+            float: left;
+            width: 20%;
+            padding: 15px;
+            margin-top: 7px;
+            text-align: center;
+        }
+
+        @media only screen and (max-width:620px) {
+            /* For mobile phones: */
+            .menu, .main, .right {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body data-open="click" data-menu="vertical-compact-menu" data-col="2-columns" class="vertical-layout vertical-compact-menu 2-columns  fixed-navbar">
     <!-- navbar-fixed-top-->
@@ -97,50 +141,56 @@
     <div class="app-content content container-fluid">
         <div class="content-wrapper">
             <div class="content-body">
-                <section id="ajax">
-                    <div class="row">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4 class="card-title">עובדים ללא ציוות</h4>
-                                    <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
-                                    <div class="heading-elements">
-                                        <ul class="list-inline mb-0">
-                                            <li><a data-action="collapse"><i class="icon-minus4"></i></a></li>
-                                            <li><a data-action="reload"><i class="icon-reload"></i></a></li>
-                                            <li><a data-action="expand"><i class="icon-expand2"></i></a></li>
-                                            <li><a data-action="close"><i class="icon-cross2"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="card-body collapse in">
-                                    <div class="card-block card-dashboard">
-                                        <p class="card-text">עובדים אלו נמצאים לתאריך הנוכחי ללא ציוות. אנא וודא אם יש לך ציוותים חדשים להיום.     </p>
-
-                                        <div id="DataTables_Table_1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap4">
-                                            <table class="table table-striped table-bordered ajax-sourced dataTable" id="EmployeesTable" role="grid" aria-describedby="DataTables_Table_1_info">
-                                                <thead>
-                                                    <tr role="row">
-                                                        <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" style="width: 120px;" aria-label="Name: activate to sort column descending" aria-sort="ascending">מספר דרכון</th>
-                                                        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" style="width: 182px;" aria-label="Position: activate to sort column ascending">שם פרטי</th>
-                                                        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" style="width: 89px;" aria-label="Office: activate to sort column ascending">שם משפחה</th>
-                                                        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" style="width: 89px;" aria-label="Office: activate to sort column ascending">פעולות</th>
-                                                    </tr>
-                                                </thead>
-
-                                            </table>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
+                <!--<section id="ajax">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">עובדים ללא ציוות</h4>
+                        <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
+                        <div class="heading-elements">
+                            <ul class="list-inline mb-0">
+                                <li><a data-action="collapse"><i class="icon-minus4"></i></a></li>
+                                <li><a data-action="reload"><i class="icon-reload"></i></a></li>
+                                <li><a data-action="expand"><i class="icon-expand2"></i></a></li>
+                                <li><a data-action="close"><i class="icon-cross2"></i></a></li>
+                            </ul>
                         </div>
-
                     </div>
-                </section>
+                    <div class="card-body collapse in">
+                        <div class="card-block card-dashboard">
+                            <p class="card-text">עובדים אלו נמצאים לתאריך הנוכחי ללא ציוות. אנא וודא אם יש לך ציוותים חדשים להיום.     </p>
+
+                            <div id="DataTables_Table_1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap4">
+                                <table class="table table-striped table-bordered ajax-sourced dataTable" id="EmployeesTable" role="grid" aria-describedby="DataTables_Table_1_info">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" style="width: 120px;" aria-label="Name: activate to sort column descending" aria-sort="ascending">מספר דרכון</th>
+                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" style="width: 182px;" aria-label="Position: activate to sort column ascending">שם פרטי</th>
+                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" style="width: 89px;" aria-label="Office: activate to sort column ascending">שם משפחה</th>
+                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" style="width: 89px;" aria-label="Office: activate to sort column ascending">פעולות</th>
+                                        </tr>
+                                    </thead>
+
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
             </div>
+
+        </div>
+    </section>-->
+                <div style="overflow:auto">
+                    <div class="menu" id="DynamicEmployeesList">
+                       
+                   </div>
+
+                </div>
         </div>
     </div>
+        </div>
     <footer id="footer" class="footer undefined footer-dark">
 
         <img src="images/logo_daka.png" style="height:inherit" />

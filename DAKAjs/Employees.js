@@ -3,8 +3,25 @@ EmployeeInfo = new Object();
 
 $(document).ready(function () {
     getEmployeesnobusiness();
+    getEmployeesnobusinesss(renderEmployeesnobusiness);
 });
 
+
+function renderEmployeesnobusiness(results) {
+    //this is the callBackFunc 
+    totalEmp = 0;
+    results = $.parseJSON(results.d);
+    for (var i = 1; i <= results.length; i++) {
+        totalEmp = i;
+    }
+    var dl = $('#DynamicEmployeesList');
+    $.each(results, function (i, row) {
+        dynamicLi = '<a href="Wizard.html" value="' + row.Employee_pass_id + '"> <h3>' + row.Fname + " " + row.Lname + '</h3><p > ' + row.Employee_pass_id + '</p><i class="icon-arrow2"></i></a>';
+        EmployeeInfo.pass = row.Employee_pass_id;
+        sessionStorage.setItem("empInfo", EmployeeInfo.pass);
+        dl.append(dynamicLi);
+    });
+}
 
 //View button from employee no business
 $('.table').on('click', 'tr td button', function () {
@@ -18,10 +35,4 @@ $('.table').on('click', 'tr td button', function () {
     window.location = "Wizard.html";
 });
 
-//function renderEmployeesnobusiness(NoEmpresults) {
-//    //this is the callBackFunc 
-//    NoEmpresults = $.parseJSON(NoEmpresults.d);
-//    len = Object.keys(NoEmpresults).length;
-//    document.getElementById("unEmpNum").innerHTML = len;
 
-//}
