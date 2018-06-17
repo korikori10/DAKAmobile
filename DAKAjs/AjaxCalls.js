@@ -207,7 +207,7 @@ function getBusinesses(renderBusinesses) {
 }
 
 //insert employee from wizard to DB using ajax and WS
-function insertEmployee(EmployeeInfo) {
+function insertEmployee(EmployeeInfo, InsertAllDocs) {
     var emp = JSON.stringify(EmployeeInfo);
 
     $.ajax({
@@ -215,7 +215,8 @@ function insertEmployee(EmployeeInfo) {
         type: 'POST',
         contentType: 'application/json; charset = utf-8',
         data: emp,
-        success: function () {
+        success: function (results) {
+            InsertAllDocs(results);
             setTimeout(function () {
                 swal("בוצע!", "כל הנתונים נשמרו בהצלחה", "success");
             }, 1000);
@@ -223,6 +224,7 @@ function insertEmployee(EmployeeInfo) {
         error: function (xhr, status, error) {
             var err = eval("(" + xhr.responseText + ")");
             alert(err.Message);
+            
         }
     });
 }
@@ -379,18 +381,17 @@ function uploadFiles(formData, setEmpAuth) {
 }
 
 //Insert docs
-function InsertDocs(EmpVisa, EmpID, EmpAuth) {
+function InsertDocs(FileInfo) {
 
     // serialize the object to JSON string
-
+    var file = JSON.stringify(FileInfo);
     $.ajax({
         url: 'ajaxWebService.asmx/InsertDoc',
         type: 'POST',
         contentType: 'application/json; charset = utf-8',
-        data: { 'EmpVisa': JSON.stringify(EmpVisa), 'EmpID': JSON.stringify(EmpID), 'EmpAuth': JSON.stringify(EmpAuth) },
+        data: file,
         success: function (results) {
 
-            alert("yay");
         },
         error: function (xhr, status, error) {
             var err = eval("(" + xhr.responseText + ")");

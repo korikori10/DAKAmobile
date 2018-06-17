@@ -239,18 +239,14 @@ public class ajaxWebService : System.Web.Services.WebService
 
            [WebMethod]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-    public string InsertDoc(string EmpVisa, string EmpID, string EmpAuth)
+    public string InsertDoc(string FileInfo)
     {
         JavaScriptSerializer js = new JavaScriptSerializer();
-        Doc visa = js.Deserialize<Doc>(EmpVisa);
-        Doc ID = js.Deserialize<Doc>(EmpID);
-        Doc Auth = js.Deserialize<Doc>(EmpAuth);
-        int updated = 0;
-        updated += visa.updateDoc(visa);
-        updated += ID.updateDoc(ID);
-        updated += Auth.updateDoc(Auth);
+        Doc file = js.Deserialize<Doc>(FileInfo);
+
+       int updated = file.updateDoc(file);
         // serialize to string
-        string jsonStringCategory = js.Serialize(visa);
+        string jsonStringCategory = js.Serialize(file);
         return jsonStringCategory;
     }
 
