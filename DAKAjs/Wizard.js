@@ -10,6 +10,7 @@ $(document).ready(function () {
     getCountries(renderCountries);
     getBusinesses(renderBusinesses);
     getOccu(renderOccu);
+
 //Picture or file upload
     $("#Pic").on("change", function () {
         pbLBL = $("#pLBL2")
