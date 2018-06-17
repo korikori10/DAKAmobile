@@ -220,21 +220,40 @@ public class ajaxWebService : System.Web.Services.WebService
 
     }
 
-    [WebMethod]
+    //[WebMethod]
+    //[ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    //public string updateDoc(string EmployeeInfo)
+    //{
+    //    JavaScriptSerializer js = new JavaScriptSerializer();
+    //    Employee e = js.Deserialize<Employee>(EmployeeInfo);
+
+
+
+    //    int updated = e.updateDoc(e);
+
+    //    // serialize to string
+    //    string jsonStringCategory = js.Serialize(e);
+    //    return jsonStringCategory;
+    //}
+    
+
+           [WebMethod]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-    public string updateDoc(string EmployeeInfo)
+    public string InsertDoc(string EmpVisa, string EmpID, string EmpAuth)
     {
         JavaScriptSerializer js = new JavaScriptSerializer();
-        Employee e = js.Deserialize<Employee>(EmployeeInfo);
-
-
-
-        int updated = e.updateDoc(e);
-
+        Doc visa = js.Deserialize<Doc>(EmpVisa);
+        Doc ID = js.Deserialize<Doc>(EmpID);
+        Doc Auth = js.Deserialize<Doc>(EmpAuth);
+        int updated = 0;
+        updated += visa.updateDoc(visa);
+        updated += ID.updateDoc(ID);
+        updated += Auth.updateDoc(Auth);
         // serialize to string
-        string jsonStringCategory = js.Serialize(e);
+        string jsonStringCategory = js.Serialize(visa);
         return jsonStringCategory;
     }
+
     [WebMethod]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
     public void updateEmployee(string EmployeeInfo)

@@ -280,7 +280,7 @@ function getUserByUserName(username, renderUser) {
 }
 
 //Upload files from wizard
-function uploadFiles(formData, setEmpFile) {
+function uploadFiles(formData, setEmpPic) {
     pbLBL = $("#pbLBL")
     pbDiv = $("#progressBar")
     $.ajax({
@@ -304,17 +304,92 @@ function uploadFiles(formData, setEmpFile) {
    
 }
 
+//Upload files from wizard
+function uploadFiles(formData, setEmpVisa) {
+    pbLBL = $("#pbLBL")
+    pbDiv = $("#progressBar")
+    $.ajax({
+        url: 'UploadHandler.ashx',
+        method: "POST",
+        data: formData,
+        contentType: false,
+        processData: false,
+        dataType: 'json',
+        success: function (results) {
+            setEmpVisa(results);
+            pbLBL.text('Complete');
+            pbDiv.fadeOut(2000);
+        },
+        error: function (xhr, status, error) {
+            var err = eval("(" + xhr.responseText + ")");
+            alert(err.Message);
+        }
+
+    });
+
+}
+//Upload files from wizard
+function uploadFiles(formData, setEmpID) {
+    pbLBL = $("#pbLBL")
+    pbDiv = $("#progressBar")
+    $.ajax({
+        url: 'UploadHandler.ashx',
+        method: "POST",
+        data: formData,
+        contentType: false,
+        processData: false,
+        dataType: 'json',
+        success: function (results) {
+            setEmpID(results);
+            pbLBL.text('Complete');
+            pbDiv.fadeOut(2000);
+        },
+        error: function (xhr, status, error) {
+            var err = eval("(" + xhr.responseText + ")");
+            alert(err.Message);
+        }
+
+    });
+
+}
+
+//Upload files from wizard
+function uploadFiles(formData, setEmpAuth) {
+    pbLBL = $("#pbLBL")
+    pbDiv = $("#progressBar")
+    $.ajax({
+        url: 'UploadHandler.ashx',
+        method: "POST",
+        data: formData,
+        contentType: false,
+        processData: false,
+        dataType: 'json',
+        success: function (results) {
+            setEmpAuth(results);
+            pbLBL.text('Complete');
+            pbDiv.fadeOut(2000);
+        },
+        error: function (xhr, status, error) {
+            var err = eval("(" + xhr.responseText + ")");
+            alert(err.Message);
+        }
+
+    });
+
+}
+
 //Insert docs
-function InsertDocs(EmployeeInfo) {
+function InsertDocs(EmpVisa, EmpID, EmpAuth) {
 
     // serialize the object to JSON string
-    var emp = JSON.stringify(EmployeeInfo);
-
+    var visa = JSON.stringify(EmpVisa);
+    var ID = JSON.stringify(EmpID);
+    var Auth = JSON.stringify(EmpAuth);
     $.ajax({
         url: 'ajaxWebService.asmx/updateDoc',
         type: 'POST',
         contentType: 'application/json; charset = utf-8',
-        data: emp,
+        data: { visa, ID, Auth },
         success: function (results) {
 
             setTimeout(function () {

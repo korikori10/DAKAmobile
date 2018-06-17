@@ -3,7 +3,9 @@ EmployeeInfo = new Object();
 resultsSave = new Object();
 isUpdate = new Object();
 var EmpPic = null;
-var EmpFile = null;
+EmpVisa = new Object();
+EmpID = new Object();
+EmpAuth = new Object();
 
 $(document).ready(function () {
     getCities(renderCities);
@@ -24,12 +26,11 @@ $(document).ready(function () {
         for (var i = 0; i < files.length; i++) {
             formData.append(files[i].name, files[i])
         }
-        EmployeeInfo.Doc_id = EmployeeInfo.pass + makeid();
-        EmployeeInfo.Doctype_id = '3';
+
         uploadFiles(formData, setEmpPic);
 }
     })
-    $("#Pic1").on("change", function () {
+    $("#PicID").on("change", function () {
         pbLBL = $("#pbLBL")
         pbDiv = $("#progressBar1")
         pbLBL.text('Uploading...');
@@ -44,11 +45,11 @@ $(document).ready(function () {
             }
             EmployeeInfo.Doc_id = EmployeeInfo.pass + makeid();
             EmployeeInfo.Doctype_id = '2';
-            uploadFiles(formData, setEmpFile);
+            uploadFiles(formData, setEmpID);
 
         }
     })
-    $("#Pic2").on("change", function () {
+    $("#PicAuth").on("change", function () {
         pbLBL = $("#pLB2")
         pbDiv = $("#progressBar2")
         pbLBL.text('Uploading...');
@@ -61,9 +62,9 @@ $(document).ready(function () {
                 formData.append(files[i].name, files[i])
             }
             EmployeeInfo.Doc_id = EmployeeInfo.pass + makeid();
-            EmployeeInfo.Doctype_id = '4';
+            EmployeeInfo.Doctype_id = '3';
             EmployeeInfo.Employee_pass_id = EmployeeInfo.pass
-            uploadFiles(formData, setEmpFile);
+            uploadFiles(formData, setEmpAuth);
 
         }
     })
@@ -80,9 +81,8 @@ $(document).ready(function () {
             for (var i = 0; i < files.length; i++) {
                 formData.append(files[i].name, files[i])
             }
-            EmployeeInfo.Doc_id = EmployeeInfo.pass + makeid();
-            EmployeeInfo.Doctype_id = '1';
-            uploadFiles(formData, setEmpPic);
+            
+            uploadFiles(formData, setEmpVisa);
         }
     })
 });
@@ -97,9 +97,25 @@ function makeid() {
     return text;
 }
 
-function setEmpFile(results)
+function setEmpVisa(results)
 {
-    EmpFile = results;
+    EmpVisa.Img_url = results;
+    EmpVisa.Doc_id = EmployeeInfo.pass + makeid();
+    EmpVisa.Doctype_id = '1';
+    EmpVisa.Employee_pass_id = EmployeeInfo.pass;
+   
+}
+function setEmpAuth(results) {
+    EmpAuth.Img_url = results;
+    EmpAuth.Doc_id = EmployeeInfo.pass + makeid();
+    EmpAuth.Doctype_id = '3';
+    EmpAuth.Employee_pass_id = EmployeeInfo.pass;
+}
+function setEmpID(results) {
+    EmpID.Img_url = results;
+    EmpID.Doc_id = EmployeeInfo.pass + makeid();
+    EmpID.Doctype_id = '2';
+    EmpID.Employee_pass_id = EmployeeInfo.pass;
 }
 
 function setEmpPic(results) {
@@ -274,8 +290,9 @@ function insertEmp(array) {
 
             function (isConfirm) {
                 if (isConfirm) {
-                    InsertDocs({ EmployeeInfo: JSON.stringify(EmployeeInfo) });
                     insertEmployee({ EmployeeInfo: JSON.stringify(array) });
+                    EmpVisa.Ex_date = $('#date4_2').val();
+                    InsertDocs({ EmpVisa: JSON.stringify(EmpVisa) },{ EmpID: JSON.stringify(EmpID) }, { EmpAuth: JSON.stringify(EmpAuth) });
                 }
                 else {
                     // swal("Cancelled", "Your imaginary file is safe :)", "error");

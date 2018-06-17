@@ -14,6 +14,7 @@ public class Doc
     DateTime last_update;
     DateTime ex_date;
     bool active;
+    string employee_pass_id;
 
     public string Doc_id
     {
@@ -93,10 +94,34 @@ public class Doc
         }
     }
 
+    public string Employee_pass_id
+    {
+        get
+        {
+            return employee_pass_id;
+        }
+
+        set
+        {
+            employee_pass_id = value;
+        }
+    }
+
     public Doc()
     {
         //
         // TODO: Add constructor logic here
         //
     }
+    public int updateDoc(Doc d)
+    {
+        DBServices dbs = new DBServices();
+
+        int e = dbs.inserNewtDoc(d);
+
+
+        return e;
+
+    }
+
 }

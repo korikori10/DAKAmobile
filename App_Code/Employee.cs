@@ -711,14 +711,5 @@ public class Employee
         }
 
     }
-    public int updateDoc(Employee emp)
-    {
-        DBServices dbs = new DBServices();
 
-        int e = dbs.inserNewtDoc(emp);
-
-
-        return e;
-
-    }
 }
