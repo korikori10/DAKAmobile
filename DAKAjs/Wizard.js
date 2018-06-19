@@ -181,7 +181,7 @@ function renderEmployeeByID(results) {
         populate(frm, data);
         $('.selectize-select').selectize();
         document.getElementById("kindoform").innerHTML = "עובד זה כבר פעיל במערכת, יש לבצע ציוות מחדש בלבד";
-
+        $('.actions li a[href^="#next"]').trigger('click');
         
     }
 
