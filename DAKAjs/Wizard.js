@@ -303,11 +303,14 @@ function insertEmp(array) {
 
 }
 
-function InsertAllDocs() {
+function InsertAllDocs(results) {
     EmpVisa.Ex_date = $('#date4_2').val();
     InsertDocs({ FileInfo: JSON.stringify(EmpVisa) });
     InsertDocs({ FileInfo: JSON.stringify(EmpID) });
     InsertDocs({ FileInfo: JSON.stringify(EmpAuth) });
+    var cresults= $.parseJSON(results.d)
+    sessionStorage.setItem('contract' , cresults);
+    window.location = "Contractdisplay.html";
 }
 
 
