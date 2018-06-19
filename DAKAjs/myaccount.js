@@ -13,6 +13,7 @@ function renderUser(results) {
     document.getElementById('mail').innerHTML = results.U_name;
     document.getElementById('phone').innerHTML = results.Phone;
     document.getElementById('usertype').innerHTML = results.U_type_name;
+    document.getElementById('img_url').src = results.User_img;
 }
 
 //make User labels editable

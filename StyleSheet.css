@@ -8,6 +8,9 @@
     height: 60px; /* Height of the footer */
     background-color: #12273b;
     text-align: center;
+    margin:0;
+    padding:0;
+   
 }
 
 .pro{

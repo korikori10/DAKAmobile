@@ -16,7 +16,7 @@ public class User
     int u_type_code;
     string u_type_name;
     int phone;
-
+    string user_img;
 
     public int Uid
     {
@@ -109,6 +109,19 @@ public class User
         }
     }
 
+    public string User_img
+    {
+        get
+        {
+            return user_img;
+        }
+
+        set
+        {
+            user_img = value;
+        }
+    }
+
     public User()
     {
         //
@@ -117,7 +130,7 @@ public class User
     }
 
  
-    public User(int uid, string u_name, string u_pwd, string full_name, int u_type_code, string u_type_name, int phone)
+    public User(int uid, string u_name, string u_pwd, string full_name, int u_type_code, string u_type_name, int phone,string user_img)
     {
         this.uid = uid;
         this.u_name = u_name;
@@ -126,6 +139,7 @@ public class User
         this.u_type_code = u_type_code;
         this.U_type_name = u_type_name;
         this.phone = phone;
+        this.user_img = user_img;
     }
 
     public User getUserByUserName(string username)
@@ -137,5 +151,14 @@ public class User
         return u;
 
     }
-   
+
+
+        public void UpdateUser(User u)
+    {
+        DBServices dbs = new DBServices();
+
+        dbs.updateUser(u);
+
+    }
+
 }

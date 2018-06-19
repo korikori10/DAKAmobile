@@ -363,9 +363,10 @@ public class DBServices
                 u.Full_name= dr["full_name"].ToString();
                 u.U_type_code = Convert.ToInt32(dr["U_type_code"]);
                 u.Phone = Convert.ToInt32(dr["phone"]);
+                u.User_img= dr["user_img"].ToString();
 
 
-               Users.Add(u);
+                Users.Add(u);
             }
 
             return Users;
@@ -409,7 +410,7 @@ public class DBServices
             User user = new User();
             while (dr.Read())
             {
-                user = new User(Convert.ToInt32(dr["uid"]), dr["u_name"].ToString(), dr["u_pwd"].ToString(), dr["full_name"].ToString(), Convert.ToInt32(dr["U_type_code"]), (dr["U_type_name"]).ToString(), Convert.ToInt32(dr["phone"]));
+                user = new User(Convert.ToInt32(dr["uid"]), dr["u_name"].ToString(), dr["u_pwd"].ToString(), dr["full_name"].ToString(), Convert.ToInt32(dr["U_type_code"]), (dr["U_type_name"]).ToString(), Convert.ToInt32(dr["phone"]), (dr["user_img"]).ToString());
             }
 
             return user;
@@ -794,8 +795,8 @@ public class DBServices
 
         StringBuilder sb = new StringBuilder();
         // use a string builder to create the dynamic string
-        sb.AppendFormat("Values({0}, '{1}' ,{2}, {3}, {4},{5})", user.Uid, user.U_name, user.U_pwd, user.Full_name, user.U_type_code,user.Phone);//לבדוק מה סטרינג כי הוא מצריך גרשיים אחדיים ולאינט לא!לבדוק מי צריך מה לגבי בול והשאר
-        String prefix = "INSERT INTO USERS " + "(uid,u_name,u_pwd,full_name,U_type_code,phone)";
+        sb.AppendFormat("Values({0}, '{1}' ,{2}, {3}, {4},{5},{6})", user.Uid, user.U_name, user.U_pwd, user.Full_name, user.U_type_code,user.Phone,user.User_img);//לבדוק מה סטרינג כי הוא מצריך גרשיים אחדיים ולאינט לא!לבדוק מי צריך מה לגבי בול והשאר
+        String prefix = "INSERT INTO USERS " + "(uid,u_name,u_pwd,full_name,U_type_code,phone,user_img)";
         command = prefix + sb.ToString();
 
         return command;
@@ -1059,7 +1060,7 @@ public class DBServices
     //--------------------------------------------------------------------
     // Update user
     //--------------------------------------------------------------------
-    public int update(User u)
+    public int updateUser(User u)
     {
 
         SqlConnection con;
@@ -1111,9 +1112,9 @@ public class DBServices
         String command;
 
         StringBuilder sb = new StringBuilder();
-        // use a string builder to create the dynamic string
-        //String prefix = "UPDATE productN SET inventory = " /*+ emp.Inventory + " Where product_id = " + emp.ProductId*/;
-        command = "";// prefix;
+      //  use a string builder to create the dynamic string
+       String prefix = "UPDATE USERS SET u_name = '" + u.U_name + "',full_name= '" + u.Full_name + "',U_type_code='" + u.U_type_code + "',phone='" + u.Phone + "',user_img='"+u.User_img+ " Where u_id = " + u.Uid;
+        command = prefix;
 
         return command;
     }
