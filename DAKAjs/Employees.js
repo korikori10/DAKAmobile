@@ -17,8 +17,9 @@ function renderEmployeesnobusiness(results) {
     var dl = $('#DynamicEmployeesList');
     dl.empty();
     $.each(results, function (i, row) {
-        
-        dynamicLi = '<a href="Wizard.html" id="' + row.Employee_pass_id + '"> <h3>' + row.Fname + " " + row.Lname + '</h3><p > ' + row.Employee_pass_id + '</p><i class="icon-arrow-left"></i></a>';
+        if (row.Picture == "") { imageFullPath = "/images/employee-no-one.jpg" }
+        else { imageFullPath = row.Picture }
+        dynamicLi = '<a href="Wizard.html" id="' + row.Employee_pass_id + '"> <img src="' + imageFullPath + '"/><h3>' + row.Fname + " " + row.Lname + '</h3><p > ' + row.Employee_pass_id + '</p><i class="icon-arrow-left"></i></a>';
         dl.append(dynamicLi);
     });
     $("a").on('click', function () {
