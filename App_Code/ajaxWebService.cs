@@ -159,7 +159,7 @@ public class ajaxWebService : System.Web.Services.WebService
     }
     [WebMethod]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-    public void insertEmployee(string EmployeeInfo)
+    public string insertEmployee(string EmployeeInfo)
     {
 
         JavaScriptSerializer js = new JavaScriptSerializer();
@@ -167,7 +167,7 @@ public class ajaxWebService : System.Web.Services.WebService
         e.Commence_date = DateTime.Now.ToString("dd/MM/yyy");
          int inserted = e.insertEmployee(e);
         PDF pdf = new PDF();
-        pdf.fillForm(e);
+       string contractPath = pdf.fillForm(e);
 
         if (inserted > 0)
         {
@@ -217,6 +217,9 @@ public class ajaxWebService : System.Web.Services.WebService
 
             System.Diagnostics.Debug.WriteLine(responseContent);
         }
+       
+        string jsonStringCategory = js.Serialize(contractPath);
+        return jsonStringCategory;
 
     }
 
@@ -235,9 +238,9 @@ public class ajaxWebService : System.Web.Services.WebService
     //    string jsonStringCategory = js.Serialize(e);
     //    return jsonStringCategory;
     //}
-    
 
-           [WebMethod]
+
+    [WebMethod]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
     public string InsertDoc(string FileInfo)
     {

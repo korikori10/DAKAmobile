@@ -22,7 +22,7 @@ public class PDF
         //
     }
 
-    public void fillForm(Employee e)
+    public string fillForm(Employee e)
     {
         Dictionary<string, string> props = new Dictionary<string, string>();
         PropertyInfo[] properties = e.GetType().GetProperties();
@@ -81,13 +81,14 @@ public class PDF
                       }
                 pdfStamper.FormFlattening = true;
                 pdfStamper.Close();
-
+                return savepath;
             }
         
         
         }
         catch (Exception ex)
         {
+            return null;
             // write to log
             throw (ex);
         }
