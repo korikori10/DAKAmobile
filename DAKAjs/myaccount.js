@@ -3,6 +3,20 @@ $(document).ready(function () {
     var username = sessionStorage.getItem('userName');
 
     getUserByUserName(username, renderUser);
+    $('#password').click(function () {
+        $('#resetPassModal').modal('toggle');
+    });
+    $('#resetPass').click(function () {
+        var newPass = $('#newPass').val();
+          
+
+        if (newPass == $('#newPassCon').val()) {
+            updatePass(newpass, username)
+        }
+            else {
+            $('#error').html
+            }
+    });
 });
 
 

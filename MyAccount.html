@@ -101,19 +101,19 @@
     <div class="app-content content container-fluid">
         <div class="content-wrapper">
             <div class="content-body">
-                <section id="user-profile-cards" >
+                <section id="user-profile-cards">
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="card">
                                 <div class="text-xs-center">
                                     <div class="card-block">
-                                        <img id="img_url" class="rounded-circle  height-150" alt="Card image">
+                                        <img id="img_url" class="rounded-circle  height-150" alt="Card image" />
                                     </div>
                                     <div class="card-block">
-                                        <button id="password"   class="btn btn-secondary round btn-min-width mr-1 mb-1"><i class="icon-plus4"></i> שינוי סיסמא</button>
+                                        <button id="password" class="btn btn-secondary round btn-min-width mr-1 mb-1"><i class="icon-plus4"></i> שינוי סיסמא</button>
                                         <br />
                                         <button id="edit" class="btn btn-secondary round btn-min-width mr-1 mb-1"><i class="icon-head"></i> שמור פרטים אישיים</button>
-                                   
+
                                     </div>
                                 </div>
                                 <label class="list-group-item"><i class="icon-user-secret"></i> שם משתמש  </label>
@@ -125,17 +125,45 @@
                                 <label class="list-group-item"><i class="icon-phone"></i> טלפון</label>
                                 <label class="labels" contenteditable="true" type="text" name="phone" id="phone" value=""></label>
 
-                                <label  class="list-group-item">
+                                <label class="list-group-item">
                                     <i class="icon-user-tie"></i> סוג משתמש
                                 </label>
                                 <label class="labels" contenteditable="true" type="text" name="u_type_name" id="usertype" value=""></label>
                                 <div hidden="hidden" id="save"></div>
                             </div>
-                            
-              </div>
+
                         </div>
-                            </section>
+                    </div>
+                </section>
                 <!--/ User Profile Cards -->
+                <div class="modal fade text-xs-left" id="resetPassModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel35" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <h3 class="modal-title" id="myModalLabel35">שינוי סיסמה</h3>
+                            </div>
+                            <form id="resetPass">
+
+                                <div class="modal-body">
+                                    <fieldset class="form-group floating-label-form-group has-danger">
+                                        <label for="newPass">סיסמה חדשה :</label>
+                                        <input type="text" class="form-control" id="newPass" name="newPass" />
+                                        <label for="newPassCon">אמת סיסמה חדשה :</label>
+                                        <input type="text" class="form-control" id="newPassCon" name="newPassCon" />
+                                    </fieldset>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <input name="resetPass" id="resetPass" type="button" class="btn btn-outline-primary btn-lg" value="אפס סיסמה" />
+                                    <input type="reset" class="btn btn-outline-secondary btn-lg" data-dismiss="modal" value="סגור" />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
