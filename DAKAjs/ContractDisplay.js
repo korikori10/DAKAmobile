@@ -1,7 +1,13 @@
 ﻿$(document).ready(function () {
     var contract = sessionStorage.getItem('contract')
     $("#signtaure").jSignature();
-    //$('#contractDisplay').attr('src', "http://docs.google.com/gview?url="+ contract +"&embedded=true");
+    //$("#signtaure").jSignature("reset");
+    $('#contractDisplay').attr('src',  contract );
+    $('#saveSig').click(function () {
+        var datapair = $("#signature").jSignature("getData")
+        var svg = datapair;//[0] + "," + datapair[1] 
+        InsertSignature(svg, contract);
+    });
 });
 
  function sign () {

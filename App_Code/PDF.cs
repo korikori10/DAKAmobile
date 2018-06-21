@@ -3,6 +3,8 @@ using iTextSharp.text.pdf;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -15,6 +17,35 @@ using System.Web;
 /// </summary>
 public class PDF
 {
+    string file;
+    string svgImage;
+
+    public string File
+    {
+        get
+        {
+            return file;
+        }
+
+        set
+        {
+            file = value;
+        }
+    }
+
+    public string SvgImage
+    {
+        get
+        {
+            return svgImage;
+        }
+
+        set
+        {
+            svgImage = value;
+        }
+    }
+
     public PDF()
     {
         //
@@ -96,5 +127,33 @@ public class PDF
         {
         }
     }
+    public void AddSignature(string svgString, string fileString)
+    {
 
+        // System.Buffer.BlockCopy(svgString.ToCharArray(), 0, bytes, 0, bytes.Length);
+        svgString = svgString.Split(',')[1];
+        //byte[] data = Convert.FromBase64String(svgString); //new byte[svgString.Length * sizeof(char)];
+        Byte[] bytes = Convert.FromBase64String(svgString);
+        iTextSharp.text.Image itextImage = iTextSharp.text.Image.GetInstance(bytes);
+        //  System.Drawing.ImageConverter imageConverter = new System.Drawing.ImageConverter();
+        //System.Drawing.Image image = (System.Drawing.Image)imageConverter.ConvertFrom(data) as System.Drawing.Image;
+        // image.Save("c:\\hello", ImageFormat.Jpeg);
+        string saveFileString = fileString.Split('.')[0];
+        using (Stream inputPdfStream = new FileStream(fileString, FileMode.Open, FileAccess.Read, FileShare.Read))
+            
+        //using (Stream inputImageStream = new FileStream("some_image.jpg", FileMode.Open, FileAccess.Read, FileShare.Read))
+        using (Stream outputPdfStream = new FileStream(saveFileString + "_signed.pdf", FileMode.Create, FileAccess.Write, FileShare.None))
+        {
+            var reader = new PdfReader(inputPdfStream);
+            var stamper = new PdfStamper(reader, outputPdfStream);
+            var pdfContentByte = stamper.GetOverContent(1);
+            //  iTextSharp.text.Image itextImage = iTextSharp.text.Image.GetInstance(image, BaseColor.BLACK);
+            // Image image = Image.GetInstance(inputImageStream);
+            itextImage.SetAbsolutePosition(100, 100);
+            pdfContentByte.AddImage(itextImage);
+            stamper.Close();
+
+
+        }
+    }
 }

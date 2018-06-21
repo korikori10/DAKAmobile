@@ -223,6 +223,21 @@ public class ajaxWebService : System.Web.Services.WebService
 
     }
 
+    
+           [WebMethod]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    public void insertSignature(string svgString, string fileString)
+    {
+        PDF pdf = new PDF();
+        pdf.AddSignature(svgString, fileString);
+        //JavaScriptSerializer js = new JavaScriptSerializer();
+        //// serialize to string
+        //var jsonStringCategory = js.Serialize(LE);
+        ////Context.Response.Write(jsonStringCategory);
+        //return jsonStringCategory;
+
+    }
+
     //[WebMethod]
     //[ScriptMethod(ResponseFormat = ResponseFormat.Json)]
     //public string updateDoc(string EmployeeInfo)

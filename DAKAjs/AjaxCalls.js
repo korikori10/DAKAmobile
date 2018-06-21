@@ -229,6 +229,29 @@ function insertEmployee(EmployeeInfo, InsertAllDocs) {
     });
 }
 
+
+function InsertSignature(svg, file) {
+ 
+
+    $.ajax({
+        url: WSUrl + '/insertSignature',
+        type: 'POST',
+        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+        data: { svgString: svg, fileString: file },
+        success: function () {
+   
+            setTimeout(function () {
+                swal("בוצע!", "כל הנתונים נשמרו בהצלחה", "success");
+            }, 1000);
+        },
+        error: function (xhr, status, error) {
+            var err = eval("(" + xhr.responseText + ")");
+            alert(err.Message);
+
+        }
+    });
+}
+
 //update employee from wizard to DB using ajax and WS
 function updateEmployee(EmployeeInfo) {
     var emp = JSON.stringify(EmployeeInfo);
