@@ -230,6 +230,27 @@ function insertEmployee(EmployeeInfo, InsertAllDocs) {
 }
 
 
+function updatePass(newpass, username) {
+    userPass = JSON.stringify({ userName: username, pass: newpass })
+    $.ajax({
+        url: WSUrl + '/updateUserPass',
+        type: 'POST',
+        contentType: 'application/json; charset = utf-8',
+        data: userPass,
+        success: function () {
+            setTimeout(function () {
+                swal("בוצע!", "כל הנתונים נשמרו בהצלחה", "success");
+            }, 1000);
+        },
+        error: function (xhr, status, error) {
+            var err = eval("(" + xhr.responseText + ")");
+            alert(err.Message);
+
+        }
+    });
+}
+
+
 function InsertSignature(svg, file) {
  
 

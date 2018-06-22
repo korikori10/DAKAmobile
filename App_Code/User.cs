@@ -160,5 +160,11 @@ public class User
         dbs.updateUser(u);
 
     }
+    public void updatePass(string userName, string pass)
+    {
+        DBServices dbs = new DBServices();
+
+        dbs.updateUserPass(userName, pass);
+    }
 
 }
