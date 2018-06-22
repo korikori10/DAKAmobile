@@ -1131,6 +1131,66 @@ public class DBServices
         return o;
 
     }
+    public int updateUserPass(string userName, string Pass)
+    {
+
+        SqlConnection con;
+        SqlCommand cmd;
+
+        try
+        {
+            con = connect("DAKADBConnectionString"); // create the connection
+        }
+        catch (Exception ex)
+        {
+            // write to log
+            throw (ex);
+        }
+
+        String cStr = BuildUpdateCommand(userName, Pass);      // helper method to build the insert string
+
+        cmd = CreateCommand(cStr, con);             // create the command
+
+        try
+        {
+            int numEffected = cmd.ExecuteNonQuery(); // execute the command
+            return numEffected;
+        }
+        catch (Exception ex)
+        {
+            return 0;
+            // write to log
+            throw (ex);
+        }
+
+        finally
+        {
+            if (con != null)
+            {
+                // close the db connection
+                con.Close();
+            }
+        }
+
+    }
+
+
+    //--------------------------------------------------------------------
+    // Build the update a user command String
+    //--------------------------------------------------------------------
+    private String BuildUpdateCommand(string userName, string Pass)
+    {
+        String command;
+
+        StringBuilder sb = new StringBuilder();
+        //  use a string builder to create the dynamic string
+        String prefix = "UPDATE USERS SET u_pwd = '" + Pass + "' Where u_name = '" + userName + "'";
+        command = prefix;
+
+        return command;
+    }
+
+
 
     //--------------------------------------------------------------------
     // Update emp in bus end date UpdateFile

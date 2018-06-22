@@ -7,14 +7,14 @@ $(document).ready(function () {
         $('#resetPassModal').modal('toggle');
     });
     $('#resetPass').click(function () {
-        var newPass = $('#newPass').val();
+        var newpass = $('#newPass').val();
           
 
-        if (newPass == $('#newPassCon').val()) {
+        if (newpass == $('#newPassCon').val()) {
             updatePass(newpass, username)
         }
             else {
-            $('#error').html
+            $('#error').html('*הסיסמאות לא תואמות').css("color", "red");
             }
     });
 });
