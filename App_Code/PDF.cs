@@ -149,7 +149,8 @@ public class PDF
             var pdfContentByte = stamper.GetOverContent(1);
             //  iTextSharp.text.Image itextImage = iTextSharp.text.Image.GetInstance(image, BaseColor.BLACK);
             // Image image = Image.GetInstance(inputImageStream);
-            itextImage.SetAbsolutePosition(100, 100);
+            itextImage.SetAbsolutePosition(100, 200);
+            itextImage.Width = 100;
             pdfContentByte.AddImage(itextImage);
             stamper.Close();
 

@@ -230,11 +230,7 @@ public class ajaxWebService : System.Web.Services.WebService
     {
         PDF pdf = new PDF();
         pdf.AddSignature(svgString, fileString);
-        //JavaScriptSerializer js = new JavaScriptSerializer();
-        //// serialize to string
-        //var jsonStringCategory = js.Serialize(LE);
-        ////Context.Response.Write(jsonStringCategory);
-        //return jsonStringCategory;
+  
 
     }
     
