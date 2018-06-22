@@ -237,7 +237,7 @@ function updatePass(newpass, username) {
         type: 'POST',
         contentType: 'application/json; charset = utf-8',
         data: userPass,
-        success: function (results) {
+        success: function () {
             setTimeout(function () {
                 swal("בוצע!", "כל הנתונים נשמרו בהצלחה", "success");
             }, 1000);
