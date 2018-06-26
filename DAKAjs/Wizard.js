@@ -310,7 +310,7 @@ function InsertAllDocs(results) {
     InsertDocs({ FileInfo: JSON.stringify(EmpAuth) });
     var cresults= $.parseJSON(results.d)
     sessionStorage.setItem('contract' , cresults);
-    window.location = "Contractdisplay.html";
+    window.location = "ContractDisplay.html";
 }
 
 
