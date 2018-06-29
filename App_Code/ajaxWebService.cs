@@ -281,14 +281,17 @@ public class ajaxWebService : System.Web.Services.WebService
 
     [WebMethod]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-    public void updateEmployee(string EmployeeInfo)
+    public string updateEmployee(string EmployeeInfo)
     {
 
         JavaScriptSerializer js = new JavaScriptSerializer();
         Employee e = js.Deserialize<Employee>(EmployeeInfo);
 
         e.updateEmp(e);
-
+        PDF pdf = new PDF();
+        List<string> contractPath = pdf.fillForm(e);
+        string jsonStringCategory = js.Serialize(contractPath);
+        return jsonStringCategory;
 
     }
 

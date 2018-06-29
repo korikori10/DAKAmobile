@@ -272,7 +272,7 @@ function InsertSignature(svg, file, insertContract) {
 }
 
 //update employee from wizard to DB using ajax and WS
-function updateEmployee(EmployeeInfo) {
+function updateEmployee(EmployeeInfo, InsertAllDocs) {
     var emp = JSON.stringify(EmployeeInfo);
 
     $.ajax({
@@ -280,21 +280,8 @@ function updateEmployee(EmployeeInfo) {
         type: 'POST',
         contentType: 'application/json; charset = utf-8',
         data: emp,
-        success: function () {
-        //    alert(EmployeeInfo);
-
-            //var files = $("#Pic")[0].files;
-            //    if (files.length > 0) {
-            //        var formData = FormData();
-            //        for (var i = 0; i < files.length; i++) {
-            //            formData.append(files[i].name, files[i])
-            //        }
-
-            //        uploadFiles(formData);
-            //    }
-            setTimeout(function () {
-                swal("בוצע!", "כל הנתונים נשמרו בהצלחה", "success");
-            }, 1000);
+        success: function (results) {
+            InsertAllDocs(results);
                 
         },
         error: function (xhr, status, error) {
@@ -423,6 +410,25 @@ function uploadFiles(formData, setEmpAuth) {
 }
 
 //Insert docs
+function InsertConts(FileInfo, i, finished) {
+
+    // serialize the object to JSON string
+    var file = JSON.stringify(FileInfo);
+    $.ajax({
+        url: 'ajaxWebService.asmx/InsertDoc',
+        type: 'POST',
+        contentType: 'application/json; charset = utf-8',
+        data: file,
+        success: function (results) {
+            finished(i)
+        },
+        error: function (xhr, status, error) {
+            var err = eval("(" + xhr.responseText + ")");
+            alert(err.Message);
+        }
+    });
+}
+
 function InsertDocs(FileInfo) {
 
     // serialize the object to JSON string
@@ -433,7 +439,7 @@ function InsertDocs(FileInfo) {
         contentType: 'application/json; charset = utf-8',
         data: file,
         success: function (results) {
-
+          
         },
         error: function (xhr, status, error) {
             var err = eval("(" + xhr.responseText + ")");

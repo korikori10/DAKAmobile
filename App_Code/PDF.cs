@@ -138,47 +138,45 @@ public class PDF
     public List<string> AddSignature(string svgString, string[] fileString)
     {
         List<string> savePaths = new List<string>();
+        svgString = svgString.Split(',')[1];
+        Byte[] bytes = Convert.FromBase64String(svgString);
+        iTextSharp.text.Image itextImage = iTextSharp.text.Image.GetInstance(bytes);
         foreach (var file in fileString)
         {
 
 
             try
             {
-                // System.Buffer.BlockCopy(svgString.ToCharArray(), 0, bytes, 0, bytes.Length);
-                svgString = svgString.Split(',')[1];
-                //byte[] data = Convert.FromBase64String(svgString); //new byte[svgString.Length * sizeof(char)];
-                Byte[] bytes = Convert.FromBase64String(svgString);
-                iTextSharp.text.Image itextImage = iTextSharp.text.Image.GetInstance(bytes);
-                // itextImage.ScaleToFit(150f, 100f);
-                //  System.Drawing.ImageConverter imageConverter = new System.Drawing.ImageConverter();
-                //System.Drawing.Image image = (System.Drawing.Image)imageConverter.ConvertFrom(data) as System.Drawing.Image;
-                // image.Save("c:\\hello", ImageFormat.Jpeg);
+
+
                 string saveFileString = file.Split('.')[0] + "_signed.pdf";
                 using (Stream inputPdfStream = new FileStream(file, FileMode.Open, FileAccess.Read, FileShare.Read))
 
-                //using (Stream inputImageStream = new FileStream("some_image.jpg", FileMode.Open, FileAccess.Read, FileShare.Read))
+                
                 using (Stream outputPdfStream = new FileStream(saveFileString, FileMode.Create, FileAccess.Write, FileShare.None))
                 {
                     var reader = new PdfReader(inputPdfStream);
                     var stamper = new PdfStamper(reader, outputPdfStream);
                     var pdfContentByte = stamper.GetOverContent(1);
-                    //  iTextSharp.text.Image itextImage = iTextSharp.text.Image.GetInstance(image, BaseColor.BLACK);
-                    // Image image = Image.GetInstance(inputImageStream);
+
                     AcroFields formFields = stamper.AcroFields;
+                    if (formFields.Fields.ContainsKey("signature"))
+                    {
                     AcroFields.FieldPosition f = formFields.GetFieldPositions("signature")[0];
                     formFields.SetField("Start_date", DateTime.Now.ToString("yyyy/MM/dd"));
                     iTextSharp.text.Rectangle rect = f.position;
                     itextImage.ScaleToFit(rect.Width, rect.Height);
                     itextImage.SetAbsolutePosition(rect.Left, rect.Bottom);
 
-                    // itextImage.Width = 100;
                     pdfContentByte.AddImage(itextImage);
+
+                    }
                     stamper.FormFlattening = true;
                     stamper.Close();
 
 
                 }
-                // System.IO.File.Delete(fileString);
+                System.IO.File.Delete(file);
                 savePaths.Add( saveFileString);
 
             }

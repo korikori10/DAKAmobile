@@ -1,4 +1,5 @@
 ﻿var EmpCont = new Object();
+var contAmount = new Object();
 
 $(document).ready(function () {
     var results = JSON.parse(sessionStorage.getItem('contract'));
@@ -83,16 +84,37 @@ function createContractForm() {
 
 function insertContract(results) {
     results = $.parseJSON(results.d);
-    var EmployeeInfo = sessionStorage.getItem("empInfo");
-    EmpCont.Img_url = results;
-    EmpCont.Doc_id = EmployeeInfo + makeid();
+    contAmount = results;
     EmpCont.Doctype_id = '5';
-    EmpCont.Employee_pass_id = EmployeeInfo;
-    InsertDocs({ FileInfo: JSON.stringify(EmpCont) });
-   window.location = "Dash.html";
+    EmpCont.Employee_pass_id = sessionStorage.getItem("empInfo");
+    $.each(results, function (i, row) {
+
+        EmpCont.Doc_id = EmpCont.Employee_pass_id + makeid();
+        EmpCont.Img_url = row;
+    InsertConts({ FileInfo: JSON.stringify(EmpCont) }, i, finished);
+
+    })
+    $('#sigModal').modal('toggle');
 }
 
+function finished(i) {
 
+    if (contAmount.length <= (i + 1)) {
+
+        swal({
+            title: "בוצע!",
+            text: "כל הנתונים נשמרו בהצלחה",
+            type: "success",
+            confirmButtonText: "חזור למסך הבית",
+        },
+
+            function (isConfirm) {
+
+                window.location = "Dash.html"
+
+            })
+    }
+};
 $('#sigModal').on('shown.bs.modal', function (e) {
     $("#signature").jSignature();
     $("#signature").resize();

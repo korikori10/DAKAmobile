@@ -2,6 +2,7 @@
 EmployeeInfo = new Object();
 resultsSave = new Object();
 isUpdate = new Object();
+var updateBus = new Object();
 var EmpPic = null;
 EmpVisa = new Object();
 EmpID = new Object();
@@ -251,9 +252,11 @@ function insertEmp(array) {
     }
     if (array.Business == resultsSave.Business) {
         array.updateBus = false;
+        updateBus = false;
     }
     else {
         array.updateBus = true;
+        updateBus = true;
         }
         swal({
             title: "האם אתה בטוח?",
@@ -269,7 +272,7 @@ function insertEmp(array) {
             function (isConfirm) {
                 if (isConfirm) {
 
-                    updateEmployee({ EmployeeInfo: JSON.stringify(array) })
+                    updateEmployee({ EmployeeInfo: JSON.stringify(array) }, InsertAllDocs)
                 }
                 else {
                     // swal("Cancelled", "Your imaginary file is safe :)", "error");
@@ -304,13 +307,32 @@ function insertEmp(array) {
 }
 
 function InsertAllDocs(results) {
+    if (!isUpdate) {
     EmpVisa.Ex_date = $('#date4_2').val();
     InsertDocs({ FileInfo: JSON.stringify(EmpVisa) });
     InsertDocs({ FileInfo: JSON.stringify(EmpID) });
     InsertDocs({ FileInfo: JSON.stringify(EmpAuth) });
-    var cresults = $.parseJSON(results.d)
+
+    }
+    if (!updateBus) {
+        swal({
+            title: "בוצע!",
+            text: "כל הנתונים נשמרו בהצלחה",
+            type: "success",
+            confirmButtonText: "חזור למסך הבית",
+        },
+
+            function (isConfirm) {
+
+                window.location = "Dash.html"
+
+            })
+    }
+    else {
     sessionStorage.setItem('contract', results.d);
     window.location = "ContractDisplay.html";
+
+    }
 }
 
 
