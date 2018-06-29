@@ -308,8 +308,8 @@ function InsertAllDocs(results) {
     InsertDocs({ FileInfo: JSON.stringify(EmpVisa) });
     InsertDocs({ FileInfo: JSON.stringify(EmpID) });
     InsertDocs({ FileInfo: JSON.stringify(EmpAuth) });
-    var cresults= $.parseJSON(results.d)
-    sessionStorage.setItem('contract' , cresults);
+    var cresults = $.parseJSON(results.d)
+    sessionStorage.setItem('contract', results.d);
     window.location = "ContractDisplay.html";
 }
 

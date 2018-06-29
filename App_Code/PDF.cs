@@ -53,7 +53,7 @@ public class PDF
         //
     }
 
-    public string fillForm(Employee e)
+    public List<string> fillForm(Employee e)
     {
         Dictionary<string, string> props = new Dictionary<string, string>();
         PropertyInfo[] properties = e.GetType().GetProperties();
@@ -67,11 +67,17 @@ public class PDF
 
         }
         // string[] propNames = new string[] { "Employee_pass_id", "Fname", "Lname", "Origin_country", "Phone", "Birthday", "Fam_stat_code", "Gender", "Il_citizen", "Active", "Occupation_code", "Business", "Food_include", "Food_pay", "Salary_hour", "Sabatical", "Salary_overtime", "Salary_trans", "Day_off", "Com_app", "Monthly_rent", "Insurance", "Add", "Add_city", "Add_num" };
+            DirectoryInfo d = new DirectoryInfo(System.Web.HttpContext.Current.Server.MapPath("~/Contract/Default"));
+        List<string> filesPaths = new List<string>();
+        foreach (var file in d.GetFiles("*.pdf"))
+        {
+
+        
         try
         {
-            string formFile = System.Web.HttpContext.Current.Server.MapPath("~/Contract/Default/חוזה_עבודה_-_חלק_א.pdf");
+                string formFile = file.FullName; //System.Web.HttpContext.Current.Server.MapPath("~/Contract/Default/חוזה_עבודה_-_חלק_א.pdf");
             Directory.CreateDirectory(System.Web.HttpContext.Current.Server.MapPath("~/Contract/" + e.Employee_pass_id));
-            string savepath = System.Web.HttpContext.Current.Server.MapPath("~/Contract/" +e.Employee_pass_id +"/חוזה_עבודה_-_חלק_א.pdf");
+            string savepath = System.Web.HttpContext.Current.Server.MapPath("~/Contract/" +e.Employee_pass_id +"/"+file.Name);
             PdfReader pdfReader = new PdfReader(formFile);
             //Full path to the Unicode Arial file
             string ARIALUNI_TFF = System.Web.HttpContext.Current.Server.MapPath("~/HF/Arimo-Regular.ttf");
@@ -110,9 +116,9 @@ public class PDF
                 //}
 
                       }
-                pdfStamper.FormFlattening = true;
+                pdfStamper.FormFlattening = false;
                 pdfStamper.Close();
-                return savepath;
+                filesPaths.Add(savepath);
             }
         
         
@@ -126,35 +132,64 @@ public class PDF
         finally
         {
         }
+        }
+        return filesPaths;
     }
-    public void AddSignature(string svgString, string fileString)
+    public List<string> AddSignature(string svgString, string[] fileString)
     {
-
-        // System.Buffer.BlockCopy(svgString.ToCharArray(), 0, bytes, 0, bytes.Length);
-        svgString = svgString.Split(',')[1];
-        //byte[] data = Convert.FromBase64String(svgString); //new byte[svgString.Length * sizeof(char)];
-        Byte[] bytes = Convert.FromBase64String(svgString);
-        iTextSharp.text.Image itextImage = iTextSharp.text.Image.GetInstance(bytes);
-        //  System.Drawing.ImageConverter imageConverter = new System.Drawing.ImageConverter();
-        //System.Drawing.Image image = (System.Drawing.Image)imageConverter.ConvertFrom(data) as System.Drawing.Image;
-        // image.Save("c:\\hello", ImageFormat.Jpeg);
-        string saveFileString = fileString.Split('.')[0];
-        using (Stream inputPdfStream = new FileStream(fileString, FileMode.Open, FileAccess.Read, FileShare.Read))
-            
-        //using (Stream inputImageStream = new FileStream("some_image.jpg", FileMode.Open, FileAccess.Read, FileShare.Read))
-        using (Stream outputPdfStream = new FileStream(saveFileString + "_signed.pdf", FileMode.Create, FileAccess.Write, FileShare.None))
+        List<string> savePaths = new List<string>();
+        foreach (var file in fileString)
         {
-            var reader = new PdfReader(inputPdfStream);
-            var stamper = new PdfStamper(reader, outputPdfStream);
-            var pdfContentByte = stamper.GetOverContent(1);
-            //  iTextSharp.text.Image itextImage = iTextSharp.text.Image.GetInstance(image, BaseColor.BLACK);
-            // Image image = Image.GetInstance(inputImageStream);
-            itextImage.SetAbsolutePosition(100, 200);
-            itextImage.Width = 100;
-            pdfContentByte.AddImage(itextImage);
-            stamper.Close();
 
+
+            try
+            {
+                // System.Buffer.BlockCopy(svgString.ToCharArray(), 0, bytes, 0, bytes.Length);
+                svgString = svgString.Split(',')[1];
+                //byte[] data = Convert.FromBase64String(svgString); //new byte[svgString.Length * sizeof(char)];
+                Byte[] bytes = Convert.FromBase64String(svgString);
+                iTextSharp.text.Image itextImage = iTextSharp.text.Image.GetInstance(bytes);
+                // itextImage.ScaleToFit(150f, 100f);
+                //  System.Drawing.ImageConverter imageConverter = new System.Drawing.ImageConverter();
+                //System.Drawing.Image image = (System.Drawing.Image)imageConverter.ConvertFrom(data) as System.Drawing.Image;
+                // image.Save("c:\\hello", ImageFormat.Jpeg);
+                string saveFileString = file.Split('.')[0] + "_signed.pdf";
+                using (Stream inputPdfStream = new FileStream(file, FileMode.Open, FileAccess.Read, FileShare.Read))
+
+                //using (Stream inputImageStream = new FileStream("some_image.jpg", FileMode.Open, FileAccess.Read, FileShare.Read))
+                using (Stream outputPdfStream = new FileStream(saveFileString, FileMode.Create, FileAccess.Write, FileShare.None))
+                {
+                    var reader = new PdfReader(inputPdfStream);
+                    var stamper = new PdfStamper(reader, outputPdfStream);
+                    var pdfContentByte = stamper.GetOverContent(1);
+                    //  iTextSharp.text.Image itextImage = iTextSharp.text.Image.GetInstance(image, BaseColor.BLACK);
+                    // Image image = Image.GetInstance(inputImageStream);
+                    AcroFields formFields = stamper.AcroFields;
+                    AcroFields.FieldPosition f = formFields.GetFieldPositions("signature")[0];
+                    formFields.SetField("Start_date", DateTime.Now.ToString("yyyy/MM/dd"));
+                    iTextSharp.text.Rectangle rect = f.position;
+                    itextImage.ScaleToFit(rect.Width, rect.Height);
+                    itextImage.SetAbsolutePosition(rect.Left, rect.Bottom);
+
+                    // itextImage.Width = 100;
+                    pdfContentByte.AddImage(itextImage);
+                    stamper.FormFlattening = true;
+                    stamper.Close();
+
+
+                }
+                // System.IO.File.Delete(fileString);
+                savePaths.Add( saveFileString);
+
+            }
+            catch (Exception ex)
+            {
+
+                // write to log
+                throw (ex);
+            }
 
         }
+        return savePaths;
     }
 }

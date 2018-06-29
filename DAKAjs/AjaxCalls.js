@@ -251,19 +251,17 @@ function updatePass(newpass, username) {
 }
 
 
-function InsertSignature(svg, file) {
- 
+function InsertSignature(svg, file, insertContract) {
+    var data = JSON.stringify({ svgString: svg, fileString: file })
 
     $.ajax({
         url: WSUrl + '/insertSignature',
         type: 'POST',
-        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-        data: { svgString: svg, fileString: file },
-        success: function () {
-   
-            setTimeout(function () {
-                swal("בוצע!", "כל הנתונים נשמרו בהצלחה", "success");
-            }, 1000);
+        contentType: 'application/json; charset = utf-8',
+        dataType: "json",
+        data: data,
+        success: function (results) {
+            insertContract(results)
         },
         error: function (xhr, status, error) {
             var err = eval("(" + xhr.responseText + ")");

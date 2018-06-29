@@ -93,57 +93,67 @@
         <div class="content-wrapper">
             <div class="content-body">
                 <section id="vertical-tabs">
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                   
+                        
+                        <div class="docCards col-xl-4 col-md-6 col-xs-12" id="doc1">
                             <div class="card">
-                                <div class="card-header" id="card-header" dir="rtl">
-
+                                <div class="card-header">
+                                    <h4 class="card-title">
+                                        <i class="icon-eye6"></i> חוזה עבודה
+                                    </h4>
                                     <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
                                     <div class="heading-elements">
-                                        <ul class="list-inline mb-0" id="approveS">
-                                            <!--<li><a data-action="collapse"><i class="icon-minus4"></i></a></li>
+                                        <ul class="list-inline mb-0">
+                                            <li><a data-action="collapse"><i class="icon-minus4"></i></a></li>
                                             <li><a data-action="reload"><i class="icon-reload"></i></a></li>
-                                            <li><a data-action="expand"><i class="icon-expand2"></i></a></li>-->
+                                            <li><a data-action="expand"><i class="icon-expand2"></i></a></li>
                                             <li><a data-action="close"><i class="icon-cross2"></i></a></li>
-                                            <li onclick="sign()"><a data-action="" ><i class="icon-check2"></i></a></li>
                                         </ul>
                                     </div>
                                 </div>
-
                                 <div class="card-body collapse in">
                                     <div class="card-block">
-                                        <iframe id="contractDisplay" src="" style="width:600px; height:500px;" frameborder="0"></iframe>
-                                        <div class="modal fade text-xs-left" id="sigModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel35" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                        <h3 class="modal-title" id="myModalLabel35">חתימה</h3>
-                                                    </div>
-                                                    <form id="SigForm">
-
-                                                        <div class="modal-body">
-                                                            <fieldset  class="form-group floating-label-form-group has-danger">
-                                                                <div id="signature"></div>
-                                                            </fieldset>
-
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <input name="saveSig" id="saveSig" type="button" class="btn btn-outline-primary btn-lg" value="שמור" />
-                                                            <input type="reset" class="btn btn-outline-secondary btn-lg" data-dismiss="modal" value="סגור" />
-                                                        </div>
-                                                    </form>
+                                        <div class="form-body">
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    <iframe src="" style="width:100%; height:375px;" frameborder="0"></iframe>
                                                 </div>
                                             </div>
+
+
+
                                         </div>
-                                        <!--http://docs.google.com/gview?url=&embedded=true-->
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                        <input name="sign" id="sign" type="button" class="btn btn-outline-primary btn-lg" value="שמור" />
+                        <div class="modal fade text-xs-left" id="sigModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel35" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        <h3 class="modal-title" id="myModalLabel35">חתימה</h3>
+                                    </div>
+                                    <form id="SigForm">
+
+                                        <div class="modal-body">
+                                            <fieldset class="form-group floating-label-form-group has-danger">
+                                                <div id="signature"></div>
+                                            </fieldset>
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <input name="saveSig" id="saveSig" type="button" class="btn btn-outline-primary btn-lg" value="שמור" />
+                                            <input type="reset" class="btn btn-outline-secondary btn-lg" data-dismiss="modal" value="סגור" />
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+   
                                         
                 </section>
        

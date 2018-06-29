@@ -167,7 +167,7 @@ public class ajaxWebService : System.Web.Services.WebService
         e.Commence_date = DateTime.Now.ToString("dd/MM/yyy");
          int inserted = e.insertEmployee(e);
         PDF pdf = new PDF();
-       string contractPath = pdf.fillForm(e);
+        List<string> contractPath = pdf.fillForm(e);
 
         if (inserted > 0)
         {
@@ -226,11 +226,13 @@ public class ajaxWebService : System.Web.Services.WebService
     
            [WebMethod]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-    public void insertSignature(string svgString, string fileString)
+    public string insertSignature(string svgString, string[] fileString)
     {
+        JavaScriptSerializer js = new JavaScriptSerializer();
         PDF pdf = new PDF();
-        pdf.AddSignature(svgString, fileString);
-  
+        List<string> saveFileString = pdf.AddSignature(svgString, fileString);
+        string jsonStringCategory = js.Serialize(saveFileString);
+        return jsonStringCategory;
 
     }
     
