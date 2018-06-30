@@ -78,6 +78,8 @@ public class PDF
                 string formFile = file.FullName; //System.Web.HttpContext.Current.Server.MapPath("~/Contract/Default/חוזה_עבודה_-_חלק_א.pdf");
             Directory.CreateDirectory(System.Web.HttpContext.Current.Server.MapPath("~/Contract/" + e.Employee_pass_id));
             string savepath = System.Web.HttpContext.Current.Server.MapPath("~/Contract/" +e.Employee_pass_id +"/"+file.Name);
+                //  string Uri = HttpContext.Current.Request.Url.AbsolutePath;Uri.Substring(0, Uri.LastIndexOf('/') + 1) 
+                string relSavePath = HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority) + HttpContext.Current.Request.ApplicationPath + "/Contract/" + e.Employee_pass_id + "/" + file.Name;
             PdfReader pdfReader = new PdfReader(formFile);
             //Full path to the Unicode Arial file
             string ARIALUNI_TFF = System.Web.HttpContext.Current.Server.MapPath("~/HF/Arimo-Regular.ttf");
@@ -118,7 +120,7 @@ public class PDF
                       }
                 pdfStamper.FormFlattening = false;
                 pdfStamper.Close();
-                filesPaths.Add(savepath);
+                filesPaths.Add(relSavePath);
             }
         
         
@@ -148,9 +150,12 @@ public class PDF
             try
             {
 
-
-                string saveFileString = file.Split('.')[0] + "_signed "+ Path.GetRandomFileName() +".pdf";
-                using (Stream inputPdfStream = new FileStream(file, FileMode.Open, FileAccess.Read, FileShare.Read))
+                string fullPath = System.Web.HttpContext.Current.Server.MapPath("~" + file.Replace(HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority) + HttpContext.Current.Request.ApplicationPath, ""));
+                int idx = fullPath.LastIndexOf('.');
+                string fileEnd = "_signed" + Path.GetRandomFileName() + ".pdf";
+                string saveFileString = fullPath.Substring(0, idx) +fileEnd;
+                string relSaveString = file.Split('.')[0] + fileEnd;
+                using (Stream inputPdfStream = new FileStream(fullPath, FileMode.Open, FileAccess.Read, FileShare.Read))
 
                 
                 using (Stream outputPdfStream = new FileStream(saveFileString, FileMode.Create, FileAccess.Write, FileShare.None))
@@ -176,8 +181,8 @@ public class PDF
 
 
                 }
-                System.IO.File.Delete(file);
-                savePaths.Add( saveFileString);
+                System.IO.File.Delete(fullPath);
+                savePaths.Add( relSaveString);
 
             }
             catch (Exception ex)

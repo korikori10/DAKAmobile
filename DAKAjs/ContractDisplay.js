@@ -33,7 +33,7 @@ function renderDocs(results) {
         if (i == 0) {
           //  $("#doc1").attr('name', row.Doctype_id);
             $("#doc1").find('iframe').attr('id', 'docimg1');
-            var img = $('#docimg1').attr('src', row.Img_url);
+            var img = $('#docimg1').attr('src', row);
             //$.each(DocTypes, function (j, rows) {
             //    if (row.Doctype_id == rows.Doctype_id) {
             //        $("#doc1").find('h4').html('<i class="icon-eye6"></i> ' + rows.Doc_name);
@@ -49,7 +49,7 @@ function renderDocs(results) {
             id = createContractForm();
            // $("#" + id).attr('name', row.Doctype_id);
             var img = $("#" + id).find('iframe').attr('id', 'img' + id);
-             $('#img' + id).attr('src', row.Img_url);
+             $('#img' + id).attr('src', row);
             //$.each(DocTypes, function (j, rows) {
             //    if (row.Doctype_id == rows.Doctype_id) {
             //        $("#" + id).find('h4').html('<i class="icon-eye6"></i> ' + rows.Doc_name);
