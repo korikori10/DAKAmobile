@@ -52,7 +52,7 @@ $(".vertical-tab-steps").steps({
         if (currentIndex > newIndex) {
             return true;
         }
-        form.validate().settings.ignore = ":disabled,:hidden";
+        form.validate().settings.ignore = ":disabled";//,:hidden";
         return form.valid();
     },
     onFinishing: function (event, currentIndex) {
@@ -63,6 +63,7 @@ $(".vertical-tab-steps").steps({
         
         $.fn.serializeObject = function () {
             var o = {};
+            var disabled = this.find(':input:disabled').removeAttr('disabled');
             var a = this.serializeArray();
             $.each(a, function () {
                 if (this.value == 'T') {
@@ -80,6 +81,7 @@ $(".vertical-tab-steps").steps({
                     o[this.name] = this.value || '';
                 }
             });
+            disabled.attr('disabled', 'disabled');
             return o;
         };
 

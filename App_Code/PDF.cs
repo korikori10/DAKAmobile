@@ -152,9 +152,10 @@ public class PDF
 
                 string fullPath = System.Web.HttpContext.Current.Server.MapPath("~" + file.Replace(HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority) + HttpContext.Current.Request.ApplicationPath, ""));
                 int idx = fullPath.LastIndexOf('.');
+                int idx2 = file.LastIndexOf('.');
                 string fileEnd = "_signed" + Path.GetRandomFileName() + ".pdf";
                 string saveFileString = fullPath.Substring(0, idx) +fileEnd;
-                string relSaveString = file.Split('.')[0] + fileEnd;
+                string relSaveString = file.Substring(0, idx2) + fileEnd; ;
                 using (Stream inputPdfStream = new FileStream(fullPath, FileMode.Open, FileAccess.Read, FileShare.Read))
 
                 

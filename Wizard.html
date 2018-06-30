@@ -111,20 +111,20 @@
 
                                 <div class="card-body collapse in">
                                     <div class="card-block">
-                                        <form action="#" class="vertical-tab-steps wizard-circle" id="insertEmpForm">
+                                        <form action="#" class="vertical-tab-steps wizard-circle jq-bs-validation" id="insertEmpForm">
                                             <!-- Step 1 --><h1 id="kindoform"></h1>
                                             <h6>Step 1</h6>
                                             <fieldset id="first">
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for="firstName4">שם פרטי : <span class="danger">*</span></label>
+                                                            <label for="firstName4">שם פרטי:<span class="danger">*</span></label>
                                                             <input type="text" class="form-control" id="firstName4" name="Fname" required>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for="lastName4">שם משפחה<span class="danger">*</span></label>
+                                                            <label for="lastName4">שם משפחה:<span class="danger">*</span></label>
                                                             <input type="text" class="form-control" id="lastName4" name="Lname" required>
                                                         </div>
                                                     </div>
@@ -132,15 +132,15 @@
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for="passport7">מספר דרכון</label>
-                                                            <input type="text" class="form-control" id="passportid" name="Employee_pass_id">
+                                                            <label for="passport7">מספר דרכון:</label>
+                                                            <input type="text" class="form-control" id="passportid" name="Employee_pass_id" required>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for="tbcountry4">ארץ מוצא</label>
-                                                            <select name="Origin_country" class="selectize-select form-control" id="DynamiCountryList" required>
-                                                                <option value="0">לא נבחרה מדינה</option>
+                                                            <label for="tbcountry4">ארץ מוצא:</label>
+                                                            <select name="Origin_country" class="selectize-select form-control" id="DynamiCountryList" required >
+                                                                <option >לא נבחרה מדינה</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -149,22 +149,22 @@
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label for="phoneNumber4"> טלפון נייד Phone Number :</label>
-                                                            <input type="tel" class="form-control" id="phoneNumber4" name="Phone">
+                                                            <input type="tel" class="form-control" id="phoneNumber4" name="Phone" required>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label for="date4">תאריך לידה Date of Birth :</label>
-                                                            <input type="date" class="form-control" id="date4" name="Birthday">
+                                                            <input type="date" class="form-control" id="date4" name="Birthday" required>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for="location3">מצב משפחתי</label>
-                                                            <select class="custom-select form-control" id="location3" name="Fam_stat_code">
-                                                                <option value="0"> בחר Select</option>
+                                                            <label for="location3">מצב משפחתי:</label>
+                                                            <select class="selectize-select form-control" id="location3" name="Fam_stat_code" required aria-required="true">
+                                                                <option > בחר Select</option>
                                                                 <option value="1">רווק/ה</option>
                                                                 <option value="2">נשוי/אה</option>
                                                                 <option value="3">גרוש/ה</option>
@@ -175,9 +175,9 @@
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for="location3">מין</label>
-                                                            <select class="custom-select form-control" id="location3" name="Gender">
-                                                                <option value=""> בחר Select</option>
+                                                            <label for="location3">מין:</label>
+                                                            <select class="selectize-select form-control" id="location3" name="Gender" required aria-required="true">
+                                                                <option > בחר Select</option>
                                                                 <option value="F">זכר</option>
                                                                 <option value="T">נקבה</option>
                                                             </select>
@@ -188,8 +188,8 @@
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label for="location3">אזרח ישראל:</label>
-                                                            <select class="selectize-select form-control" id="location3" name="Il_citizen">
-                                                                <option value=""> בחר Select</option>
+                                                            <select class="selectize-select form-control" id="location3" name="Il_citizen" required aria-required="true">
+                                                                <option> בחר Select</option>
                                                                 <option value="T">כן</option>
                                                                 <option value="F">לא</option>
                                                             </select>
@@ -198,8 +198,8 @@
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label for="location3">עובד פעיל:</label>
-                                                            <select class="selectize-select form-control" id="location3" name="Active">
-                                                                <option value=""> בחר Select</option>
+                                                            <select class="selectize-select form-control" id="locatio66n3" name="Active" required aria-required="true">
+                                                                <option > בחר Select</option>
                                                                 <option value="T">כן</option>
                                                                 <option value="F">לא</option>
                                                             </select>
@@ -214,44 +214,52 @@
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for="jobTitle4">מקצוע</label>
+                                                            <label for="jobTitle4">מקצוע:</label>
                                                             <select class="selectize-select form-control" id="OccuSE" name="Occupation_code"></select>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label for="placeofworkTitle4">מקום עבודה</label>
-                                                            <select class="selectize-select form-control" id="businessSE" name="Business"></select>
+                                                            <label for="placeofworkTitle4">מקום עבודה:</label>
+                                                            <select class="selectize-select form-control" id="businessSE" name="Business" required></select>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label for="location3">אוכל כלול?</label>
-                                                            <select class="selectize-select form-control" id="location3" name="Food_incloud">
+                                                            <label for="location3">אוכל כלול:</label>
+                                                            <select class="selectize-select form-control" id="location3" name="Food_incloud" required>
                                                                 <option value=""> בחר Select</option>
                                                                 <option value="T">כן</option>
                                                                 <option value="F">לא</option>
                                                             </select>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label for="foodPay4">תוספת תשלום-אוכל</label>
-                                                            <input type="text" class="form-control" id="food_pay" name="Food_pay">
+                                                            <label for="foodPay4">תוספת תשלום-אוכל:</label>
+                                                            <input type="number" class="form-control" id="food_pay" name="Food_pay" required>
                                                         </div>
                                                     </div>
 
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for="jobTitle6">שכר שעתי</label>
-                                                            <input type="number" class="form-control" id="jobTitle6" name="Salary_hour">
+                                                            <label for="jobTitle6">שכר שעתי:</label>
+                                                            <input type="number" class="form-control" id="jobTitle6" name="Salary_hour" required>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label for="shortDescription4">שבתון </label>
-                                                            <input type="text" class="form-control" id="jobTitle6" name="Sabatical">
+                                                            <label for="shortDescription4">שבתון:</label>
+                                                            <select class="selectize-select form-control" id="day_off" name="Sabatical">
+                                                                <option value="1">Sunday / ראשון</option>
+                                                                <option value="2">Monday / שני</option>
+                                                                <option value="3">Tuesday / שלישי</option>
+                                                                <option value="4">Wednesday / רביעי</option>
+                                                                <option value="5">Thursday / חמישי</option>
+                                                                <option value="6">Friday / שישי</option>
+                                                                <option value="7">Saturday / שבת</option>
+                                                            </select>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label for="shortDescription4">Overtime:  שעות נוספות:</label>
-                                                            <input type="number" class="form-control" id="jobTitle6" name="Salary_overtime">
+                                                            <label for="shortDescription4">שעות נוספות:</label>
+                                                            <input type="number" class="form-control" id="jobTitle6" name="Salary_overtime" required>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label for="shortDescription4">Transportation:  נסיעות:</label>
+                                                            <label for="shortDescription4">הסדר נסיעות:</label>
 
-                                                            <select class="selectize-select form-control" id="trans" name="Salary_trans">
+                                                            <select class="selectize-select form-control" id="trans" name="Salary_trans" required>
                                                                 <option value=""> בחר Select</option>
                                                                 <option value="1">לא עומד בדרישות</option>
                                                                 <option value="2">כרטיס נסיעות</option>
@@ -259,8 +267,8 @@
                                                             </select>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label for="shortDescription4">Weekly rest day:   יום חופש:</label>
-                                                            <select type="text" class="form-control" id="day_off" name="Day_off">
+                                                            <label for="shortDescription4">יום חופש:</label>
+                                                            <select class="selectize-select form-control" id="day_off" name="Day_off">
                                                                 <option value="1">Sunday / ראשון</option>
                                                                 <option value="2">Monday / שני</option>
                                                                 <option value="3">Tuesday / שלישי</option>
@@ -283,7 +291,7 @@
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label for="location3">מגורי חברה:</label>
-                                                            <select class="custom-select form-control" id="location3" name="Com_app">
+                                                            <select class="selectize-select form-control" id="location3" name="Com_app" required>
                                                                 <option value=""> בחר Select</option>
                                                                 <option value="T">כן</option>
                                                                 <option value="F">לא</option>
@@ -291,11 +299,11 @@
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="eventName4">שכירות חודשית:</label>
-                                                            <input type="number" class="form-control" id="Monthly_rent" name="Monthly_rent">
+                                                            <input type="number" class="form-control" id="Monthly_rent" name="Monthly_rent" required>
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="location3">מבוטח:</label>
-                                                            <select class="custom-select form-control" id="location3" name="Insurance">
+                                                            <select class="selectize-select form-control" id="location3" name="Insurance" required>
                                                                 <option value=""> בחר Select</option>
                                                                 <option value="T">כן</option>
                                                                 <option value="F">לא</option>
@@ -311,11 +319,11 @@
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="tbcity4">עיר/ישוב</label>
-                                                            <select name="Add_city" class="selectize-select form-control" id="DynamicCitiesList"></select>
+                                                            <select name="Add_city" class="selectize-select form-control" id="DynamicCitiesList" required></select>
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="tbnum4">מספר בית</label>
-                                                            <input type="number" class="form-control" id="textaddnum4" name="Add_num">
+                                                            <input type="number" class="form-control" id="textaddnum4" name="Add_num" required>
                                                         </div>
                                                     </div>
 
@@ -359,13 +367,13 @@
                                                     <label for="tbad">
                                                         צילום ויזה
                                                     </label>
-                                                    <input class="form-control" type="file" id="Picvisa" name="Picture4"  accept="image/*;capture=camera">
+                                                    <input class="form-control" type="file" id="Picvisa" name="Picture4" accept="image/*;capture=camera">
                                                 </div>
-                                                    <div id="progressBar4" style="position:relative; display:none">
-                                                        <progress id="pV" class="progress-striped progress-green" value="100" max="100"></progress>
-                                                        <span id="pVlBl" style="position:absolute; left:35%; top:20%">Uploading...</span>
-                                                    </div>
-                                                  <div class="col-md-6">
+                                                <div id="progressBar4" style="position:relative; display:none">
+                                                    <progress id="pV" class="progress-striped progress-green" value="100" max="100"></progress>
+                                                    <span id="pVlBl" style="position:absolute; left:35%; top:20%">Uploading...</span>
+                                                </div>
+                                                <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="date4_2">תוקף ויזה</label>
                                                         <input type="date" class="form-control" id="date4_2" name="Ex_date">
@@ -393,7 +401,8 @@
     <!-- /page -->
     <!-- /page -->
     <!-- BEGIN VENDOR JS-->
-    <script src="app-assets/js/core/libraries/jquery.min.js" type="text/javascript"></script>
+   
+        <script src="app-assets/js/core/libraries/jquery.min.js" type="text/javascript"></script>
     <script src="app-assets/vendors/js/ui/tether.min.js" type="text/javascript"></script>
     <script src="app-assets/js/core/libraries/bootstrap.min.js" type="text/javascript"></script>
     <script src="app-assets/vendors/js/ui/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>

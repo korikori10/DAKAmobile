@@ -13,7 +13,36 @@ $(document).ready(function () {
     getCountries(renderCountries);
     getBusinesses(renderBusinesses);
     getOccu(renderOccu);
+    //fields autocomplete logic
+    $('[name=Il_citizen]').on('change', function () {
+        if (this.value == 'T') {
 
+        $('[name=Insurance]').val('T').attr('disabled', 'disabled');
+        }
+        else {
+            $('[name=Insurance]').removeAttr('disabled').val("");
+        }
+    });
+    $('[name=Food_incloud]').on('change', function () {
+        if (this.value == 'F') {
+
+            $('[name=Food_pay]').val(0).attr('disabled', 'disabled');
+        }
+        else {
+            $('[name=Food_pay]').removeAttr('disabled');
+        }
+        
+    });
+    $('[name=Com_app]').on('change', function () {
+        if (this.value == 'F') {
+
+            $('[name=Monthly_rent]').val(0).attr('disabled', 'disabled');
+        }
+        else {
+            $('[name=Monthly_rent]').removeAttr('disabled');
+        }
+
+    });
 //Picture or file upload
     $("#Pic").on("change", function () {
         pbLBL = $("#pLBL2")
@@ -180,11 +209,12 @@ function renderEmployeeByID(results) {
         isUpdate = true;
         data.Birthday = fixDate(data.Birthday);
         populate(frm, data);
-        $('.selectize-select').selectize();
+        
         document.getElementById("kindoform").innerHTML = "עובד זה כבר פעיל במערכת, יש לבצע ציוות מחדש בלבד";
         $('.actions li a[href^="#next"]').trigger('click');
         
     }
+    $('.selectize-select').selectize();
 
 }
 
@@ -192,6 +222,8 @@ function renderBusinesses(results) {
     //this is the callBackFunc 
     results = $.parseJSON(results.d);
     $('#businessSE').empty();
+    dynamicLi = '<option value=""> בחר Select</option>';
+    $('#businessSE').append(dynamicLi);
     $.each(results, function (i, row) {
         dynamicLi = '<option value="' + row.Bus_id + '">' + row.Bus_name + '</option>';
         $('#businessSE').append(dynamicLi);
@@ -204,6 +236,8 @@ function renderCountries(results) {
     //this is the callBackFunc 
     results = $.parseJSON(results.d);
     $('#DynamiCountryList').empty();
+    dynamicLi = '<option value=""> בחר Select</option>';
+    $('#DynamiCountryList').append(dynamicLi);
     $.each(results, function (i, row) {
         dynamicLi = '<option value="' + row.Id + '">' + row.Name + '</option>';
         $('#DynamiCountryList').append(dynamicLi);
@@ -217,6 +251,8 @@ function renderCities(results) {
     //this is the callBackFunc 
     results = $.parseJSON(results.d);
     $('#DynamicCitiesList').empty();
+    dynamicLi = '<option value=""> בחר Select</option>';
+    $('#DynamicCitiesList').append(dynamicLi);
     $.each(results, function (i, row) {
         dynamicLi = '<option value="' + row.Id + '">' + row.Name + '</option>';
         $('#DynamicCitiesList').append(dynamicLi);
@@ -228,6 +264,8 @@ function renderOccu(results) {
     //this is the callBackFunc 
     results = $.parseJSON(results.d);
     $('#OccuSE').empty();
+    dynamicLi = '<option > בחר Select</option>';
+    $('#OccuSE').append(dynamicLi);
     $.each(results, function (i, row) {
         dynamicLi = '<option value="' + row.Occupation_code + '">' + row.Occupation_desc + '</option>';
         $('#OccuSE').append(dynamicLi);

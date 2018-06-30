@@ -1,9 +1,9 @@
-﻿var local = false;
+﻿var local = true;
 var WSUrl = 'ajaxWebService.asmx';
 var UHUrl = 'UploadHandler.ashx';
 if (!local) {
-    WSUrl = 'http://proj.ruppin.ac.il/bgroup59/test2/tar2/ajaxWebService.asmx';
-    UHUrl = 'http://proj.ruppin.ac.il/bgroup59/test2/tar2/UploadHandler.ashx'
+    WSUrl = 'https://proj.ruppin.ac.il/bgroup59/test2/tar2/ajaxWebService.asmx';
+    UHUrl = 'https://proj.ruppin.ac.il/bgroup59/test2/tar2/UploadHandler.ashx'
 }
 
 // Get all Employees for Searchbox on dash
@@ -339,10 +339,10 @@ function uploadFiles(formData, setEmpPic) {
 
 //Upload files from wizard
 function uploadFiles(formData, setEmpVisa) {
-    pbLBL = $("#pbLBL")
-    pbDiv = $("#progressBar")
+    pbLBL = $("#pVlBl")
+    pbDiv = $("#progressBar4")
     $.ajax({
-        url: 'UploadHandler.ashx',
+        url: UHUrl,
         method: "POST",
         data: formData,
         contentType: false,
@@ -364,9 +364,9 @@ function uploadFiles(formData, setEmpVisa) {
 //Upload files from wizard
 function uploadFiles(formData, setEmpID) {
     pbLBL = $("#pbLBL")
-    pbDiv = $("#progressBar")
+    pbDiv = $("#progressBar1")
     $.ajax({
-        url: 'UploadHandler.ashx',
+        url: UHUrl,
         method: "POST",
         data: formData,
         contentType: false,
@@ -388,10 +388,10 @@ function uploadFiles(formData, setEmpID) {
 
 //Upload files from wizard
 function uploadFiles(formData, setEmpAuth) {
-    pbLBL = $("#pbLBL")
-    pbDiv = $("#progressBar")
+    pbLBL = $("#pLB2")
+    pbDiv = $("#progressBar2")
     $.ajax({
-        url: 'UploadHandler.ashx',
+        url: UHUrl,
         method: "POST",
         data: formData,
         contentType: false,
