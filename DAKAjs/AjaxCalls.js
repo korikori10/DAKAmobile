@@ -1,4 +1,4 @@
-﻿var local = true;
+﻿var local = false;
 var WSUrl = 'ajaxWebService.asmx';
 if (!local) {
     WSUrl = 'http://proj.ruppin.ac.il/bgroup59/test2/tar2/ajaxWebService.asmx';
@@ -28,7 +28,7 @@ function getBusinessesTable() {
     $.ajax({
         type: "POST",
         dataType: "json",
-        url: "ajaxWebService.asmx/getBusinessesTable",
+        url: WSUrl + "/getBusinessesTable",
         success: function (data) {
             var datatableVariable = $('#BusinessTable').DataTable({
                 data: data,
@@ -149,7 +149,7 @@ function getEmployeesnobusiness() {
     $.ajax({
         type: "POST",
         dataType: "json",
-        url: "ajaxWebService.asmx/getEmployeesnobusiness",
+        url: WSUrl + "/getEmployeesnobusiness",
         success: function (data) {
             var datatableVariable = $('#EmployeesTable').DataTable({
                 data: data,
@@ -415,7 +415,7 @@ function InsertConts(FileInfo, i, finished) {
     // serialize the object to JSON string
     var file = JSON.stringify(FileInfo);
     $.ajax({
-        url: 'ajaxWebService.asmx/InsertDoc',
+        url: WSUrl + '/InsertDoc',
         type: 'POST',
         contentType: 'application/json; charset = utf-8',
         data: file,
@@ -434,7 +434,7 @@ function InsertDocs(FileInfo) {
     // serialize the object to JSON string
     var file = JSON.stringify(FileInfo);
     $.ajax({
-        url: 'ajaxWebService.asmx/InsertDoc',
+        url: WSUrl + '/InsertDoc',
         type: 'POST',
         contentType: 'application/json; charset = utf-8',
         data: file,

@@ -149,7 +149,7 @@ public class PDF
             {
 
 
-                string saveFileString = file.Split('.')[0] + "_signed.pdf";
+                string saveFileString = file.Split('.')[0] + "_signed "+ Path.GetRandomFileName() +".pdf";
                 using (Stream inputPdfStream = new FileStream(file, FileMode.Open, FileAccess.Read, FileShare.Read))
 
                 

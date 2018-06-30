@@ -919,7 +919,7 @@ public class DBServices
         StringBuilder sb = new StringBuilder();
         // use a string builder to create the dynamic string
         sb.AppendFormat("Values('{0}','{1}' ,'{2}', '{3}', '{4}','{5}','{6}')", emp.Doctype_id, emp.Img_url, DateTime.Now.ToString("yyyy-MM-dd"), emp.Ex_date, "True", emp.Employee_pass_id, emp.Doc_id);
-        String prefix = "INSERT INTO DOCS " + "(doctype_id,img_url,last_update,ex_date,active,emp_id,doc_id)";
+        String prefix = "UPDATE DOCS SET active = 'false'  where emp_id = '" + emp.Employee_pass_id + "' and doctype_id='" + emp.Doctype_id + "' and last_update != '"+ DateTime.Now.ToString("yyyy-MM-dd") + "'; INSERT INTO DOCS " + "(doctype_id,img_url,last_update,ex_date,active,emp_id,doc_id)";
         command = prefix + sb.ToString();
 
         return command;
