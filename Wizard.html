@@ -115,6 +115,7 @@
                                             <!-- Step 1 --><h1 id="kindoform"></h1>
                                             <h6>Step 1</h6>
                                             <fieldset id="first">
+                                                <div id="summary"></div>
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
@@ -163,8 +164,8 @@
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label for="location3">מצב משפחתי:</label>
-                                                            <select class="selectize-select form-control" id="location3" name="Fam_stat_code" required aria-required="true">
-                                                                <option > בחר Select</option>
+                                                            <select class="selectize-select form-control" id="famstat" name="Fam_stat_code" required aria-required="true">
+                                                                <option value=""> בחר Select</option>
                                                                 <option value="1">רווק/ה</option>
                                                                 <option value="2">נשוי/אה</option>
                                                                 <option value="3">גרוש/ה</option>
@@ -176,8 +177,8 @@
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label for="location3">מין:</label>
-                                                            <select class="selectize-select form-control" id="location3" name="Gender" required aria-required="true">
-                                                                <option > בחר Select</option>
+                                                            <select class="selectize-select form-control" id="gender" name="Gender" required aria-required="true">
+                                                                <option value=""> בחר Select</option>
                                                                 <option value="F">זכר</option>
                                                                 <option value="T">נקבה</option>
                                                             </select>
@@ -188,8 +189,8 @@
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label for="location3">אזרח ישראל:</label>
-                                                            <select class="selectize-select form-control" id="location3" name="Il_citizen" required aria-required="true">
-                                                                <option> בחר Select</option>
+                                                            <select class="selectize-select form-control" id="ilcit" name="Il_citizen" required aria-required="true">
+                                                                <option value=""> בחר Select</option>
                                                                 <option value="T">כן</option>
                                                                 <option value="F">לא</option>
                                                             </select>
@@ -199,7 +200,7 @@
                                                         <div class="form-group">
                                                             <label for="location3">עובד פעיל:</label>
                                                             <select class="selectize-select form-control" id="locatio66n3" name="Active" required aria-required="true">
-                                                                <option > בחר Select</option>
+                                                                <option value=""> בחר Select</option>
                                                                 <option value="T">כן</option>
                                                                 <option value="F">לא</option>
                                                             </select>
@@ -223,7 +224,7 @@
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="location3">אוכל כלול:</label>
-                                                            <select class="selectize-select form-control" id="location3" name="Food_incloud" required>
+                                                            <select class="selectize-select form-control" id="food" name="Food_incloud" required>
                                                                 <option value=""> בחר Select</option>
                                                                 <option value="T">כן</option>
                                                                 <option value="F">לא</option>
@@ -291,7 +292,7 @@
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label for="location3">מגורי חברה:</label>
-                                                            <select class="selectize-select form-control" id="location3" name="Com_app" required>
+                                                            <select class="selectize-select form-control" id="comApp" name="Com_app" required>
                                                                 <option value=""> בחר Select</option>
                                                                 <option value="T">כן</option>
                                                                 <option value="F">לא</option>
@@ -303,7 +304,7 @@
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="location3">מבוטח:</label>
-                                                            <select class="selectize-select form-control" id="location3" name="Insurance" required>
+                                                            <select class="selectize-select form-control" id="insured" name="Insurance" required>
                                                                 <option value=""> בחר Select</option>
                                                                 <option value="T">כן</option>
                                                                 <option value="F">לא</option>

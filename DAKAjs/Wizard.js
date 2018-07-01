@@ -264,7 +264,7 @@ function renderOccu(results) {
     //this is the callBackFunc 
     results = $.parseJSON(results.d);
     $('#OccuSE').empty();
-    dynamicLi = '<option > בחר Select</option>';
+    dynamicLi = '<option value=""> בחר Select</option>';
     $('#OccuSE').append(dynamicLi);
     $.each(results, function (i, row) {
         dynamicLi = '<option value="' + row.Occupation_code + '">' + row.Occupation_desc + '</option>';

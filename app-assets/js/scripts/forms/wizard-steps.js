@@ -52,7 +52,10 @@ $(".vertical-tab-steps").steps({
         if (currentIndex > newIndex) {
             return true;
         }
-        form.validate().settings.ignore = ":disabled";//,:hidden";
+
+
+       form.validate().settings.ignore = ":disabled,:hidden";
+        
         return form.valid();
     },
     onFinishing: function (event, currentIndex) {
@@ -154,10 +157,17 @@ form1.validate({
     errorPlacement: function(error, element) {
         error.insertAfter(element);
     },
+
     rules: {
         email: {
             email: true
         }
+    },
+    showErrors: function (errorMap, errorList) {
+        var errors = this.numberOfInvalids();  // <- NUMBER OF INVALIDS
+        console.log(errors);
+
+        this.defaultShowErrors(); // <- ENABLE default MESSAGES
     }
 });
 
