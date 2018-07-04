@@ -54,8 +54,8 @@ $(".vertical-tab-steps").steps({
         }
 
 
-        $('input[type="tel"]').rules('add', { maxlength: 10 });
-        $('input[type="number"]').rules('add', { maxlength: 10 });
+        $('input[type="tel"]').rules('add', { maxlength: 9 });
+        $('input[type="number"]').rules('add', { maxlength: 9 });
        form.validate().settings.ignore = ":disabled,:hidden";
         return form.valid();
     },
