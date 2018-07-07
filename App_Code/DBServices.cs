@@ -59,7 +59,17 @@ public class DBServices
         return cmd;
     }
     #endregion
-
+    //Log writer:
+    public static void Log(string logMessage, string errorMessage, TextWriter w)
+    {
+        w.Write("\r\nLog Entry : ");
+        w.WriteLine("{0} {1}", DateTime.Now.ToLongTimeString(),
+            DateTime.Now.ToLongDateString());
+        w.WriteLine(" Error :{0}", errorMessage);
+        w.WriteLine(" Text :{0}", logMessage);
+        w.WriteLine("UserName: {0}", Environment.UserName);
+        w.WriteLine("-------------------------------");
+    }
 
     #region SELECT COMMANDs
 
@@ -645,7 +655,7 @@ public class DBServices
         }
         catch (Exception ex)
         {
-            return 0;
+
             // write to log
             throw (ex);
         }
@@ -708,7 +718,7 @@ public class DBServices
         }
         catch (Exception ex)
         {
-            return 0;
+
             // write to log
             throw (ex);
         }
@@ -770,7 +780,7 @@ public class DBServices
         }
         catch (Exception ex)
         {
-            return 0;
+
             // write to log
             throw (ex);
         }
@@ -893,8 +903,14 @@ public class DBServices
         }
         catch (Exception ex)
         {
-            return 0;
+
             // write to log
+            using (StreamWriter w = File.AppendText(System.Web.HttpContext.Current.Server.MapPath("~/Log/DELog.txt")))
+            {
+                Log(ex.GetType() + " - " + ex.Message, ex.StackTrace, w);
+
+            }
+
             throw (ex);
         }
 

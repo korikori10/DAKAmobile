@@ -70,7 +70,7 @@ function getCities(renderCities) {
     });
 
 } 
-//Get all cities for wizard
+//Get all Occupations for wizard
 function getOccu(renderOccu) {
     $.ajax({
         url: WSUrl + '/getOccupation',
