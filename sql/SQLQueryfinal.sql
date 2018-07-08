@@ -1023,7 +1023,9 @@ Values                                      ('231dscsd', 'dfsvs' ,'sdfds', '1989
 
 go
 
-----Smart Element--------------
+----Smart Element----------------------------------
+---------------------------------------------------
+---------------------------------------------------
 
 create table rolling
 ( emp_id float primary key not null,
