@@ -322,7 +322,22 @@ public class ajaxWebService : System.Web.Services.WebService
         string jsonStringCategory = js.Serialize(u);
         return jsonStringCategory;
     }
-   
+
+    [WebMethod]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    public string validateUserByUserName(string username, string userPass)
+    {
+        bool match;
+        User u = new User();
+        match = u.getUserByUserName(username, userPass);
+
+        JavaScriptSerializer js = new JavaScriptSerializer();
+        // serialize to string
+        string jsonStringCategory = js.Serialize(match);
+        return jsonStringCategory;
+    }
+
 }
+
 
 

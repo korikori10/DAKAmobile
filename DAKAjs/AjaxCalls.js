@@ -170,13 +170,13 @@ function getEmployeesnobusiness() {
 }
 
 
-function getUserById(username, ValidateUser) {
+function getUserById(username, userPass , ValidateUser) {
 
     // serialize the object to JSON string
-    var dataString = '{"username":' + JSON.stringify(username) + '}';
+    var dataString = '{"username":' + JSON.stringify(username) + ', "userPass":' + JSON.stringify(userPass) + '}';
 
     $.ajax({
-        url: WSUrl + '/getUserByUserName',
+        url: WSUrl + '/validateUserByUserName',
         data: dataString,
         type: 'POST',
         dataType: "json",
