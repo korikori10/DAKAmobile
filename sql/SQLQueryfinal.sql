@@ -1020,3 +1020,189 @@ go
 INSERT INTO EMPLOYEE (employee_pass_id,lname,fname,birthday,gender,Picture,origin_country,il_citizen,add_city,add,add_num,phone,com_app,michpal_id,insurance,com_insurance,fam_stat_code,salary_hour,salary_overtime,salary_trans,day_off_id,sabatical, occupation_code,active,disable_reason,food_incloud,food_pay,monthly_rent,final_bill) 
 Values                                      ('231dscsd', 'dfsvs' ,'sdfds', '1989-06-13', 'False', '', '1', 'False', '1', 'asdf', '2', '9876543', 'True', '0', 'False', 'False', '2', '23', '23', '23', '7', '7', '1', 'True', '','True','23','0','false')
 
+
+go
+
+----Smart Element--------------
+
+create table rolling
+( emp_id float primary key not null,
+date date not null
+)
+go
+drop table [dbo].[rolling]
+
+If Object_ID('rolling','U') Is Not Null Drop Table [dbo].[rolling];
+Go
+
+Select  count( distinct employee_pass_id) [NumOfEmp],
+      [start_date]
+Into   [dbo].[rolling]
+From    [dbo].[employee in business]
+group by [start_date]
+go
+
+
+
+select (start_date), count([employee_pass_id])
+from [dbo].[employee in business]
+group by (start_date)
+
+
+
+
+
+
+
+--	;WITH CTE_MA AS
+--    (
+--        SELECT
+--		 month('1'+[Month]+'00') as [Month],
+--		  [employeeCountMonth]
+
+--        FROM before_rolling_running
+--    )
+--SELECT
+--    T0.[Month]
+--    ,AVG(T1.[employeeCountMonth]) as [employeeRunningCount]
+--FROM
+--    CTE_MA AS T0
+--	LEFT OUTER JOIN
+--    CTE_MA AS T1
+--ON
+
+--   month( T1.[Month] )<= month( T0.[Month])
+--AND
+--   month( T1.[Month]) >= month( T0.[Month]) -11
+
+--GROUP BY
+--    T0.[Month]
+--    ,T0.[employeeCountMonth]
+----	order by  month( T0.[Month])
+--	go
+
+--	Select * From [dbo].[before_rolling_running];
+
+
+
+
+create view LeavingCompany
+as
+SELECT      distinct dbo.[employee in business].employee_pass_id , dbo.[employee in business].end_date
+FROM            dbo.[employee in business] INNER JOIN
+                         dbo.EMPLOYEE ON dbo.[employee in business].employee_pass_id = dbo.EMPLOYEE.employee_pass_id
+						 where active='0' and end_date is not null
+						 go
+
+						 create view [V_employee_monthly_leaving]
+						 as
+SELECT *
+FROM (SELECT YEAR(end_date) [Year], 
+       DATENAME(MONTH, end_date) [Month], 
+       COUNT(1) [employeeCountMonth]
+
+      FROM LeavingCompany 
+      GROUP BY YEAR(end_date), 
+      DATENAME(MONTH, end_date)) AS MontlyemployeeData
+PIVOT( SUM([employeeCountMonth])   
+    FOR Month IN ([January],[February],[March],[April],[May],
+    [June],[July],[August],[September],[October],[November],
+    [December])) AS MNamePivot
+GO
+
+
+
+create view monthly_growth_Againts_monthly_leaving
+as
+SELECT      dbo.V_employee_monthly_growth.Year,sum( dbo.V_employee_monthly_growth.January-  dbo.V_employee_monthly_leaving.January) as jan,isnull(sum( dbo.V_employee_monthly_growth.February-  dbo.V_employee_monthly_leaving.February),0) as fab,isnull(sum( dbo.V_employee_monthly_growth.March-  dbo.V_employee_monthly_leaving.March),0) as mar,isnull(sum( dbo.V_employee_monthly_growth.April-  dbo.V_employee_monthly_leaving.April),0) as apr,isnull(sum( dbo.V_employee_monthly_growth.May-  dbo.V_employee_monthly_leaving.May),0) as may,isnull(sum( dbo.V_employee_monthly_growth.June-  dbo.V_employee_monthly_leaving.June),0) as june,isnull(sum( dbo.V_employee_monthly_growth.July-  isnull(dbo.V_employee_monthly_leaving.July,0)),0) as july,isnull(sum( dbo.V_employee_monthly_growth.August-  dbo.V_employee_monthly_leaving.August),0) as Aug,isnull(sum( dbo.V_employee_monthly_growth.September-  dbo.V_employee_monthly_leaving.September),0) as Sep,isnull(sum( dbo.V_employee_monthly_growth.October-  dbo.V_employee_monthly_leaving.October),0) as oct,isnull(sum( dbo.V_employee_monthly_growth.November-  dbo.V_employee_monthly_leaving.November),0) as nov,isnull(sum( dbo.V_employee_monthly_growth.December-  dbo.V_employee_monthly_leaving.December),0) as decm
+FROM            dbo.V_employee_monthly_growth CROSS JOIN
+                         dbo.V_employee_monthly_leaving
+						 group by dbo.V_employee_monthly_growth.Year
+go
+
+alter view TRY1
+as
+
+	  SELECT *
+FROM (SELECT
+       DATENAME(MONTH, [start_date]) [Month], 
+       COUNT(1) [employeeCountMonth]
+
+      FROM [dbo].[employee in business]
+      GROUP BY  
+      DATENAME(MONTH, [start_date])) AS MontlyemployeeData
+	  go
+
+	 alter view TRY2
+as
+
+	  SELECT *
+FROM (SELECT 
+       DATENAME(MONTH, end_date) [Month1], 
+       COUNT(1) [employeeCountMonth1]
+
+      FROM LeavingCompany 
+      GROUP BY DATENAME(MONTH, end_date), 
+      DATENAME(MONTH, end_date)) AS MontlyemployeeData
+
+
+
+alter view final_calc
+as
+SELECT DISTINCT [Month],
+
+CASE [Month] WHEN [Month1] 
+ THEN [employeeCountMonth]-[employeeCountMonth1]
+ ELSE [employeeCountMonth]
+ END
+ AS [employeeCountMonth]
+
+FROM [dbo].[combine]
+--
+--group by [Month],[Month1]--,[employeeCountMonth]
+--order by 
+	go  
+
+	create view before_rolling_running
+	as
+SELECT [Month] , min([employeeCountMonth]) as [employeeCountMonth]
+  FROM final_calc
+  GROUP BY [Month]
+
+
+
+alter view combine
+as
+SELECT         dbo.TRY1.*,dbo.TRY2.*
+FROM            dbo.TRY1 CROSS JOIN
+                         dbo.TRY2
+go
+
+
+
+
+
+SELECT @@VERSION AS 'SQL Server Version'; 
+go
+create view SmartElement
+as
+With CTE
+As
+(
+SELECT *
+		, Row_Number() Over(Order by month('1'+[Month]+'00') ) As RowNum
+FROM	[dbo].[before_rolling_running]
+)
+Select	month('1'+[Month]+'00') as [Month]
+		, [employeeCountMonth],(	Select AVG([employeeCountMonth])
+			From	CTE B
+			Where	B.RowNum Between A.RowNum - 3 And A.RowNum
+			) As Moving_AVG
+		
+		
+From	CTE A
+
+Select * From [dbo].[before_rolling_running];
+
+
+
