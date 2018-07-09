@@ -129,6 +129,12 @@ public class DBServices
         catch (Exception ex)
         {
             // write to log
+            using (StreamWriter w = File.AppendText(System.Web.HttpContext.Current.Server.MapPath("~/Log/DELog.txt")))
+            {
+                Log(ex.Message, ex.InnerException.ToString(), w);
+
+            }
+            
             throw (ex);
 
         }
@@ -175,6 +181,11 @@ public class DBServices
         catch (Exception ex)
         {
             // write to log
+            using (StreamWriter w = File.AppendText(System.Web.HttpContext.Current.Server.MapPath("~/Log/DELog.txt")))
+            {
+                Log(ex.Message, ex.InnerException.ToString(), w);
+
+            }
             throw (ex);
 
         }
@@ -243,6 +254,11 @@ public class DBServices
         catch (Exception ex)
         {
             // write to log
+            using (StreamWriter w = File.AppendText(System.Web.HttpContext.Current.Server.MapPath("~/Log/DELog.txt")))
+            {
+                Log(ex.Message, ex.InnerException.ToString(), w);
+
+            }
             throw (ex);
 
         }
@@ -295,6 +311,11 @@ public class DBServices
         catch (Exception ex)
         {
             // write to log
+            using (StreamWriter w = File.AppendText(System.Web.HttpContext.Current.Server.MapPath("~/Log/DELog.txt")))
+            {
+                Log(ex.Message, ex.InnerException.ToString(), w);
+
+            }
             throw (ex);
 
         }
@@ -333,6 +354,11 @@ public class DBServices
         catch (Exception ex)
         {
             // write to log
+            using (StreamWriter w = File.AppendText(System.Web.HttpContext.Current.Server.MapPath("~/Log/DELog.txt")))
+            {
+                Log(ex.Message, ex.InnerException.ToString(), w);
+
+            }
             throw (ex);
 
         }
@@ -385,6 +411,11 @@ public class DBServices
         catch (Exception ex)
         {
             // write to log
+            using (StreamWriter w = File.AppendText(System.Web.HttpContext.Current.Server.MapPath("~/Log/DELog.txt")))
+            {
+                Log(ex.Message, ex.InnerException.ToString(), w);
+
+            }
             throw (ex);
 
         }
@@ -414,8 +445,9 @@ public class DBServices
         {
 
             con = connect("DAKADBConnectionString"); // create a connection to the database using the connection String defined in the web config file
-            string selectSTR = "SELECT*FROM USER_V1 where u_name = '" + username+"'" ;
+            string selectSTR = "SELECT*FROM USER_V1 where u_name = @UserName" ;
             SqlCommand cmd = new SqlCommand(selectSTR, con);
+            cmd.Parameters.AddWithValue("@UserName", username);
             SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
             User user = new User();
             while (dr.Read())
@@ -429,6 +461,11 @@ public class DBServices
         catch (Exception ex)
         {
             // write to log
+            using (StreamWriter w = File.AppendText(System.Web.HttpContext.Current.Server.MapPath("~/Log/DELog.txt")))
+            {
+                Log(ex.Message, ex.InnerException.ToString(), w);
+
+            }
             throw (ex);
 
         }
@@ -472,6 +509,11 @@ public class DBServices
         catch (Exception ex)
         {
             // write to log
+            using (StreamWriter w = File.AppendText(System.Web.HttpContext.Current.Server.MapPath("~/Log/DELog.txt")))
+            {
+                Log(ex.Message, ex.InnerException.ToString(), w);
+
+            }
             throw (ex);
 
         }
@@ -513,6 +555,11 @@ public class DBServices
         catch (Exception ex)
         {
             // write to log
+            using (StreamWriter w = File.AppendText(System.Web.HttpContext.Current.Server.MapPath("~/Log/DELog.txt")))
+            {
+                Log(ex.Message, ex.InnerException.ToString(), w);
+
+            }
             throw (ex);
 
         }
@@ -560,6 +607,11 @@ public class DBServices
         catch (Exception ex)
         {
             // write to log
+            using (StreamWriter w = File.AppendText(System.Web.HttpContext.Current.Server.MapPath("~/Log/DELog.txt")))
+            {
+                Log(ex.Message, ex.InnerException.ToString(), w);
+
+            }
             throw (ex);
 
         }
@@ -595,60 +647,75 @@ public class DBServices
         catch (Exception ex)
         {
             // write to log
+            using (StreamWriter w = File.AppendText(System.Web.HttpContext.Current.Server.MapPath("~/Log/DELog.txt")))
+            {
+                Log(ex.Message, ex.InnerException.ToString(), w);
+
+            }
             throw (ex);
         }
 
         String cStr = BuildInsertCommand(emp);      // helper method to build the insert string
 
         cmd = CreateCommand(cStr, con);             // create the command
+        cmd.Parameters.AddWithValue("@Lname", emp.Lname);
+        cmd.Parameters.AddWithValue("@Sys_id", emp.Sys_id);
+        cmd.Parameters.AddWithValue("@Fname", emp.Fname);
+        cmd.Parameters.AddWithValue("@Birthday", emp.Birthday.ToString("yyyy-MM-dd"));
+        cmd.Parameters.AddWithValue("@Gender", emp.Gender);
+        cmd.Parameters.AddWithValue("@Origin_country", emp.Origin_country);
+        cmd.Parameters.AddWithValue("@Add", emp.Add);
+        cmd.Parameters.AddWithValue("@Emp_id", emp.Employee_pass_id);
+        cmd.Parameters.AddWithValue("@Picture", emp.Picture);
+        cmd.Parameters.AddWithValue("@Phone", emp.Phone);
 
         try
         {
             int numEffected = cmd.ExecuteNonQuery(); // execute the command
 
-            var request = WebRequest.Create("https://onesignal.com/api/v1/notifications") as HttpWebRequest;
-            string pushTXT = "נוסף עובד חדש מס' " + emp.Employee_pass_id;
-            request.KeepAlive = true;
-            request.Method = "POST";
-            request.ContentType = "application/json; charset=utf-8";
+            //var request = WebRequest.Create("https://onesignal.com/api/v1/notifications") as HttpWebRequest;
+            //string pushTXT = "נוסף עובד חדש מס' " + emp.Employee_pass_id;
+            //request.KeepAlive = true;
+            //request.Method = "POST";
+            //request.ContentType = "application/json; charset=utf-8";
 
-            request.Headers.Add("authorization", "Basic MTZiZDk0Y2EtMzc5Ni00YWM5LWJmMjgtYWVmYjNhYjFkZTJi");
+            //request.Headers.Add("authorization", "Basic MTZiZDk0Y2EtMzc5Ni00YWM5LWJmMjgtYWVmYjNhYjFkZTJi");
 
-            var serializer = new JavaScriptSerializer();
-            var obj = new
-            {
-                app_id = "83d04d9a-0af5-47ff-8e0d-daa16120ede1",
-                contents = new { en = "Employee insurance status", he = pushTXT },
-                headings = new { en = "Employee number " + emp.Employee_pass_id + " insurance status has changed", he = "נוסף עובד חדש!" },
-                included_segments = new string[] { "All" }
-            };
-            var param = serializer.Serialize(obj);
-            byte[] byteArray = Encoding.UTF8.GetBytes(param);
+            //var serializer = new JavaScriptSerializer();
+            //var obj = new
+            //{
+            //    app_id = "83d04d9a-0af5-47ff-8e0d-daa16120ede1",
+            //    contents = new { en = "Employee insurance status", he = pushTXT },
+            //    headings = new { en = "Employee number " + emp.Employee_pass_id + " insurance status has changed", he = "נוסף עובד חדש!" },
+            //    included_segments = new string[] { "All" }
+            //};
+            //var param = serializer.Serialize(obj);
+            //byte[] byteArray = Encoding.UTF8.GetBytes(param);
 
-            string responseContent = null;
+            //string responseContent = null;
 
-            try
-            {
-                using (var writer = request.GetRequestStream())
-                {
-                    writer.Write(byteArray, 0, byteArray.Length);
-                }
+            //try
+            //{
+            //    using (var writer = request.GetRequestStream())
+            //    {
+            //        writer.Write(byteArray, 0, byteArray.Length);
+            //    }
 
-                using (var response = request.GetResponse() as HttpWebResponse)
-                {
-                    using (var reader = new StreamReader(response.GetResponseStream()))
-                    {
-                        responseContent = reader.ReadToEnd();
-                    }
-                }
-            }
-            catch (WebException ex)
-            {
-                System.Diagnostics.Debug.WriteLine(ex.Message);
-                System.Diagnostics.Debug.WriteLine(new StreamReader(ex.Response.GetResponseStream()).ReadToEnd());
-            }
+            //    using (var response = request.GetResponse() as HttpWebResponse)
+            //    {
+            //        using (var reader = new StreamReader(response.GetResponseStream()))
+            //        {
+            //            responseContent = reader.ReadToEnd();
+            //        }
+            //    }
+            //}
+            //catch (WebException ex)
+            //{
+            //    System.Diagnostics.Debug.WriteLine(ex.Message);
+            //    System.Diagnostics.Debug.WriteLine(new StreamReader(ex.Response.GetResponseStream()).ReadToEnd());
+            //}
 
-            System.Diagnostics.Debug.WriteLine(responseContent);
+            //System.Diagnostics.Debug.WriteLine(responseContent);
         
 
             return numEffected;
@@ -657,6 +724,11 @@ public class DBServices
         {
 
             // write to log
+            using (StreamWriter w = File.AppendText(System.Web.HttpContext.Current.Server.MapPath("~/Log/DELog.txt")))
+            {
+                Log(ex.Message, ex.InnerException.ToString(), w);
+
+            }
             throw (ex);
         }
 
@@ -681,7 +753,7 @@ public class DBServices
 
         StringBuilder sb = new StringBuilder();
         // use a string builder to create the dynamic string
-        sb.AppendFormat("Values('{0}', '{1}' ,'{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}', '{18}', '{19}', '{20}', '{21}', '{22}', '{23}', '{24}','{25}','{26}','{27}')", emp.Employee_pass_id, emp.Lname, emp.Fname, emp.Birthday.ToString("yyyy-MM-dd"), emp.Gender, emp.Picture, emp.Origin_country, emp.Il_citizen, emp.Add_city, emp.Add, emp.Add_num, emp.Phone, emp.Com_app, emp.Sys_id, emp.Insurance, emp.Com_insurance, emp.Fam_stat_code, emp.Salary_hour, emp.Salary_overtime, emp.Salary_trans, emp.Day_off, emp.Sabatical, emp.Occupation_code, emp.Active, emp.Food_incloud, emp.Food_pay, emp.Monthly_rent, "false");//לבדוק מה סטרינג כי הוא מצריך גרשיים אחדיים ולאינט לא!לבדוק מי צריך מה לגבי בול והשאר
+        sb.AppendFormat("Values({0}, {1} ,{2}, {3}, {4}, {5}, {6}, '{7}', '{8}', {9}, '{10}', {11}, '{12}', {13}, '{14}', '{15}', '{16}', '{17}', '{18}', '{19}', '{20}', '{21}', '{22}', '{23}', '{24}','{25}','{26}','{27}')", "@Emp_id", "@Lname", "@Fname", "@Birthday", "@Gender", "@Picture", "@Origin_country", emp.Il_citizen, emp.Add_city, "@Add", emp.Add_num, "@Phone", emp.Com_app, "@Sys_id", emp.Insurance, emp.Com_insurance, emp.Fam_stat_code, emp.Salary_hour, emp.Salary_overtime, emp.Salary_trans, emp.Day_off, emp.Sabatical, emp.Occupation_code, emp.Active, emp.Food_incloud, emp.Food_pay, emp.Monthly_rent, "false");//לבדוק מה סטרינג כי הוא מצריך גרשיים אחדיים ולאינט לא!לבדוק מי צריך מה לגבי בול והשאר
         String prefix = "INSERT INTO EMPLOYEE " + "(employee_pass_id,lname,fname,birthday,gender,Picture,origin_country,il_citizen,add_city,[add],add_num,phone,com_app,michpal_id,insurance,com_insurance,fam_stat_code,salary_hour,salary_overtime,salary_trans,day_off_id,sabatical,occupation_code,active,food_incloud,food_pay,monthly_rent,final_bill) ";
         command = prefix + sb.ToString();
 
@@ -704,6 +776,11 @@ public class DBServices
         catch (Exception ex)
         {
             // write to log
+            using (StreamWriter w = File.AppendText(System.Web.HttpContext.Current.Server.MapPath("~/Log/DELog.txt")))
+            {
+                Log(ex.Message, ex.InnerException.ToString(), w);
+
+            }
             throw (ex);
         }
 
@@ -720,6 +797,11 @@ public class DBServices
         {
 
             // write to log
+            using (StreamWriter w = File.AppendText(System.Web.HttpContext.Current.Server.MapPath("~/Log/DELog.txt")))
+            {
+                Log(ex.Message, ex.InnerException.ToString(), w);
+
+            }
             throw (ex);
         }
 
@@ -766,6 +848,11 @@ public class DBServices
         catch (Exception ex)
         {
             // write to log
+            using (StreamWriter w = File.AppendText(System.Web.HttpContext.Current.Server.MapPath("~/Log/DELog.txt")))
+            {
+                Log(ex.Message, ex.InnerException.ToString(), w);
+
+            }
             throw (ex);
         }
 
@@ -782,6 +869,11 @@ public class DBServices
         {
 
             // write to log
+            using (StreamWriter w = File.AppendText(System.Web.HttpContext.Current.Server.MapPath("~/Log/DELog.txt")))
+            {
+                Log(ex.Message, ex.InnerException.ToString(), w);
+
+            }
             throw (ex);
         }
 
@@ -828,6 +920,11 @@ public class DBServices
         catch (Exception ex)
         {
             // write to log
+            using (StreamWriter w = File.AppendText(System.Web.HttpContext.Current.Server.MapPath("~/Log/DELog.txt")))
+            {
+                Log(ex.Message, ex.InnerException.ToString(), w);
+
+            }
             throw (ex);
         }
 
@@ -842,8 +939,13 @@ public class DBServices
         }
         catch (Exception ex)
         {
-            return 0;
+
             // write to log
+            using (StreamWriter w = File.AppendText(System.Web.HttpContext.Current.Server.MapPath("~/Log/DELog.txt")))
+            {
+                Log(ex.Message, ex.InnerException.ToString(), w);
+
+            }
             throw (ex);
         }
 
@@ -889,6 +991,11 @@ public class DBServices
         catch (Exception ex)
         {
             // write to log
+            using (StreamWriter w = File.AppendText(System.Web.HttpContext.Current.Server.MapPath("~/Log/DELog.txt")))
+            {
+                Log(ex.Message, ex.InnerException.ToString(), w);
+
+            }
             throw (ex);
         }
 
@@ -964,12 +1071,26 @@ public class DBServices
         catch (Exception ex)
         {
             // write to log
+            using (StreamWriter w = File.AppendText(System.Web.HttpContext.Current.Server.MapPath("~/Log/DELog.txt")))
+            {
+                Log(ex.Message, ex.InnerException.ToString(), w);
+
+            }
             throw (ex);
         }
 
         String cStr = BuildUpdateCommand(emp);      // helper method to build the insert string
 
         cmd = CreateCommand(cStr, con);             // create the command
+        cmd.Parameters.AddWithValue("@Lname", emp.Lname);
+        cmd.Parameters.AddWithValue("@Fname", emp.Fname);
+        cmd.Parameters.AddWithValue("@Birthday", emp.Birthday.ToString("yyyy-MM-dd"));
+        cmd.Parameters.AddWithValue("@Gender", emp.Gender);
+        cmd.Parameters.AddWithValue("@Origin_country", emp.Origin_country);
+        cmd.Parameters.AddWithValue("@Add", emp.Add);
+        cmd.Parameters.AddWithValue("@Emp_id", emp.Employee_pass_id);
+        cmd.Parameters.AddWithValue("@Picture", emp.Picture);
+        cmd.Parameters.AddWithValue("@Phone", emp.Phone);
 
         try
         {
@@ -978,8 +1099,13 @@ public class DBServices
         }
         catch (Exception ex)
         {
-            return 0;
+
             // write to log
+            using (StreamWriter w = File.AppendText(System.Web.HttpContext.Current.Server.MapPath("~/Log/DELog.txt")))
+            {
+                Log(ex.Message, ex.InnerException.ToString(), w);
+
+            }
             throw (ex);
         }
 
@@ -1004,7 +1130,7 @@ public class DBServices
 
         StringBuilder sb = new StringBuilder();
         // use a string builder to create the dynamic string
-        String prefix = "UPDATE EMPLOYEE SET lname = '" + emp.Lname + "', fname = '" + emp.Fname + "', birthday = '" + emp.Birthday + "', gender = '" + emp.Gender + "', Picture = '" + emp.Picture + "', origin_country = '" + emp.Origin_country + "', il_citizen = '" + emp.Il_citizen + "', add_city = '" + emp.Add_city + "', [add] = '" + emp.Add + "', add_num = '" +emp.Add_num + "', phone = '" +emp.Phone + "', com_app = '" + emp.Com_app + "', monthly_rent = '" + emp.Monthly_rent+ "', insurance = '" +emp.Insurance + "', com_insurance = '" + emp.Com_insurance + "', fam_stat_code = '" +emp.Fam_stat_code + "', salary_hour = '" + emp.Salary_hour + "', salary_overtime = '" + emp.Salary_overtime + "', salary_trans = '" + emp.Salary_trans + "', day_off_id = '" + emp.Day_off + "', sabatical = '" +emp.Sabatical + "', occupation_code = '" +emp.Occupation_code + "', active = '" + emp.Active + "', food_incloud = '" +emp.Food_incloud+ "', food_pay = '" +emp.Food_pay+ "', final_bill = '" +emp.Final_bill+ "' Where employee_pass_id = '" + emp.Employee_pass_id + "'";
+        String prefix = "UPDATE EMPLOYEE SET lname = @Lname, fname = @Fname, birthday = @Birthday, gender = @Gender, Picture = @Gender, origin_country = @Origin_country, il_citizen = '" + emp.Il_citizen + "', add_city = '" + emp.Add_city + "', [add] = @Add, add_num = '" +emp.Add_num + "', phone = '" +emp.Phone + "', com_app = '" + emp.Com_app + "', monthly_rent = '" + emp.Monthly_rent+ "', insurance = '" +emp.Insurance + "', com_insurance = '" + emp.Com_insurance + "', fam_stat_code = '" +emp.Fam_stat_code + "', salary_hour = '" + emp.Salary_hour + "', salary_overtime = '" + emp.Salary_overtime + "', salary_trans = '" + emp.Salary_trans + "', day_off_id = '" + emp.Day_off + "', sabatical = '" +emp.Sabatical + "', occupation_code = '" +emp.Occupation_code + "', active = '" + emp.Active + "', food_incloud = '" +emp.Food_incloud+ "', food_pay = '" +emp.Food_pay+ "', final_bill = '" +emp.Final_bill+ "' Where employee_pass_id = @Emp_id";
         command = prefix;// prefix;
 
         return command;
@@ -1026,6 +1152,11 @@ public class DBServices
         catch (Exception ex)
         {
             // write to log
+            using (StreamWriter w = File.AppendText(System.Web.HttpContext.Current.Server.MapPath("~/Log/DELog.txt")))
+            {
+                Log(ex.Message, ex.InnerException.ToString(), w);
+
+            }
             throw (ex);
         }
 
@@ -1040,8 +1171,13 @@ public class DBServices
         }
         catch (Exception ex)
         {
-            return 0;
+
             // write to log
+            using (StreamWriter w = File.AppendText(System.Web.HttpContext.Current.Server.MapPath("~/Log/DELog.txt")))
+            {
+                Log(ex.Message, ex.InnerException.ToString(), w);
+
+            }
             throw (ex);
         }
 
@@ -1089,12 +1225,21 @@ public class DBServices
         catch (Exception ex)
         {
             // write to log
+            using (StreamWriter w = File.AppendText(System.Web.HttpContext.Current.Server.MapPath("~/Log/DELog.txt")))
+            {
+                Log(ex.Message, ex.InnerException.ToString(), w);
+
+            }
             throw (ex);
         }
 
         String cStr = BuildUpdateCommand(u);      // helper method to build the insert string
 
         cmd = CreateCommand(cStr, con);             // create the command
+        cmd.Parameters.AddWithValue("@U_name", u.U_name);
+        cmd.Parameters.AddWithValue("@FullName", u.Full_name);
+        cmd.Parameters.AddWithValue("@Phone", u.Phone);
+        cmd.Parameters.AddWithValue("@U_img", u.User_img);
 
         try
         {
@@ -1103,8 +1248,13 @@ public class DBServices
         }
         catch (Exception ex)
         {
-            return 0;
+
             // write to log
+            using (StreamWriter w = File.AppendText(System.Web.HttpContext.Current.Server.MapPath("~/Log/DELog.txt")))
+            {
+                Log(ex.Message, ex.InnerException.ToString(), w);
+
+            }
             throw (ex);
         }
 
@@ -1129,7 +1279,7 @@ public class DBServices
 
         StringBuilder sb = new StringBuilder();
       //  use a string builder to create the dynamic string
-       String prefix = "UPDATE USERS SET u_name = '" + u.U_name + "',full_name= '" + u.Full_name + "',U_type_code='" + u.U_type_code + "',phone='" + u.Phone + "',user_img='"+u.User_img+ " Where u_id = " + u.Uid;
+       String prefix = "UPDATE USERS SET u_name = @U_name, full_name = @FullName,U_type_code='" + u.U_type_code + "',phone= @Phone ,user_img = @U_img Where u_id = " + u.Uid;
         command = prefix;
 
         return command;
@@ -1160,13 +1310,19 @@ public class DBServices
         catch (Exception ex)
         {
             // write to log
+            using (StreamWriter w = File.AppendText(System.Web.HttpContext.Current.Server.MapPath("~/Log/DELog.txt")))
+            {
+                Log(ex.Message, ex.InnerException.ToString(), w);
+
+            }
             throw (ex);
         }
 
         String cStr = BuildUpdateCommand(userName, Pass);      // helper method to build the insert string
 
         cmd = CreateCommand(cStr, con);             // create the command
-
+        cmd.Parameters.AddWithValue("@UserName", userName);
+        cmd.Parameters.AddWithValue("@Pass", Pass);
         try
         {
             int numEffected = cmd.ExecuteNonQuery(); // execute the command
@@ -1174,8 +1330,13 @@ public class DBServices
         }
         catch (Exception ex)
         {
-            return 0;
+
             // write to log
+            using (StreamWriter w = File.AppendText(System.Web.HttpContext.Current.Server.MapPath("~/Log/DELog.txt")))
+            {
+                Log(ex.Message, ex.InnerException.ToString(), w);
+
+            }
             throw (ex);
         }
 
@@ -1200,7 +1361,7 @@ public class DBServices
 
         StringBuilder sb = new StringBuilder();
         //  use a string builder to create the dynamic string
-        String prefix = "UPDATE USERS SET u_pwd = '" + Pass + "' Where u_name = '" + userName + "'";
+        String prefix = "UPDATE USERS SET u_pwd = @Pass Where u_name = @UserName";
         command = prefix;
 
         return command;
@@ -1224,6 +1385,11 @@ public class DBServices
         catch (Exception ex)
         {
             // write to log
+            using (StreamWriter w = File.AppendText(System.Web.HttpContext.Current.Server.MapPath("~/Log/DELog.txt")))
+            {
+                Log(ex.Message, ex.InnerException.ToString(), w);
+
+            }
             throw (ex);
         }
 
@@ -1238,8 +1404,13 @@ public class DBServices
         }
         catch (Exception ex)
         {
-            return 0;
+
             // write to log
+            using (StreamWriter w = File.AppendText(System.Web.HttpContext.Current.Server.MapPath("~/Log/DELog.txt")))
+            {
+                Log(ex.Message, ex.InnerException.ToString(), w);
+
+            }
             throw (ex);
         }
 
