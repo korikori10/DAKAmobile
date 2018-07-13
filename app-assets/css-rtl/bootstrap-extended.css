@@ -1423,7 +1423,7 @@ button:focus {
 }
 
 .card-header {
-  border-bottom : 1px solid #EEEEEE;
+  /*border-bottom : 1px solid #EEEEEE;*/
 }
 .card-header .card-title {
   margin-bottom : 0;

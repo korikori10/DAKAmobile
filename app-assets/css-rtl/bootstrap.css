@@ -3861,7 +3861,7 @@ tbody.collapse.in {
 .card-header {
   padding : 1rem 1.5rem;
   margin-bottom : 0;
-  background-color : #FFFFFF;
+  /*background-color : #FFFFFF;*/
   border-bottom : 1px solid rgba(0, 0, 0, 0.06);
 }
 .card-header::after {
