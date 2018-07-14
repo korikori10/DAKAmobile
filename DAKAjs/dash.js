@@ -3,7 +3,6 @@ totalEmp = 0;
 
 $(document).ready(function () {
     var username = sessionStorage.getItem('userName');
-
     getUserByUserName(username, renderUser);
     getEmployees(renderEmployees);
     //statistics

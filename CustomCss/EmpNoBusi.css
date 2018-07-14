@@ -1,0 +1,50 @@
+﻿body {
+}
+* {
+    box-sizing: border-box;
+}
+
+.menu {
+    width: 100%;
+    text-align: center;
+}
+
+a img {
+    height: 50px;
+    width: 50px;
+    float: right;
+}
+
+.menu a {
+    background-color: whitesmoke;
+    padding: 8px;
+    margin-top: 7px;
+    float: right;
+    width: 100%;
+    color: black;
+}
+
+.icon-arrow-left {
+    float: left;
+}
+
+.main {
+    width: 100%;
+    padding: 0 20px;
+}
+
+.right {
+    background-color: #e5e5e5;
+    float: left;
+    width: 20%;
+    padding: 15px;
+    margin-top: 7px;
+    text-align: center;
+}
+
+@media only screen and (max-width:620px) {
+    /* For mobile phones: */
+    .menu, .main, .right {
+        width: 100%;
+    }
+}

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
-// REMEMBER TO ADD THIS NAMESPACE
 using System.Web.Script.Serialization;
 using System.Web.Script.Services;
 using System.IO;
@@ -13,7 +12,6 @@ using Newtonsoft.Json;
 using System.Net;
 using System.Net.Http;
 using System.Net.Mail;
-//using System.Web.Http;
 
 
 
@@ -35,6 +33,7 @@ public class ajaxWebService : System.Web.Services.WebService
         //InitializeComponent(); 
     }
 
+    //Get all Employees
     [WebMethod]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
     public string getEmployees()
@@ -48,7 +47,8 @@ public class ajaxWebService : System.Web.Services.WebService
 
     }
 
-        [WebMethod]
+    //Get all Businesses for selectize
+    [WebMethod]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
     public string getBusinesses()
     {
@@ -60,6 +60,8 @@ public class ajaxWebService : System.Web.Services.WebService
         return jsonStringCategory;
 
     }
+
+    //Get all Businesses for Datatable
     [WebMethod]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
     public void getBusinessesTable()
@@ -73,6 +75,8 @@ public class ajaxWebService : System.Web.Services.WebService
         Context.Response.Write(jsonStringCategory);
 
     }
+
+    //Get all cities for selectize
     [WebMethod]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
     public string getCities()
@@ -85,6 +89,8 @@ public class ajaxWebService : System.Web.Services.WebService
         return jsonStringCategory;
 
     }
+
+    //Get all Countries for selectize
     [WebMethod]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
     public string getCountries()
@@ -98,7 +104,7 @@ public class ajaxWebService : System.Web.Services.WebService
 
     }
 
-
+    //Get spesific Employess
     [WebMethod]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
     public string GetEmployeeById(string pass)
@@ -114,6 +120,7 @@ public class ajaxWebService : System.Web.Services.WebService
 
     }
 
+    //Get all Employees without business
     [WebMethod]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
     public void getEmployeesnobusiness()
@@ -129,6 +136,7 @@ public class ajaxWebService : System.Web.Services.WebService
 
     }
 
+    //Get all Employees without business for knobe statistic
     [WebMethod]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
     public string getEmployeesNoBusinessAmount()
@@ -143,7 +151,7 @@ public class ajaxWebService : System.Web.Services.WebService
 
     }
 
-    
+    //Get all Occupation for selectize
     [WebMethod]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
     public string getOccupation()
@@ -157,6 +165,8 @@ public class ajaxWebService : System.Web.Services.WebService
         return jsonStringCategory;
 
     }
+
+    //Insert an Employee
     [WebMethod]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
     public string insertEmployee(string EmployeeInfo)
@@ -222,9 +232,9 @@ public class ajaxWebService : System.Web.Services.WebService
         return jsonStringCategory;
 
     }
-
     
-           [WebMethod]
+    //Insert Signature into doc
+    [WebMethod]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
     public string insertSignature(string svgString, string[] fileString)
     {
@@ -236,7 +246,7 @@ public class ajaxWebService : System.Web.Services.WebService
 
     }
 
-
+    //Update user Password
     [WebMethod]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
     public void updateUserPass(string userName, string pass)
@@ -246,6 +256,7 @@ public class ajaxWebService : System.Web.Services.WebService
  
 
     }
+
     //update specific user
     [WebMethod]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
@@ -276,10 +287,7 @@ public class ajaxWebService : System.Web.Services.WebService
         }
     }
 
-
-
-
-
+    //Insert doc
     [WebMethod]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
     public string InsertDoc(string FileInfo)
@@ -293,6 +301,7 @@ public class ajaxWebService : System.Web.Services.WebService
         return jsonStringCategory;
     }
 
+    //Update an Emmloyee
     [WebMethod]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
     public string updateEmployee(string EmployeeInfo)
@@ -309,20 +318,7 @@ public class ajaxWebService : System.Web.Services.WebService
 
     }
 
-    //[WebMethod]
-    //[ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-    //public void UpdateUser(string userInfo)
-    //{
-
-    //    JavaScriptSerializer js = new JavaScriptSerializer();
-    //    User u = js.Deserialize<User>(userInfo);
-
-    //    u.UpdateUser(u);
-
-
-    //}
-
-
+    //Get Spesific user
     [WebMethod]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
     public string getUserByUserName(string username)
@@ -337,6 +333,7 @@ public class ajaxWebService : System.Web.Services.WebService
         return jsonStringCategory;
     }
 
+    //Validate User
     [WebMethod]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
     public string validateUserByUserName(string username, string userPass)

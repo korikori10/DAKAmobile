@@ -19,9 +19,7 @@ $(document).ready(function () {
 });
 
 function renderDocs(results) {
-
-
-   
+  
     $('#EmpDocs').attr('id');
     var doctype = "5";
     $.each(results, function (i, row) {
@@ -45,6 +43,7 @@ function renderDocs(results) {
 
     });
 }
+
 function createContractForm() {
     // get the last DIV which ID starts with ^= "contact"
     var $div = $('div[id^="doc"]:last');
@@ -98,6 +97,7 @@ function finished(i) {
             })
     }
 };
+
 $('#sigModal').on('shown.bs.modal', function (e) {
     $("#signature").jSignature();
     $("#signature").resize();

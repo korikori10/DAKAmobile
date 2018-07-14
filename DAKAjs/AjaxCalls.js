@@ -47,7 +47,7 @@ function getBusinessesTable() {
                     { 'data': 'Bus_name' },
                     {
                         'data': 'Phone', 'render': function (phone) {
-                            phone = '<a href="tel:5555555">התקשר לחברה</a>';
+                           var phone = '<a href="tel:5555555">התקשר לחברה</a>';
 
                             return phone;
                         }

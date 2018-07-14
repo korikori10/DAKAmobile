@@ -26,6 +26,18 @@ public class DBServices
        
     }
 
+    //Log writer:
+    public static void Log(string logMessage, string errorMessage, TextWriter w)
+    {
+        w.Write("\r\nLog Entry : ");
+        w.WriteLine("{0} {1}", DateTime.Now.ToLongTimeString(),
+            DateTime.Now.ToLongDateString());
+        w.WriteLine(" Error :{0}", errorMessage);
+        w.WriteLine(" Text :{0}", logMessage);
+        w.WriteLine("UserName: {0}", Environment.UserName);
+        w.WriteLine("-------------------------------");
+    }
+
     #region connection and Createcommand
     //--------------------------------------------------------------------------------------------------
     // This method creates a connection to the database according to the connectionString name in the web.config 
@@ -59,17 +71,6 @@ public class DBServices
         return cmd;
     }
     #endregion
-    //Log writer:
-    public static void Log(string logMessage, string errorMessage, TextWriter w)
-    {
-        w.Write("\r\nLog Entry : ");
-        w.WriteLine("{0} {1}", DateTime.Now.ToLongTimeString(),
-            DateTime.Now.ToLongDateString());
-        w.WriteLine(" Error :{0}", errorMessage);
-        w.WriteLine(" Text :{0}", logMessage);
-        w.WriteLine("UserName: {0}", Environment.UserName);
-        w.WriteLine("-------------------------------");
-    }
 
     #region SELECT COMMANDs
 
@@ -526,6 +527,10 @@ public class DBServices
         }
     }
 
+    /// <summary>
+    /// reads Countries from sql
+    /// </summary>
+    /// <returns>list of Countries</returns>
     public List<Country> readCountries()
     {
         SqlConnection con = null;
@@ -577,9 +582,6 @@ public class DBServices
     /// reads cities from sql
     /// </summary>
     /// <returns>list of cities</returns>
-
-
-
     public List<City> readCities()
     {
         SqlConnection con = null;
@@ -863,7 +865,7 @@ public class DBServices
     }
 
     //--------------------------------------------------------------------
-    // insert an Business
+    // insert an emp to Business
     //--------------------------------------------------------------------
     public int insertEmpBus(Employee emp)
     {
@@ -933,6 +935,7 @@ public class DBServices
 
         return command;
     }
+
     //--------------------------------------------------------------------
     // insert a New DOc
     //--------------------------------------------------------------------
@@ -1299,7 +1302,6 @@ public class DBServices
 
     }
 
-
     //--------------------------------------------------------------------
     // Build the update a user command String
     //--------------------------------------------------------------------
@@ -1315,19 +1317,7 @@ public class DBServices
         return command;
     }
 
-    #endregion
-
-    private static object getString(object o)
-
-    {
-
-        if (o == DBNull.Value)
-        {
-            return o = "0";
-        }
-        return o;
-
-    }
+  
     public int updateUserPass(string userName, string Pass)
     {
 
@@ -1473,4 +1463,18 @@ public class DBServices
         return command;
     }
 
+    #endregion
+
+
+    private static object getString(object o)
+
+    {
+
+        if (o == DBNull.Value)
+        {
+            return o = "0";
+        }
+        return o;
+
+    }
 }

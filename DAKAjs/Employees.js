@@ -2,7 +2,7 @@
 EmployeeInfo = new Object();
 
 $(document).ready(function () {
-
+    //get all employees without business
     getEmployeesnobusinesss(renderEmployeesnobusiness);
 });
 

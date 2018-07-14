@@ -13,6 +13,7 @@ $(document).ready(function () {
     getCountries(renderCountries);
     getBusinesses(renderBusinesses);
     getOccu(renderOccu);
+
     //fields autocomplete logic
     $('[name=Il_citizen]').on('change', function () {
         if (this.value == 'T') {
@@ -23,6 +24,7 @@ $(document).ready(function () {
             $('[name=Insurance]').removeAttr('disabled').val("");
         }
     });
+
     $('[name=Food_incloud]').on('change', function () {
         if (this.value == 'F') {
 
@@ -33,6 +35,7 @@ $(document).ready(function () {
         }
         
     });
+
     $('[name=Com_app]').on('change', function () {
         if (this.value == 'F') {
 
@@ -43,6 +46,7 @@ $(document).ready(function () {
         }
 
     });
+
 //Picture or file upload
     $("#Pic").on("change", function () {
         pbLBL = $("#pLBL2")
@@ -80,25 +84,6 @@ $(document).ready(function () {
 
         }
     })
-    $("#picAuth").on("change", function () {
-        pbLBL = $("#pLB2")
-        pbDiv = $("#progressBar2")
-        pbLBL.text('Uploading...');
-        pbDiv.fadeIn(500)
-        var files = $(this).get(0).files;
-        if (files.length > 0) {
-
-            var formData = new FormData();
-            for (var i = 0; i < files.length; i++) {
-                formData.append(files[i].name, files[i])
-            }
-            EmployeeInfo.Doc_id = EmployeeInfo.pass + makeid();
-            EmployeeInfo.Doctype_id = '3';
-            EmployeeInfo.Employee_pass_id = EmployeeInfo.pass
-            uploadFiles(formData, pbLBL, pbDiv, setEmpAuth);
-
-        }
-    })
     $("#Picvisa").on("change", function () {
         pbLBL = $("#pVlBl")
         pbDiv = $("#progressBar4")
@@ -118,6 +103,7 @@ $(document).ready(function () {
     })
 });
 
+//Make us random id
 function makeid() {
     var text = "";
     var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -128,6 +114,7 @@ function makeid() {
     return text;
 }
 
+//Set each pic or document into variables
 function setEmpVisa(results)
 {
     EmpVisa.Img_url = results;
@@ -136,12 +123,14 @@ function setEmpVisa(results)
     EmpVisa.Employee_pass_id = EmployeeInfo.pass;
    
 }
+
 function setEmpAuth(results) {
     EmpAuth.Img_url = results;
     EmpAuth.Doc_id = EmployeeInfo.pass + makeid();
     EmpAuth.Doctype_id = '3';
     EmpAuth.Employee_pass_id = EmployeeInfo.pass;
 }
+
 function setEmpID(results) {
     EmpID.Img_url = results;
     EmpID.Doc_id = EmployeeInfo.pass + makeid();
@@ -153,6 +142,7 @@ function setEmpPic(results) {
     EmpPic = results;
 }
 
+//Fix date to correct format
  function fixDate(date) {
     var date = new Date(parseInt(date.substr(6)));
     var month = date.getMonth() + 1;
@@ -163,6 +153,7 @@ function setEmpPic(results) {
 
 }
 
+//populat form
 function populate(frm, data) {
     $.each(data, function (key, value) {
         var ctrl = $('[name=' + key + ']', frm);
@@ -259,7 +250,6 @@ function renderCities(results) {
     });
 }
 
-
 function renderOccu(results) {
     //this is the callBackFunc 
     results = $.parseJSON(results.d);
@@ -272,6 +262,7 @@ function renderOccu(results) {
     });
 }
 
+///////// INSERTS /////////
 function insertEmp(array) {
 
     array.Bus_name = $('#businessSE option:selected').text();

@@ -405,8 +405,6 @@ public class Employee
         }
     }
 
-
-
     public int Business
     {
         get
@@ -458,7 +456,6 @@ public class Employee
             rent = value;
         }
     }
-
 
     public bool Food_incloud
     {
@@ -668,6 +665,7 @@ public class Employee
           inserted +=  dbs.insertEmpBus(e);
         return inserted;
     }
+
     public void updateEmp(Employee e)
     {
 

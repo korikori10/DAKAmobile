@@ -1,19 +1,5 @@
 ﻿var username = new Object();
 
-//document.addEventListener('deviceready', function () {
-//    // Enable to debug issues.
-//    // window.plugins.OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
-
-//    var notificationOpenedCallback = function (jsonData) {
-//        console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
-//    };
-
-//    window.plugins.OneSignal
-//        .startInit("83d04d9a-0af5-47ff-8e0d-daa16120ede1")
-//        .handleNotificationOpened(notificationOpenedCallback)
-//        .endInit();
-//}, false);
-
 $(document).ready(function () {
    
     if (localStorage.getItem("userName") != null) {
@@ -22,6 +8,7 @@ $(document).ready(function () {
     }
     
 });
+
 //localStorage to save user name (no expiration)
 function movetopage() {
     username = $("#user-name").val();

@@ -51,14 +51,8 @@ $("[name='UserSave']").on('click', function () {
                 UserInfo.Full_name=document.getElementById('name').innerHTML;
                 UserInfo.U_name=document.getElementById('mail').innerHTML;
                 UserInfo.Phone= document.getElementById('phone').innerHTML;
-              //  UserInfo.U_type_name = document.getElementById('usertype').innerHTML;
-
               
                     UpdateUsercall({ UserInfo: JSON.stringify(UserInfo) });
                 }
-
-            else {
-                 swal("פעולה לא בוצעה", "שגיאה במערכת)", "error");
-            }
         });
 });
