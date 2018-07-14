@@ -470,7 +470,7 @@ footer.footer-dark {
 }
 .main-menu.menu-dark .navigation > li > a i {
   position : relative;
-  top : 3px;
+  top : 10px;
 }
 .main-menu.menu-dark .navigation > li.open > ul {
   background : #162029;

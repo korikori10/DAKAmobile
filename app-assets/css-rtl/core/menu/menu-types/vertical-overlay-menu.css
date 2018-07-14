@@ -55,9 +55,11 @@
        -o-transition : 200ms ease all;
           transition : 200ms ease all;
 }
-.vertical-overlay-menu .main-menu .navigation > li > a > span {
-  float : right;
-}
+    .vertical-overlay-menu .main-menu .navigation > li > a > span {
+        float: right;
+        font-size: 20px;
+        color: white;
+    }
 .vertical-overlay-menu .main-menu .navigation li.has-sub > a:not(.mm-next):after {
   content : '\ea0b';
   font-family : 'icomoon';
