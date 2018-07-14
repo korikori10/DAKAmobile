@@ -132,7 +132,7 @@
                                     <div class="card-block">
                                         <button id="password" class="btn btn-secondary round btn-min-width mr-1 mb-1"><i class="icon-plus4"></i> שינוי סיסמא</button>
                                         <br />
-                                        <button id="edit" class="btn btn-secondary round btn-min-width mr-1 mb-1"><i class="icon-head"></i> שמור פרטים אישיים</button>
+                                        <button id="edit" name="UserSave" class="btn btn-secondary round btn-min-width mr-1 mb-1"><i class="icon-head"></i> שמור פרטים אישיים</button>
 
                                     </div>
                                 </div>
@@ -148,7 +148,7 @@
                                 <label class="list-group-item">
                                     <i class="icon-user-tie"></i> סוג משתמש
                                 </label>
-                                <label class="labels" contenteditable="true" type="text" name="u_type_name" id="usertype" value=""></label>
+                                <label class="labels" contenteditable="false" type="text" name="u_type_name" id="usertype" value=""></label>
                                 <div hidden="hidden" id="save"></div>
                             </div>
 
@@ -168,7 +168,7 @@
                             <form id="resetPassForm">
 
                                 <div class="modal-body">
-                                    <fieldset class="form-group floating-label-form-group has-danger">
+                                    <fieldset class="form-group floating-label-form-group ">
                                         <label for="newPass">סיסמה חדשה :</label>
                                         <input type="password" class="form-control" id="newPass" name="newPass" />
                                         <label for="newPassCon">אמת סיסמה חדשה :</label>

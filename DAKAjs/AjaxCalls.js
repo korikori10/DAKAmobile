@@ -1,14 +1,17 @@
 ﻿var local = true;
 var WSUrl = 'ajaxWebService.asmx';
 var UHUrl = 'UploadHandler.ashx';
+
 if (!local) {
     WSUrl = 'https://proj.ruppin.ac.il/bgroup59/test2/tar2/ajaxWebService.asmx';
-    UHUrl = 'https://proj.ruppin.ac.il/bgroup59/test2/tar2/UploadHandler.ashx'
+    UHUrl = 'https://proj.ruppin.ac.il/bgroup59/test2/tar2/UploadHandler.ashx';
 }
+
 $(document).ready(function () {
     $("#user_img").attr('src', sessionStorage.getItem("u_img"));
     $("#full_name").html(sessionStorage.getItem("FullName"));
 });
+
 // Get all Employees for Searchbox on dash
 function getEmployees(renderEmployees) {
     $.ajax({
@@ -44,11 +47,11 @@ function getBusinessesTable() {
                     { 'data': 'Bus_name' },
                     {
                         'data': 'Phone', 'render': function (phone) {
-                            var phone = '<a href="tel:5555555">התקשר לחברה</a>';
+                            phone = '<a href="tel:5555555">התקשר לחברה</a>';
 
                             return phone;
                         }
-                    },
+                    }
                 ]
             });
         }
@@ -73,6 +76,7 @@ function getCities(renderCities) {
     });
 
 } 
+
 //Get all Occupations for wizard
 function getOccu(renderOccu) {
     $.ajax({
@@ -164,7 +168,7 @@ function getEmployeesnobusiness() {
                     { 'data': 'Lname' },
                     {
                         'data': "",
-                        'defaultContent': '<button id="edit" name="edit" type="button" class="btn btn-info view" data-toggle="tooltip" data-original-title="צפה בעובד"><i class="icon-eye3"></i></button>',
+                        'defaultContent': '<button id="edit" name="edit" type="button" class="btn btn-info view" data-toggle="tooltip" data-original-title="צפה בעובד"><i class="icon-eye3"></i></button>'
                     }]
             });
         }
@@ -172,7 +176,7 @@ function getEmployeesnobusiness() {
 
 }
 
-
+//get spesipic user
 function getUserById(username, userPass , ValidateUser) {
 
     // serialize the object to JSON string
@@ -234,9 +238,9 @@ function insertEmployee(EmployeeInfo, InsertAllDocs) {
     });
 }
 
-
+//update password
 function updatePass(newpass, username) {
-    userPass = JSON.stringify({ userName: username, pass: newpass })
+    userPass = JSON.stringify({ userName: username, pass: newpass });
     $.ajax({
         url: WSUrl + '/updateUserPass',
         type: 'POST',
@@ -255,9 +259,9 @@ function updatePass(newpass, username) {
     });
 }
 
-
+//insert the signature
 function InsertSignature(svg, file, insertContract) {
-    var data = JSON.stringify({ svgString: svg, fileString: file })
+    var data = JSON.stringify({ svgString: svg, fileString: file });
 
     $.ajax({
         url: WSUrl + '/insertSignature',
@@ -266,7 +270,7 @@ function InsertSignature(svg, file, insertContract) {
         dataType: "json",
         data: data,
         success: function (results) {
-            insertContract(results)
+            insertContract(results);
         },
         error: function (xhr, status, error) {
             var err = eval("(" + xhr.responseText + ")");
@@ -339,8 +343,6 @@ function uploadFiles(formData, pbLBL, pbDiv,setEmpPic) {
    
 }
 
-
-
 //Insert docs
 function InsertConts(FileInfo, i, finished) {
 
@@ -352,7 +354,7 @@ function InsertConts(FileInfo, i, finished) {
         contentType: 'application/json; charset = utf-8',
         data: file,
         success: function (results) {
-            finished(i)
+            finished(i);
         },
         error: function (xhr, status, error) {
             var err = eval("(" + xhr.responseText + ")");
@@ -361,6 +363,7 @@ function InsertConts(FileInfo, i, finished) {
     });
 }
 
+//Insert docs
 function InsertDocs(FileInfo) {
 
     // serialize the object to JSON string
@@ -376,6 +379,33 @@ function InsertDocs(FileInfo) {
         error: function (xhr, status, error) {
             var err = eval("(" + xhr.responseText + ")");
             alert(err.Message);
+        }
+    });
+}
+
+//update spesific user
+function UpdateUsercall(UserInfo) {
+
+    // serialize the object to JSON string
+    var user = JSON.stringify(UserInfo);
+
+    $.ajax({
+        url: 'ajaxWebService.asmx/UpdateUser',
+        type: 'POST',
+        contentType: 'application/json; charset = utf-8',
+        data: user,
+        success: function (results) {
+
+            setTimeout(function () {
+                swal("בוצע!", "כל הנתונים נשמרו בהצלחה", "success");
+            }, 1000);
+        },
+        error: function (xhr, status, error) {
+            setTimeout(function () {
+                swal("התרחשה שגיאה במערכת, עלייך לפנות  לקורי או תום.", "לשים לב! הפעולה שכרגע נעשתה לא עודכנה במערכת", "error");
+            }, 1000);
+            var err = eval("(" + xhr.responseText + ")");
+            //alert(err.Message);
         }
     });
 }

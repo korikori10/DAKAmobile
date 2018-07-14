@@ -1167,6 +1167,81 @@ public class DBServices
     }
 
 
+    ////--------------------------------------------------------------------
+    //// Update user
+    ////--------------------------------------------------------------------
+    //public int updateUser(User u)
+    //{
+
+    //    SqlConnection con;
+    //    SqlCommand cmd;
+
+    //    try
+    //    {
+    //        con = connect("DAKADBConnectionString"); // create the connection
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        // write to log
+    //        using (StreamWriter w = File.AppendText(System.Web.HttpContext.Current.Server.MapPath("~/Log/DELog.txt")))
+    //        {
+    //            Log(ex.Message, ex.StackTrace, w);
+
+    //        }
+    //        throw (ex);
+    //    }
+
+    //    String cStr = BuildUpdateCommand(u);      // helper method to build the insert string
+
+    //    cmd = CreateCommand(cStr, con);             // create the command
+    //    cmd.Parameters.AddWithValue("@U_name", u.U_name);
+    //    cmd.Parameters.AddWithValue("@FullName", u.Full_name);
+    //    cmd.Parameters.AddWithValue("@Phone", u.Phone);
+    //    cmd.Parameters.AddWithValue("@U_img", u.User_img);
+
+    //    try
+    //    {
+    //        int numEffected = cmd.ExecuteNonQuery(); // execute the command
+    //        return numEffected;
+    //    }
+    //    catch (Exception ex)
+    //    {
+
+    //        // write to log
+    //        using (StreamWriter w = File.AppendText(System.Web.HttpContext.Current.Server.MapPath("~/Log/DELog.txt")))
+    //        {
+    //            Log(ex.Message, ex.StackTrace, w);
+
+    //        }
+    //        throw (ex);
+    //    }
+
+    //    finally
+    //    {
+    //        if (con != null)
+    //        {
+    //            // close the db connection
+    //            con.Close();
+    //        }
+    //    }
+
+    //}
+
+
+    ////--------------------------------------------------------------------
+    //// Build the update a user command String
+    ////--------------------------------------------------------------------
+    //private String BuildUpdateCommand(User u)
+    //{
+    //    String command;
+
+    //    StringBuilder sb = new StringBuilder();
+    //  //  use a string builder to create the dynamic string
+    //   String prefix = "UPDATE USERS SET u_name = @U_name, full_name = @FullName,U_type_code='" + u.U_type_code + "',phone= @Phone Where u_id = " + u.Uid;
+    //    command = prefix;
+
+    //    return command;
+    //}
     //--------------------------------------------------------------------
     // Update user
     //--------------------------------------------------------------------
@@ -1183,6 +1258,7 @@ public class DBServices
         catch (Exception ex)
         {
             // write to log
+            // write to log
             using (StreamWriter w = File.AppendText(System.Web.HttpContext.Current.Server.MapPath("~/Log/DELog.txt")))
             {
                 Log(ex.Message, ex.StackTrace, w);
@@ -1191,13 +1267,9 @@ public class DBServices
             throw (ex);
         }
 
-        String cStr = BuildUpdateCommand(u);      // helper method to build the insert string
+        String cStr = BuildUpdateuserCommand(u);      // helper method to build the insert string
 
         cmd = CreateCommand(cStr, con);             // create the command
-        cmd.Parameters.AddWithValue("@U_name", u.U_name);
-        cmd.Parameters.AddWithValue("@FullName", u.Full_name);
-        cmd.Parameters.AddWithValue("@Phone", u.Phone);
-        cmd.Parameters.AddWithValue("@U_img", u.User_img);
 
         try
         {
@@ -1231,17 +1303,18 @@ public class DBServices
     //--------------------------------------------------------------------
     // Build the update a user command String
     //--------------------------------------------------------------------
-    private String BuildUpdateCommand(User u)
+    private String BuildUpdateuserCommand(User u)
     {
         String command;
 
         StringBuilder sb = new StringBuilder();
-      //  use a string builder to create the dynamic string
-       String prefix = "UPDATE USERS SET u_name = @U_name, full_name = @FullName,U_type_code='" + u.U_type_code + "',phone= @Phone ,user_img = @U_img Where u_id = " + u.Uid;
+        // use a string builder to create the dynamic string
+        String prefix = "UPDATE USERS SET u_name = '" + u.U_name + "',full_name = '" + u.Full_name + "',phone = '" + u.Phone + "' Where uid = '" + u.Uid + "'";
         command = prefix;
 
         return command;
     }
+
     #endregion
 
     private static object getString(object o)

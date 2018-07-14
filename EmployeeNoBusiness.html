@@ -117,15 +117,15 @@
                             <div class="dropdown-divider"></div><a href="index.html" class="dropdown-item" onclick="LogOut()"><i class="icon-power3"></i> Logout</a>
                         </div>
                         <script type='text/javascript'>
-                                    function LogOut() {
-                                        sessionStorage.removeItem("userName");
-                                    }
-                                    function singleUser() {
-                                        sessionStorage.setItem("singleUser", "true");
-                                    }
-                                    function multipleUser() {
-                                        sessionStorage.setItem("singleUser", "false");
-                                    }
+                            function LogOut() {
+                                sessionStorage.removeItem("userName");
+                            }
+                            function singleUser() {
+                                sessionStorage.setItem("singleUser", "true");
+                            }
+                            function multipleUser() {
+                                sessionStorage.setItem("singleUser", "false");
+                            }
                         </script>
                     </li>
                 </ul>
@@ -137,35 +137,39 @@
     <!-- main menu-->
     <div class="main-menu menu-fixed menu-dark menu-accordion menu-shadow">
         <!-- main menu content-->
-        <ul id="main-menu-navigation" data-menu="menu-navigation" class="navigation navigation-main">
-            <li class="nav-item">
-                <a href="Dash.html"><i class="icon-home3"></i><span data-i18n="nav.dash.main" class="menu-title">מסך הבית</span></a>
-            </li>
-            <li class="nav-item">
-                <a href="Business.html"><i class="icon-briefcase4"></i><span data-i18n="nav.dash.main" class="menu-title">עסקים</span></a>
-            </li>
-            <li class="nav-item">
-                <a href="EmployeeNoBusiness.html"><i class="icon-users3"></i><span data-i18n="nav.dash.main" class="menu-title">עובדים ללא ציוות</span></a>
-            </li>
-            <li class="nav-item">
-                <a href="MyAccount.html"><i class="icon-unlock-alt"></i><span data-i18n="nav.category.forms" class="menu-title">החשבון שלי</span></a>
-            </li>
-        </ul>
+        <div class="main-menu-content">
+            <!-- main menu header-->
+            <!-- / main menu header-->
+            <ul id="main-menu-navigation" data-menu="menu-navigation" class="navigation navigation-main">
+                <li class="nav-item">
+                    <a href="Dash.html"><i class="icon-home3"></i><span data-i18n="nav.dash.main" class="menu-title">מסך הבית</span></a>
+                </li>
+                <li class="nav-item">
+                    <a href="Business.html"><i class="icon-briefcase4"></i><span data-i18n="nav.dash.main" class="menu-title">עסקים</span></a>
+                </li>
+                <li class="nav-item">
+                    <a href="EmployeeNoBusiness.html"><i class="icon-users3"></i><span data-i18n="nav.dash.main" class="menu-title">עובדים ללא ציוות</span></a>
+                </li>
+                <li class="nav-item">
+                    <a href="MyAccount.html"><i class="icon-unlock-alt"></i><span data-i18n="nav.category.forms" class="menu-title">החשבון שלי</span></a>
+                </li>
+            </ul>
+        </div>
         <!-- /main menu content-->
 
     </div>
     <div class="app-content content container-fluid">
         <div class="content-wrapper">
             <div class="content-body">
-            
+
                 <div style="overflow:auto">
                     <div class="menu" id="DynamicEmployeesList">
-                   </div>
+                    </div>
 
                 </div>
+            </div>
         </div>
     </div>
-        </div>
     <footer id="footer" class="footer undefined footer-dark">
 
         <img src="images/logo_daka.png" style="height:inherit" />

@@ -30,10 +30,10 @@ function renderEmployees(results) {
         maxItems: 1, //Max items selectable in the textbox
         maxOptions: 30, //Max options to render at once in the dropdown
         onItemAdd: function (value) {
-            sessionStorage.removeItem("empInfo")
+            sessionStorage.removeItem("empInfo");
             EmployeeInfo.pass = value;
             sessionStorage.setItem("empInfo", EmployeeInfo.pass);
-            window.location = "Wizard.html"
+            window.location = "Wizard.html";
         }
     });
 
@@ -53,10 +53,10 @@ function renderEmployeesnobusiness(NoEmpresults) {
 //Search Modal
 $("#SearchEmployee").on("click", function () {
       
-    sessionStorage.removeItem("empInfo")
+    sessionStorage.removeItem("empInfo");
     EmployeeInfo.pass = $("#PassTB").val();
     sessionStorage.setItem("empInfo", EmployeeInfo.pass);
-    window.location = "Wizard.html"
+    window.location = "Wizard.html";
 });
 
 //Look for user name

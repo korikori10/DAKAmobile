@@ -154,19 +154,22 @@ public class User
     }
 
 
-        public void UpdateUser(User u)
+    public int UpdateUser(User u)
     {
         DBServices dbs = new DBServices();
 
-        dbs.updateUser(u);
+
+        return dbs.updateUser(u);
 
     }
+
     public void updatePass(string userName, string pass)
     {
         DBServices dbs = new DBServices();
         pass = encryptPass(pass);
         dbs.updateUserPass(userName, pass);
     }
+
     public bool getUserByUserName(string username, string userPass)
     {
         DBServices dbs = new DBServices();
@@ -177,6 +180,7 @@ public class User
         return match;
 
     }
+
     private string encryptPass(string pass)
     {
         byte[] salt;
@@ -194,6 +198,7 @@ public class User
         string savedPasswordHash = Convert.ToBase64String(hashBytes);
         return savedPasswordHash;
     }
+
     private bool decryptPass(string pass, string password)
     {
         /* Fetch the stored value */

@@ -235,8 +235,9 @@ public class ajaxWebService : System.Web.Services.WebService
         return jsonStringCategory;
 
     }
-    
-                   [WebMethod]
+
+
+    [WebMethod]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
     public void updateUserPass(string userName, string pass)
     {
@@ -245,6 +246,37 @@ public class ajaxWebService : System.Web.Services.WebService
  
 
     }
+    //update specific user
+    [WebMethod]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    public string UpdateUser(string UserInfo)
+    {
+        try
+        {
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            User u = js.Deserialize<User>(UserInfo);
+
+
+
+            int u1 = u.UpdateUser(u);
+            // serialize to string
+            string jsonStringCategory = js.Serialize(u1);
+            return jsonStringCategory;
+        }
+        catch (Exception ex)
+        {
+            // write to log
+            using (StreamWriter w = File.AppendText(System.Web.HttpContext.Current.Server.MapPath("~/Log/DELog.txt")))
+            {
+                DBServices.Log(ex.GetType() + " - " + ex.Message, ex.StackTrace, w);
+
+            }
+            throw (ex);
+
+        }
+    }
+
+
 
 
 
@@ -277,18 +309,18 @@ public class ajaxWebService : System.Web.Services.WebService
 
     }
 
-    [WebMethod]
-    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-    public void UpdateUser(string userInfo)
-    {
+    //[WebMethod]
+    //[ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    //public void UpdateUser(string userInfo)
+    //{
 
-        JavaScriptSerializer js = new JavaScriptSerializer();
-        User u = js.Deserialize<User>(userInfo);
+    //    JavaScriptSerializer js = new JavaScriptSerializer();
+    //    User u = js.Deserialize<User>(userInfo);
 
-        u.UpdateUser(u);
+    //    u.UpdateUser(u);
 
 
-    }
+    //}
 
 
     [WebMethod]
