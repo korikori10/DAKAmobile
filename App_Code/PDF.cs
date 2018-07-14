@@ -66,7 +66,7 @@ public class PDF
             }
 
         }
-        // string[] propNames = new string[] { "Employee_pass_id", "Fname", "Lname", "Origin_country", "Phone", "Birthday", "Fam_stat_code", "Gender", "Il_citizen", "Active", "Occupation_code", "Business", "Food_include", "Food_pay", "Salary_hour", "Sabatical", "Salary_overtime", "Salary_trans", "Day_off", "Com_app", "Monthly_rent", "Insurance", "Add", "Add_city", "Add_num" };
+       
             DirectoryInfo d = new DirectoryInfo(System.Web.HttpContext.Current.Server.MapPath("~/Contract/Default"));
         List<string> filesPaths = new List<string>();
         foreach (var file in d.GetFiles("*.pdf"))
@@ -78,7 +78,7 @@ public class PDF
                 string formFile = file.FullName; //System.Web.HttpContext.Current.Server.MapPath("~/Contract/Default/חוזה_עבודה_-_חלק_א.pdf");
             Directory.CreateDirectory(System.Web.HttpContext.Current.Server.MapPath("~/Contract/" + e.Employee_pass_id));
             string savepath = System.Web.HttpContext.Current.Server.MapPath("~/Contract/" +e.Employee_pass_id +"/"+file.Name);
-                //  string Uri = HttpContext.Current.Request.Url.AbsolutePath;Uri.Substring(0, Uri.LastIndexOf('/') + 1) 
+           
                 string relSavePath = HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority) + HttpContext.Current.Request.ApplicationPath + "/Contract/" + e.Employee_pass_id + "/" + file.Name;
             PdfReader pdfReader = new PdfReader(formFile);
             //Full path to the Unicode Arial file
@@ -95,8 +95,7 @@ public class PDF
                 PdfStamper pdfStamper = new PdfStamper(pdfReader, stream);
                 AcroFields formFields = pdfStamper.AcroFields;
                 formFields.GenerateAppearances = true;
-                //               foreach (DictionaryEntry de in formFields.Fields)
-                // {
+
                 foreach (var field in formFields.Fields)
                 {
                     foreach (KeyValuePair<string, string> name in props)
@@ -112,10 +111,7 @@ public class PDF
 
 
 
-                //    Console.WriteLine("{0}, {1}",
-                //        field.Key,
-                //        field.Value);
-                //}
+
 
                       }
                 pdfStamper.FormFlattening = false;

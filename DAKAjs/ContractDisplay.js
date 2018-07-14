@@ -4,13 +4,11 @@ var contAmount = new Object();
 $(document).ready(function () {
     var results = JSON.parse(sessionStorage.getItem('contract'));
     $("#signtaure").jSignature();
-    //$("#signtaure").jSignature("reset");
+
     renderDocs(results);
   $('#sign').click(  function () {
         $('#sigModal').modal('show');
-        //var $sigdiv = $("#signature")
-        // $sigdiv.jSignature() // inits the jSignature widget.
-        //  $sigdiv.jSignature("reset")
+
     });
     $('#saveSig').click(function () {
         var datapair = $("#signature").jSignature("getData")
@@ -24,38 +22,23 @@ function renderDocs(results) {
 
 
    
-    //var busID = sessionStorage.getItem("busiInfo");
     $('#EmpDocs').attr('id');
     var doctype = "5";
     $.each(results, function (i, row) {
 
-        //if (row.Doctype_id == doctype) {
+      
         if (i == 0) {
-          //  $("#doc1").attr('name', row.Doctype_id);
+        
             $("#doc1").find('iframe').attr('id', 'docimg1');
             var img = $('#docimg1').attr('src', row);
-            //$.each(DocTypes, function (j, rows) {
-            //    if (row.Doctype_id == rows.Doctype_id) {
-            //        $("#doc1").find('h4').html('<i class="icon-eye6"></i> ' + rows.Doc_name);
-            //        return
-            //    }
-            //});
-            //data = row;
-            //contactSave[i] = row;
-            //populate(frm, data);
-
+   
         }
         else {
             id = createContractForm();
-           // $("#" + id).attr('name', row.Doctype_id);
+  
             var img = $("#" + id).find('iframe').attr('id', 'img' + id);
              $('#img' + id).attr('src', row);
-            //$.each(DocTypes, function (j, rows) {
-            //    if (row.Doctype_id == rows.Doctype_id) {
-            //        $("#" + id).find('h4').html('<i class="icon-eye6"></i> ' + rows.Doc_name);
-            //        return
-            //    }
-            //});
+
         }
 
         // }

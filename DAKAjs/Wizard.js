@@ -336,7 +336,7 @@ function insertEmp(array) {
 
                 }
                 else {
-                    // swal("Cancelled", "Your imaginary file is safe :)", "error");
+    
                 }
             });
 
