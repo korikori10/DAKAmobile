@@ -44,7 +44,7 @@ function renderEmployeesnobusiness(NoEmpresults) {
     //this is the callBackFunc 
     NoEmpresults = $.parseJSON(NoEmpresults.d);
     len = Object.keys(NoEmpresults).length;
-    document.getElementById("unEmpNum").innerHTML = len;
+    document.getElementById("unEmpNum").innerText += len;
     document.getElementById("unEmpNum2").value = len;
     document.getElementById("unEmpNum2").max= totalEmp;
     $(".knob").knob(); 
