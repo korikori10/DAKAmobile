@@ -168,13 +168,25 @@ public class PDF
                     AcroFields formFields = stamper.AcroFields;
                     if (formFields.Fields.ContainsKey("signature"))
                     {
-                    AcroFields.FieldPosition f = formFields.GetFieldPositions("signature")[0];
-                    formFields.SetField("Start_date", DateTime.Now.ToString("yyyy/MM/dd"));
-                    iTextSharp.text.Rectangle rect = f.position;
-                    itextImage.ScaleToFit(rect.Width, rect.Height);
-                    itextImage.SetAbsolutePosition(rect.Left, rect.Bottom);
+                        int i = 0;
+                        foreach (var field in formFields.Fields)
+                        {
+                            if (field.Key == "signature")
+                            {
+                                AcroFields.FieldPosition f = formFields.GetFieldPositions(field.Key)[i];
+                                int page = formFields.GetFieldPositions(field.Key)[i].page;//get(i).page;
+                                formFields.SetField("Start_date", DateTime.Now.ToString("yyyy/MM/dd"));
+                                iTextSharp.text.Rectangle rect = f.position;
+                                itextImage.ScaleToFit(rect.Width, rect.Height);
+                                int p = reader.NumberOfPages;
 
-                    pdfContentByte.AddImage(itextImage);
+                                itextImage.SetAbsolutePosition(rect.Left, rect.Bottom);
+                                i++;
+                                pdfContentByte = stamper.GetOverContent(page);
+                                pdfContentByte.AddImage(itextImage);
+
+                            }
+                        }
 
                     }
                     stamper.FormFlattening = true;
