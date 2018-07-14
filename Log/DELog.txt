@@ -53,7 +53,11 @@ Log Entry : 22:28:14 יום שישי 13 יולי 2018
 UserName: Kori
 -------------------------------
 
+<<<<<<< HEAD
 Log Entry : 12:37:53 שבת 14 יולי 2018
+=======
+Log Entry : 12:42:10 PM Saturday, July 14, 2018
+>>>>>>> 0f840672b4c8ba72be4c4af19a77b36eee76c3ba
  Error :   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
    at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
    at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
@@ -66,7 +70,13 @@ Log Entry : 12:37:53 שבת 14 יולי 2018
    at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
    at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
    at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+<<<<<<< HEAD
    at DBServices.ReadUser(String username) in c:\Users\Kori\Documents\GitHub\DAKAmobile\App_Code\DBServices.cs:line 451
  Text :The parameterized query '(@UserName nvarchar(4000))SELECT*FROM USER_V1 where u_name = @Us' expects the parameter '@UserName', which was not supplied.
 UserName: Kori
+=======
+   at DBServices.ReadUser(String username) in c:\Users\Tom\Documents\GitHub\DAKAmobile\App_Code\DBServices.cs:line 451
+ Text :The parameterized query '(@UserName nvarchar(4000))SELECT*FROM USER_V1 where u_name = @Us' expects the parameter '@UserName', which was not supplied.
+UserName: Tom
+>>>>>>> 0f840672b4c8ba72be4c4af19a77b36eee76c3ba
 -------------------------------

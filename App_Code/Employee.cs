@@ -662,10 +662,7 @@ public class Employee
     public int insertEmployee(Employee e)
     {
 
-           // Employee e = new Employee();
-            //ms = new MemoryStream(Encoding.UTF8.GetBytes(EmployeeInfo));
-            //DataContractJsonSerializer ser = new DataContractJsonSerializer(e.GetType());
-            //e = ser.ReadObject(ms) as Employee;
+
             DBServices dbs = new DBServices();
              int inserted = dbs.insert(e);
           inserted +=  dbs.insertEmpBus(e);

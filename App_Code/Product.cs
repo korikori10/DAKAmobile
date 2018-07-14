@@ -80,11 +80,6 @@ public class Product
 
     }
 
-     //public Product getProduct(int productId)
-     //{
-     //    //call the method getProduct from DBService
-     //    DBServices db = new DBServices();
-     //    return db.getProduct(productId);
-     //}
+
 
 }

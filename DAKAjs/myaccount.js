@@ -37,8 +37,7 @@ $('#edit').click(function () {
     document.getElementById("mail").style.contenteditable = true;
     document.getElementById("phone").style.contenteditable = true;
     document.getElementById("usertype").style.contenteditable = true;
-   // document.getElementById('save').innerHTML = "<button type='button'><i class='icon- save'></i> שמור</button>";
-    // document.getElementById('save').hidden = "false";
+
 });
 
 

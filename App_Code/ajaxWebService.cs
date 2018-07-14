@@ -242,28 +242,10 @@ public class ajaxWebService : System.Web.Services.WebService
     {
         User u = new User();
         u.updatePass(userName, pass);
-        //JavaScriptSerializer js = new JavaScriptSerializer();
-        //// serialize to string
-        //var jsonStringCategory = js.Serialize(LE);
-        ////Context.Response.Write(jsonStringCategory);
-        //return jsonStringCategory;
+ 
 
     }
-    //[WebMethod]
-    //[ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-    //public string updateDoc(string EmployeeInfo)
-    //{
-    //    JavaScriptSerializer js = new JavaScriptSerializer();
-    //    Employee e = js.Deserialize<Employee>(EmployeeInfo);
 
-
-
-    //    int updated = e.updateDoc(e);
-
-    //    // serialize to string
-    //    string jsonStringCategory = js.Serialize(e);
-    //    return jsonStringCategory;
-    //}
 
 
     [WebMethod]

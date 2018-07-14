@@ -39,8 +39,7 @@ function ValidateUser(results) {
             localStorage.setItem("userName", username)
             localStorage.setItem("userPass", userPass)
         }
-      //  sessionStorage.setItem("userName", username)
-       // window.location = "Dash.html"
+
         getUserByUserName(username, renderUser);
         function renderUser(results) {
             results = $.parseJSON(results.d);

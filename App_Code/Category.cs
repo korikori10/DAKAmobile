@@ -48,19 +48,5 @@ public class Category
         ProductAmount = _productAmount;
     }
 
-    //public List<Category> getCategory()
-    //{
-    //    //call the method getCategory from DBService
-    //    DBServices db = new DBServices();
-    //    return db.getCategory();
-    //}
-
-
-    //public List<Product> getProductsByCat(int categoryId)
-    //{
-    //    //call the method getProductsByCat from DBService
-    //    DBServices db = new DBServices();
-    //    return db.getProductsByCat(categoryId);
-
-    //}
+  
 }
