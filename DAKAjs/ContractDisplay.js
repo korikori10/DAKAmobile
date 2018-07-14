@@ -2,10 +2,13 @@
 var contAmount = new Object();
 
 $(document).ready(function () {
+    //get contracts from sessin
     var results = JSON.parse(sessionStorage.getItem('contract'));
+    //initiate signature plugin
     $("#signtaure").jSignature();
-
+    //build docs display
     renderDocs(results);
+    //create signature modal and canvas
   $('#sign').click(  function () {
         $('#sigModal').modal('show');
 
@@ -17,7 +20,7 @@ $(document).ready(function () {
         
     });
 });
-
+//build contract cards
 function renderDocs(results) {
   
     $('#EmpDocs').attr('id');
@@ -63,7 +66,7 @@ function createContractForm() {
     return id;
 }
 
-
+//save all contracts with signature
 function insertContract(results) {
     results = $.parseJSON(results.d);
     contAmount = results;
@@ -97,12 +100,12 @@ function finished(i) {
             })
     }
 };
-
+//build signature canvas
 $('#sigModal').on('shown.bs.modal', function (e) {
     $("#signature").jSignature();
     $("#signature").resize();
 });
-
+//random id for contract id
 function makeid() {
     var text = "";
     var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
