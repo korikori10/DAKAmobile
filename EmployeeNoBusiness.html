@@ -42,7 +42,13 @@
     <link rel="stylesheet" type="text/css" href="app-assets/css-rtl/plugins/forms/wizard.css" />
     <link rel="stylesheet" type="text/css" href="app-assets/css-rtl/plugins/pickers/daterange/daterange.css" />
     <!-- END Page Level CSS-->
+    <script type="text/javascript">
+        //Login Check
+        if (sessionStorage.getItem("userName") === null) {
+            window.location = "index.html"
 
+        }
+    </script>
 
 </head>
 <body data-open="click" data-menu="vertical-compact-menu" data-col="2-columns" class="vertical-layout vertical-compact-menu 2-columns  fixed-navbar">
