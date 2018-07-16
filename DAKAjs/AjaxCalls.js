@@ -1,10 +1,10 @@
-﻿var local = true;
+﻿var local = false;
 var WSUrl = 'ajaxWebService.asmx';
 var UHUrl = 'UploadHandler.ashx';
 
 if (!local) {
-    WSUrl = 'https://proj.ruppin.ac.il/bgroup59/test2/tar2/ajaxWebService.asmx';
-    UHUrl = 'https://proj.ruppin.ac.il/bgroup59/test2/tar2/UploadHandler.ashx';
+    WSUrl = 'https://proj.ruppin.ac.il/bgroup59/test2/tar3/ajaxWebService.asmx';
+    UHUrl = 'https://proj.ruppin.ac.il/bgroup59/test2/tar3/UploadHandler.ashx';
 }
 
 $(document).ready(function () {
