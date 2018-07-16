@@ -40,6 +40,7 @@ public class Employee
     private bool updateBus;
     private List<Business> busHistory;
     private int rent;
+    string add_city_name;
     bool food_incloud;
     float food_pay;
     float monthly_rent;
@@ -623,6 +624,19 @@ public class Employee
         set
         {
             ex_date = value;
+        }
+    }
+
+    public string Add_city_name
+    {
+        get
+        {
+            return add_city_name;
+        }
+
+        set
+        {
+            add_city_name = value;
         }
     }
 

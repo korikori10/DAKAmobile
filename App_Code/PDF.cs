@@ -61,8 +61,17 @@ public class PDF
         {
             if (pi.GetValue(e, null) != null)
             {
+                if (pi.PropertyType == typeof(DateTime))
+                {
+                    string bday = pi.GetValue(e, null).ToString().Split(' ')[0];
+                    props.Add(pi.Name, bday);
 
-            props.Add(pi.Name, pi.GetValue(e, null).ToString());
+                }
+                else
+                {
+                    props.Add(pi.Name, pi.GetValue(e, null).ToString());
+
+                }
             }
 
         }

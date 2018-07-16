@@ -268,6 +268,7 @@ function insertEmp(array) {
     array.Bus_name = $('#businessSE option:selected').text();
     array.Occupation_desc = $('#OccuSE option:selected').text();
     array.Day_off_name = $('#day_off option:selected').text();
+    array.Add_city_name = $('#DynamicCitiesList option:selected').text();
 
 
     if (isUpdate)
