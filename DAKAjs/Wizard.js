@@ -54,17 +54,17 @@ $(document).ready(function () {
         pbLBL.text('Uploading...');
         pbDiv.fadeIn(500);
         var files = $(this).get(0).files;
-        if (files.length>0) {
+        if (files.length > 0) {
 
 
-        var formData = new FormData();
-        for (var i = 0; i < files.length; i++) {
-            formData.append(files[i].name, files[i])
-        }
+            var formData = new FormData();
+            for (var i = 0; i < files.length; i++) {
+                formData.append(files[i].name, files[i])
+            }
 
             uploadFiles(formData, pbLBL, pbDiv, setEmpPic);
-}
-    })
+        }
+    });
     $("#PicID").on("change", function () {
         pbLBL = $("#pbLBL")
         pbDiv = $("#progressBar1")
@@ -101,6 +101,23 @@ $(document).ready(function () {
             uploadFiles(formData, pbLBL, pbDiv, setEmpVisa);
         }
     })
+});
+$("#picAuth").on("change", function () {
+    pbLBL = $("#pLB3")
+    pbDiv = $("#progressBar6")
+    pbLBL.text('Uploading...');
+    pbDiv.fadeIn(500);
+    var files = $(this).get(0).files;
+    if (files.length > 0) {
+
+
+        var formData = new FormData();
+        for (var i = 0; i < files.length; i++) {
+            formData.append(files[i].name, files[i])
+        }
+
+        uploadFiles(formData, pbLBL, pbDiv, setEmpAuth);
+    }
 });
 
 //Make us random id
@@ -324,6 +341,7 @@ function insertEmp(array) {
 
             function (isConfirm) {
                 if (isConfirm) {
+                    array.Picture = EmpPic;
                     insertEmployee({ EmployeeInfo: JSON.stringify(array) }, InsertAllDocs);
 
                 }

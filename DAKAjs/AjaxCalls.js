@@ -330,7 +330,7 @@ function uploadFiles(formData, pbLBL, pbDiv,setEmpPic) {
         processData: false,
         dataType: 'json',
         success: function (results) {
-            setEmpFile(results);
+            setEmpPic(results);
             pbLBL.text('Complete');
             pbDiv.fadeOut(2000);
         },
