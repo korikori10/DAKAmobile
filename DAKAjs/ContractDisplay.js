@@ -9,8 +9,10 @@ $(document).ready(function () {
     //build docs display
     renderDocs(results);
     //create signature modal and canvas
-  $('#sign').click(  function () {
+    $('#sign').click(function () {
+       
         $('#sigModal').modal('show');
+     
 
     });
     $('#saveSig').click(function () {
@@ -19,6 +21,10 @@ $(document).ready(function () {
         InsertSignature(svg, results, insertContract);
         
     });
+    //$('#dltSig').click(function () {
+
+    //    $('#bod').empty();
+    //});
 });
 //build contract cards
 function renderDocs(results) {

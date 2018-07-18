@@ -34,6 +34,7 @@
     <link rel="stylesheet" type="text/css" href="app-assets/css-rtl/core/menu/menu-types/vertical-overlay-menu.css">
     <link rel="stylesheet" type="text/css" href="app-assets/css-rtl/plugins/forms/wizard.css">
     <link rel="stylesheet" type="text/css" href="app-assets/css-rtl/plugins/pickers/daterange/daterange.css">
+    <link href="CustomCss/EmpNoBusi.css" rel="stylesheet" />
     <!-- END Page Level CSS-->
     <script type="text/javascript">
         //Login Check
@@ -75,27 +76,31 @@
                     </li>
                 </ul>
             </div>
-           
+
         </div>
     </nav>
     <!-- ////////////////////////////////////////////////////////////////////////////-->
     <!-- main menu-->
     <div class="main-menu menu-fixed menu-dark menu-accordion menu-shadow">
         <!-- main menu content-->
-        <ul id="main-menu-navigation" data-menu="menu-navigation" class="navigation navigation-main">
-            <li class="nav-item">
-                <a href="Dash.html"><i class="icon-home3"></i><span data-i18n="nav.dash.main" class="menu-title">מסך הבית</span></a>
-            </li>
-            <li class="nav-item">
-                <a href="Business.html"><i class="icon-briefcase4"></i><span data-i18n="nav.dash.main" class="menu-title">עסקים</span></a>
-            </li>
-            <li class="nav-item">
-                <a href="EmployeeNoBusiness.html"><i class="icon-users3"></i><span data-i18n="nav.dash.main" class="menu-title">עובדים ללא ציוות</span></a>
-            </li>
-            <li class="nav-item">
-                <a href="MyAccount.html"><i class="icon-unlock-alt"></i><span data-i18n="nav.category.forms" class="menu-title">החשבון שלי</span></a>
-            </li>
-        </ul>
+        <div class="main-menu-content">
+            <!-- main menu header-->
+            <!-- / main menu header-->
+            <ul id="main-menu-navigation" data-menu="menu-navigation" class="navigation navigation-main">
+                <li class="nav-item">
+                    <a href="Dash.html"><i class="icon-home3"></i><span data-i18n="nav.dash.main" class="menu-title">מסך הבית</span></a>
+                </li>
+                <li class="nav-item">
+                    <a href="Business.html"><i class="icon-briefcase4"></i><span data-i18n="nav.dash.main" class="menu-title">עסקים</span></a>
+                </li>
+                <li class="nav-item">
+                    <a href="EmployeeNoBusiness.html"><i class="icon-users3"></i><span data-i18n="nav.dash.main" class="menu-title">עובדים ללא ציוות</span></a>
+                </li>
+                <li class="nav-item">
+                    <a href="MyAccount.html"><i class="icon-unlock-alt"></i><span data-i18n="nav.category.forms" class="menu-title">החשבון שלי</span></a>
+                </li>
+            </ul>
+        </div>
         <!-- /main menu content-->
 
     </div>
@@ -107,72 +112,72 @@
         <div class="content-wrapper">
             <div class="content-body">
                 <section id="vertical-tabs">
-                   <div class="mobile-menu" id="DynamicDocsList">
+                    <div class="mobile-menu menu" id="DynamicDocsList">
 
-                   </div>
-                        
-                        <div class="docCards col-xl-4 col-md-6 col-xs-12" id="doc1">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4 class="card-title">
-                                        <i class="icon-eye6"></i> חוזה עבודה
-                                    </h4>
-                                    <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
-                                    <div class="heading-elements">
-                                        <ul class="list-inline mb-0">
-                                            <li><a data-action="collapse"><i class="icon-minus4"></i></a></li>
-                                            <li><a data-action="reload"><i class="icon-reload"></i></a></li>
-                                            <li><a data-action="expand"><i class="icon-expand2"></i></a></li>
-                                            <li><a data-action="close"><i class="icon-cross2"></i></a></li>
-                                        </ul>
-                                    </div>
+                    </div>
+
+                    <div class="docCards col-xl-4 col-md-6 col-xs-12" id="doc1">
+                        <!--<div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">
+                                    <i class="icon-eye6"></i> חוזה עבודה
+                                </h4>
+                                <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
+                                <div class="heading-elements">
+                                    <ul class="list-inline mb-0">
+                                        <li><a data-action="collapse"><i class="icon-minus4"></i></a></li>
+                                        <li><a data-action="reload"><i class="icon-reload"></i></a></li>
+                                        <li><a data-action="expand"><i class="icon-expand2"></i></a></li>
+                                        <li><a data-action="close"><i class="icon-cross2"></i></a></li>
+                                    </ul>
                                 </div>
-                                <div class="card-body collapse in">
-                                    <div class="card-block">
-                                        <div class="form-body">
-                                            <div class="row">
-                                                <div class="form-group">
-                                                    <iframe src="" style="width:100%; height:375px;" frameborder="0"></iframe>
-                                                </div>
+                            </div>
+                            <div class="card-body collapse in">
+                                <div class="card-block">
+                                    <div class="form-body">
+                                        <div class="row">
+                                            <div class="form-group">
+                                                <iframe src="" style="width:100%; height:375px;" frameborder="0"></iframe>
                                             </div>
-
-
-
                                         </div>
+
+
+
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <input name="sign" id="sign" type="button" class="btn btn-outline-primary btn-lg" value="שמור" />
-                        <div class="modal fade text-xs-left" id="sigModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel35" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                        <h3 class="modal-title" id="myModalLabel35">חתימה</h3>
-                                    </div>
-                                    <form id="SigForm">
-
-                                        <div class="modal-body">
-                                            <fieldset class="form-group floating-label-form-group has-danger">
-                                                <div id="signature"></div>
-                                            </fieldset>
-
-                                        </div>
-                                        <div class="modal-footer">
-                                            <input name="saveSig" id="saveSig" type="button" class="btn btn-outline-primary btn-lg" value="שמור" />
-                                            <input type="reset" class="btn btn-outline-secondary btn-lg" data-dismiss="modal" value="סגור" />
-                                        </div>
-                                    </form>
+                        </div>-->
+                    </div>
+                    <input name="sign" id="sign" type="button" class="btn btn-outline-primary btn-lg" value="שמור" style="float:left;margin-top:10px;" />
+                    <div class="modal fade text-xs-left" id="sigModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel35" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    <h3 class="modal-title" id="myModalLabel35">חתימה</h3>
                                 </div>
+                                <form id="SigForm">
+
+                                    <div class="modal-body">
+                                        <fieldset  id="bod" class="form-group floating-label-form-group has-danger">
+                                            <div id="signature"></div>
+                                        </fieldset>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <input name="saveSig" id="saveSig" type="button" class="btn btn-outline-primary btn-lg" value="שמור" />
+                                        <input type="reset" id="dltSig" class="btn btn-outline-secondary btn-lg" data-dismiss="modal" value="סגור" />
+                                    </div>
+                                </form>
                             </div>
                         </div>
-   
-                                        
+                    </div>
+
+
                 </section>
-       
+
             </div>
         </div>
     </div>
@@ -180,7 +185,7 @@
 
     <footer id="footer" class="footer undefined footer-dark">
 
-        <img src="images/logo_daka.png" style="height:inherit" />  
+        <img src="images/logo_daka.png" style="height:inherit" />
     </footer>
 
     <!-- BEGIN VENDOR JS-->
@@ -211,7 +216,7 @@
     <script src="app-assets/vendors/js/forms/select/selectize.min.js"></script>
     <script src="app-assets/vendors/js/extensions/sweetalert.min.js"></script>
     <script src="app-assets/jSignature/flashcanvas.js"></script>
-    <a href="app-assets/jSignature/flashcanvas.swf">app-assets/jSignature/flashcanvas.swf</a>
+    <a href="app-assets/jSignature/flashcanvas.swf"></a>
     <script src="app-assets/jSignature/jSignature.min.js"></script>
     <script src="app-assets/jSignature/jSignature.min.noconflict.js"></script>
     <script src="DAKAjs/AjaxCalls.js"></script>
