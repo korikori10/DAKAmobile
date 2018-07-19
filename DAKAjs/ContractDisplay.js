@@ -36,10 +36,10 @@ function renderDocs(results) {
     $.each(results, function (i, row) {
         var p = row.split('/');
         var name = p[p.length - 1];
-        dynamicLi = '<a href="#" id="' + row + '"><h3>' + name + '</h3><i class="icon-arrow-left"></i></a>';
+        dynamicLi = '<a href="#" id="' + row + '" name="displayContract"><h3>' + name + '</h3>  <i class="icon-arrow-left"></i></a>';
         dl.append(dynamicLi);
     });
-    $("a").on('click', function () {
+    $('[name="displayContract"]').on('click', function () {
         var url = $(this).attr("id");;
         window.open(url, '_blank', 'location=yes');
     });
