@@ -1052,42 +1052,6 @@ group by (start_date)
 
 
 
-
-
-
-
---	;WITH CTE_MA AS
---    (
---        SELECT
---		 month('1'+[Month]+'00') as [Month],
---		  [employeeCountMonth]
-
---        FROM before_rolling_running
---    )
---SELECT
---    T0.[Month]
---    ,AVG(T1.[employeeCountMonth]) as [employeeRunningCount]
---FROM
---    CTE_MA AS T0
---	LEFT OUTER JOIN
---    CTE_MA AS T1
---ON
-
---   month( T1.[Month] )<= month( T0.[Month])
---AND
---   month( T1.[Month]) >= month( T0.[Month]) -11
-
---GROUP BY
---    T0.[Month]
---    ,T0.[employeeCountMonth]
-----	order by  month( T0.[Month])
---	go
-
---	Select * From [dbo].[before_rolling_running];
-
-
-
-
 create view LeavingCompany
 as
 SELECT      distinct dbo.[employee in business].employee_pass_id , dbo.[employee in business].end_date
