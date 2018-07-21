@@ -2,7 +2,7 @@
 
 //take local storage on the specific user
 $(document).ready(function () {
-    var username = sessionStorage.getItem('userName');
+    var username = sessionStorage.getItem("userName");
 
     getUserByUserName(username, renderUser);
     $('#password').click(function () {
