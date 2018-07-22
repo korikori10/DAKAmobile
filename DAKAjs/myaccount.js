@@ -1,9 +1,9 @@
 ﻿var UserInfo = new Object();
-
+alert("doesthiswork?")
 //take local storage on the specific user
-$(document).ready(function () {
+window.onload = function () {
     var username = sessionStorage.getItem("userName");
-
+    alert(username);
     getUserByUserName(username, renderUser);
     $('#password').click(function () {
         $('#resetPassModal').modal('toggle');
@@ -19,12 +19,13 @@ $(document).ready(function () {
             $('#error').html('*הסיסמאות לא תואמות').css("color", "red");
             }
     });
-});
+};
 
 
 //put into labels the user data
 function renderUser(results) {
     results = $.parseJSON(results.d);
+    alert("myaccount" + results);
     UserInfo.Uid = results.Uid;
     document.getElementById('name').innerHTML = results.Full_name;
     document.getElementById('mail').innerHTML = results.U_name;

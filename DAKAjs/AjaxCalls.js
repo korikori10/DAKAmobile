@@ -23,12 +23,14 @@ function getEmployees(renderEmployees) {
             
             renderEmployees(results);
         },
-        error: function (request, error) {
-            alert('Network error has occurred please try again!');
+        error: function (xhr, status, error) {
+            var err = eval("(" + xhr.responseText + ")");
+            setTimeout(function () {
+                swal("התרחשה שגיאה במערכת, עלייך לפנות  לקורי או תום.", err.Message + "לשים לב! הפעולה שכרגע נעשתה לא עודכנה במערכת", "error");
+            }, 1000);
         }
-       
+
     });
-    
 }
 
 //Get all businesses to Businusses table
@@ -69,13 +71,15 @@ function getCities(renderCities) {
         success: function (results) {
             renderCities(results);
         },
-        error: function (request, error) {
-            alert('Network error has occurred please try again!');
+        error: function (xhr, status, error) {
+            var err = eval("(" + xhr.responseText + ")");
+            setTimeout(function () {
+                swal("התרחשה שגיאה במערכת, עלייך לפנות  לקורי או תום.", err.Message + "לשים לב! הפעולה שכרגע נעשתה לא עודכנה במערכת", "error");
+            }, 1000);
         }
 
     });
-
-} 
+}
 
 //Get all Occupations for wizard
 function getOccu(renderOccu) {
@@ -87,13 +91,15 @@ function getOccu(renderOccu) {
         success: function (results) {
             renderOccu(results);
         },
-        error: function (request, error) {
-            alert('Network error has occurred please try again!');
+        error: function (xhr, status, error) {
+            var err = eval("(" + xhr.responseText + ")");
+            setTimeout(function () {
+                swal("התרחשה שגיאה במערכת, עלייך לפנות  לקורי או תום.", err.Message + "לשים לב! הפעולה שכרגע נעשתה לא עודכנה במערכת", "error");
+            }, 1000);
         }
 
     });
-
-} 
+}
 
 //Get all Countries for wizard
 function getCountries(renderCountries) {
@@ -105,12 +111,14 @@ function getCountries(renderCountries) {
         success: function (results) {
             renderCountries(results);
         },
-        error: function (request, error) {
-            alert('Network error has occurred please try again!');
+        error: function (xhr, status, error) {
+            var err = eval("(" + xhr.responseText + ")");
+            setTimeout(function () {
+                swal("התרחשה שגיאה במערכת, עלייך לפנות  לקורי או תום.", err.Message + "לשים לב! הפעולה שכרגע נעשתה לא עודכנה במערכת", "error");
+            }, 1000);
         }
 
     });
-
 }
 
 //select only the employees that today are not assigned to business from DB throw AJAX and WB
@@ -123,12 +131,14 @@ function getEmployeesnobusinesss(renderEmployeesnobusiness) {
         success: function (results) {
             renderEmployeesnobusiness(results);
         },
-        error: function (request, error) {
-            alert('Network error has occurred please try again!');
+        error: function (xhr, status, error) {
+            var err = eval("(" + xhr.responseText + ")");
+            setTimeout(function () {
+                swal("התרחשה שגיאה במערכת, עלייך לפנות  לקורי או תום.", err.Message + "לשים לב! הפעולה שכרגע נעשתה לא עודכנה במערכת", "error");
+            }, 1000);
         }
 
     });
-
 }
 
 //Bring the right employee to wizard
@@ -148,7 +158,9 @@ function getEmployeeById(EmployeeInfo, renderEmployeeByID) {
         },
         error: function (xhr, status, error) {
             var err = eval("(" + xhr.responseText + ")");
-            alert(err.Message);
+            setTimeout(function () {
+                swal("התרחשה שגיאה במערכת, עלייך לפנות  לקורי או תום.", err.Message + "לשים לב! הפעולה שכרגע נעשתה לא עודכנה במערכת", "error");
+            }, 1000);
         }
     });
 }
@@ -193,7 +205,9 @@ function getUserById(username, userPass , ValidateUser) {
         },
         error: function (xhr, status, error) {
             var err = eval("(" + xhr.responseText + ")");
-            alert(err.Message);
+            setTimeout(function () {
+                swal("התרחשה שגיאה במערכת, עלייך לפנות  לקורי או תום.", err.Message + "לשים לב! הפעולה שכרגע נעשתה לא עודכנה במערכת", "error");
+            }, 1000);
         }
     });
 }
@@ -210,7 +224,9 @@ function getBusinesses(renderBusinesses) {
         },
         error: function (xhr, status, error) {
             var err = eval("(" + xhr.responseText + ")");
-            alert(err.Message);
+            setTimeout(function () {
+                swal("התרחשה שגיאה במערכת, עלייך לפנות  לקורי או תום.", err.Message + "לשים לב! הפעולה שכרגע נעשתה לא עודכנה במערכת", "error");
+            }, 1000);
         }
     });
 }
@@ -232,7 +248,9 @@ function insertEmployee(EmployeeInfo, InsertAllDocs) {
         },
         error: function (xhr, status, error) {
             var err = eval("(" + xhr.responseText + ")");
-            alert(err.Message);
+            setTimeout(function () {
+                swal("התרחשה שגיאה במערכת, עלייך לפנות  לקורי או תום.", err.Message + "לשים לב! הפעולה שכרגע נעשתה לא עודכנה במערכת", "error");
+            }, 1000);
             
         }
     });
@@ -253,7 +271,9 @@ function updatePass(newpass, username) {
         },
         error: function (xhr, status, error) {
             var err = eval("(" + xhr.responseText + ")");
-            alert(err.Message);
+            setTimeout(function () {
+                swal("התרחשה שגיאה במערכת, עלייך לפנות  לקורי או תום.", err.Message + "לשים לב! הפעולה שכרגע נעשתה לא עודכנה במערכת", "error");
+            }, 1000);
 
         }
     });
@@ -274,7 +294,9 @@ function InsertSignature(svg, file, insertContract) {
         },
         error: function (xhr, status, error) {
             var err = eval("(" + xhr.responseText + ")");
-            alert(err.Message);
+            setTimeout(function () {
+                swal("התרחשה שגיאה במערכת, עלייך לפנות  לקורי או תום.", err.Message + "לשים לב! הפעולה שכרגע נעשתה לא עודכנה במערכת", "error");
+            }, 1000);
 
         }
     });
@@ -295,7 +317,9 @@ function updateEmployee(EmployeeInfo, InsertAllDocs) {
         },
         error: function (xhr, status, error) {
             var err = eval("(" + xhr.responseText + ")");
-            alert(err.Message);
+            setTimeout(function () {
+                swal("התרחשה שגיאה במערכת, עלייך לפנות  לקורי או תום.", err.Message + "לשים לב! הפעולה שכרגע נעשתה לא עודכנה במערכת", "error");
+            }, 1000);
         }
     });
 }
@@ -314,7 +338,9 @@ function getUserByUserName(username, renderUser) {
         },
         error: function (xhr, status, error) {
             var err = eval("(" + xhr.responseText + ")");
-            alert(err.Message);
+            setTimeout(function () {
+                swal("התרחשה שגיאה במערכת, עלייך לפנות  לקורי או תום.", err.Message + "לשים לב! הפעולה שכרגע נעשתה לא עודכנה במערכת", "error");
+            }, 1000);
         }
     });
 }
@@ -336,7 +362,9 @@ function uploadFiles(formData, pbLBL, pbDiv,setEmpPic) {
         },
         error: function (xhr, status, error) {
             var err = eval("(" + xhr.responseText + ")");
-            alert(err.Message);
+            setTimeout(function () {
+                swal("התרחשה שגיאה במערכת, עלייך לפנות  לקורי או תום.", err.Message + "לשים לב! הפעולה שכרגע נעשתה לא עודכנה במערכת", "error");
+            }, 1000);
         }
         
     });
@@ -358,7 +386,9 @@ function InsertConts(FileInfo, i, finished) {
         },
         error: function (xhr, status, error) {
             var err = eval("(" + xhr.responseText + ")");
-            alert(err.Message);
+            setTimeout(function () {
+                swal("התרחשה שגיאה במערכת, עלייך לפנות  לקורי או תום.", err.Message + "לשים לב! הפעולה שכרגע נעשתה לא עודכנה במערכת", "error");
+            }, 1000);
         }
     });
 }
@@ -378,7 +408,9 @@ function InsertDocs(FileInfo) {
         },
         error: function (xhr, status, error) {
             var err = eval("(" + xhr.responseText + ")");
-            alert(err.Message);
+            setTimeout(function () {
+                swal("התרחשה שגיאה במערכת, עלייך לפנות  לקורי או תום.", err.Message + "לשים לב! הפעולה שכרגע נעשתה לא עודכנה במערכת", "error");
+            }, 1000);
         }
     });
 }
@@ -401,11 +433,11 @@ function UpdateUsercall(UserInfo) {
             }, 1000);
         },
         error: function (xhr, status, error) {
-            setTimeout(function () {
-                swal("התרחשה שגיאה במערכת, עלייך לפנות  לקורי או תום.", "לשים לב! הפעולה שכרגע נעשתה לא עודכנה במערכת", "error");
-            }, 1000);
             var err = eval("(" + xhr.responseText + ")");
-            //alert(err.Message);
+            setTimeout(function () {
+                swal("התרחשה שגיאה במערכת, עלייך לפנות  לקורי או תום.", err.Message + "לשים לב! הפעולה שכרגע נעשתה לא עודכנה במערכת", "error");
+            }, 1000);
+
         }
     });
 }

@@ -68,6 +68,92 @@
                             function LogOut() {
                                 sessionStorage.removeItem("userName");
                             }
+                            var UserInfo = new Object();
+
+                            //take local storage on the specific user
+                            window.onload = function () {
+                                var username = sessionStorage.getItem("userName");
+                 
+                                getUserByUserName(username, renderUser);
+                                $('#password').click(function () {
+                                    $('#resetPassModal').modal('toggle');
+                                });
+                                $('#resetPass').click(function () {
+                                    var newpass = $('#newPass').val();
+
+
+                                    if (newpass === $('#newPassCon').val()) {
+                                        updatePass(newpass, username);
+                                    }
+                                    else {
+                                        $('#error').html('*הסיסמאות לא תואמות').css("color", "red");
+                                    }
+                                });
+
+                                $("[name='UserSave']").on('click', function () {
+                                    swal({
+                                        title: "האם אתה בטוח?",
+                                        text: "אתה עומד לעדכן את פרטי המשתמש.",
+                                        type: "info",
+                                        confirmButtonText: "כן",
+                                        showCancelButton: "true",
+                                        cancelButtonText: "בטל",
+                                        closeOnConfirm: false,
+                                        showLoaderOnConfirm: true
+                                    },
+
+                                        function (isConfirm) {
+                                            if (isConfirm) {
+                                                UserInfo.Full_name = document.getElementById('name').innerHTML;
+                                                UserInfo.U_name = document.getElementById('mail').innerHTML;
+                                                UserInfo.Phone = document.getElementById('phone').innerHTML;
+
+                                                UpdateUsercall({ UserInfo: JSON.stringify(UserInfo) });
+                                            }
+                                        });
+                                });
+                                //update spesific user
+                                function UpdateUsercall(UserInfo) {
+
+                                    // serialize the object to JSON string
+                                    var user = JSON.stringify(UserInfo);
+
+                                    $.ajax({
+                                        url: 'ajaxWebService.asmx/UpdateUser',
+                                        type: 'POST',
+                                        contentType: 'application/json; charset = utf-8',
+                                        data: user,
+                                        success: function (results) {
+
+                                            setTimeout(function () {
+                                                swal("בוצע!", "כל הנתונים נשמרו בהצלחה", "success");
+                                            }, 1000);
+                                        },
+                                        error: function (xhr, status, error) {
+                                            var err = eval("(" + xhr.responseText + ")");
+                                            setTimeout(function () {
+                                                swal("התרחשה שגיאה במערכת, עלייך לפנות  לקורי או תום.", err.Message + "לשים לב! הפעולה שכרגע נעשתה לא עודכנה במערכת", "error");
+                                            }, 1000);
+
+                                        }
+                                    });
+                                }
+                            };
+
+
+                            //put into labels the user data
+                            function renderUser(results) {
+                                results = $.parseJSON(results.d);
+                                UserInfo.Uid = results.Uid;
+                                document.getElementById('name').innerHTML = results.Full_name;
+                                document.getElementById('mail').innerHTML = results.U_name;
+                                document.getElementById('phone').innerHTML = results.Phone;
+                                document.getElementById('usertype').innerHTML = results.U_type_name;
+                                document.getElementById('img_url').src = results.User_img;
+                            }
+
+                            //update user
+            
 
                         </script>
                     </li>
@@ -207,8 +293,8 @@
     <script src="app-assets/vendors/js/extensions/sweetalert.min.js"></script>
     <!-- END ROBUST JS-->
     <!-- BEGIN PAGE LEVEL JS-->
+    <!--<script src="DAKAjs/MyAccount.js"></script>-->
     <script src="DAKAjs/AjaxCalls.js"></script>
-    <script src="DAKAjs/MyAccount.js"></script>
 
 </body>
 </html>
