@@ -415,29 +415,4 @@ function InsertDocs(FileInfo) {
     });
 }
 
-//update spesific user
-function UpdateUsercall(UserInfo) {
 
-    // serialize the object to JSON string
-    var user = JSON.stringify(UserInfo);
-
-    $.ajax({
-        url: 'ajaxWebService.asmx/UpdateUser',
-        type: 'POST',
-        contentType: 'application/json; charset = utf-8',
-        data: user,
-        success: function (results) {
-
-            setTimeout(function () {
-                swal("בוצע!", "כל הנתונים נשמרו בהצלחה", "success");
-            }, 1000);
-        },
-        error: function (xhr, status, error) {
-            var err = eval("(" + xhr.responseText + ")");
-            setTimeout(function () {
-                swal("התרחשה שגיאה במערכת, עלייך לפנות  לקורי או תום.", err.Message + "לשים לב! הפעולה שכרגע נעשתה לא עודכנה במערכת", "error");
-            }, 1000);
-
-        }
-    });
-}
