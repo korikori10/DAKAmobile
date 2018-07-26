@@ -357,9 +357,16 @@ function insertEmp(array) {
 function InsertAllDocs(results) {
     if (!isUpdate) {
     EmpVisa.Ex_date = $('#date4_2').val();
-    InsertDocs({ FileInfo: JSON.stringify(EmpVisa) });
+        InsertDocs({ FileInfo: JSON.stringify(EmpVisa) });
+
+           
     InsertDocs({ FileInfo: JSON.stringify(EmpID) });
+
+
+        
     InsertDocs({ FileInfo: JSON.stringify(EmpAuth) });
+           
+    
 
     }
     if (!updateBus) {
@@ -377,8 +384,10 @@ function InsertAllDocs(results) {
             })
     }
     else {
-    sessionStorage.setItem('contract', results.d);
-    window.location = "ContractDisplay.html";
+        sessionStorage.setItem('contract', results.d);
+        setTimeout(function () {
+        window.location = "ContractDisplay.html";
+        }, 1000);
 
     }
 }

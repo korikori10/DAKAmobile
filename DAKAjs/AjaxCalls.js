@@ -1,10 +1,10 @@
-﻿var local = false;
+﻿var local = true;
 var WSUrl = 'ajaxWebService.asmx';
 var UHUrl = 'UploadHandler.ashx';
 
 if (!local) {
-    WSUrl = 'https://proj.ruppin.ac.il/bgroup59/test2/tar3/ajaxWebService.asmx';
-    UHUrl = 'https://proj.ruppin.ac.il/bgroup59/test2/tar3/UploadHandler.ashx';
+    WSUrl = 'https://proj.ruppin.ac.il/bgroup59/Mobile/ajaxWebService.asmx';
+    UHUrl = 'https://proj.ruppin.ac.il/bgroup59/Mobile/UploadHandler.ashx';
 }
 
 $(document).ready(function () {
@@ -404,7 +404,7 @@ function InsertDocs(FileInfo) {
         contentType: 'application/json; charset = utf-8',
         data: file,
         success: function (results) {
-          
+       
         },
         error: function (xhr, status, error) {
             var err = eval("(" + xhr.responseText + ")");
