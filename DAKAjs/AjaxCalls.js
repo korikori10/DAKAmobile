@@ -1,4 +1,4 @@
-﻿var local = true;
+﻿var local = false;
 var WSUrl = 'ajaxWebService.asmx';
 var UHUrl = 'UploadHandler.ashx';
 
